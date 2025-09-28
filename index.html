@@ -588,8 +588,9 @@ make changes to the source code, and submit a pull request.</p>
 <p>Welcome to <em>Attacking Problems with Java</em>!
 This book is intended as an entry point into the realm of software development.
 It&#8217;s designed to teach students the basics of programming but also aims for the secondary goal
-of introducing students to concurrent programming early in their college days. After mastering the concepts covered
-here, students should be prepared when they encounter more complex forms of
+of introducing students to concurrent programming early in their college career.
+After mastering the concepts covered
+here, students should be prepared to encounter more complex forms of
 concurrency in advanced courses and in the workplace. A generation of
 students who learn concurrency from their first course will be ready to exploit
 the full power of multicore chips by the time they join the workforce.</p>
@@ -597,7 +598,7 @@ the full power of multicore chips by the time they join the workforce.</p>
 <div class="paragraph">
 <p>Multicore processors are omnipresent. Whether you use a desktop, a laptop, or even just a smart phone,
 chances are that your computer has a multicore chip at its heart. Inexpensive
-parallel computers have been prophesied for years. That time has come. Parallel
+parallel computers, once a dream, have become the standard. Parallel
 computers sit on our laps and in our pockets. This progress in microprocessor
 technology has thrown a challenge to educators: <em>How can we teach
 concurrent programming?</em></p>
@@ -614,7 +615,7 @@ programming?</p>
 </div>
 <div class="paragraph">
 <p>The original version of this book, <em>Start Concurrent</em>, was founded on the belief
-that concurrent programming can be taught to first year students. While we still believe
+that concurrent programming could be taught to first year students. While we still believe
 that this goal is both possible and laudable, many users of our book were interested
 in it primarily as a free introductory Java textbook. In recognition of this demand,
 we have rebranded the book as <em>Attacking Problems with Java</em>. Both students and
@@ -633,7 +634,7 @@ collection of sequential solutions applied concurrently. Watch a cook in
 the kitchen and you&#8217;ll see concurrency in action. Watch a movie and you&#8217;ll
 see concurrency in action as various subplots, scenes, and flashbacks weave the
 story together. Parents use concurrent solutions to solve day-to-day problems as
-they juggle childcare, a career, and a social life.</p>
+they juggle childcare, work, and a social life.</p>
 </div>
 <div class="paragraph">
 <p>If people naturally solve problems sequentially and concurrently, why do we need
@@ -646,9 +647,8 @@ artificial language? How can a sequential solution be broken into concurrent
 parts that run faster than the original? How can a large
 problem be divided into small, manageable chunks that can be programmed
 separately and then integrated into a whole? In addition, there are issues of
-testing, debugging, documentation, and management of the software development
-process, which combine to make programming a limitless field for intellectual
-effort.</p>
+testing, debugging, documentation, and management which combine to make software
+engineering a limitless field for intellectual effort.</p>
 </div>
 <div class="sect2">
 <h3 id="_target_audience">Target audience</h3>
@@ -686,7 +686,7 @@ Where appropriate, we direct the student to websites where relevant reference ma
 <div class="paragraph">
 <p>Classes and objects are an essential part of Java.  Some educators have
 adopted an &#8220;objects early&#8221; approach that focuses heavily on object-oriented
-principles from the very beginning.  Although we see many merits in this
+principles from the very beginning.  Although we see many merits to this
 approach, we feel compelled to start with logic, arithmetic, and control flow so
 that students have a firm foundation of what to put inside their objects. A full
 treatment of classes and objects unfolds throughout the book, moving
@@ -702,12 +702,9 @@ of the instructor or the student. Chapters 1 through 13, with the exception of
 Chapter 7, are designed to introduce the student to Java and programming in
 general. Chapters 7 and 16 cover material related to graphical user interfaces
 and can be skipped if these topics are not of interest. Chapters 14 and 15 give
-an in-depth treatment of the concurrency features of Java.  Although we make an
-effort to mark concurrency material and keep it independent from the rest of the
-content, those chapters numbered 16 and higher will assume some knowledge and
-interest in concurrency. Chapter 17 covers debugging and testing, which
-is even more crucial in a concurrent environment. The rest of the book focuses on
-advanced material relating to data structures, recursion, and I/O.</p>
+an in-depth treatment of the concurrency features of Java. The rest of the book
+focuses on more advanced material relating to testing, polymorphism,
+data structures, recursion, and I/O.</p>
 </div>
 </div>
 <div class="sect2">
@@ -747,10 +744,10 @@ the problem before the answer is given.</p>
 </dd>
 <dt class="hdlist1">Concurrency</dt>
 <dd>
-<p>For all of the chapters except for
-Chapters 14 and 15, the dedicated concurrency chapters, additional relevant
-concurrency concepts and syntax are introduced in these specially marked
-sections, spreading concurrency throughout the book.</p>
+<p>Except for Chapters 14 and 15, the dedicated concurrency chapters,
+additional relevant concurrency concepts and syntax are introduced in these
+specially marked sections, spreading concurrency throughout the book. These
+sections can be ignored by anyone uninterested in concurrent programming.</p>
 </dd>
 <dt class="hdlist1">Exercises</dt>
 <dd>
@@ -779,17 +776,6 @@ highlight common programming errors and mistakes.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_what_topics_does_this_book_not_cover">What topics does this book not cover?</h3>
-<div class="paragraph">
-<p>This book is not intended to be a comprehensive guide to Java. Instead, it&#8217;s
-intended to teach how to use computers to solve problems, especially
-concurrently. Java has a marvelous wealth of packages and libraries that we
-don&#8217;t have the space to cover. For example, the Swing package for
-building user interfaces is discussed but not in its entirety. For material not found in this book, we expect students to refer to the material available on the <a href="https://download.oracle.com/javase/tutorial" target="_blank" rel="noopener">Oracle Java tutorial website</a> and other reference
-books and websites.</p>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_suggestions">Suggestions</h3>
 <div class="dlist">
 <dl>
@@ -805,10 +791,10 @@ we provide examples with both IntelliJ and Eclipse in the chapter on those topic
 <dt class="hdlist1">Concurrency at the start</dt>
 <dd>
 <p>Many courses begin with a
-lecture or two on the relationship between problem-solving and computers.
+lecture or two on the relationship between problem solving and computers.
 Chapter 2 covers this topic. During these very early lectures, instructors
 can introduce the notions of both sequential and concurrent solutions. One
-could use simple problems from areas such as mathematics or physics or even day-to-day life that lead to sequential and concurrent solutions. Early exposure to solutions these problems, programmed in Java, can be beneficial students even if they don&#8217;t understand all the syntax.</p>
+could use simple problems from areas such as mathematics or physics or even day-to-day life that lead to sequential and concurrent solutions. Early exposure to solutions these problems, programmed in Java, can be beneficial to students even if they don&#8217;t understand all the syntax.</p>
 </dd>
 <dt class="hdlist1">Input and output</dt>
 <dd>
@@ -836,10 +822,10 @@ Instructors who wish to concentrate only on command-line I/O are free to ignore 
 <p>A number of people have played a significant role in motivating the authors to undertake the task of writing this book and in the choice of topics. First, during the spring of 2008, several faculty from the Department of Computer Science and a scientist from Purdue&#8217;s ITaP participated in early discussions related to the teaching of concurrent programming in freshman classes. Despite the multitude of issues raised, all participants seemed to agree on one point: that we ought to introduce concurrency early in the undergraduate curriculum. Thanks to all the participants, namely, Buster Dunsmore, Ananth Grama, Suresh Jagannathan, Sunil Prabhakar, Faisal Saied, and Jan Vitek.  We benefited from advice, encouragement, and support from a number of alumni and corporate partners. Special thanks to Kevin Kahn, Andrew Chien, and Carl Murray.</p>
 </div>
 <div class="paragraph">
-<p>Thanks to the many anonymous reviewers who carefully read through Draft 3.0 of this manuscript and made valuable suggestions. This current draft would not exist without the many suggestions and critiques of these reviewers.</p>
+<p>Thanks to the many anonymous reviewers who carefully read through earlier drafts of this manuscript and made valuable suggestions. The current draft would not exist without the many suggestions and critiques of these reviewers.</p>
 </div>
 <div class="paragraph">
-<p>In the fall of 2008, we offered an experimental freshman class entitled &#8220;Introduction to Programming with Concurrency.&#8221; This class was certainly one of the best we have taught to freshmen.  Thanks to students Alexander Bartol, Alexander Coe, Eric Fisher, Benjamin Gilliland-Sauer, John Graff, Tyler Holzer, Kelly, Jordan Kelly, Azfar Khandoker, Zackary Naas, Ravi Pareek, Carl Rhodes, Robert Schwalm, Andrew Wirtz, and Christopher Womble.</p>
+<p>In the fall of 2008, we offered an experimental freshman class entitled &#8220;Introduction to Programming with Concurrency.&#8221; This class was certainly one of the best we have taught to freshmen.  Thanks to students Alexander Bartol, Alexander Coe, Eric Fisher, Benjamin Gilliland-Sauer, John Graff, Tyler Holzer, Jordan Kelly, Azfar Khandoker, Zackary Naas, Ravi Pareek, Carl Rhodes, Robert Schwalm, Andrew Wirtz, and Christopher Womble.</p>
 </div>
 <div class="paragraph">
 <p>Special thanks to Azfar Khandoker, who not only attended this initial class but also worked on an independent study project to create exercises using Lego robots to help students learn programming. Azfar&#8217;s work has led to the use of robots in two freshman programming classes taught at Purdue.</p>
@@ -855,7 +841,7 @@ Instructors who wish to concentrate only on command-line I/O are free to ignore 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2025-09-04 17:35:12 -0400
+Last updated 2025-09-15 10:19:34 -0400
 </div>
 </div>
 <script type="text/x-mathjax-config">

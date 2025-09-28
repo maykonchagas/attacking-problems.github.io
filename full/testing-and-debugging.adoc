@@ -1765,35 +1765,52 @@ include the JUnit jar file in your classpath. You can either do this
 permanently, by adding it to a `CLASSPATH` environment variable in a way
 dependent on your OS, or for a particular run of a Java tool. Assuming
 that you haven't added the jar file to your classpath permanently, let's
-say  you're using the JUnit Platform 1.5.1 that's included with JUnit
-5.5.1 from a jar file called `junit-platform-console-standalone-1.5.1.jar`
+say  you're using the JUnit Platform 1.13.4 that's included with JUnit
+5.13.4 from a jar file called `junit-platform-console-standalone-1.13.4.jar`
 that can be found in `C:\Java\JUnit\`. If `MathTest.java` is in the current
 directory, you would type the following.
 
 ....
-javac -classpath .;C:\Java\JUnit\junit-platform-console-standalone-1.5.1.jar MathTest.java
+javac -cp .;C:\Java\JUnit\junit-platform-console-standalone-1.13.4.jar MathTest.java
 ....
+
+The `-cp` option lets you set the classpath, in this case to the current
+directory (`.`) as well as the contents of the jar file.
 
 To actually run the tests, you need to tell the platform where to
-look for tests to run.  Thus, you run the platform from its jar file, specifying that the class
-path is the current directory (`.`), and then scan that directory for tests.  Note that it's
-unnecessary to mention `MathTest` at this point since all tests in the specified class path will
-be run.
+look for tests to run.  Thus, you run the platform from its jar file, specifying
+that the class path is the current directory (`.`) with the `-cp` option and
+that the class to test is `MathTest` with the `-c` option.
 
 ....
-java -jar C:\Java\JUnit\junit-platform-console-standalone-1.5.1.jar --class-path . --scan-class-path
+java -jar C:\Java\JUnit\junit-platform-console-standalone-1.13.4.jar execute -cp . -c MathTest
 ....
 
 The output should include something like the following, showing that all three tests passed.
 
 ....
-╷
-├─ JUnit Jupiter ✔
-│  └─ MathTest ✔
-│     ├─ ceilTest() ✔
-│     ├─ powTest() ✔
-│     └─ sinTest() ✔
-└─ JUnit Vintage ✔
+.
++-- JUnit Platform Suite [OK]
++-- JUnit Jupiter [OK]
+| '-- MathTest [OK]
+|   +-- ceilTest() [OK]
+|   +-- powTest() [OK]
+|   '-- sinTest() [OK]
+'-- JUnit Vintage [OK]
+
+Test run finished after 105 ms
+[         4 containers found      ]
+[         0 containers skipped    ]
+[         4 containers started    ]
+[         0 containers aborted    ]
+[         4 containers successful ]
+[         0 containers failed     ]
+[         3 tests found           ]
+[         0 tests skipped         ]
+[         3 tests started         ]
+[         0 tests aborted         ]
+[         3 tests successful      ]
+[         0 tests failed          ]
 ....
 
 For the command line, this output is impressive, yet the commands listed above
@@ -1801,109 +1818,6 @@ to run JUnit are complex.  These commands have many additional options,
 allowing you to include or exclude additional paths, directories, and file
 names.  While it's possible to run JUnit commands from the command
 line, the process is smoother through an IDE.
-
-=== Concurrency: Testing tools
-
-In this section, we describe some tools that exist specifically to help catch
-those bugs that crop up as a direct result of concurrency. This
-section is short, and that shortness reflects the fewness of good tools
-available. The design of concurrent debugging and testing tools is still an
-open research topic. The heart of the problem is that the nondeterminism
-present in concurrency makes bugs difficult to pin down. You could run a JUnit
-test 1,000,000 times and never see a peculiar race condition. From a brute
-force perspective, we could try to test all possible interleavings of thread
-execution, but this approach is not practical for large programs because the
-number of interleavings grows exponentially. Nevertheless, some research has
-focused on attacking the problem from this direction.
-
-==== IBM ConTest
-
-One tool that used this idea was ConTest from IBM. Normal JVM
-operation makes some interleavings more likely than others. If the
-correct output is very likely and the incorrect is very unlikely, it's
-easy for a tester to believe that the program works correctly. ConTest was a
-tool that _instrumented_ class files after they'd been compiled by
-Java. When it instrumented these files, it added extra method calls into
-concurrent code designed to introduce some randomness into the system.
-By introducing `sleep()` and `yield()` methods in random places, the JVM
-could be forced into producing interleavings that would otherwise be
-unusual. The designers of ConTest used heuristics so that ConTest
-added this randomness in "`smart`" locations designed to maximize unusual
-interleavings and catch bugs.
-
-ConTest was not a panacea. Although it revealed bugs that were 
-rare, it still had to be combined with strong testing methodologies so
-that those bugs could be caught when they appeared. Another difficulty with
-using ConTest was that it couldn't tell you where the problem happened or
-when it was likely to happen under normal circumstances. You were still
-dependent on your test design to reveal the source of the problem.
-ConTest also didn't guarantee every possible ordering. Very rare
-bugs might not have manifested even after thousands of runs with ConTest
-instrumented code.  Although ConTest was one of the most promising tools
-taking this approach, it is no longer available.
-// This site no longer works...
-// https://www.ibm.com/developerworks/java/library/j-contest.html[ConTest site^].
-
-==== Devexperts tools
-
-The open-source https://github.com/Devexperts/lin-check[Lin-check^] framework
-has some similarities to ConTest.  It was designed by
-https://devexperts.com[Devexperts^] specifically to test data structures such
-as those we will discuss in
-<<dynamic-data-structures#dynamic-data-structures>>.  Like ConTest,
-Lin-check executes tests in parallel many times in an effort to find a
-concurrent interleaving that causes an error condition.
-
-The https://github.com/Devexperts/dlcheck[Dl-Check^] tool was also designed by
-Devexperts.  Its goal is to find deadlocks that could happen in concurrent
-programs.
-
-==== ConcJUnit and ConcurrentUnit
-
-We hope we've convinced you of the value of using JUnit testing to
-unit test your programs. Of course, JUnit has limitations, especially when
-testing concurrent programs. JUnit uses exceptions to report failed
-test cases, but JUnit only reports exceptions from the main
-thread, not from any child threads that might be spawned. ConcJUnit allows
-exceptions thrown by child threads to be reported and also forces all
-child threads to join with the main thread.
-
-In this way, it will be clear if any errors happened while a child
-thread was being executed, either causing an exception to be thrown or
-causing a child thread to fail to rejoin the main thread.  ConcJUnit is
-intended as a drop-in replacement for JUnit, but only for JUnit 3 and 4.
-ConcJUnit is no longer under active development and is unlikely to have
-a version compatible with JUnit 5. ConcJUnit is part of a larger suite of
-open-source tools called Concutest and is maintained at the 
-https://www.concutest.org[Concutest site^].
-
-https://github.com/jhalterman/concurrentunit[ConcurrentUnit^] is another
-testing framework with annotations similar to those found in JUnit.  Although
-it's not intended as a replacement for JUnit, it has facilities like ConcJUnit
-that allow testers to discover when an exception occurs on child threads.
-
-
-==== SpotBugs
-
-https://spotbugs.github.io[SpotBugs^] (previously called FindBugs), is a static
-analysis tool that examines programs for a long list of errors.  SpotBugs looks
-for patterns that match known errors.  Most of the errors that SpotBugs looks
-for have nothing to do with concurrency, but a whole section of its bug list is
-devoted to multithreaded correctness.  SpotBugs can help you find incorrect
-usage of synchronization tools as well as unsafe concurrent library usage.
-
-
-==== Intel^®^ tools
-
-There are industry tools for debugging and optimizing threaded programs outside
-of Java. Intel^®^ produces software such as the Intel^®^ Inspector to find
-concurrent errors as well as the Intel^®^ Vtune™ Amplifier to help tune threaded
-programs. These products from Intel^®^, like many concurrency tools, are focused
-on C/{cpp} and Fortran platforms. Historically, concurrency has been centered
-in the high performance and scientific computing markets. Java, in contrast,
-has been perceived as a slow language, better suited to desktop applications.
-As the role of concurrency continues to evolve, so will the tools to help
-programmers.
 
 === Examples: Testing a class
 
