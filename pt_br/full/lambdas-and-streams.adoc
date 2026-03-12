@@ -1,0 +1,1634 @@
+[#lambdas-and-streams]
+:imagesdir: chapters/lambdas-and-streams/images
+:programsdir: chapters/lambdas-and-streams/programs
+== Lambda Expressions and Streams
+
+[quote, Harry S. Truman]
+____
+Actions are the seeds of fate. Deeds grow into destiny.
+____
+
+=== Problem: Cryptography tools
+
+_Cryptography_, from Greek roots meaning "`secret writing,`" is the science of
+scrambling and unscrambling messages so that only the intended recipients can
+read them. Forms of cryptography have been used since ancient times, often in
+a military context. In fact, making and breaking codes played an important role
+in World War II. Now, modern cryptography is an essential tool to protect
+personal data as it's sent over the Internet. Without strong cryptography,
+credit card data, social security numbers, and other private information would
+be stolen by criminals even more than they are already.
+
+The act of scrambling a message so that it's no longer readable is called
+_encryption_. The act of unscrambling an encrypted message so that it's readable
+again is called _decryption_. A normal, unencrypted message is often called a
+_plaintext_. An encrypted message is called a _ciphertext_. Many encryption
+algorithms use a _key_, an extra piece of information like a secret phrase,
+that's needed when doing the encryption and decryption.
+
+What's the right approach for designing a program that can encrypt and decrypt
+data? It's tempting to pick your favorite encryption algorithm and build the
+program around that. Unfortunately, cryptographers are always working to find
+ways to defeat any given algorithm. Over the years, they might discover
+weaknesses that could allow attackers to unscramble a ciphertext, even without
+the secret key. For that reason, a good framework for using cryptography should
+allow an arbitrary algorithm to be used instead of forcing a user to keep using
+an algorithm that has known security vulnerabilities.
+
+For that reason, we want to design a framework that can accept any (or at least 
+a huge range of) encryption and decryption algorithms. We want the framework to
+take care of iterating through all the characters in a message and send each
+character off to the appropriate algorithm to be transformed from plaintext to
+ciphertext or vice versa.
+
+Most modern encryption algorithms like AES encrypt bytes (or blocks of bytes),
+but our solution will use simpler algorithms that are designed to encrypt only
+the capital letters A through Z from the Latin alphabet. The examples we'll use
+are the Caesar cipher, the affine cipher, and the Vigenère cipher, all classical
+substitution ciphers that have been used in the past but are now considered
+unsecure. With a little additional work, it's possible to expand our solution to
+secure algorithms as well.
+
+==== Caesar cipher
+
+Substitution ciphers are encryption systems that change each letter in a
+plaintext to a different one. The Caesar cipher, used by Julius Caesar himself,
+is perhaps the simplest possible substitution cipher. In it, the key is a number
+1 through 25. This number says how many places later in the alphabet the
+encrypted version of a letter is than the unencrypted version. For example, if
+the key is 7, then each plaintext letter should be replaced with the letter that
+comes seven steps later in the alphabet, wrapping around as needed. In this
+case, the letter A is changed to H, the letter K is changed to R, and the letter
+V wraps around the end of the alphabet to change into C.
+
+The Caesar cipher is also called a shift cipher since we're shifting all the
+letters of the alphabet over by a fixed amount.
+
+Here's a table showing all the unencrypted alphabet with the
+encrypted versions of each letter in each row below, when the key is 7.
+
+[.center%autowidth%unbreakable,cols="<.^h,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+|Plaintext  |A|B|C|D|E|F|G|H|I|J|K|L|M
+|Ciphertext |H|I|J|K|L|M|N|O|P|Q|R|S|T
+14+|
+|Plaintext  |N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+|Ciphertext |U|V|W|X|Y|Z|A|B|C|D|E|F|G
+|=======================================================================
+
+Thus, the message `"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` would be encrypted to
+`"JYF OHCVJ HUK SLA ZSPW AOL KVNZ VM DHY"`. To decrypt a message, we move each
+letter in the message back by the shift.
+
+
+==== Affine cipher
+
+The affine cipher takes the Caesar cipher a step further. Instead of simply
+adding a value to each letter to encrypt it, we multiply each letter by a number
+and then add a value to it. Thus, the key has two parts, a scalar _a_ and a
+shift _b_.
+
+In order to make the math simpler, we first convert the letters A through Z into
+the numbers 0 through 25. That's the number that we multiply by _a_ before
+adding _b_. Finally, we take the result modulus 26 so that any value larger than
+25 maps back to the range 0 to 25. Written in mathematical notation, the
+encrypted version of a letter whose value is _x_ is (_a_ · _x_ + _b_) mod 26.
+
+Note that the scalar _a_ *must* be _coprime_ with the size of your alphabet, in
+our case 26. Otherwise, different letters in the plaintext will map to the same
+letters in the ciphertext, making it impossible to decrypt the original message.
+Two numbers are coprime if they share none of the same prime factors. For an
+alphabet with length 26, that means that _a_ can only have the values 1, 3, 5,
+7, 9, 11, 15, 17, 19, 21, 23, or 25. When _a_ = 1, the affine cipher is simply
+a Caesar cipher.
+
+Here's a table showing all the unencrypted alphabet in the first row and the
+encrypted versions of each letter in the second, with a value of 5 for _a_ and
+8 for _b_.
+
+[.center%autowidth%unbreakable,cols="<.^h,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+|Plaintext  |A|B|C|D|E|F|G|H|I|J|K|L|M
+|Ciphertext |I|N|S|X|C|H|M|R|W|B|G|L|Q
+14+|
+|Plaintext  |N|O|P|Q|R|S|T|U|V|W|X|Y|Z
+|Ciphertext |V|A|F|K|P|U|Z|E|J|O|T|Y|D
+|=======================================================================
+
+
+With this cipher, the message `"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` would
+now be encrypted to `"SPY RIJAS IVX LCZ ULWF ZRC XAMU AH OIP"`. To decrypt a
+message, we first subtract the value _b_ from each letter and then multiply by
+the multiplicative inverse of _a_ modulus 26. Finding the multiplicative inverse
+of a number can be done with brute force or some number theory, and we'll
+discuss doing so in <<Solution: Cryptography tools>>.
+
+==== Vigenère cipher
+
+Both the Caesar cipher and the affine cipher are _monoalphabetic substitution
+ciphers_, which is a fancy way of saying that a given letter in the plaintext
+always maps to the same letter in the ciphertext. Although this property makes
+encryption and decryption simple, it also makes both ciphers susceptible to
+_frequency attacks_ in which the high frequency of letters like E in English can
+be used to recover the plaintext from the ciphertext without knowing the key.
+
+The Vigenère cipher is a _polyalphabetic substitution cipher_, meaning that
+each letter can be replaced with several different letters, depending on where
+in the message it occurs. Instead of using numbers, the Vigenère cipher uses a
+special word or phrase as the key. The values of the letters in this phrase are
+added to the values of the letters in the plaintext in order to find the
+ciphertext.
+
+For example, the letter N has value 13 (starting with A = 0). The letter S has 
+value 18. 13 + 18 = 31. As before, we take the result modulus 26 to make the
+number wrap around if it's too large. 31 mod 26 = 5. Since the letter F has the
+value 5, adding the letter N from the plaintext to the letter S from the key
+yields the letter F for the ciphertext. The table below shows the message
+`"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` encrypted with the Vigenère cipher,
+using a key of `"SHAKESPEARE"`. Note that the key `"SHAKESPEARE"` is repeated as
+many times as necessary to provide a letter to add to each letter in the
+plaintext.
+
+[.center%autowidth%unbreakable,cols="<.^h,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^,^.^",]
+|=======================================================================
+|Plaintext  |C|R|Y|H|A|V|O|C|A|N|D|L|E|T|S
+|Key        |S|H|A|K|E|S|P|E|A|R|E|S|H|A|K
+|Ciphertext |U|Y|Y|R|E|N|D|G|A|E|H|D|L|T|C
+16+|
+|Plaintext  |L|I|P|T|H|E|D|O|G|S|O|F|W|A|R
+|Key        |E|S|P|E|A|R|E|S|H|A|K|E|S|P|E
+|Ciphertext |P|A|E|X|H|V|H|G|N|S|Y|J|O|P|V
+|=======================================================================
+
+It turns out that repeating the key is what makes the Vigenère cipher vulnerable
+to attacks. If the key is as long as the message (and is a totally random
+sequence of letters), the Vigenère cipher becomes what's called a _one-time
+pad_. It's impossible to attack a one-time pad without knowing the key, but it's
+also very inconvenient to use a key as long as the message, particularly when
+the message itself is long.
+
+The Vigenère cipher dates back to the 16^th^ century and was believed to be
+unbreakable for hundreds of years. However, methods that look at the frequency
+of letters in sophisticated ways were developed in the 19^th^ century by
+Friedrich Kasiski and separately by Charles Babbage, a pioneer of computing.
+
+=== Concepts: Passing and storing methods
+
+Creating a tool that can perform encryption and decryption with arbitrary
+algorithms is useful, but that's just the beginning. Throughout this book, we've
+created variables that could store *values*, and we could also pass those values
+to methods. Now, we'll explore ways to store *methods* and pass those methods to
+other methods.
+
+This idea of methods as _first-class values_ is one that comes from a different
+paradigm of programming. As we've discussed, Java is an object-oriented
+programming language: All code is stored inside of a class. Programs can be seen
+as a collection of objects interacting. Many variables are objects, though Java
+breaks this rule with primitive types. These exceptions aside, a useful motto
+for Java programming is "`Everything is an object.`"
+
+On the other hand, in the _functional programming paradigm_, the motto is
+"`Everything is a function.`" Languages that follow this paradigm, like Haskell,
+Erlang, Clojure, and OCaml, focus heavily on methods, usually called functions
+in these languages. When writing code in a functional language, it's typical to
+write functions that take functions as parameters and return functions as
+values. In fact, the purest functional languages have functions *instead* of
+values. In some of these languages, zero can be thought of as a special
+function. Then, the number 1 is conceived of as the function produced by
+applying the successor function to zero. The number 2 is the function produced
+by applying the successor function to the result of applying the successor
+function to zero, and so on.
+
+These languages also do not have (or at least discourage using) loops to perform
+repetition. Instead, these languages rely heavily on _recursion_, using a method
+to call itself, to achieve the same effect. Doing so is possible in Java, and
+we discuss recursion more thoroughly in <<recursion#recursion>>. Functional
+languages also disallow (or least discourage) changing the value of a variable
+once it's been assigned.
+
+If a language where everything's a function, there are no loops, and variables
+can't be changed sounds bizarre to you, don't worry: People whose first
+experience programming is with object-oriented or imperative languages are often
+baffled when they come in contact with functional languages. On the other
+hand, academic researchers into programming language design love functional
+languages because they can be very elegant, have many wonderful safety
+features, and follow mathematical structures that make it easier to prove
+important properties about a program.
+
+Although it's hard to make an objective measurement, many people consider
+functional languages to be more difficult to program in than object-oriented
+languages. Functional programming advocates will claim that, though it's harder
+to get a functional program to compile in the first place, a programmer will
+have more confidence that it works correctly when it finally does compile. While
+functional languages aren't typically used by as many people as object-oriented
+languages, there are certain niches like distributed systems where functional
+languages provide valuable features. As always, use the right tool for the right
+job.
+
+And even if pure functional languages aren't overwhelmingly popular, they have
+features that other languages liked enough to steal. Java 8 added lambda
+expressions, method references, and functional interfaces: all tools to make it
+easier to  use methods in a functional style. The language Scala runs on the
+JVM, and it goes even further than Java in adopting functional approaches.
+
+****
+<<functionalLanguagesExercise>>
+****
+
+==== Method references and lambda expressions
+
+In the previous paragraph, we used the word _lambda_, which is the letter λ from
+the Greek alphabet. Because of a theoretical model of computing called the
+_lambda calculus_ and the Lisp programming language that was influenced by it,
+the word lambda has come to be associated with methods that are defined on the
+fly, inside other methods, using the values of local variables when appropriate.
+
+If you recall, we already did something similar in
+<<Advanced: Local and anonymous classes>>. There, we created whole classes, both
+local and anonymous, in the middle of a method, even incorporating the values of
+local variables in one case. Lambda expressions do exactly the same thing,
+except that the syntax is simpler, and we're only defining a single method
+instead of a whole class.
+
+A related concept is a _method reference_. In functional programming, we often
+pass methods around as parameters. We can use lambda expressions to create a
+method on the fly, or we can pass in the method of an existing object. You
+should always pass in a method reference if the method you want already exists,
+but creating a lambda is fine if one doesn't. On the other hand, if you're
+writing many different lambda expressions that do essentially the same thing,
+you might want to create a method so that you can pass a reference to it.
+
+No doubt you're eager to learn the syntax for lambda expressions and method
+references that we discuss in the next section, but when is it a good idea to
+use these tools? A lambda expression is useful when all you require is a single
+method, not a whole new class with member variables and perhaps many other
+methods. These situations include:
+
+- When you're using an interface that contains only one abstract method.
+Lambda expressions can allow you to create a method that fulfills the
+requirements of that interface. A great example is the `Runnable` interface that
+we'll talk about in <<The `Runnable` interface>> when describing ways to create
+threads.
+
+- Event handling, especially in GUIs. As we'll discuss in <<gui#gui>>, a central
+challenge of creating a GUI is defining what happens when a button is pressed or
+some other event occurs. Lambda expressions make it easy to supply a short
+segment of code that runs when an event happens.
+
+- Working with collections. The Java Collections Framework (JCF) provides many
+useful classes for storing data in lists, sets, and maps. To sort custom data
+or retrieve only the objects that match certain criteria, the JCF provides
+methods that you can supply a lambda to in order to say how data should be
+sorted or which kinds of objects you want back.
+
+- The Stream API. As we'll discuss in <<Advanced: Streams>>, the Stream API
+expands the tools to create streams of data from collections that can be sorted,
+filtered, aggregated, and processed in arbitrary ways using lambda expressions
+that you supply.
+
+Anywhere you can use a lambda expression, you can also use a method reference,
+provided that the method you want already exists.
+
+=== Syntax: Method references and lambda expressions
+
+After all this discussion of the concept of passing methods around, no doubt
+you're excited to do it yourself. Unfortunately, you can't.
+
+As we said before, Java lives by the motto "`Everything is an object.`"
+Consequently, we can pass objects around, not methods. But there's Java
+construct that's primarily focused on methods, and that's the interface. As long
+as we pass around objects that implement an interface with the method we want,
+we can focus only on that particular method, ignoring other members and methods
+that the object might have.
+
+==== Functional interfaces
+
+To make it absolutely clear when we want to focus only on one particular method
+in an object, Java 8 introduced the idea of a _functional interface_. A
+functional interface is an interface that contains exactly one abstract method.
+
+Below is the functional interface `ArithmeticOperator`, which contains the
+single method `evaluate()`.
+
+[source, java]
+[[Operator]]
+----
+include::{programsdir}/Operator.java[]
+----
+
+Note the text `@FunctionalInterface` that appears before the declaration of
+`Operator`. The use of the `@` signals that
+`@FunctionalInterface` is an annotation, a tool for providing extra information, 
+first mentioned in <<Annotations>>. In this case, the
+`@FunctionalInterface` annotation gives extra information to someone reading the
+code that this interface is a functional interface, intended to be used in
+situations where we want to pass around an object as if it were only a single
+`evaluate()` method that takes two `int` values and returns a
+third. The `@FunctionalInterface` annotation has no effect on the compilation or
+running of the program except that an interface with this annotation will cause
+a compiler error if it doesn't have exactly one abstract method.
+
+The `@FunctionalInterface` annotation isn't necessary for functional-style
+programming in Java. As long as an interface has exactly one abstract method,
+you can use it as a type for storing or passing lambda expressions and method
+references. However, it's always a good idea to mark an interface you write with
+`@FunctionalInterface` if that's how you intend it to be used, both to inform
+other programmers that it's a functional interface and to get the extra
+protection from the compiler if you mistakenly add another abstract method to
+it.
+
+****
+<<functionalInterfaceExercise>> +
+<<makeFunctionalInterfaceExercise>>
+****
+
+==== Method references
+
+You can use method reference anywhere with a matching functional interface type.
+In this case, we have the `Operator` functional interface that matches methods
+that take two `int` values as parameters and return another `int` value.
+
+Consider the following class that contains a simple method that finds the
+maximum of two `int` values.
+
+[source, java]
+[[Max]]
+----
+include::{programsdir}/Max.java[]
+----
+
+Since the `max()` method inside the `Max` class takes two `int` values and
+returns a third, we could store it into a variable with type `Operator`.
+
+[source, java]
+----
+Operator operator = Max::max;
+System.out.println(operator.evaluate(5, -3)); // Prints 5.
+----
+
+Note that we are using the `::` operator here, which lets Java know that we want
+a reference to the `max()` method inside the `Max` class, instead of using `.`
+as we would to call the method. In this case, we're supplying a reference to a
+static method, but we can use the `::` operator to reference an instance method
+as well.
+
+Consider the following class that allows us to create `MaxWithMinimum` objects.
+These objects have a `max()` method that finds the maximum of two `int` values,
+but it also has a minimum value that it will give back as a default if neither
+of the arguments are bigger than the minimum. A class like this might be useful
+for situations where a value must always be above a certain threshold.
+
+[source, java]
+[[MaxWithMinimum]]
+----
+include::{programsdir}/MaxWithMinimum.java[]
+----
+
+As before, we can store the `max()` method into a variable of type `Operator`,
+but now we have to put the name of the object, instead of the name of the class,
+before the `::` operator.
+
+[source, java]
+----
+MaxWithMinimum maxObject = new MaxWithMinimum(10);
+Operator operator = maxObject::max;
+System.out.println(operator.evaluate(5, -3)); // Prints 10, the minimum allowed.
+----
+
+This syntax parallels the way that static methods are called with a class name
+while instance methods are called with an object name.
+
+.Arithmetic expressions
+====
+
+We can use the `Operator` interface in a more extensive way to create nested
+arithmetic expressions where the actual operation done (add, subtract, multiply,
+or divide) is given by a method reference. First, we need to create an interface
+for an expression. The only thing an expression needs to do is tell you its
+value, so we put the `getValue()` abstract method in our `Expression` interface.
+
+[source, java]
+[[Expression]]
+----
+include::{programsdir}/Expression.java[]
+----
+
+We need two classes that implement `Expression`. The first is a simple class
+designed to hold a single `int` value.
+
+[source, java]
+[[Number]]
+----
+include::{programsdir}/Number.java[]
+----
+
+The second class represents a calculation done on expressions (which can be
+either simple numbers or expressions themselves).
+
+[source, java]
+[[Calculation]]
+----
+include::{programsdir}/Calculation.java[]
+----
+<.> The constructor for `Calculation` takes an operator and the two
+subexpressions that the operator is being applied to.
+<.> The `getValue()` method first gets the values of the two subexpressions and
+combines those values using the `evaluate()` method of the operator.
+<.> Static method to add two numbers.
+<.> Static method to subtract two numbers.
+<.> Static method to multiply two numbers.
+<.> Static method to divide two numbers.
+
+
+Although it took a lot of set-up, the final code that evaluates expressions is
+relatively simple.
+
+[source, java]
+----
+Expression expression1 = new Calculation(Calculation::add, new Number(3), new Number(5));
+System.out.println(expression1.getValue()); // Prints 8.
+
+Expression expression2 = new Calculation(Calculation::multiply, new Number(2), expression1);
+System.out.println(expression2.getValue()); // Prints 16.
+----
+====
+
+****
+<<methodReferenceExercise>>
+****
+
+==== Lambda expressions
+
+Like method references, lambda expressions can be used anywhere with a matching
+functional interface; however, a lambda expression defines a method right where
+you need it, without the requirement for an existing method in any class.
+
+The syntax rules for lambda expressions are complicated, mostly because parts
+of them can sometimes be left off to make code shorter and easier to read. Note
+that lambda expressions always contain an arrow (`\->`) between the parameters
+and the code that shows what computation the lambda does on the parameters.
+
+A single-line lambda expression that adds two `int` values together, similar to
+the `add()` method in the `Calculation` class, might look like the following. 
+
+[source, java]
+----
+Operation add = (int a, int b) -> a + b;
+----
+
+In almost all cases, the types for the parameters in lambda expressions can be
+omitted. The Java compiler uses a process called _type inference_ to determine
+what the types should be. Thus, the code above could be written in a shorter
+way.
+
+[source, java]
+----
+Operation add = (a, b) -> a + b;
+----
+
+The parameters `a` and `b` still both have type `int`, but it's unnecessary to
+state the type explicitly.
+
+.Pitfall: Arrow symbols
+[WARNING]
+====
+The arrow is not a single character you can type. Unicode contains several
+characters with the appearance of an arrow, but like all Java operators, the
+arrow used for lambda expressions is made up of characters that can be easily
+typed on a standard keyboard. In fact, it's made up of two characters, a minus
+(`-`) and a greater than (`>`). Although whitespace is generally unimportant in
+Java, these two characters must appear next to each other to make an arrow, with
+no space in between.
+
+Some languages have an arrow that uses an equal (`=`) instead of a minus, making
+an arrow whose appearance is `\=>`. This arrow is *not* a legal operator in Java
+and cannot be substituted for `\->`.
+====
+
+In the two code segments above, we're storing a lambda expression into a
+variable with a functional interface type, namely `Operation`. While doing so
+is allowed, it's much more common to use a lambda expression directly, right
+where we need it. For example, we can recreate the code from the end of the last
+section using lambda expressions.
+
+[source, java]
+----
+Expression expression1 = new Calculation((a, b) -> a + b, new Number(3), new Number(5));
+System.out.println(expression1.getValue()); // Prints 8.
+
+Expression expression2 = new Calculation((a, b) -> a * b, new Number(2), expression1);
+System.out.println(expression2.getValue()); // Prints 16.
+----
+
+.Custom sorting
+====
+In <<The `Arrays` class>>, we introduced `Arrays`, a utility class that provides
+tools for interacting with arrays. It contains several overloaded `sort()`
+methods that can be used to sort arrays of data. While this approach works well
+for sorting primitive data in ascending order, it will fail to sort reference
+types unless they implement the `Comparable` interface.
+
+However, we can use lambda expressions to sort reference types that don't
+implement this interface. Better yet, we can also use lambda expressions to sort
+objects based on any characteristic we're interested in. Consider the following
+code.
+
+[source, java]
+----
+String[] words = {"telephone", "architecture", "union", "drawers", "fruits"};
+Arrays.sort(words);
+System.out.println(Arrays.toString(words));
+----
+
+As expected, this code prints the words in dictionary order:
+`[architecture, drawers, fruits, telephone, union]`
+
+But what if we wanted to sort the words based on their length instead? We could
+use the following code that includes a lambda expression to do the comparison.
+
+[source, java]
+----
+Arrays.sort(words, (a, b) -> a.length() - b.length());
+System.out.println(Arrays.toString(words));
+----
+
+Now, the words will be printed out from shortest to longest:
+`[union, fruits, drawers, telephone, architecture]`
+
+How does this sorting work? The lambda expression is clear enough: It takes two
+parameters `a` and `b` (whose types it has inferred to be `String`) and
+subtracts the length of `b` from the length of `a`. But _why_ does it work? The
+key idea is that sorting requires the comparison of two objects. The sorting
+algorithm will look at two objects and decide which one comes earlier in the
+final sorted list. By making many comparisons between objects, it can ultimately
+sort the whole list.
+
+What adds another layer of complexity is that Java expects the result of a
+comparison to be an `int` value. This value will be negative if the first object
+comes earlier in the sorted order than the second, positive if the first
+object comes later in the sorted order than the second, and zero if the two
+objects go in exactly the same place in the sorted order (like two `String`
+values with the same length). By subtracting the lengths of the two `String`
+values, the lambda expression returns a negative number if the first `String`
+has a length shorter than the second, a positive number if the first `String`
+has a length longer than the second, and zero if the two `String` values have
+the same length. Although unintuitive, this approach of subtraction can be
+used for many kinds of comparisons.
+
+Since most comparisons are based on characteristics of objects that can be
+retrieved from methods, there are often ways to perform the comparison using
+a method reference instead of a lambda expression. For example, we could have
+achieved the same sorting by length as follows.
+
+[source, java]
+----
+Arrays.sort(words, Comparator.comparingInt(String::length));
+----
+
+As before, the `sort()` method takes a custom `Comparator` object. In this case,
+it's one created by doing an integer comparison (essentially subtraction) on the
+result of applying the `length()` method from the `String` class to the
+`String` objects in the `words` array. The exact mechanism of how the
+`comparingInt()` method creates the right kind of `Comparator` object from the
+`length()` method is murky and involves complicated type inference. However,
+it's important to know that this technique is available since sorting objects
+based on arbitrary characteristics comes up frequently in practice, and many
+experienced developers believe that using a method reference is more readable
+than a lambda expression.
+
+There's one final caveat we want to mention about custom sorting. It is,
+unfortunately, difficult to sort arrays of _primitive_ values using custom 
+`Comparator` objects, because of the way that Java uses _generics_, a tool that
+allows code to be written to work with many different types. We'll talk more
+about generics in <<Generics in Java>>.
+
+Sorting an array of `int` values in ascending order (smallest to largest), for
+example, can be done with an overloaded version of the `Arrays.sort()` method.
+
+[source, java]
+----
+int[] intValues = {34, 42, 90, 61, 29};
+Arrays.sort(intValues);
+System.out.println(Arrays.toString(intValues));
+----
+
+As you would expect, this code prints:
+`[29, 34, 42, 61, 90]`
+
+However, there's no straightforward way to sort these numbers in descending
+order (largest to smallest). It would be tempting to use a lambda expression as
+follows.
+
+[source, java]
+----
+Arrays.sort(intValues, (a, b) -> b - a); // Does not compile!
+----
+
+However, only reference types (not primitive types like `int`) can be used
+with the generic types that make the custom `Comparator` work, so this code
+won't compile. For this specific case, there are two alternatives.
+
+. Sort the list in ascending order and then write additional code to reverse it.
+. Copy the contents of the array into an array of `Integer` values and use a
+custom `Comparator` on that.
+
+Simply by declaring the array as type `Integer[]`, we can sort it with a
+custom `Comparator`.
+
+[source, java]
+----
+Integer[] wrappedValues = {34, 42, 90, 61, 29};
+Arrays.sort(wrappedValues, (a, b) -> b - a);
+System.out.println(Arrays.toString(wrappedValues));
+----
+
+Because the comparison is based on `b - a` (rather than `a - b`), this code
+sorts `wrappedValues` in descending order, giving: `[90, 61, 42, 34, 29]`
+
+When using the `Arrays` class for sorting, remember that you'll only be able to
+use a custom `Comparator`, based on either a lambda expression or method
+references, if your array contains reference types. Sorting an array of
+primitive types requires turning them into an array of the appropriate wrapper
+class objects. Sometimes, this approach will be the best solution, but turning
+primitive values into objects costs both time and extra memory.
+====
+
+
+
+****
+<<methodReferenceLambdaExercise>> +
+<<vowelLambdaExercise>> +
+<<caseInsensitiveLambdaExercise>> +
+<<caseInsensitiveMethodExercise>>
+****
+
+===== Longer lambda expressions
+
+Lambda expressions are perhaps at their best when they're shorter than a single
+line. It both makes sense and is relatively readable to define a lambda
+expression that only does one or two simple operations like addition or
+subtraction. However, there are cases when a lambda expression must contain
+several lines of code to get the job done, and Java provides a way to do this,
+with slightly different syntax.
+
+Recall the `Max` class in <<Method references>>. It contains a single method
+called `max()` that finds the larger of two `int` values. We stored a reference
+to this method in a variable with type `Operator` as follows.
+
+[source, java]
+----
+Operator operator = Max::max;
+----
+
+Using the ternary operator, we could write a single line of code that finds the
+larger of two values, but it feels more natural to write the code as we did in
+the `max()` method. We can do so with a lambda expression by putting everything
+after the arrow inside braces (`{ }`) and including appropriate return
+statements.
+
+[source, java]
+----
+Operator operator = (a, b) -> {
+    if (a >= b) {
+        return a;
+    } else {
+        return b;
+    }
+};
+----
+
+This code shows a longer lambda expression where everything after the arrow
+looks like a normal method body. Note that a semicolon is still required after
+the closing brace since the entire lambda expression is treated by the compiler
+like a single expression, even though it takes up multiple lines.
+
+What is perhaps even more surprising is that we can even include local variables
+inside of a lambda expression. For example, the following code allows us to have
+behavior similar to the `max()` method in the `MaxWithMinimum` class. It finds
+the larger of two values but defaults to a minimum if neither value is as large
+as the minimum.
+
+[source, java]
+----
+int minimum = 10;
+Operator operator = (a, b) -> {
+    int result = minimum; // Use of local variable
+    if (a >= result) {
+        result = a;
+    }
+    if (b >= result) {
+        result = b;
+    }
+    return result;     
+};
+----
+
+.Pitfall: Effectively final
+[WARNING]
+====
+When using local variables from an enclosing method inside of lambda expressions
+(or anonymous inner classes), those local variables must be _effectively final_,
+which means that their values are never changed once they've been assigned. You
+can think of local variables as constants that are provided to a lambda
+expression. It gets the value of the local variable and can use it for
+computation, but Java requires that the value of that variable never changes.
+The goal is to minimize confusion. What would it mean if a variable did change?
+Could executing a lambda expression in later code change a local variable in a
+way that isn't transparent to the programmer? Maybe the method containing that
+local variable has already returned, so there is no local variable to update.
+Likewise, what if the local variable had been changed before the lambda
+expression was executed? Would it use the value it was created with or the
+updated value?
+
+The developers of Java decided to avoid all this complication by requiring the
+variable to be effectively final. Another way to think about effectively final
+variables is that they could be explicitly marked with the `final` keyword
+without causing the compiler to complain about them being reassigned.
+
+Consider the following code that is similar to the lambda expression above
+except that it makes the largest value that it finds into the new minimum. Such
+code might be useful if we wanted a series of maximum values that never decrease
+over the course of the program.
+
+[source, java]
+----
+int minimum = 10;
+Operator operator = (a, b) -> {
+    int result = minimum; // Use of local variable
+    if (a >= result) {
+        result = a;
+    }
+    if (b >= result) {
+        result = b;
+    }
+    minimum = result; // Reassignment of local variable    
+    return result;     
+};
+----
+
+Because the local variable `minimum` is reassigned, it isn't effectively final,
+and it *won't* compile.
+
+Sometimes, this requirement forces the programmer to add an additional variable
+to the body of a lambda expression, since that inner variable can be changed.
+Note  that this requirement does not apply to member variables, which can also
+be changed inside of lambda expressions.
+====
+
+****
+<<whenUseLambdaExercise>>
+****
+
+==== Syntactic sugar
+
+Java 8 was released in 2014, and people were excited to use the new functional
+features it provided. As slick as these features are, they didn't make it
+possible to do anything that was impossible before. Even though method
+references were new, it had already been possible to make interfaces with a
+single method and then store objects with a matching method into variables with
+that interface type. While lambda expressions are much less clunky, the same
+functionality could be achieved with anonymous inner classes.
+
+Java 8 did make some fundamental changes to the JVM, but these changes mostly
+had to do with memory management. By contrast, the functional programming tools
+that we're discussing in this chapter are what some people call
+_syntactic sugar_. Syntactic sugar refers to syntax that makes a language easier
+to program without making deep changes to how the language works. The language
+simply becomes sweeter to use.
+
+To get a sense of the syntactic sugar that lambda expressions provide, let's
+write code that defines a class that implements the `Operator` interface,
+creating an `evaluate()` method that performs multiplication on its two inputs.
+For the first version of the code, we'll use an anonymous inner class.
+
+[source, java]
+----
+Operator multiply = new Operator() {
+    @Override
+    public int evaluate(int a, int b) {
+        return a * b;
+    }            
+};
+----
+
+This anonymous inner class approach works for pretty much every version of Java.
+However, note how much syntax is needed to wrap up the only code that matters,
+the code that specifies that `evaluate()` will multiply its two parameters.
+
+From there, we can consider an equivalent version of the code that uses a lambda
+expression but doesn't take advantage of all the shortcuts that could be used.
+
+[source, java]
+----
+Operator multiply = (int a, int b) -> {
+    return a * b;
+};            
+----
+
+This code is functionally equivalent to the version using an anonymous inner
+class. Internally, the JVM almost certainly creates a new object with an
+`evaluate()` method that implements the `Operator` interface, but that tedious
+work is taken care of for you.
+
+Finally, we can consider the slimmest version of the code, which uses all the
+syntax shortcuts that lambda expressions allow, sugaring the syntax even
+further.
+
+[source, java]
+----
+Operator multiply = (a, b) -> a * b;
+----
+
+As you've already seen in this chapter, we can usually leave off parameter types
+in lambda expressions. For single-line expressions, we can also leave off the
+braces and imply the return statement. Again, this code is functionally
+equivalent to the first version using an anonymous inner class, but syntactic
+sugar has allowed us to write it in a more concise, more readable way.
+
+The enhanced `for` loops we discussed in <<Enhanced `for` loops>> are also
+syntactic sugar since they allow a `for` loop to be written more compactly.
+Examples of syntactic sugar exist in almost every language. There are tasks that
+come up so frequently that the developers of the language decided to make a
+shortcut for those tasks, even though existing syntax could get the job done.
+
+It pays to be aware of syntactic sugar for two reasons. First, you'll
+understand a language more deeply when you realize that one piece of syntax is
+really just a shortcut for another. Second, programmers tend to prefer the
+sugared version of syntax. Using the syntax that the community prefers allows
+you to write more _idiomatically_, in the accepted style. Since programming is
+about clear communication with both computers and other programmers, adhering
+to a common style is valuable.
+
+****
+<<syntacticSugarExercise>>
+****
+
+
+=== Advanced: Streams
+
+When programming, we often have a list of data that we want to manipulate in
+some way:
+
+- Perform an operation with every value.
+- Filter out certain values.
+- Find a value that matches some criteria.
+- Aggregate values to find information like the maximum, minimum, sum, or
+average.
+
+When you see these manipulations, you might immediately think of loops, likely
+`for` loops. While loops are are a perfectly reasonable approach to manipulating
+collections of data, Java 8 introduced an alternative, the Stream API, which
+allows collections of data to be processed as _streams_.
+
+Loops put the emphasis on iterating through data, with the operations done
+specified in the body of the loop. Streams put the emphasis on the operations
+being performed, with the assumption that these operations will be performed on
+all the data (or at least all the data that matches the requirements). As with
+the other functional tools, streams are a kind of syntactic sugar. You can't do
+anything with streams that you couldn't do with loops, but many programmers find
+streams easier to read and less prone to mistakes.
+
+==== Creating streams
+
+Streams are library code, not part of core Java. Most of the examples below will
+assume that everything in the `java.util` and the `java.util.stream` packages
+has been imported. To use streams, we first need to turn our list of data into a
+stream. Consider the following code in which we start with an array of `String`
+values.
+ 
+[source, java]
+----
+String[] list = {"favorable", "acquit", "unfair", "insert", "vegetarian", "origin"};   
+var words = Stream.of(list);
+----
+
+In this code, `words` will now contain a stream of `String` values. The
+`Stream.of()` method can also take a comma-separated list of values with any
+length. Thus, if you didn't already have an array you wanted to use, you could
+put a list of values directly into a stream as follows.
+
+[source, java]
+----
+var words = Stream.of("vegetarian", "acquit", "unfair", "insert", "favorable", "origin");
+----
+
+We'll discuss a number of other data structures in
+<<dynamic-data-structures#dynamic-data-structures>>. Most of the standard Java
+data structures in the Java Collections Framework (JCF) contain a `stream()`
+method that puts the contents of the data structure into a new stream. Although
+you might not yet be familiar with the `List` interface, it's a useful tool you
+will use frequently as a Java programmer to store a list of data. The code below
+shows an example with a `List` that results in a stream identical to the array
+examples we've already given.
+
+[source, java]
+----
+List<String> list = new ArrayList<>();
+list.add("vegetarian");
+list.add("acquit");
+list.add("unfair");
+list.add("insert");
+list.add("favorable");
+list.add("origin");   
+var words = list.stream();
+----
+
+For now, it's not terribly important to focus on the syntax for creating a
+stream. What is important is that Java provides a number of easy ways to
+create streams from existing collections of data.
+
+==== Terminal operations
+
+Streams have a `forEach()` method that takes a method reference or lambda
+expression saying what should be done with each element. Using `forEach()`
+processes the stream, performing the operation on each element. The
+`forEach()` method is a _terminal operation_, meaning that it's the last thing
+that can be done to a stream. Once a terminal operation has been done, the
+stream can't be used anymore.
+
+The following code prints out every `String` in `words`.
+
+[source, java]
+----
+words.forEach(e -> System.out.println(e));
+----
+
+The output for this code is below.
+
+....
+vegetarian
+acquit
+unfair
+insert
+favorable
+origin
+....
+
+One can argue whether this stream-based approach to printing words is better
+than using a loop directly. Regardless, it is readable and likely to take a
+similar amount of time to execute.
+
+There are many terminal operations in the `Stream` class that will, among
+other things, determine if one or all elements in the stream match a condition,
+collect the elements of a stream into another data structure, count the elements
+in a stream, find an element in the stream that matches a condition, find a
+maximum or minimum element, or reduce the elements in the stream to an
+aggregate value like a sum.
+
+==== Intermediate operations
+
+Using only a terminal operation doesn't showcase the flexibility or power of
+streams. Before performing a single terminal operation, programmers will often
+apply one or more _intermediate operations_ on a stream. These operations
+transform the stream by sorting it, removing values, or making a new stream by
+processing the members of the original stream in some way.
+
+The `filter()` method is a common intermediate operation that will keep only
+the elements that meet a condition. In this case, the condition is given by a 
+lambda expression or method reference that returns a `boolean`. For example,
+we can first filter our stream by keeping only those `String` values whose
+length is 8 or more and then print out whatever's remaining.
+
+[source, java]
+----
+words
+    .filter(e -> e.length() >= 8)
+    .forEach(e -> System.out.println(e));
+----
+
+As you can see in the updated output below, we now only print out two words.
+
+....
+vegetarian
+favorable
+....
+
+We can also apply multiple intermediate operations at once. For example, we can
+sort the data after filtering it.
+
+[source, java]
+----
+words
+    .filter(e -> e.length() >= 8)
+    .sorted()
+    .forEach(e -> System.out.println(e));
+----
+
+As expected, we get the same two words but now in sorted order.
+
+....
+favorable
+vegetarian
+....
+
+Note the indentation of the code above. When multiple operations are done on a
+stream, many style guides encourage programmers to indent each operation on a
+separate line, in order to improve readability.
+
+Intermediate operations can do more than remove or reorder elements from the
+stream. The `map()` method creates a new stream by applying a function to
+elements from the original stream. For example, the following code will
+transform the stream of words into a stream containing each word concatenated
+with itself, before printing out this new stream.
+
+[source, java]
+----
+words
+    .map(e -> e + e)
+    .forEach(e -> System.out.println(e));
+----
+
+The output is each word doubled.
+
+....
+vegetarianvegetarian
+acquitacquit
+unfairunfair
+insertinsert
+favorablefavorable
+originorigin
+....
+
+****
+<<streamUseExercise>> +
+<<filterStreamExercise>>
+****
+
+==== Streams of primitive values
+
+In <<Advanced: Generic data structures>>, we'll discuss generic types, a way
+to program data structures with a type variable, allowing, for example, a list
+class to be designed to hold a specific (but unknown) type that a user can later
+specify inside angle brackets (`< >`). For example, `ArrayList<String>` is a
+type for a list of `String` objects, but `ArrayList<Wombat>` is a type for a
+list of `Wombat` objects. Generic types allow a library designer to program a
+list class a single time that will work with any specific type, combining code
+reuse with type safety.
+
+Generic types were introduced in Java 5, after the language had made many
+significant design choices. Unfortunately, some of these design choices meant
+that primitive types could never be supplied for a generic type variable. Thus,
+`ArrayList<Integer>` is allowed, but `ArrayList<int>` is not. Because the Java 8
+Stream API builds heavily on generic types, they had to make specialized streams
+to accommodate primitive types.
+
+Specifically, you may want (or need) to use `IntStream`, `LongStream`, or
+`DoubleStream` if you need streams of `int`, `long`, or `double` values. No
+specialized streams are available for `boolean`, `byte`, `char`, or `short`.
+
+
+Instead of using the `Stream` type to create primitive streams, use the
+specific primitive stream type.
+
+[source, java]
+----
+var numbers = IntStream.of(3, 4, 5, 6, 7);
+----
+
+These streams can be created from existing lists or generated with the
+`iterate()` method (and additionally with the `range()` and `rangeClosed()`
+methods for `IntStream` and `LongStream`. The following code generates five
+identical streams.
+
+[source, java]
+----
+int[] array = {3, 4, 5, 6, 7};
+var stream1 = IntStream.of(array);                       // <.>
+var stream2 = IntStream.of(3, 4, 5, 6, 7);               // <.>
+var stream3 = IntStream.range(3, 8);                     // <.>
+var stream4 = IntStream.rangeClosed(3, 7);               // <.>
+var stream5 = IntStream.iterate(3, e -> e + 1).limit(5); // <.>
+----
+<.> Creates `stream1` from an existing array.
+<.> Creates `stream2` from an explicit list of `int` values.
+<.> Generates `stream3` from the range of values from 3 up to (but not
+including) 8.
+<.> Generates `stream4` from the range of values from 3 up to (and including) 7.
+<.> Generates `stream5`, starting at 3 and incrementing the value by 1 each
+time, limiting the length of the stream to 5 elements.
+
+These streams of primitive values behave exactly like general streams, but they
+can be more efficient and add a few useful methods like `max()`, `min()`, and
+`sum()`, which find the maximum value, the minimum value, and the sum of all
+the elements in the stream, respectively. Note that these methods are terminal
+operations and so can only be called once per stream. Also, `max()` and `min()`
+return a special optional type that requires a `getAsInt()` (or similar), since
+the result could be `null` if the stream is empty.
+
+[source, java]
+----
+System.out.println(stream1.max().getAsInt()); // Prints 7.
+System.out.println(stream2.min().getAsInt()); // Prints 3.
+System.out.println(stream3.sum());            // Prints 25.
+----
+
+****
+<<mapStreamExercise>> +
+<<timingStreamAgainstLoopExercise>>
+****
+
+
+==== Lazy evaluation
+
+In the example above where we create an `IntStream` with the `iterate()` method,
+we give the starting point of 3 followed by a lambda expression to add 1 to the
+current value in order to get the next value. Without the `limit()` method, we
+would have defined an infinite stream, which is allowed.
+
+In fact, infinite streams aren't necessarily a problem since all streams use
+_lazy evaluation_. Laziness is generally considered negative, but it can be an
+admirable quality in computer science. Lazy evaluation means that a stream
+doesn't do computation on an element in the stream until it's needed. Adding a
+long sequence of intermediate operations doesn't mean that those operations will
+get performed on everything in stream. For example, the `findFirst()` and
+`findAny()` methods are terminal operations that will return only a single
+element from the stream. When using `findFirst()`, it will transform the first
+element of the stream based on intermediate operations, and if the first element
+matches, it will return that element, without processing others in the stream.
+
+Because of lazy evaluation, no work on an element in a stream is triggered until
+a terminal operation requires that element. This design means that programmers
+don't need to worry too much about efficiency when planning the order of
+intermediate operations. Consider the following code that generates 100
+elements, waits 1,000 milliseconds (one second) for each one, limits the size of
+the stream to 5 elements, and then prints out each remaining element.
+
+[source, java]
+----
+IntStream.rangeClosed(1, 100)
+    .peek(e -> {
+        try { Thread.sleep(1000); } catch (InterruptedException ex) {}            
+    })
+    .limit(5)
+    .forEach(e -> System.out.println(e));
+----
+
+The `peek()` method is an intermediate operation that allows the programmer to
+use each element of the stream before the terminal operation, "`peeking`" at its
+value. In this case, we're only using the `peek()` method to call the
+`Thread.sleep()` method to wait for a second, ignoring the value of the element.
+A quick reading of this code segment might suggest that the program would wait a
+total of 100 seconds. Instead, it only waits 5, since only the elements that are
+processed by the terminal operation are processed by `peek()`. Because the
+`limit()` step comes after the `peek()` step that does the waiting, it seems
+like all 100 elements should incur a wait of one second, but the order of
+intermediate operations doesn't matter in this case.
+
+Lazy evaluation means that programmers can focus on what the intermediate
+operations should be, instead of their order. The biggest performance gains from
+lazy evaluation happen when the stream processing stops after finding a single
+element or when processing only a fraction of the total elements in the stream.
+Lazy evaluation won't give any speed improvement when every element in a
+stream is processed, but it won't cause any problems, either.
+
+If a programmer is concerned about squeezing every ounce of performance out of a
+repetitive task, loops will provide more control. Thus, loops could be a better
+solution when performance really matters. However, lazy evaluation makes streams
+competitive with loops, without requiring much analysis about the most efficient
+way to process intermediate operations.
+
+****
+<<lazyEvaluationExercise>> + 
+<<timingLazyExercise>>
+****
+
+=== Solution: Cryptography tools
+
+Now, we can solve our original problem of making a reusable framework for
+several different encryption schemes. The first step is to make a functional
+interface for a method that takes a `char` (the letter to be encrypted) and an
+`int` (the index of that letter in the message) and returns a new `char` (the
+encrypted version).
+
+[source, java]
+----
+include::{programsdir}/Processable.java[]
+----
+
+With the `Processable` functional interface in place, we can develop classes
+to perform encryption and decryption with methods that match this interface.
+First, we'll make a class for the Caesar cipher.
+
+[source, java]
+----
+include::{programsdir}/CaesarCipher.java[]
+----
+<.> The constructor takes an `int` value specifying the key for the Caesar
+cipher, the number of places to move a given letter of the alphabet forward. If
+the key is negative, it repeatedly adds 26. Then, it takes the result modulo 26,
+eliminating keys larger than 25. The final key is guaranteed to be between 0 and
+25.
+<.> The `encrypt()` method matches the `Processable` interface and encrypts a
+single letter using the Caesar cipher. First, it subtracts `'A'` so that the
+value is from 0 to 25. Then, it adds the key value. Next, it takes the result
+modulo 26 so that values larger than 25 will wrap back around to remain in the 0
+to 25 range. Finally, it casts the result to a `char` since doing arithmetic on
+`char` values results in an `int` value.
+<.> The `decrypt()` method also matches the `Processable` interface but decrypts
+a single letter using the Caesar cipher. It follows the same process as
+`encrypt()` except that it subtracts the key value and adds 26 (in case
+subtracting the key value makes a negative number, which would be a problem
+since the modulo operator in Java doesn't work correctly with negative values).
+
+We can also add a class for the affine cipher.
+
+[source, java]
+----
+include::{programsdir}/AffineCipher.java[]
+----
+<.> The constructor takes two `int` values specifying the key for the affine
+cipher. The key is made up of two values, _a_ and _b_, where a given letter
+whose numerical value is _x_ will be encrypted to _a_ · _x_ + _b_.
+<.> To work, a value for _a_ must have a multiplicative inverse modulo 26. In
+other words, there must be some number _a_^-1^ such that _a_ · _a_^-1^ mod 26 = 1.
+We use a `while` loop to run through the only legal values for an inverse, 1
+through 25. If we don't find an inverse, we throw an exception.
+<.> The `encrypt()` method matches the `Processable` interface and encrypts a
+single letter using the affine cipher. Like the Caesar cipher, it subtracts
+`'A'` so that the value is from 0 to 25. Then, it multiples by _a_ and adds _b_.
+Again, like the Caesar cipher, it takes the result modulo 26 so that values
+larger than 25 will wrap back around to remain in the 0 to 25 range. Finally, it
+also casts the result to a `char`.
+<.> The `decrypt()` method also matches the `Processable` interface but decrypts
+a single letter using the affine cipher. It follows a similar process as
+`encrypt()` except that it subtracts _b_ and multiplies by _a_^-1^.
+
+Although it's possible to add even more ciphers, the last one we'll add is the
+Vigenère cipher.
+
+[source, java]
+----
+include::{programsdir}/VigenereCipher.java[]
+----
+<.> The constructor takes a `String` value specifying the key phrase for the
+Vigenère cipher. It loops through the characters in the key to be sure they're
+all uppercase letters.
+<.> The `encrypt()` method matches the `Processable` interface and encrypts a
+single letter using the Vigenère cipher. Unlike the previous two ciphers, the
+Vigenère cipher uses the index value so that it knows where in the ciphertext it
+is (and consequently which character in the key it should use). It uses the
+index modulo the length of the key so that locations in the original message
+that are longer than the key will wrap back around to legal locations in the
+key. To make the values of the letters be between from 0 to 25, it subtracts 
+`'A'` from both. Then, it adds the two values together and takes the result
+modulo 26 so that values larger than 25 will wrap back around to remain in the 0
+to 25 range. Like the previous two ciphers, it casts the result to a `char`.
+<.> The `decrypt()` method also matches the `Processable` interface but decrypts
+a single letter using the Vigenère cipher. It follows a similar process as
+`encrypt()` except that it subtracts the key letter instead of adding it.
+
+With the `Processable` functional interface and some sample encryption schemes
+to use, we're finally ready to make our framework for encryption and decryption.
+In fact, it won't use very much code.
+
+[source, java]
+----
+include::{programsdir}/CryptographyFramework.java[lines=1..15]
+----
+<.> The critical method we need is `process()`, which takes an input `String`
+and a method reference or lambda expression (in the form of a `Processable`
+interface) and returns the processed output. By writing our code carefully, we
+can use this method for both encryption and decryption.
+<.> Because `process()` might be encrypting or decrypting a long `String`, it
+uses a `StringBuilder` which is more efficient than doing repeated `String`
+concatenations. We first introduced `StringBuilder` in
+<<efficientConcatenationExample>> from <<repetition#repetition>>.
+<.> Many encryption algorithms can encrypt any sequence of bytes, but this code
+assumes classical encryption algorithms that can only encrypt uppercase
+letters. As a defensive coding measure, it converts the input to an uppercase
+version.
+<.> The code loops over the length of the input `String`.
+<.> Only uppercase letters (rather than a symbols or whitespace) are processed.
+<.> Here the `process()` method from the `Processable` object is used to perform
+the actual encryption or decryption. This method can be supplied as a method
+reference or a lambda expression.
+<.> If `letter` is not an uppercase letter, it is appended to `result`
+unchanged. Doing so is a bad idea from the perspective of strong encryption, but
+it will make it easier to test our program. 
+<.> Finally, `result` is converted into a `String` and returned.
+
+Although the `process()` method is the only one required for our framework,
+it's useful to have a `main()` method we can use to test the system.
+
+[source, java]
+----
+include::{programsdir}/CryptographyFramework.java[lines=17..40]
+----
+<.> For testing purposes, we'll encrypt
+`"CRY HAVOC AND LET SLIP THE DOGS OF WAR"` from _Julius Caesar_ by William
+Shakespeare.
+<.> This `caesarCipher` object implements the Caesar cipher with a key of 7.
+<.> This `affineCipher` object implements the affine cipher with a key whose _a_
+value is 5 and _b_ value is 8.
+<.> This `vigenereCipher` object implements the Vigenère cipher with a key of
+`"SHAKESPEARE"`.
+<.> The first ciphertext is encrypted by calling `process()` with a reference to
+the `encrypt()` method of the `caesarCipher` object.
+<.> The first ciphertext is decrypted to the original message by calling
+`process()` with a reference to the `decrypt()` method of the `caesarCipher`
+object.
+<.> The second ciphertext is encrypted by calling `process()` with a reference
+to the `encrypt()` method of the `affineCipher` object.
+<.> The second ciphertext is decrypted to the original message by calling
+`process()` with a reference to the `decrypt()` method of the `affineCipher`
+object.
+<.> The third ciphertext is encrypted by calling `process()` with a reference to
+the `encrypt()` method of the `vigenereCipher` object.
+<.> The third ciphertext is decrypted to the original message by calling
+`process()` with a reference to the `decrypt()` method of the `vigenereCipher`
+object.
+
+The output of running this program is as follows.
+
+....
+Caesar Cipher (key = 7)
+Ciphertext: JYF OHCVJ HUK SLA ZSPW AOL KVNZ VM DHY
+Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR
+
+Affine Cipher (key = 5x + 8)
+Ciphertext: SPY RIJAS IVX LCZ ULWF ZRC XAMU AH OIP
+Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR
+
+Vigenere Cipher (key = SHAKESPEARE)
+Ciphertext: UYY LSKSC EFK VIL WLZT AHO VDKS SX WKV
+Plaintext:  CRY HAVOC AND LET SLIP THE DOGS OF WAR
+....
+
+Of course, we could add more and more encryption schemes and pass appropriate
+method references from those objects to the `process()` method. While using
+method references is likely more readable, lambda expressions could be used as
+well. Consider the following code that performs the Caesar cipher with a key of
+7, using a lambda expression instead of a method reference. Its output will be
+identical to the version that passes in `caesarCipher::encrypt`.
+
+[source, java]
+----
+String cipherText = process(plaintext, (letter, index) -> (char)((letter - 'A' + 7) % 26 + 'A'));
+System.out.println("Ciphertext: " + cipherText);
+----
+
+Since they're more readable, use method references when available. Otherwise,
+lambda expressions can be used for quick and dirty situations, especially when
+the code will only be used a single time and doesn't warrant the creation of a
+method to reference.
+
+=== Concurrency: Lambda expressions and parallel streams
+
+==== Threads with lambda expressions
+
+<<concurrency#concurrency>> is where we'll finally introduce the Java syntax for
+concurrency using threading, and we don't want to get ahead of ourselves.
+
+That said, a key problem when creating a thread is specifying what code will
+be executed. `Runnable` is a functional interface that contains the abstract
+method `void run()`. Because it's a functional interface, you can create a
+lambda expression that matches it. Below, the code will do just that, printing
+out `"Threaded world!"` when executed.
+
+[source, java]
+----
+Thread thread = new Thread(() -> System.out.println("Threaded world!"));
+thread.start();
+----
+
+If you're hungry for more details about how to use threads to solve problems,
+head over to the next chapter.
+
+==== Parallel streams
+
+Just as you can use streams to process data sequentially with a single
+core, you can also use them to process data in parallel with multiple cores. In
+general, sequential streams can be converted into parallel ones and vice versa.
+
+Consider the following code that creates a parallel stream instead of a
+sequential one, by calling the `parallelStream()` method on a list instead of
+the `stream()` method.
+
+[source, java]
+----
+var words = Arrays.asList("paragraph", "understand", "stir", "exemption", "dance");
+words
+    .parallelStream()
+    .forEach(word -> System.out.println(word));
+----
+
+Just like the sequential stream, this code will print out each word. However,
+there's no guarantee *when* each thread will execute the code that prints out.
+Thus, a parallel stream might print the words in an unpredictable order. On one
+execution, the code above might have the following output.
+
+....
+stir
+dance
+exemption
+understand
+paragraph
+....
+
+On others, it could be different, even matching the sequential output.
+
+A parallel stream can also process data beyond doing simple output. For example,
+the following code finds the longest `String` in the stream, `"understand"` in
+this case.
+
+[source, java]
+----
+String longest = words
+    .parallelStream()
+    .reduce("", (word1, word2) -> {
+        if (word1.length() >= word2.length()) {
+            return word1;
+        } else {
+            return word2;
+        }
+    });
+----
+
+This code works provided that the operation being done in the `reduce()` call
+is _associative_, meaning that it doesn't matter how the data is divided up 
+before performing the operation. The operations will still be applied in order,
+but the left half and the right half of the list of numbers might be processed
+at the same time before the left result is combined with the right result.
+
+This idea mirrors associative operations in math, which can arbitrarily add or
+remove parentheses without affecting the results. For example, addition is
+associative, as demonstrated by the equation
+(5 + 3) + 7 = 15 = 5 + (3 + 7). However, subtraction is *not* associative, since
+(5 - 3) - 7 = -5 ≠ 5 - (3 - 7) = 9.
+
+Of course, comparing the lengths of two `String` values is not very
+computationally intensive, so using parallel streams here is unlikely to be
+faster than using sequential streams (or `for` loops). Nevertheless, there may
+be some cases where the operations done on each element of data are
+time-consuming enough that using a parallel stream will be faster. For that to
+be true, the processor must have multiple cores, and the work that the Stream
+API is doing behind the scenes to create threads and coordinate them must not
+take up more time than the savings gained through parallel computation.
+
+Consider the following code that finds the sum of the sines of the numbers from
+0 up to (but not including) 1,000,000, using both parallel and sequential
+streams.
+
+[source, java]
+----
+double[] numbers = new double[1000000];
+for (int i = 0; i < 1000000; ++i) {
+    numbers[i] = i;
+}
+
+double parallelSum = DoubleStream.of(numbers)
+    .parallel()
+    .map(number -> Math.sin(number))
+    .sum();
+
+double sequentialSum = DoubleStream.of(numbers)
+    .map(number -> Math.sin(number))
+    .sum();
+
+System.out.println("Parallel sum:   " + parallelSum);
+System.out.println("Sequential sum: " + sequentialSum);
+----
+
+On our test system, the output is as follows.
+
+....
+Parallel sum:   0.23288397807311884
+Sequential sum: 0.23288397807311667
+....
+
+There's a small difference between the results because the order in which the
+numbers were added was different. Consequently, there can be differences in
+floating-point rounding. These differences will depend on the number of threads
+created by the system, which is automatically determined by the number of cores.
+
+Depending on a number of different properties of a given system, the parallel
+stream in this example might take more or less time than the sequential one.
+
+****
+<<timingParallelStreamExercise>>
+****
+
+We'll return to a similar problem in <<arraySummationExample>>, where we'll
+handle the details of thread creation directly instead of using streams.
+Although parallel streams are a useful, readable tool that can solve this
+particular problem, they're not flexible enough to perform all parallel
+processing tasks.
+
+=== Exercises
+*Conceptual Problems*
+
+. [[functionalLanguagesExercise]] What are some features of functional languages
+that make them different from typical object-oriented languages like Java?
+. [[functionalInterfaceExercise]] How is a functional interface different from a
+normal interface in Java?
+. [[methodReferenceExercise]] What is a method reference, and what is the syntax
+for a reference to a specific method on a particular object?
+. [[methodReferenceLambdaExercise]] What's the difference between a method
+reference and a lambda expression?
+. [[whenUseLambdaExercise]] Under what circumstances should you use a lambda
+expression instead of a method reference?
+. [[syntacticSugarExercise]] Give two examples of syntactic sugar in Java.
+. [[streamUseExercise]] Why are streams useful, even though everything that can
+be done with streams can also be accomplished with loops?
+. [[lazyEvaluationExercise]] In the context of streams, what is lazy evaluation?
+
+*Programming Practice*
+
+. Consider a functional interface called `StringComparator`.
+[loweralpha]
+.. [[makeFunctionalInterfaceExercise]] Write such an interface  with a
+`compare()` method that takes two `String` values and returns an `int`.
+.. [[vowelLambdaExercise]] Write a lambda expression compatible with this
+interface that compares the number of vowels (a, e, i, o, and u) in the two
+`String` values. If the first `String` has more vowels, return a positive
+number. If the second `String` has more vowels, return a negative number. If
+they have the same number of vowels, return 0.
+. [[caseInsensitiveLambdaExercise]] Sorting `String` values is a common task, 
+but calling the normal, one-parameter version of `Arrays.sort()` on an array of
+`String` values will sort them in a case-sensitive way, putting all words that
+start with an uppercase letter before any word that starts with a lowercase
+letter. Pass a lambda expression to the second parameter of `Arrays.sort()` so
+that it will sort an array of `String` values in a case-insensitive way. Hint:
+You can use the `compareToIgnoreCase()` method on `String` objects.
++
+Test your code on the following array.
++
+[source, java]
+----
+String[] words = {"Split", "portion", "Echo", "Visit", "allowance", "distribute", "NAME", "freighter", "lean", "Facade"};
+----
+. [[caseInsensitiveMethodExercise]] Rewrite your solution to the previous
+exercise to pass in only a single method reference, not a lambda expression.
+. When trying to break a classical encryption, a common technique is a frequency
+attack, which counts the occurrences of each letters in a ciphertext. Since some
+letters in English are used commonly while others are rare, the count of each
+letter can give insight into how the ciphertext was encrypted and how it can be
+decrypted.
++
+The `IntStream` class is used for streams of `char` values. In fact, there's a
+`chars()` method on `String` objects that returns a stream of `int` values whose
+numerical values are the same as the `char` values. First, create an array of
+`int` values with length 26 to count the occurrences of each letter of the
+alphabet. Then, use the `chars()` method on a `String` to process all its
+`char` values in a stream, incrementing the location in the array that
+corresponds to the letter of the alphabet (0 for A, 1 for B, and so on). Skip
+values that aren't uppercase letters.
++
+Finally, flesh out this code into a full program that reads in a `String` and
+reports the fraction of the text corresponding to each letter. Although you must
+use a stream to count the letter occurrences, you may use a loop to print out
+the final letter frequencies.
+. [[filterStreamExercise]] Write code that will convert a list of `Integer` values
+into a stream, keep only the even numbers, and print out the remaining values.
+Use no loops. For example, you might start with the following list.
++
+[source, java]
+----
+var numbers = Arrays.asList(75, 38, 173, 176, 11, 188, 130, 94, 159, 52);
+----
++
+Then, the matching output would be below.
++
+....
+38
+176
+188
+130
+94
+52
+....
+. [[mapStreamExercise]] Write code that generates a stream of values from 1 up to
+(and including) 100, finds the square root of each number, and prints it out.
+You can either use `IntStream` to generate these numbers and then convert the
+stream to a `DoubleStream` or you can generate a `DoubleStream` directly. No 
+loops should appear in the code.
+
+*Experiments*
+
+. [[timingLazyExercise]] Lazy evaluation is a powerful tool, but it doesn't
+entirely remove the burden of optimizing performance. To understand the issues,
+create an array of `int` values with length 100,000,000. Fill the array with
+random values by repeatedly calling the `nextInt()` method on a `Random` object.
+Now, create an `IntStream` from the array, filter it first to contain only `int`
+values that are less than 10,000, then filter it to contain only odd numbers,
+and finally use the `max()` method to find the largest value. Then, create a
+second `IntStream` from the same array, filter it first to contain only odd
+numbers, then filter it to contain only `int` values that are less than 10,000,
+and again use the `max()` method to find the largest value. Since both streams
+are finding the largest odd number less than 10,000 in the array, the results
+should be the same. Now, insert timing code to see how long each stream took to
+find the answer. Run the code several times to be sure the answer is consistent.
+Which stream takes longer to run, and why?
+. [[timingParallelStreamExercise]] In <<Parallel streams>>, we gave an example
+using both sequential and parallel streams to find the sum of the sines of the
+numbers from 0 up to (but not including) 1,000,000. Add timing code to this
+example to determine how long the sequential and parallel versions take. Is the
+parallel version faster than the sequential? If it is, divide the size of the
+problem by 10 (100,000 values) to see if it's still faster. If the parallel
+version isn't faster, multiply the size of the problem by 10 (10,000,000 values)
+and time it again. Keep dividing or multiplying the size of the problem until
+the sequential and parallel versions switch order in terms of running time.
+. [[timingStreamAgainstLoopExercise]] Write a loop that performs the same
+summation of the sines of numbers from 0 up (but not including) 1,000,000 and
+time it. How does its running time compare to the sequential stream that
+performs the same task?

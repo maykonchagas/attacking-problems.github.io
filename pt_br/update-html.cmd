@@ -1,0 +1,2 @@
+ruby update-html.rb
+npx asciidoctor-chunker full/index.html --css asciidoctor-chunker.css,stylesheet.css --titlePage "Attacking Problems with Java" -o chunked
