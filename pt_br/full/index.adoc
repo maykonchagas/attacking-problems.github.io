@@ -1,7 +1,10 @@
 = Attacking Problems with Java
 Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>
 :doctype: book
+:lang: pt_BR
+:language: asciidoctor
 :toc: left
+:toc-title: Sumário
 :toclevels: 2
 :source-highlighter: rouge
 :rouge-style: default
@@ -11,7 +14,11 @@ Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur
 :xrefstyle: short
 :sectnums:
 :sectnumlevels: 3
-:listing-caption: Program
+:listing-caption: Programa
+:chapter-signifier: Capítulo
+:chapter-refsig: Capítulo
+:section-signifier: Seção
+:section-refsig: Seção
 ifdef::ebook-format[:leveloffset: -1]
 :google-analytics-account: G-VS8KWBN2CV
 :docinfo: shared-head

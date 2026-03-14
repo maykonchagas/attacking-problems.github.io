@@ -1,24 +1,29 @@
-= Attacking Problems with Java
-Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>
+= Atacando Problemas com Java
+Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>;
+Tradução: Maykon Chagas <maykon.chagas@ifsc.edu.br>;
+:lang: pt_BR
+:language: asciidoctor
 :doctype: book
 :source-highlighter: rouge
 :rouge-style: default
 :icons: font
 :stem: latexmath
 :xrefstyle: short
-:listing-caption: Program
+:listing-caption: Programa
 :google-analytics-account: G-VS8KWBN2CV
 
 ifdef::ebook-format[:leveloffset: -1]
 
 
 
-__Attacking Problems with Java__ is an introduction to programming using the Java programming language and is an update to __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  It's intended for students with little or no programming experience.  The book is freely available in HTML format for viewing with a web browser.
+__Atacando Problemas com Java (tradução do livro Attacking Problems with Java)__ é uma introdução à programação usando a linguagem de programação Java e é uma 
+atualização do livro __Start Concurrent: An Introduction to Problem Solving with Concurrency__.  É direcionado para estudantes com pouco ou nenhum conhecimento 
+em programação. O livro está disponível no formato HTML para visualização com um navegador web.
 
-== The New Version is (Still!) in the Works
+== A nova versão está (ainda!) em construção
 
 [WARNING]
-.Under Construction
+.Em construção
 ====
 This website was created and updated during the summer of 2024 and is usable now for fall classes.  We are continuing to work on additional changes, noted below, during the fall semester.  Please let us know of any issues you spot--or of any changes you would particularly like to see.
 ====
