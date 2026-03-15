@@ -22,248 +22,303 @@ em programação. O livro está disponível no formato HTML para visualização 
 
 == A nova versão está (ainda!) em construção
 
-[WARNING]
+[AVISO]
 .Em construção
 ====
-This website was created and updated during the summer of 2024 and is usable now for fall classes.  We are continuing to work on additional changes, noted below, during the fall semester.  Please let us know of any issues you spot--or of any changes you would particularly like to see.
+Este site foi criado e atualizado durante o verão de 2024 e já está disponível 
+para o usuo em sala de aula.  Continuamos trabalhando adicionando alterações 
+conforme indicadas abaixo.  Por favor, nos informe sobre qualquer  problema 
+que você encontrar (por exemplo erros de grafia ou nos códigos)--ou sobre 
+quaisquer alterações que você gostaria de ver no livro que iremos avaliar 
+a possibilidade de adicionar.
 ====
 
-=== Changes Planned and Completed
+=== Alterações planejadas e concluídas
 
-* [ ] Improve `switch` examples in Selection (Chapter 4).  Add `yield` example(s).
-* [ ] Describe improvements to the `interface` specification, including `static` methods and `default` methods.
-* [ ] Move the introduction of `instanceof` from Interfaces (Chapter 10) to Inheritance (Chapter 11).  Add binding variable and `switch` examples.
-* [ ] Add an explanation of _varargs_ in Methods (Chapter 8).
-* [ ] Add Summary sections to chapters that don't have them.
-* [ ] Explain the different versions of Java and their features.
+* [ ] Melhorar os exemplos de `switch` em Seleção (Capítulo 4).  Adicionar exemplo(s) de `yield`.
+* [ ] Descrever as melhorias na especificação de `interface`, incluindo métodos `static` e métodos `default`.
+* [ ] Mover a introdução de `instanceof` de Interfaces (Capítulo 10) para Herança (Capítulo 11).  Adicionar exemplos de variáveis de ligação e `switch`.
+* [ ] Adicionar uma explicação sobre _varargs_ em Métodos (Capítulo 8).
+* [ ] Adicionar seções de Resumo aos capítulos que não as possuem.
+* [ ] Explicar as diferentes versões do Java e seus recursos.
 
-'''
+‘’'
 
-* [x] Add section on `var` declarations (Section 3.3.6).
-* [x] Describe enhancements to `switch` statements.
-* [x] Describe how type inference for type variables interacts with `var`.
-* [x] Explain the `try`-with-resources feature.
-* [x] Replace the `File` type with `Path`.
-* [x] Include a chapter on lambdas, closures, and functional expressions.
-* [x] Include a chapter on streams (or add to an existing chapter). 
-* [x] Add a brief outline of useful JCF classes and interfaces.
-* [x] Apply a unified style guide to all code in the book.
-* [x] Include an explanation of the `enum` type to Classes (Chapter 9).
-* [x] Unify discussion of annotations (Chapters 13 and 17).
+* [x] Adicionar uma seção sobre declarações `var` (Seção 3.3.6).
+* [x] Descrever as melhorias nas instruções `switch`.
+* [x] Descrever como a inferência de tipos para variáveis de tipo interage com `var`.
+* [x] Explicar o recurso `try`-with-resources.
+* [x] Substituir o tipo `File` por `Path`.
+* [x] Incluir um capítulo sobre lambdas, closures e expressões funcionais.
+* [x] Incluir um capítulo sobre streams (ou adicionar a um capítulo existente). 
+* [x] Adicionar um breve resumo das classes e interfaces úteis do JCF.
+* [x] Aplicar um guia de estilo unificado a todo o código do livro.
+* [x] Incluir uma explicação do tipo `enum` em Classes (Capítulo 9).
+* [x] Unificar a discussão sobre anotações (Capítulos 13 e 17).
 
-== Availability
+== Disponibilidade
 
 [.text-center]
 image::multicore.svg[float="right"]
 
-__Attacking Problems with Java__ is available in HTML in two forms.  The single document version is suitable for viewing on a computer or tablet. The chunked version is suitable for viewing on a phone or other small device.  Both versions are available at the following links.
+__Atacando Problemas com Java__ está disponível em HTML em duas versões como um 
+documento único (o que permite uma pesquisa fácil) e é adequada para computador 
+ou __tablet__ e a versão em partes num documento 
+separado para cada capítulo (o que reduz o tempo de carregamento) e é mais adequada
+visualização em um celular ou um dispositivo de tela pequena. Clique em 
+um dos __link__ abaixo para acessar à versão pretendida.
 
-* link:full/index.html[HTML (single document)]
-* link:chunked/index.html[HTML (chunked)]
+* link:full/index.html[HTML (página HTML única)]
+* link:chunked/index.html[HTML (página HTML em blocos)]
 
-We are also considering a print-on-demand version.  Please email jtk@purdue.edu, if you're interested!
+Também estamos considerando uma versão impressa sob-demanda. Por favor, se tiver
+interesse envie um e-mail para jtk@purdue.edu!
 
-== Using __Attacking Problems with Java__?
+== Utilizando __Atacando Problemas com Java__?
 
-If you're using __Attacking Problems with Java__ (or the older __Start Concurrent__) in your classroom, let us know!  Please e-mail wittman1@otterbein.edu and tell us what course you use the book for.  If some changes to the book would make your class easier to teach, we'd love to hear what they are.
+Se você está utilizando __Atacando Problemas com Java__ (ou a versão antiga 
+__Começando Concorrente__) na sua sala de aula, conte pra gente!  Por favor, 
+envie um e-mail para wittman1@otterbein.edu e diga-nos em que disciplina utiliza 
+o livro.  Se algumas alterações ao livro tornarem a sua aula mais fácil de 
+lecionar, gostaríamos de saber quais são.
 
-We appreciate your feedback and suggestions!
-Please submit them either as
-a https://github.com/attacking-problems/attacking-problems.github.io/issues[GitHub issue^]
-or (for the bold) clone the
-https://github.com/attacking-problems/attacking-problems.github.io[GitHub repository^],
-make changes to the source code, and submit a pull request.
+Nós apreciamos seus comentários e sugestões!
+Por favor envie como uma 
+a https://github.com/attacking-problems/attacking-problems.github.io/issues[issue no GitHub^]
+ou (para os corajosos) copie o 
+https://github.com/attacking-problems/attacking-problems.github.io[repositório GitHub^],
+faça alterações no código fonte e submeta um __pull request__.
 
-== About
+Caso você queira colaborar com essa tradução, realizando a tradução de algum capítulo ou 
+sugerindo correções de termos ou palavras, ou sentenças, por favor entre em contato 
+com o tradutor (livre) dessa versão através do 
+https://github.com/maykonchagas/attacking-problems.github.io[repositório da tradução^]
 
-Welcome to _Attacking Problems with Java_!
-This book is intended as an entry point into the realm of software development.
-It's designed to teach students the basics of programming but also aims for the secondary goal
-of introducing students to concurrent programming early in their college career.
-After mastering the concepts covered
-here, students should be prepared to encounter more complex forms of
-concurrency in advanced courses and in the workplace. A generation of
-students who learn concurrency from their first course will be ready to exploit
-the full power of multicore chips by the time they join the workforce.
+== Sobre o livro
 
-Multicore processors are omnipresent. Whether you use a desktop, a laptop, or even just a smart phone,
-chances are that your computer has a multicore chip at its heart. Inexpensive
-parallel computers, once a dream, have become the standard. Parallel
-computers sit on our laps and in our pockets. This progress in microprocessor
-technology has thrown a challenge to educators: _How can we teach
-concurrent programming?_
+Bem-vindo ao _Atacando Problemas com Java_!
+Este livro foi concebido como um ponto de entrada para o desafiador domínio da 
+computação multicore. Ele foi projetado para apresentar aos alunos a programação 
+concorrente ao mesmo tempo em que eles aprendem os fundamentos da programação 
+sequencial, no início da faculdade. Depois de dominar os conceitos abordados 
+aqui, os alunos devem estar preparados quando se depararem com formas mais 
+complexas de concorrência em cursos avançados e no local de trabalho. Uma 
+geração de alunos que aprende a concorrência em seu primeiro curso estará pronta 
+para explorar todo o poder dos chips com vários núcleos quando ingressar no mercado 
+de trabalho.
 
-Computer programming has been taught in academia for decades. However, the
-unwritten goal in nearly every beginning programming class has been teaching
-students to write, compile, test, and debug *sequential* programs.
-Material related to concurrent programming is often left to courses about
-operating systems and programming languages or courses in high performance
-computing. Now that parallel computers are everywhere, should we consider
-introducing the fundamentals  of concurrent programming in beginner classes in
-programming?
+Os processadores multicore são onipresentes. Quer você use um desktop, um laptop ou 
+até mesmo um _smartphone_, é bem provável que seu computador tenha um chip multicore 
+em seu coração. Computadores paralelos de baixo custo foram profetizados durante anos. 
+Esse momento chegou. Os computadores paralelos estão em nossas mãos e em nossos bolsos. 
+Esse progresso na tecnologia de microprocessadores lançou um desafio aos educadores: 
+__Como podemos ensinar programação concorrente?__
 
-The original version of this book, _Start Concurrent_, was founded on the belief
-that concurrent programming could be taught to first year students. While we still believe
-that this goal is both possible and laudable, many users of our book were interested 
-in it primarily as a free introductory Java textbook. In recognition of this demand,
-we have rebranded the book as _Attacking Problems with Java_. Both students and
-instructors can choose to use it as a sequential textbook, ignoring the concurrent
-and parallel content. Likewise, it can be used, as it was originally intended, to
-teach an introductory programming course that includes concurrency from the very beginning.
-Alternatively, it can serve as a resource for a course later in the curriculum
-that depends upon Java concurrency tools.
+A programação de computadores tem sido ensinada no meio acadêmico há décadas. No 
+entanto, o objetivo não escrito em quase todas as aulas de programação para iniciantes 
+tem sido ensinar os alunos a escrever, compilar, testar e depurar programas *sequenciais*. 
+O material relacionado à programação concorrente geralmente é deixado para cursos sobre 
+sistemas operacionais e linguagens de programação ou cursos de computação de alto 
+desempenho. Agora que os computadores paralelos estão em toda parte, devemos considerar 
+introduzir os fundamentos da programação simultânea em aulas para iniciantes em programação?
 
-We fundamentally believe that procedural thinking, sequential as well as concurrent,
-is natural. People knew how to solve problems in a sequential manner long
-before the study of algorithms became a formal subject and computer science a
-formal discipline. And this rationale applies to problem solving using a
-collection of sequential solutions applied concurrently. Watch a cook in
-the kitchen and you'll see concurrency in action. Watch a movie and you'll
-see concurrency in action as various subplots, scenes, and flashbacks weave the
-story together. Parents use concurrent solutions to solve day-to-day problems as
-they juggle childcare, work, and a social life.
+A versão original deste livro, _Start Concurrent_, baseava-se na convicção
+de que a programação concorrente poderia ser ensinada a alunos do primeiro ano. 
+Embora ainda acreditemos que esse objetivo seja possível e louvável, muitos 
+usuários do nosso livro se interessaram por ele principalmente como um livro 
+didático introdutório gratuito sobre Java. Em resposta a essa demanda,
+renomeamos o livro como _Attacking Problems with Java_. Tanto alunos quanto
+professores podem optar por usá-lo como um livro didático sequencial, ignorando o conteúdo
+concorrente e paralelo. Da mesma forma, ele pode ser usado, conforme a intenção original, para
+ministrar um curso introdutório de programação que inclua concorrência desde o início.
+Alternativamente, ele pode servir como recurso para um curso posterior no currículo
+que dependa de ferramentas de concorrência em Java.
 
-If people naturally solve problems sequentially and concurrently, why do we need
-to teach them programming? Programming is a way to map an algorithmic solution
-of a problem to an artificial language such as Java. It's an activity
-that requires formal analysis, specialized vocabulary, and razor sharp
-logic. The real intellectual substance of programming lies in this
-mapping process. What's the best way to transform a sequential solution to an
-artificial language? How can a sequential solution be broken into concurrent
-parts that run faster than the original? How can a large
-problem be divided into small, manageable chunks that can be programmed
-separately and then integrated into a whole? In addition, there are issues of
-testing, debugging, documentation, and management which combine to make software
-engineering a limitless field for intellectual effort.
+Acreditamos firmemente que o pensamento procedural, tanto sequencial quanto concorrente,
+é natural. As pessoas já sabiam resolver problemas de maneira sequencial muito
+antes de o estudo dos algoritmos se tornar uma disciplina formal e a ciência da computação um
+curso formal. E essa lógica se aplica à resolução de problemas por meio de um
+conjunto de soluções sequenciais aplicadas concorrentemente. Observe um cozinheiro na
+cozinha e você verá a concorrência em ação. Assista a um filme e você
+verá a concorrência em ação, à medida que várias subtramas, cenas e __flashbacks__ tecem a
+história. Os pais usam soluções concorrentes para resolver problemas do dia a dia, enquanto
+conciliam os cuidados com os filhos, o trabalho e a vida social.
 
-=== Target audience
+Se as pessoas resolvem naturalmente os problemas de forma sequencial e simultânea, por que 
+precisamos ensinar programação? A programação é uma maneira de mapear uma solução algorítmica 
+de um problema em uma linguagem artificial, como Java. É uma atividade que requer análise 
+formal, vocabulário especializado e lógica afiada. A verdadeira substância intelectual da 
+programação está nesse processo de mapeamento. Qual é a melhor maneira de transformar uma 
+solução sequencial em uma linguagem artificial? Como uma solução sequencial pode ser dividida 
+em partes simultâneas que são executadas mais rapidamente do que a original? Como um problema 
+grande problema pode ser dividido em partes pequenas e gerenciáveis que podem ser programadas 
+separadamente e depois integrados em um todo? Além disso, há questões de testes, depuração, 
+documentação e gerenciamento do processo de desenvolvimento de software, que se combinam para 
+tornar a programação um campo ilimitado para o esforço intelectual.
 
-This book is intended to teach college-level students with no programming
-experience over a period of one or two semesters. Although we start with concurrency
-concepts from the very beginning, it's difficult for students with no
-prior programming experience to write useful multithreaded programs by the end
-of their first semester.  By the end of the second semester, however, this book
-can lead a student from a blank slate to a capable programmer of complex
-parallel programs that exploit the power of multicore processors.
+=== Público alvo
 
-The content in this book could also be used for single semester courses.
-Chapters 1 through 13 are intended for the absolute beginner. If an instructor doesn't want
-to introduce concurrent programming in a first course, these chapters should
-prove adequate. The concurrency material and exercises in these chapters can be
-ignored without negatively impacting the other material. For a second course in programming,
-Chapters 1 through 13 should be used as review material as well as an introduction to concurrent programming.
-Most material from Chapter 14 onward could then be covered in a single semester.
+Este livro foi concebido para ensinar estudantes de nível universitário sem experiência em 
+programação em um período de dois semestres. Embora comecemos com conceitos de concorrência 
+desde o início, é difícil para os alunos sem experiência prévia em programação escrever 
+programas multithread úteis até o final do primeiro semestre.  No entanto, ao final do 
+segundo semestre, este livro pode levar o aluno de uma folha em branco a um programador 
+capaz de desenvolver programas paralelos complexos que exploram o poder dos processadores com vários núcleos.
 
+O conteúdo deste livro também pode ser usado em cursos de um único semestre. Os capítulos 1 
+a 13 são destinados ao iniciante absoluto. Se você (professor/instrutor) não quiser introduzir a programação concorrente 
+em um primeiro curso, esses capítulos devem ser adequados. O material e os exercícios sobre 
+concorrência nesses capítulos podem ser ignorados sem afetar negativamente o outro material. Em 
+um segundo curso de programação, os Capítulos 1 a 13 devem ser usados como material de revisão, bem 
+como uma introdução à programação concorrente. A maior parte do material dos Capítulos 14 em diante 
+poderia ser abordada em um único semestre.
 
-=== Material covered
+=== Material abordado
 
-Java is a complex language. Its long list of features makes it difficult for
-an instructor to decide what to cover and what to leave out. Often, there's a
-temptation to cover more material rather than less. Today's student
-uses not only a textbook but also the large volume of material available on the
-web to learn any subject, including programming. Our focus is consequently
-more on fundamental elements of programming and less on giving a complete
-description of Java, which is itself still a living and evolving language.
-Where appropriate, we direct the student to websites where relevant reference material can be found.
+Java é uma linguagem complexa. Sua longa lista de recursos torna difícil para 
+um instrutor decidir o que abordar e o que deixar de fora. Muitas vezes, há 
+uma tendência de cobrir mais material do que menos. Percebemos que o aluno de 
+hoje usa não apenas um livro didático, mas também o grande volume de material 
+disponível na Web para aprender qualquer assunto, inclusive programação. 
+Consequentemente, nosso foco está mais nos elementos fundamentais da programação 
+e menos em fornecer uma descrição completa do Java, que ainda é uma linguagem 
+viva e em evolução. Quando apropriado, direcionamos o aluno para sites onde é 
+possível encontrar material de referência relevante..
 
-Classes and objects are an essential part of Java.  Some educators have
-adopted an "`objects early`" approach that focuses heavily on object-oriented
-principles from the very beginning.  Although we see many merits to this
-approach, we feel compelled to start with logic, arithmetic, and control flow so
-that students have a firm foundation of what to put inside their objects. A full
-treatment of classes and objects unfolds throughout the book, moving
-naturally from monolithic programs to decomposition into methods to full
+Classes e objetos são uma parte essencial do Java. Alguns educadores adotaram a 
+abordagem “`objetos desde cedo`”, que se concentra fortemente nos princípios orientados 
+a objetos desde o início. Embora vejamos muitos méritos nessa abordagem, nos sentimos 
+compelidos a começar com lógica, aritmética e fluxo de controle para que os alunos 
+tenham uma base sólida do que colocar dentro de seus objetos. Um tratamento completo 
+de classes e objetos se desenvolve ao longo do livro, passando naturalmente de programas 
+monolíticos para a decomposição em métodos e para a orientação total a objetos.
 object orientation.
 
-=== Organization
+=== Organização
 
-The material covered can be divided up in different ways depending on the needs
-of the instructor or the student. Chapters 1 through 13, with the exception of
-Chapter 7, are designed to introduce the student to Java and programming in
-general. Chapters 7 and 16 cover material related to graphical user interfaces
-and can be skipped if these topics are not of interest. Chapters 14 and 15 give
-an in-depth treatment of the concurrency features of Java. The rest of the book
-focuses on more advanced material relating to testing, polymorphism,
-data structures, recursion, and I/O.
+O material abordado pode ser dividido de diferentes maneiras, dependendo das necessidades 
+do instrutor ou do aluno. Os capítulos 1 a 12, com exceção do capítulo 7, foram criados 
+para apresentar ao aluno o Java e a programação em geral. Os capítulos 7 e 15 abrangem o 
+material relacionado às interfaces gráficas de usuário e podem ser ignorados se esses 
+tópicos não forem de interesse. Os Capítulos 13 e 14 apresentam um tratamento detalhado 
+dos recursos de concorrência do Java. Embora façamos um esforço para marcar o material 
+sobre concorrência e mantê-lo independente do restante do conteúdo, os capítulos numerados 
+a partir do 15 pressupõem algum conhecimento e interesse em concorrência. O próprio 
+capítulo 15 aborda a depuração e os testes, o que é ainda mais crucial em um ambiente 
+simultâneo. O restante do livro aborda material avançado relacionado a design de OO, 
+estruturas de dados e E/S.
 
-=== Chapter layout
+=== Resumo dos capítulos
 
-One feature of this book that separates it from many Java textbooks is its
-problem-driven approach.  Most chapters are divided into the following parts.
+Uma característica deste livro que o diferencia de muitos livros-texto de Java é 
+sua abordagem orientada a problemas. A maioria dos capítulos é dividida nas seguintes partes.
 
-Problem:: A motivating problem is given at the beginning
-of almost all chapters.  This problem is intended to show the value of the
-material covered in the chapter as well as sketching a practical application.
-Concepts:: One or more short sections devoted to concepts
-is given in each chapter.  The concepts described in these sections are the
-fundamental topics covered in the chapter, as well as main ideas needed to solve the chapter's motivating problem. These concepts are intended to be broad and language neutral.  Java syntax is kept to an absolute minimum in these sections.
-Syntax:: Each chapter has one or more sections describing
-the Java syntax needed to implement the concepts already described in the
-Concepts sections.  These sections are typically longer and have numbered
-examples in Java code sprinkled throughout.
-Solution:: After the appropriate concepts and Java syntax
-needed to solve the motivating problem have been given, a solution to the
-motivating problem is provided near the end of the chapter.  In this way,
-students are given plenty of time to think about the approach needed to solve
-the problem before the answer is given.
-Concurrency:: Except for Chapters 14 and 15, the dedicated concurrency chapters,
-additional relevant concurrency concepts and syntax are introduced in these
-specially marked sections, spreading concurrency throughout the book. These
-sections can be ignored by anyone uninterested in concurrent programming.
-Exercises:: Each chapter ends with exercises, which are
-divided into three sections: Conceptual Problems, Programming Practice, and
-Experiments. Most Conceptual Problems are simple, intended as a quick
-test of the student's understanding. Problems in Programming Practice require
-students to implement a short program in Java and can be used as homework
-assignments.  Experiments are a special feature of this textbook and are
-especially appropriate in the context of concurrency.  They focus on the performance of a program, usually in terms of speed or memory usage.   Students will need to run short programs and measure their running time or other features, gaining practical insight into speedup and other advantages and challenges of concurrency. References to exercises are given throughout the chapter text.
+Problema:: Um problema motivador é apresentado no início de quase todos os 
+capítulos. Esse problema tem o objetivo de mostrar o valor do material abordado 
+no capítulo, além de esboçar uma aplicação prática.
+Conceitos:: Em cada capítulo, há uma ou mais seções curtas dedicadas a conceitos. 
+Os conceitos descritos nessas seções são os tópicos fundamentais abordados no 
+capítulo, bem como as principais ideias necessárias para resolver o problema 
+motivador do capítulo. A intenção é que esses conceitos sejam amplos e neutros 
+em termos de linguagem. A sintaxe Java é mantida em um mínimo absoluto nessas seções.
+Sintaxe:: Cada capítulo tem uma ou mais seções que descrevem a sintaxe Java 
+necessária para implementar os conceitos já descritos nas seções Conceitos. Essas 
+seções geralmente são mais longas e têm exemplos numerados em código Java 
+espalhados por toda parte.
+Solução:: Após a apresentação dos conceitos apropriados e da sintaxe Java necessários 
+para resolver o problema motivador, uma solução é fornecida perto do final do capítulo. 
+Dessa forma, os alunos têm tempo suficiente para pensar sobre a abordagem necessária 
+para resolver o problema antes que a resposta seja dada.
+Concorrência:: Com exceção dos capítulos 14 e 15, dedicados à concorrência,
+conceitos e sintaxe adicionais relevantes à concorrência são apresentados nessas
+seções especialmente identificadas, distribuindo o tema da concorrência por todo o livro. Essas
+seções podem ser ignoradas por quem não tiver interesse em programação concorrente.
+Exercícios:: Cada capítulo termina com exercícios, que são divididos em três seções: Problemas 
+conceituais, Prática de programação e Experimentos. A maioria dos problemas conceituais é 
+simples e tem como objetivo testar rapidamente a compreensão do aluno. Os problemas de 
+prática de programação exigem que os alunos implementem um pequeno programa em Java e podem 
+ser usados como tarefas de casa. Os experimentos são um recurso especial deste livro-texto e 
+são especialmente apropriados no contexto da concorrência. Os experimentos se concentram no 
+desempenho de um programa, geralmente em termos de velocidade ou uso de memória. Os alunos 
+precisarão executar programas curtos e medir seu tempo de execução ou outros recursos, obtendo 
+uma visão prática do aumento de velocidade e de outras vantagens e desafios da simultaneidade. 
+Referências a exercícios são fornecidas ao longo do texto do capítulo.
 
-We hope that structuring chapters in this way can be useful for many different
-kinds of readers. Novice programmers may wish to read each chapter from start to
-end.  Experienced programmers who have never programmed Java may focus primarily
-on the *Syntax* sections to learn the appropriate Java syntax and
-semantics. Rusty Java programmers may prefer to focus on the clearly
-numbered examples and exercises. Of course, instructors are encouraged to use
-the motivating problems to motivate their lectures as well.
+Esperamos que a estruturação dos capítulos dessa forma possa ser útil para muitos tipos diferentes 
+de leitores. Os programadores iniciantes talvez queiram ler cada capítulo do início ao fim. 
+Programadores experientes que nunca programaram em Java podem se concentrar principalmente nas 
+seções de *Sintaxe* para aprender a sintaxe e a semântica apropriadas do Java. Os programadores 
+Java mais experientes podem preferir se concentrar nos exemplos e exercícios claramente numerados. 
+Obviamente, os instrutores são incentivados a usar os problemas motivadores para motivar suas aulas também.
 
-In addition, specially marked *Pitfall* sections throughout the book
-highlight common programming errors and mistakes.
+Além disso, as seções *Armadilhas* especialmente marcadas ao longo do livro destacam erros e falhas 
+comuns de programação.
 
-=== Suggestions
+=== Sugestões
 
-Java IDE:: It's important to introduce students to a Java IDE early in the course.
-IntelliJ is a popular choice for both industry and education,
-but Eclipse remains a solid, open-source option. Of course, Visual Studio Code has
-also gained wide usage as an editor with extensions for almost every
-language imaginable, including Java. Since IDEs are central to modern testing and debugging,
-we provide examples with both IntelliJ and Eclipse in the chapter on those topics.
-Concurrency at the start:: Many courses begin with a
-lecture or two on the relationship between problem solving and computers.
-Chapter 2 covers this topic. During these very early lectures, instructors
-can introduce the notions of both sequential and concurrent solutions. One
-could use simple problems from areas such as mathematics or physics or even day-to-day life that lead to sequential and concurrent solutions. Early exposure to solutions these problems, programmed in Java, can be beneficial to students even if they don't understand all the syntax.
-Input and output:: The issue of what input
-and output material to cover can be dealt with in several ways. While
-programming attractive GUIs may be exciting, some instructors prefer to
-postpone detailed treatment of GUI-related material until late in a course. In
-this book we've decided to follow a flexible approach. We begin by discussing the use of `System.out.print()` and `Scanner` contrasted with the
-`JOptionPane` class as alternatives for basic input and output.  Our
-assumption is that most instructors will prefer the simplicity of command-line
-I/O; however, those who favor a more GUI-heavy approach can start early in
-Chapter 7 for GUI basics and
-eventually move into Chapter 16 for more coverage of GUIs and Swing.
-Instructors who wish to concentrate only on command-line I/O are free to ignore these chapters.
+IDE Java: É importante apresentar aos alunos um IDE Java logo no início do curso.
+O IntelliJ é uma escolha popular tanto na indústria quanto na educação,
+mas o Eclipse continua sendo uma opção sólida e de código aberto. É claro que o Visual Studio Code também
+ganhou ampla aceitação como editor com extensões para praticamente todas as
+linguagens imagináveis, incluindo Java. Como os IDEs são essenciais para testes e depuração modernos,
+fornecemos exemplos com o IntelliJ e o Eclipse no capítulo dedicado a esses tópicos.
+Concorrência desde o começo:: Muitos cursos começam com uma ou duas aulas sobre 
+a relação entre a solução de problemas e os computadores. O Capítulo 2 aborda 
+esse tópico. Durante essas primeiras aulas, os instrutores podem introduzir as 
+noções de soluções sequenciais e concorrentes. Pode-se usar problemas simples 
+de áreas como matemática ou física ou até mesmo do cotidiano que levem a soluções 
+sequenciais e concorrentes. A exposição precoce a soluções desses problemas, 
+programadas em Java, pode ser benéfica para os alunos, mesmo que eles não 
+entendam toda a sintaxe.
+Entrada e saída:: A questão de qual material de Entrada e Saída (E/S) deve ser 
+abordado pode ser tratada de várias maneiras. Embora a programação de GUIs 
+atraentes possa ser empolgante, alguns instrutores preferem adiar o tratamento 
+detalhado do material relacionado à GUI até o final do curso. Neste livro, decidimos 
+seguir uma abordagem flexível. Começamos discutindo o uso de `System.out.print()` e 
+`Scanner` e a classe `JOptionPane` como alternativas para entrada e saída básicas. 
+Nossa suposição é de que a maioria dos instrutores preferirá a simplicidade da E/S 
+de linha de comando; no entanto, aqueles que preferem uma abordagem mais pesada de 
+GUI podem começar logo no Capítulo 7, para obter noções básicas de GUI, e 
+eventualmente passar para o Capítulo 16, para se aprofundar em GUIs e Swing. Os 
+instrutores que desejarem se concentrar apenas na E/S de linha de comando podem 
+ignorar esses capítulos.
 
-== Acknowledgements
+== Agradecimentos
 
-A number of people have played a significant role in motivating the authors to undertake the task of writing this book and in the choice of topics. First, during the spring of 2008, several faculty from the Department of Computer Science and a scientist from Purdue's ITaP participated in early discussions related to the teaching of concurrent programming in freshman classes. Despite the multitude of issues raised, all participants seemed to agree on one point: that we ought to introduce concurrency early in the undergraduate curriculum. Thanks to all the participants, namely, Buster Dunsmore, Ananth Grama, Suresh Jagannathan, Sunil Prabhakar, Faisal Saied, and Jan Vitek.  We benefited from advice, encouragement, and support from a number of alumni and corporate partners. Special thanks to Kevin Kahn, Andrew Chien, and Carl Murray.
+Várias pessoas tiveram um papel importante na motivação dos autores para a 
+tarefa de escrever este livro e na escolha dos tópicos. Primeiro, durante a 
+primavera de 2008, vários professores do Departamento de Ciência da Computação 
+e um cientista do ITaP de Purdue participaram das primeiras discussões 
+relacionadas ao ensino de programação simultânea em turmas de calouros. Apesar 
+do grande número de questões levantadas, todos os participantes pareciam 
+concordar em um ponto: que devemos introduzir a simultaneidade no início do 
+currículo de graduação em Ciência da Computação. Agradecemos a todos os 
+participantes, destacamos Buster Dunsmore, Ananth Grama, Suresh Jagannathan, 
+Sunil Prabhakar, Faisal Saied e Jan Vitek. Nós nos beneficiamos com a 
+orientação, o incentivo e o apoio de vários ex-alunos e parceiros corporativos; 
+agradecimentos especiais a Kevin Kahn, Andrew Chien e Carl Murray.
 
-Thanks to the many anonymous reviewers who carefully read through earlier drafts of this manuscript and made valuable suggestions. The current draft would not exist without the many suggestions and critiques of these reviewers.
+Agradecemos aos vários revisores anônimos que leram cuidadosamente a versão 3.0 
+deste manuscrito e fizeram sugestões valiosas. Esta versão atual não existiria 
+sem as muitas sugestões e críticas desses revisores.
 
-In the fall of 2008, we offered an experimental freshman class entitled "`Introduction to Programming with Concurrency.`" This class was certainly one of the best we have taught to freshmen.  Thanks to students Alexander Bartol, Alexander Coe, Eric Fisher, Benjamin Gilliland-Sauer, John Graff, Tyler Holzer, Jordan Kelly, Azfar Khandoker, Zackary Naas, Ravi Pareek, Carl Rhodes, Robert Schwalm, Andrew Wirtz, and Christopher Womble.
+No outono de 2008, oferecemos uma aula experimental para calouros intitulada 
+“Introdução à Programação com Concorrência”. Essa aula foi certamente uma das 
+melhores que já ministramos para calouros. Agradecemos a Alexander Bartol, 
+Alexander Coe, Eric Fisher, Benjamin Gilliland-Sauer, John Graff, Tyler Holzer, 
+Kelly, Jordan Kelly, Azfar Khandoker, Zackary Naas, Ravi Pareek, Carl Rhodes, 
+Robert Schwalm, Andrew Wirtz e Christopher Womble.
 
-Special thanks to Azfar Khandoker, who not only attended this initial class but also worked on an independent study project to create exercises using Lego robots to help students learn programming. Azfar's work has led to the use of robots in two freshman programming classes taught at Purdue.
+Agradecimentos especiais a Azfar Khandoker, que não apenas participou dessa 
+aula inicial, mas também trabalhou em um projeto de estudo independente para 
+criar exercícios usando robôs Lego para ajudar os alunos a aprender programação. 
+O trabalho de Azfar levou ao uso de robôs em duas aulas de programação para 
+calouros ministradas em Purdue.
 
-We appreciate the support and cooperation of the faculty, and their students, who are our first test users: Professor David John of Wake Forest University and Professor Sunil Prabhakar of Purdue University.
+Agradecemos o apoio e a cooperação do corpo docente e de seus alunos, que são 
+nossos primeiros usuários de teste: Professor David John, da Wake Forest 
+University, e Professor Sunil Prabhakar, da Purdue University.
 
-Finally, we thank everyone in the open-source community who has submitted issues, questions, or pull requests through the GitHub repository at https://github.com/attacking-problems/attacking-problems.github.io[Attacking Problems with Java^].
+Por fim, agradecemos a todos da comunidade de código aberto que enviaram 
+problemas, perguntas ou solicitações pull por meio do 
+link:https://github.com/[Github^].
