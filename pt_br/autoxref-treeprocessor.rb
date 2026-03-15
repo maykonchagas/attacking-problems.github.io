@@ -63,7 +63,7 @@ class AutoXrefTreeprocessor < Extensions::Treeprocessor
       :image => (document.attr 'autoxref-imagecaption', "Figura %d.%d"),
       :listing => (document.attr 'autoxref-listingcaption', "Código %d.%d"),
       :table => (document.attr 'autoxref-tablecaption', "Tabela %d.%d"),
-	  :example => (document.attr 'autoxref-examplecaption', "Examplo %d.%d")
+	  :example => (document.attr 'autoxref-examplecaption', "Exemplo %d.%d")
     }
 
     # Reference number counter.  Reference numbers are reset by chapters.
