@@ -559,7 +559,7 @@ de bugs.</p>
 </div>
 <div class="paragraph">
 <p>A maior parte deste livro é dedicada a projetar soluções para problemas e
-implementá-las em Java, mas <a href="chap17.html">Capítulo 17</a>
+implementá-las em Java, mas o <a href="chap17.html">Capítulo 17</a>
 trata exclusivamente de testes e depuração.</p>
 </div>
 </li>
@@ -880,7 +880,7 @@ começarão a parecer um sistema orgânico e lógico (embora imperfeito).</p>
 <p>A primeira regra do Java é que todo o código deve estar dentro de uma <em>classe</em>. Uma
 classe é um contêiner para blocos de código chamados <em>métodos</em> e também pode
 ser usada como um modelo para criar <em>objetos</em>. Falaremos um pouco mais sobre
-classes neste capítulo e, em seguida, nos concentraremos nelas em
+classes neste capítulo e, em seguida, nos concentraremos nelas no
 <a href="chap9.html">Capítulo 9</a>.</p>
 </div>
 <div class="paragraph">
@@ -1012,7 +1012,7 @@ terminal.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Exemplo</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="err">“</span><span class="nc">Quarenta</span> <span class="n">e</span> <span class="n">dois</span><span class="err">”</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Quarenta e dois"</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -1380,7 +1380,7 @@ a velocidade e o tempo inseridos, bem como a distância resultante.</td>
 <p>Se você está acostumado com programas baseados em GUI, talvez se pergunte como fazer entrada
 e saída com uma GUI em vez de na linha de comando. As GUIs podem se tornar
 complexas, mas neste capítulo apresentamos uma  maneira simples
-de fazer entrada e saída via GUI e a aprofundamos ainda mais em
+de fazer entrada e saída via GUI e a aprofundamos ainda mais no
 <a href="chap7.html">Capítulo 7</a>. Em seguida, abordamos
 as GUIs com muito mais profundidade no <a href="chap16.html">Capítulo 16</a>.</p>
 </div>
@@ -1398,7 +1398,7 @@ seguinte.</p>
 
 <span class="kd">public</span> <span class="kd">class</span> <span class="nc">Exemplo</span> <span class="o">{</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="err">“</span><span class="mi">42</span><span class="err">”</span><span class="o">,</span> <span class="err">“</span><span class="nc">Exemplo</span> <span class="n">de</span> <span class="nc">Saída</span><span class="err">”</span><span class="o">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
+        <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">showMessageDialog</span><span class="o">(</span><span class="kc">null</span><span class="o">,</span> <span class="s">"42"</span><span class="o">,</span> <span class="s">"Exemplo de Saída"</span><span class="o">,</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="nc">JOptionPane</span><span class="o">.</span><span class="na">INFORMATION_MESSAGE</span><span class="o">);</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -1420,7 +1420,7 @@ fazendo com que um ícone apropriado e específico do sistema seja exibido na
 caixa de diálogo.</p>
 </div>
 <div class="paragraph">
-<p><a href="chap2.html#showMessageDialogFigure">Figura 2.3</a> mostra como a GUI resultante pode ficar.</p>
+<p>A <a href="chap2.html#showMessageDialogFigure">Figura 2.3</a> mostra como a GUI resultante pode ficar.</p>
 </div>
 <div id="showMessageDialogFigure" class="imageblock text-center">
 <div class="content">
@@ -1456,7 +1456,7 @@ essa palavra novamente usando o método <code>showMessageDialog()</code>.</p>
 <div class="paragraph">
 <p>Observe que tudo o que o usuário digitar será armazenado em <code>word</code>. Por fim,
 a última linha do programa exibe essa informação com
-<code>showMessageDialog()</code>. <a href="chap2.html#showInputDialogFigure">Figura 2.4</a> mostra a
+<code>showMessageDialog()</code>. A <a href="chap2.html#showInputDialogFigure">Figura 2.4</a> mostra a
 GUI enquanto o usuário está inserindo a entrada.</p>
 </div>
 <div id="showInputDialogFigure" class="imageblock text-center">
@@ -1480,19 +1480,19 @@ código a seguir ilustra essas questões.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="c1">// Não é possível multiplicar um texto por um número inteiro</span>
-<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="err">“</span><span class="mi">41</span><span class="err">”</span> <span class="o">*</span> <span class="mi">3</span><span class="o">;</span>
+<span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="s">"41"</span> <span class="o">*</span> <span class="mi">3</span><span class="o">;</span>
 
 <span class="c1">// Converte corretamente o texto “23” no número inteiro 23</span>
-<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="err">“</span><span class="mi">23</span><span class="err">”</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">"23"</span><span class="o">);</span>
 
 <span class="c1">// Converte corretamente o texto “3.14159” em 3.14159</span>
-<span class="kt">double</span> <span class="n">z</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="err">“</span><span class="mf">3.14159</span><span class="err">”</span><span class="o">);</span>
+<span class="kt">double</span> <span class="n">z</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="s">"3.14159"</span><span class="o">);</span>
 
 <span class="c1">// Faz com que o programa trave</span>
-<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="err">“</span><span class="nc">Vinte</span> <span class="n">e</span> <span class="n">três</span><span class="err">”</span><span class="o">);</span>
+<span class="kt">int</span> <span class="n">a</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="s">"Vinte e três"</span><span class="o">);</span>
 
 <span class="c1">// Faz com que o programa trave</span>
-<span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="err">“</span><span class="n">pi</span><span class="err">”</span><span class="o">);</span></code></pre>
+<span class="kt">double</span> <span class="n">b</span> <span class="o">=</span> <span class="nc">Double</span><span class="o">.</span><span class="na">parseDouble</span><span class="o">(</span><span class="s">"pi"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1500,7 +1500,7 @@ código a seguir ilustra essas questões.</p>
 significa <code>23</code>. Lembre-se de que o computador não tem inteligência. Se algo estiver
 marcado como texto, ele não sabe que pode interpretá-lo como um número.
 O tipo de dados de algo depende de seu tipo, que não
-muda. Discutiremos os tipos mais detalhadamente em <a href="chap3.html">Capítulo 3</a>.</p>
+muda. Discutiremos os tipos mais detalhadamente no <a href="chap3.html">Capítulo 3</a>.</p>
 </div>
 <div class="paragraph">
 <p>O próximo exemplo usa esses dois métodos de conversão de tipos com métodos
@@ -1511,8 +1511,8 @@ problema da bola quicando.</p>
 <div class="title">Exemplo 2.5 Entrada via GUI</div>
 <div class="content">
 <div class="paragraph">
-<p>Podemos alterar a solução apresentada em <a href="chap2.html#GetInputCLIProgram">Código 2.1</a> para
-usar as ferramentas de entrada baseadas em GUI em <code>JOptionPane</code>.
+<p>Podemos alterar a solução apresentada no <a href="chap2.html#GetInputCLIProgram">Código 2.1</a> para
+usar as ferramentas de entrada baseadas em GUI em <code>JOptionPane</code>. O
 <a href="chap2.html#GetInputGUIProgram">Código 2.3</a> é o programa Java equivalente baseado em GUI.</p>
 </div>
 <div id="GetInputGUIProgram" class="listingblock">
@@ -1577,7 +1577,7 @@ do método <code>System.out.print()</code> para exibir <code>42</code> na tela. 
 usar os operadores de adição (<code>+</code>), subtração (<code>-</code>), multiplicação (<code>*</code>) e divisão (<code>/</code>)
 em números para resolver problemas aritméticos. Esses operadores funcionam
 da maneira que você esperaria (exceto a divisão que tem algumas surpresas).
-Abordaremos esses e outros operadores mais detalhadamente em
+Abordaremos esses e outros operadores mais detalhadamente no
 <a href="chap3.html">Capítulo 3</a>. Aqui estão exemplos desses
 quatro operadores usados com números inteiros e de ponto flutuante.</p>
 </div>
@@ -1844,7 +1844,7 @@ devanágari, cirílico e outros alfabetos. Por exemplo, <code>m\u00F6tleyCr\u00F
 <code>\u00FC</code> é uma forma de codificar <code>ü</code>. Em alguns sistemas, esse nome de variável pode
 ser renderizado como <code>mötleyCrüe</code>, mas o compilador pode gerar um erro se você digitar esses caracteres diretamente. Em resumo, o Java suporta uma enorme variedade de
 caracteres, mas fazer com que esse suporte funcione para você às vezes é mais desafiador.
-<a href="#Caracteres: <code>char</code>" class="target-missing">[Caracteres: <code>char</code>]</a> discute a codificação de caracteres mais detalhadamente.</p>
+A <a href="chap3.html#_characters_char">Seção 3.3.2.10</a> discute a codificação de caracteres mais detalhadamente.</p>
 </div>
 <div class="paragraph">
 <p>Lembre-se de que palavras-chave também não podem ser usadas como identificadores. Por exemplo,
@@ -1909,7 +1909,7 @@ quiser. O Java ignora espaços em branco extras. Considere a seguinte linha de c
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>public class Exemplo{public static void main(String[]args){System.out.print(42);}}</pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">Exemplo</span><span class="o">{</span><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span><span class="n">args</span><span class="o">){</span><span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="mi">42</span><span class="o">);}}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -2016,7 +2016,7 @@ escrever o código de forma tão clara que um comentário seja desnecessário.</
 <div class="sect2">
 <h3 id="_solução_como_resolver_problemas">2.4. Solução: Como resolver problemas</h3>
 <div class="paragraph">
-<p>As etapas de resolução de problemas apresentadas em <a href="chap2.html#_conceitos_desenvolvimento_de_software">Seção 2.2</a>
+<p>As etapas de resolução de problemas apresentadas na <a href="chap2.html#_conceitos_desenvolvimento_de_software">Seção 2.2</a>
 são válidas, mas dependem da capacidade de implementar sua solução planejada em
 Java. Neste capítulo, abordamos muito pouco sobre Java para esperar resolver
 <strong>todos</strong> os problemas que podem ser resolvidos com um computador. No entanto,
@@ -2026,15 +2026,15 @@ nossa solução funciona ao longo do ciclo de vida do desenvolvimento de softwar
 <div class="sect3">
 <h4 id="_solução_da_bola_quicando_versão_de_linha_de_comando">2.4.1. Solução da bola quicando (versão de linha de comando)</h4>
 <div class="paragraph">
-<p>Em <a href="chap2.html#ballBouncingProblemExample">Exemplo 2.2</a>, nos certificamos
+<p>No <a href="chap2.html#ballBouncingProblemExample">Exemplo 2.2</a>, nos certificamos
 de que compreendíamos o problema e, em seguida, elaboramos um plano em três partes para ler
 a entrada, calcular a altura do salto e, então, exibi-la.</p>
 </div>
 <div class="paragraph">
-<p>Em <a href="chap2.html#GetInputCLIProgram">Código 2.1</a>, implementamos o subproblema 1, lendo
+<p>No <a href="chap2.html#GetInputCLIProgram">Código 2.1</a>, implementamos o subproblema 1, lendo
 a entrada da linha de comando. Em <a href="chap2.html#ComputeHeightProgram">Código 2.4</a>,
 implementamos o subproblema 2, calculando a altura do salto final.
-Em <a href="chap2.html#DisplayHeightCLIProgram">Código 2.5</a>, implementamos o subproblema 3,
+No <a href="chap2.html#DisplayHeightCLIProgram">Código 2.5</a>, implementamos o subproblema 3,
 exibindo a altura que foi calculada. No final, o programa integrado,
 a parte do código que corresponde à resolução do subproblema
 1 está abaixo.</p>
@@ -2159,7 +2159,7 @@ bola não quica de forma alguma, e a altura final deve ser 0.</p>
 <code>dois</code> em vez de <code>2</code>. Da mesma forma, nosso código não detecta valores inválidos
 , como um coeficiente de restituição maior que 1 ou um número negativo
 de saltos. Um programa de nível industrial deveria fazer isso. Discutiremos os testes
-mais detalhadamente em <a href="chap17.html">Capítulo 17</a>.</p>
+mais detalhadamente no <a href="chap17.html">Capítulo 17</a>.</p>
 </div>
 <div class="paragraph">
 <p>Assim como na maioria dos problemas que discutimos neste livro, questões de
@@ -2215,13 +2215,13 @@ enviaram uma extensa lista de exigências aos líderes mundiais, mas apenas algu
 pessoas, incluindo você, dominam a língua deles, o Lellarapiano. Para
 salvar o povo da Terra, é imperativo que você traduza as
 exigências o mais rápido possível, para que os líderes mundiais possam escolher
-um curso de ação. Se você fizer isso sozinho, conforme ilustrado em
+um curso de ação. Se você fizer isso sozinho, conforme ilustrado na
 <a href="chap2.html#documentTranslationFigure">Figura 2.5</a>(a), os Lellaraps podem atacar
 antes que você termine.</p>
 </div>
 <div class="paragraph">
 <p>Para concluir o trabalho mais rapidamente, você contrata um segundo tradutor cujas
-habilidades em Lellarap são tão boas quanto as suas. Conforme mostrado em
+habilidades em Lellarap são tão boas quanto as suas. Conforme mostrado na
 <a href="chap2.html#documentTranslationFigure">Figura 2.5</a>(b), você divide o documento em
 duas partes quase iguais, o Documento A e o Documento B. Você traduz
 o Documento A, e seu colega traduz o Documento B. Quando ambas as
@@ -2244,7 +2244,7 @@ que decidir como dividir o documento e como juntá-lo novamente
 <div class="paragraph">
 <p>Se você escrevesse um programa de computador para traduzir as demandas usando
 a abordagem sequencial, produziria um <em>programa sequencial</em>. Se
-você escrevesse um programa de computador que usasse a abordagem mostrada em
+você escrevesse um programa de computador que usasse a abordagem mostrada na
 <a href="chap2.html#documentTranslationFigure">Figura 2.5</a>(b), seria um <em>programa concorrente</em>.
 Um programa concorrente também é chamado de <em>programa multithread</em>
 . <em>Threads</em> são sequências de código que podem ser executadas independentemente
@@ -2255,11 +2255,11 @@ dividir o documento ou juntá-lo novamente.</p>
 </div>
 <div class="paragraph">
 <p>Como estamos interessados no tempo que o processo leva, rotulamos
-tarefas diferentes em <a href="chap2.html#documentTranslationFigure">Figura 2.5</a> com seus
+tarefas diferentes na <a href="chap2.html#documentTranslationFigure">Figura 2.5</a> com seus
 tempos de execução. Seja <em>t</em><sub><em>s</em></sub> o tempo que uma pessoa leva para
 concluir a tradução. Os tempos <em>t</em><sub>1</sub> a
 <em>t</em><sub>4</sub> marcam os tempos necessários para concluir as tarefas 1 a 4,
-indicadas em <a href="chap2.html#documentTranslationFigure">Figura 2.5</a>(b).</p>
+indicadas na <a href="chap2.html#documentTranslationFigure">Figura 2.5</a>(b).</p>
 </div>
 <div class="sidebarblock">
 <div class="content">
@@ -2293,7 +2293,7 @@ exemplos a seguir exploram cada uma dessas abordagens.</p>
 <div class="paragraph">
 <p>Suponha que tenhamos um robô autônomo chamado Room Rating Robot ou
 R<sup>3</sup>. O R<sup>3</sup> pode medir a área de qualquer casa. Suponha que queiramos
-usar um R<sup>3</sup> para medir a área da casa de dois andares esboçada em
+usar um R<sup>3</sup> para medir a área da casa de dois andares esboçada na
 <a href="chap2.html#figure-floorPlan">Figura 2.6</a>.</p>
 </div>
 <div id="figure-floorPlan" class="imageblock text-center">
@@ -2385,7 +2385,8 @@ próximo exemplo ilustra essa divisão.</p>
 <div class="title">Exemplo 2.9 Decomposição de tarefas</div>
 <div class="content">
 <div class="paragraph">
-<p>Vamos ampliar o problema apresentado em <a href="chap2.html#domainDecompositionExample">Exemplo 2.8</a>. Os robôs R<sup>3</sup> podem fazer mais do que apenas medir áreas. Além
+<p>Vamos ampliar o problema apresentado no <a href="chap2.html#domainDecompositionExample">Exemplo 2.8</a>. Os
+robôs R<sup>3</sup> podem fazer mais do que apenas medir áreas. Além
 de calcular a área útil de uma casa, queremos que um robô R<sup>3</sup>
 verifique se as tomadas elétricas estão funcionando. O robô
 deve nos fornecer a área da casa, bem como uma lista das tomadas
@@ -2459,7 +2460,7 @@ resolvido pelo programa escrito pelo programador? São os mesmos?</p>
 todas as variáveis como do tipo <code>int</code>?</p>
 </li>
 <li>
-<p>Qual é o objetivo da instrução <code>Scanner in = new Scanner(System.in);</code> em
+<p>Qual é o objetivo da instrução <code>Scanner in = new Scanner(System.in);</code> no
 <a href="chap2.html#GetInputCLIProgram">Código 2.1</a>?</p>
 </li>
 <li>
@@ -2484,12 +2485,12 @@ preferiria usar a classe <code>JOptionPane</code> para saída em vez de
 usar <code>JOptionPane</code>?</p>
 </li>
 <li>
-<p><a id="javaKeywordsExercise"></a> Revise
+<p><a id="javaKeywordsExercise"></a> Revise o
 <a href="chap2.html#BouncingBallGUIProgram">Código 2.7</a> e identifique todas as palavras-chave Java
 usadas nele.</p>
 </li>
 <li>
-<p><a id="importExercise"></a> Tente recompilar
+<p><a id="importExercise"></a> Tente recompilar o
 <a href="chap2.html#BouncingBallGUIProgram">Código 2.7</a> após remover a instrução <code>import</code>
 no início. Leia e explique a mensagem de erro gerada pelo
 compilador.</p>
@@ -2501,7 +2502,7 @@ paralelas, mas não concorrentes, tarefas que são concorrentes, mas não parale
 e tarefas que são ambas.</p>
 </li>
 <li>
-<p><a id="parallelTimeExercise"></a> Consulte
+<p><a id="parallelTimeExercise"></a> Consulte a
 <a href="chap2.html#documentTranslationFigure">Figura 2.5</a>. Suponha que você e seu
 colega traduzam do inglês para o lellarapiano a uma taxa de 200 palavras
 por hora. Suponha que a lista de demandas contenha 10.000 palavras.</p>
@@ -2543,12 +2544,12 @@ aumentando à medida que você adiciona mais tradutores? Explique sua resposta.<
 </div>
 </li>
 <li>
-<p><a id="domainDecompositionRobotsExercise"></a> Em
+<p><a id="domainDecompositionRobotsExercise"></a> No
 <a href="chap2.html#domainDecompositionExample">Exemplo 2.8</a>, que aspecto de um sistema multicore
 os robôs representam?</p>
 </li>
 <li>
-<p><a id="domainDecompositionConcurrentExercise"></a> Em
+<p><a id="domainDecompositionConcurrentExercise"></a> No
 <a href="chap2.html#domainDecompositionExample">Exemplo 2.8</a>, suponha que você tenha dois robôs R<sup>3</sup>
 disponíveis. Você gostaria de usá-los para medir a área útil
 de uma casa térrea. Sugira como dois robôs poderiam ser programados para
@@ -2569,19 +2570,19 @@ valores e exiba-a na tela usando <code>System.out.print()</code> ou
 <code>System.out.println()</code>.</p>
 </li>
 <li>
-<p><a id="integerAverageExercise"></a> Amplie o programa de
+<p><a id="integerAverageExercise"></a> Amplie o programa do
 <a href="chap2.html#integerSumExercise">Exercício 2.13</a> para que ele calcule a média dos
 três números em vez da soma. (Dica: tente dividir por <code>3.0</code>
 em vez de <code>3</code> para obter uma média com uma parte fracionária. Em seguida, armazene o
 resultado em uma variável do tipo <code>double</code>.)</p>
 </li>
 <li>
-<p>Reescreva sua solução para <a href="chap2.html#integerAverageExercise">Exercício 2.14</a> de modo
+<p>Reescreva sua solução para o <a href="chap2.html#integerAverageExercise">Exercício 2.14</a> de modo
 que ela use uma GUI baseada em <code>JOptionPane</code> em vez de <code>Scanner</code> e
 <code>System.out.print()</code>.</p>
 </li>
 <li>
-<p><a id="runCLIProgramExercise"></a> Copie e cole
+<p><a id="runCLIProgramExercise"></a> Copie e cole o
 <a href="chap2.html#GetInputCLIProgram">Código 2.1</a> no IDE Java de sua preferência. Compile
 e execute-o, certificando-se de que o programa seja executado conforme o esperado. Em seguida,
 adicione instruções para solicitar ao usuário a cor da bola e leia-a</p>
@@ -2596,8 +2597,8 @@ de modo que ela use uma GUI baseada em <code>JOptionPane</code> em vez de <code>
 <code>System.out.print()</code>.</p>
 </li>
 <li>
-<p>Em <a href="chap2.html#inputForDistanceComputationExample">Exemplo 2.4</a>, assumimos que a velocidade é dada em milhas
-por hora e o tempo em horas. Altere <a href="chap2.html#DistanceProgram">Código 2.2</a> para
+<p>No <a href="chap2.html#inputForDistanceComputationExample">Exemplo 2.4</a>, assumimos que a velocidade é dada em milhas
+por hora e o tempo em horas. Altere o <a href="chap2.html#DistanceProgram">Código 2.2</a> para
 calcular a distância percorrida por um objeto em movimento, dada sua velocidade em
 milhas por hora, mas o tempo em segundos. Você precisará realizar uma
 conversão de segundos para horas antes de poder calcular a distância.</p>
