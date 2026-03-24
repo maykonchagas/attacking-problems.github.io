@@ -382,7 +382,7 @@ Observe que todo o intervalo de `byte` está incluído no de `short`, o de `shor
 no de `int` e assim por diante. Dizemos que `short` é _mais amplo_ que
 `byte`, `int` é mais amplo que `short` e `long` é mais amplo que `int`.
 
-** **
+****
 <<integersIntLongExercise>>
 ****
 
@@ -404,7 +404,7 @@ objetivo claro.
 Considere as seguintes declarações.
 
 [source, java]
-- ---
+----
 byte age;
 int numberOfRooms;
 long foreverCounter = 0;
@@ -588,12 +588,12 @@ exemplo a seguir:
 
 [source, java]
 ----
-System.out.format(“%s! Quebrei %d recordes em %f segundos.\n”, “Bob”, 3, 2.4985);
+System.out.format("%s! Quebrei %d recordes em %f segundos.\n", "Bob", 3, 2.4985);
 ----
 
 A saída deste código é
 
-... .
+....
 Bob! Quebrei 3 recordes em 2,4985 segundos.
 ....
 
@@ -917,7 +917,7 @@ de `i = i + 1` e começam a pensar nelas como uma maneira sofisticada de escreve
 Quando confuso, um programador pode escrever algo como o seguinte.
 
 [source, java]
---- -
+----
 int i = 14;
 i = i++;
 ----
@@ -1147,7 +1147,7 @@ uma operação aritmética com dois tipos numéricos diferentes, o tipo mais res
 automaticamente convertido para o tipo mais amplo.
 
 [source, java]
---- -
+----
 double value = 3 + 7.2;
 ----
 
@@ -1430,9 +1430,7 @@ int x = 3;
 int y = 4;
 boolean same = (x == 3); // <.>
 same = (x == y); // <.>
-boolean xIsGreater = (x > y); // <.
- 
->
+boolean xIsGreater = (x > y); // <.>
 ----
 <.> No primeiro uso de `==`, o valor de `same` é `true` porque
 o valor de `x` é `3`.
@@ -1639,7 +1637,7 @@ Aqui está outro exemplo de combinação de objetos `String` usando o operador `
 .
 
 [source, java]
--- --
+----
 String argument = “the cannon”;
 String phrase = “No argument but ” + argument + “!”;
 ----
@@ -1898,7 +1896,7 @@ String thing3 = new String(“Tragical tapestry”);
 
 [[differentObjectsFigure]]
 .Objetos `thing1`, `thing2` e `thing3` (a) em seus estados iniciais e (b) após a atribuição `thing1 = thing2;`.
-image::differentObjectsFigure. svg[scaledwidth=100%,pdfwidth=100%,width=100%]
+image::differentObjectsFigure.svg[scaledwidth=100%,pdfwidth=100%,width=100%]
 
 
 Este código declara e inicializa três valores `String`. Embora seja
@@ -1977,7 +1975,7 @@ usado para separar palavras. Aqui estão alguns exemplos de declarações de con
 .
 
 [source, java]
---- -
+----
 final int POPULATION = 25000;
 final double PLANCK_CONSTANT = 6.626E-34;
 final boolean FLAG = false;
@@ -2356,7 +2354,7 @@ String hex = Integer.toString(604, 16); // Contém “25c”
 
 Exceto por esse tipo de conversão de base, muitos programadores raramente usam
 métodos `toString()` porque há uma maneira mais fácil de converter um número (ou qualquer
-tipo) em uma `String`. O operador de concatenação (`+`) discutido em
+tipo) em uma `String`. O operador de concatenação (`+`) discutido no
 <<Concatenação de valores `String`>> pode ser usado para concatenar um número à
 string vazia (`“”`), “adicionando” uma versão `String` do número a, bem,
 nada. Usando esse estilo, você pode encontrar um código como o seguinte.
@@ -2364,7 +2362,7 @@ nada. Usando esse estilo, você pode encontrar um código como o seguinte.
 [source,java]
 ----
 int number = 68;
-String text = “” + number; // Contém “68”
+String text = "" + number; // Contém “68”
 ----
 
 Embora se possa argumentar que usar o método `toString()` é mais
