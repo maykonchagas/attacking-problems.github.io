@@ -1,5 +1,5 @@
 = Atacando Problemas com Java
-Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>;
+Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu> | 
 Tradução: Maykon Chagas <maykon.chagas@ifsc.edu.br>;
 :lang: pt_BR
 :language: asciidoctor

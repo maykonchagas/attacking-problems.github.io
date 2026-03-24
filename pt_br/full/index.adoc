@@ -1,5 +1,5 @@
-= Attacking Problems with Java
-Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>
+= Atacando Problemas com Java
+Barry Wittman <wittman1@otterbein.edu>; Tim Korb <jtk@purdue.edu>; Aditya Mathur <apm@purdue.edu>; Tradução por Maykon Chagas <maykon.chagas@ifsc.edu.br>
 :doctype: book
 :lang: pt_BR
 :language: asciidoctor
