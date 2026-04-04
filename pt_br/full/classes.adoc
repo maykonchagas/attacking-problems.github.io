@@ -951,7 +951,7 @@ public static findSum(SafeArray array) {
 
 === Advanced: Enumeration types
 
-We discussed constants in <<Constants>>, but using the `final` keyword only
+We discussed constants in <<Constantes>>, but using the `final` keyword only
 forces individual variables, whether local or member variables, to be constant.
 What if you wanted a whole object to be constant? What would that even mean?
 

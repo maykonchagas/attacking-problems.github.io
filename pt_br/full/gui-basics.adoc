@@ -384,7 +384,7 @@ unless you have a copy of `bat.png` in the appropriate directory.
 An input dialog can read text data from the user. The
 `showInputDialog()` method in the `JOptionPane` class allows us to
 create such a dialog. We introduced the `showInputDialog()` method in
-<<Syntax: Java basics>>, but we give two more examples here to
+<<Sintaxe: Noções básicas de Java>>, but we give two more examples here to
 emphasize its similarity to the other `JOptionPane` factory methods and
 to show off some of its additional features.
 
@@ -635,10 +635,10 @@ array representing a deck of cards. Adapt this code and modify
 randomized. Note that you will need to record which index contains the
 correct answer.
 . Re-implement the solution to the college cost calculator problem
-given in <<Solution: College cost calculator>> so that it uses
+given in <<Solução: Calculadora de custos universitários>> so that it uses
 GUIs constructed with `JOptionPane` for input and output.
 . Re-implement the solution to the Monty Hall problem given in
-<<Solution: Monty Hall>> so that it uses GUIs constructed with
+<<Solução: Monty Hall>> so that it uses GUIs constructed with
 `JOptionPane` for input and output.
 . Re-implement the solution to the DNA searching problem given in
 <<Solution: DNA searching>> so that it uses GUIs constructed with

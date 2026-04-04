@@ -1240,7 +1240,7 @@ All array variables are _reference_ type variables, not simple values
 like most of the types we have discussed so far. A reference variable is
 a name for an object. You might recall that we described the difference
 between reference types and primitive types in
-<<Concepts: Types>>, but the only reference type we've
+<<Conceitos: Tipos>>, but the only reference type we've
 considered in detail is `String`.
 
 More than one reference variable can point at the same object. When one
