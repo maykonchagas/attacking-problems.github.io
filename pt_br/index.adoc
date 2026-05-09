@@ -22,7 +22,7 @@ em programação. O livro está disponível no formato HTML para visualização 
 
 == A nova versão está (ainda!) em construção
 
-[AVISO]
+[WARNING]
 .Em construção
 ====
 Este site foi criado e atualizado durante o verão de 2024 e já está disponível 
