@@ -99,7 +99,7 @@ Em contraste com uma variável está um _literal_. Um literal é um valor concre
 que não muda, embora possa ser armazenado em uma variável. Números
 como `4` ou `2.71828183` são literais. Precisamos representar texto e
 caracteres únicos em Java também, e existem literais como
-`“gomo de laranja”` e `‘X’` que desempenham essas funções.
+`"gomo de laranja"` e `"X"` que desempenham essas funções.
 
 Em Java, tanto variáveis quanto literais têm _tipos_. Se você pensar em uma
 variável como uma caixa onde é possível guardar algo, seu tipo é a forma
@@ -214,7 +214,7 @@ _objeto_. Um objeto é uma instância específica do tipo. Por exemplo, o
 tipo pode ser `Airplane`, mas o objeto pode ser referenciado por uma
 variável chamada `sr71Blackbird`. Presumivelmente, esse objeto tem um peso, uma
 velocidade máxima e outras características que o identificam como um Lockheed
-SR-71 “`Blackbird`”, o famoso avião espião. Resumindo: um objeto é uma
+SR-71 "`Blackbird`", o famoso avião espião. Resumindo: um objeto é uma
 instância concreta de dados. Uma referência é uma variável que dá
 um nome a (aponta para) um objeto. Um tipo é uma classe que tanto a
 variável quanto o objeto possuem, que define que tipos de dados o
@@ -227,7 +227,7 @@ objeto contém e quais operações ele pode realizar.
 A tabela a seguir lista algumas das diferenças entre tipos primitivos
 e tipos de referência.
 
-[%unbreakable,cols=“<,<”,]
+[%unbreakable,cols="<,<",]
 |=======================================================================
 |Tipos primitivos |Tipos de referência
 
@@ -279,8 +279,7 @@ um casting irresponsável.
 
 Nesta seção, aprofundamos o sistema de tipos em Java,
 começando pelas variáveis e passando para as propriedades dos oito
-tipos primitivos e as propriedades de `String` e outros tipos de referência
-.
+tipos primitivos e as propriedades de `String` e outros tipos de referência.
 
 ==== Variáveis e literais
 
@@ -288,29 +287,29 @@ Para usar uma variável em Java, você deve primeiro _declará-la_, o que reserv
 memória para armazenar a variável e atribui um nome a esse espaço.
 As declarações sempre seguem o mesmo padrão. O tipo é escrito primeiro
 seguido pelo identificador, ou nome, da variável. Abaixo, declaramos
-uma variável chamada `value` do tipo `int`.
+uma variável chamada `valor` do tipo `int`.
 
 [source, java]
 ----
-int value;
+int valor;
 ----
 
 Observe como usamos o mesmo padrão para declarar uma variável de referência chamada
-`creature` do tipo `Wombat`.
+`criatura` do tipo `Vombate`.
 
 [source, java]
 ----
-Wombat creature;
+Vombate criatura;
 ----
 
 Você pode declarar uma variável e terminar a linha com um
 ponto-e-vírgula (`;`), mas é comum _inicializar_ uma variável ao mesmo
-tempo. A linha a seguir declara `value` e a inicializa
+tempo. A linha a seguir declara `valor` e a inicializa
 simultaneamente como `5`.
 
 [source, java]
 ----
-int value = 5;
+int valor = 5;
 ----
 
 .Armadilha: Declarações múltiplas
@@ -323,18 +322,18 @@ mais de uma vez, como no exemplo a seguir:
 
 [source, java]
 ----
-int value = 5;
-int value = 10;
+int valor = 5;
+int valor = 10;
 ----
 
 O Java não permite que duas variáveis com o mesmo nome existam no
 mesmo bloco de código. O programador provavelmente pretendia o seguinte,
-reutilizar a variável `value` e substituir seu conteúdo por `10`.
+reutilizar a variável `valor` e substituir seu conteúdo por `10`.
 
 [source, java]
 ----
-int value = 5;
-value = 10;
+int valor = 5;
+valor = 10;
 ----
 
 Esse erro é mais comum quando várias outras linhas de código se encontram entre
@@ -343,7 +342,7 @@ as duas atribuições.
 ====
 
 Em alguns dos exemplos acima, armazenamos o valor `5` em nossa
-variável `value`. O símbolo `5` é um exemplo de um _literal_. Um literal
+variável `valor`. O símbolo `5` é um exemplo de um _literal_. Um literal
 é um valor representado diretamente no código. Ele não pode ser alterado, mas
 pode ser armazenado em variáveis que tenham um tipo compatível. Os valores armazenados
 em variáveis provêm de literais, entradas ou expressões mais complexas
@@ -368,7 +367,7 @@ complemento de dois. Eles diferem apenas pelo intervalo de valores que cada tipo
 armazenar. Esses intervalos e o número de bytes usados para representar variáveis
 de cada tipo são apresentados abaixo.
 
-[.center%autowidth%unbreakable,cols=“<l,^,>,^,<”,]
+[.center%autowidth%unbreakable,cols="<l,^,>,^,<",]
 |=======================================================================
 |Tipo |Bytes | |Intervalo |
 
@@ -405,44 +404,44 @@ Considere as seguintes declarações.
 
 [source, java]
 ----
-byte age;
-int numberOfRooms;
-long foreverCounter = 0;
+byte idade;
+int numeroDeQuartos;
+long contadorInfinito = 0;
 ----
 
-A primeira dessas instruções declara `age` como uma variável do tipo
-`byte`. Essa declaração significa que `age` pode assumir qualquer valor dentro do
+A primeira dessas instruções declara `idade` como uma variável do tipo
+`byte`. Essa declaração significa que `idade` pode assumir qualquer valor dentro do
 intervalo de `byte`. Para um ser humano, essa limitação é razoável (mas
 perigosamente próxima do limite), já que não há nenhum caso documentado de uma
 pessoa que tenha vivido mais de 122 anos. Da mesma forma, a próxima declaração
-declara `numberOfRooms` como sendo do tipo `int`. A última declaração
-declara `foreverCounter` como sendo do tipo `long` e a inicializa como
+declara `numeroDeQuartos` como sendo do tipo `int`. A última declaração
+declara `contadorInfinito` como sendo do tipo `long` e a inicializa como
 `0`.
 
-Como `age` é uma variável, seu valor pode mudar durante a
-execução do programa. Observe que a declaração acima de `age` não atribui um
+Como `idade` é uma variável, seu valor pode mudar durante a
+execução do programa. Observe que a declaração acima de `idade` não atribui um
 valor a ela. Quando declaradas, todas as variáveis inteiras são definidas como
 `0` pelo Java. No entanto, para garantir que o programador seja explícito sobre
 o que deseja, o compilador emitirá um erro na maioria dos casos se uma
 variável for usada sem que seu valor tenha sido definido primeiro.
 
-Como qualquer outra variável inteira, podemos atribuir um valor a `age` da seguinte maneira.
+Como qualquer outra variável inteira, podemos atribuir um valor a `idade` da seguinte maneira.
 
 [source, java]
 ----
-age = 32;
+idade = 32;
 ----
 
-Isso atribui o valor `32` à variável `age`. Observe que o compilador Java
+Isso atribui o valor `32` à variável `idade`. Observe que o compilador Java
 não reclamaria se você atribuísse `-10` à variável
-`age`, mesmo que seja impossível para um ser humano ter uma idade negativa
+`idade`, mesmo que seja impossível para um ser humano ter uma idade negativa
 (pelo menos, sem uma máquina do tempo). O Java não atribui nenhum significado ao nome
 que você dá a uma variável.
 
 ====
 
 Anteriormente, dissemos que as variáveis precisavam corresponder ao tipo dos literais que você
-deseja armazenar nelas. No exemplo acima, declaramos `age` com
+deseja armazenar nelas. No exemplo acima, declaramos `idade` com
 o tipo `byte` e, em seguida, armazenamos `32` nela. Qual é o tipo de `32`? É
 `byte`, `short`, `int` ou `long`? Por padrão, todos os literais inteiros
 têm o tipo `int`, mas podem ser usados com variáveis `byte` ou `short`
@@ -488,19 +487,19 @@ Considere as seguintes declarações.
 
 [source, java]
 ----
-float roomArea;
+float areaDoQuarto;
 double avogadro = 6,02214179E 23
 ----
 
-A primeira das duas instruções acima declara `roomArea` como sendo do tipo
-`float`. Observe que a declaração não inicializa `roomArea` com nenhum
+A primeira das duas instruções acima declara `areaDoQuarto` como sendo do tipo
+`float`. Observe que a declaração não inicializa `areaDoQuarto` com nenhum
 valor. Assim como os tipos primitivos inteiros, uma variável de ponto flutuante não inicializada
 contém `0.0`, mas o Java geralmente obriga o programador a
 atribuir um valor a uma variável antes de usá-la. A segunda das
 duas instruções acima declara `avogadro` como uma variável do tipo `double` e
 a inicializa com a conhecida constante de Avogadro
 6.02214179 × 10^23^. Observe o uso de `E` para significar
-“`dez elevado a.`” Em Java, você poderia escrever
+"`dez elevado a.`" Em Java, você poderia escrever
 0,33 × 10^-12^ como `0,33E-12`, ou o número
 -4,325 × 10^18^ como `-4,325E18` (ou mesmo `-4,325E+18`
 se você quiser escrever o sinal do expoente explicitamente).
@@ -522,13 +521,13 @@ Tente executar as seguintes instruções em um programa Java.
 
 [source, java]
 ----
-double test = 0.0;
-test += 0.1;
-System.out.println(test);
-test += 0.1;
-System.out.println(test);
-test += 0.1;
-System.out.println(test);
+double teste = 0.0;
+teste += 0.1;
+System.out.println(teste);
+teste += 0.1;
+System.out.println(teste);
+teste += 0.1;
+System.out.println(teste);
 ----
 
 Como estamos somando 0,1 a cada vez, seria de se esperar ver saídas de
@@ -607,7 +606,7 @@ o `%` e o `f`.
 
 [source, java]
 ----
-System.out.format(“$%.2f\n”, 123.456789 );
+System.out.format("$%.2f\n", 123.456789 );
 ----
 
 A saída deste código é:
@@ -624,7 +623,7 @@ A tabela a seguir lista os operadores aritméticos disponíveis em Java.
 Todos esses operadores podem ser usados tanto nos tipos primitivos inteiros
 quanto nos tipos primitivos de ponto flutuante.
 
-[.center%autowidth%unbreakable,cols=“^l,<”,]
+[.center%autowidth%unbreakable,cols="^l,<",]
 |=========================
 |Operador |Significado
 
@@ -681,7 +680,7 @@ cenário a seguir.
 
 [source, java]
 ----
-double half = 1/2;
+double metade = 1/2;
 ----
 
 O código parece correto à primeira vista, mas `1/2` resulta em `0`. Se o resultado for
@@ -750,7 +749,7 @@ tenha sido feita. A atribuição sempre ocorre por último.
 ====
 
 Todos os operadores que discutimos até agora são operadores _binários_.
-Esse uso da palavra “`binário`” não tem nada a ver com a base 2. Um 
+Esse uso da palavra "`binário`" não tem nada a ver com a base 2. Um 
 operador binário recebe dois operandos e realiza uma operação, como somá-los.
 Um operador _unário_ recebe um único operando e realiza uma operação. O operador `-`
 pode ser usado como um operador unário para negar um literal, uma variável
@@ -771,11 +770,11 @@ int s = +t + (-r);
 
 Algumas operações ocorrem com frequência em Java. Por exemplo, aumentar uma
 variável em um determinado valor é uma tarefa comum. Se você quiser aumentar o
-conteúdo da variável `value` em 10, pode escrever o seguinte.
+conteúdo da variável `valor` em 10, pode escrever o seguinte.
 
 [source, java]
 ----
-value = value + 10;
+valor = valor + 10;
 ----
 
 Embora a instrução acima não seja excessivamente longa, aumentar uma
@@ -784,10 +783,10 @@ mesmo efeito, você pode usar o operador `pass:[+=]`.
 
 [source, java]
 ----
-value += 10;
+valor += 10;
 ----
 
-O operador `pass:[+=]` obtém o conteúdo da variável, neste caso `value`,
+O operador `pass:[+=]` obtém o conteúdo da variável, neste caso `valor`,
 soma o que estiver à sua direita, neste caso `10`, e armazena o
 resultado de volta na variável. Essencialmente, isso evita que você escreva
 o nome da variável duas vezes. E `pass:[+=]` não é o único atalho. É
@@ -798,7 +797,7 @@ um operador `pass:[-=]` que diminui uma variável, um `pass:[* =]` que multiplic
 variável, e vários outros, incluindo atalhos para operações bit a bit
 que abordaremos na próxima subseção.
 
-[.center%autowidth%unbreakable,cols=“^.^l,^.^l,^.^l”,options=“header”,]
+[.center%autowidth%unbreakable,cols="^.^l,^.^l,^.^l",options="header",]
 |===================================
 |Operador |Exemplo | Significado
 
@@ -855,7 +854,7 @@ Existem também dois atalhos unários. Incrementar um valor em um e
 decrementar um valor em um são operações tão comuns que recebem
 seus próprios operadores especiais, `pass:[++]` e `pass:[--]`.
 
-[.center%autowidth%unbreakable,cols=“^.^l,^.^l,^.^l”,]
+[.center%autowidth%unbreakable,cols="^.^l,^.^l,^.^l",]
 |==========================
 |Operador |Exemplo | Significado
 
@@ -875,10 +874,10 @@ que está alterando ou atrás dela.
 
 [source, java]
 ----
-int value = 5;
-value++; // Agora value é 6
-++value; // Agora value é 7
-value--; // value é 6 novamente
+int valor = 5;
+valor++; // Agora valor é 6
+++valor; // Agora valor é 7
+valor--; // valor é 6 novamente
 ----
 
 Quando usada em uma linha sozinha, qualquer uma das formas funciona exatamente da mesma maneira.
@@ -892,16 +891,16 @@ exemplo.
 
 [source, java]
 ----
-int prefix = 7;
-int prefixResult = 5 + ++prefix;
+int prefixo = 7;
+int resultadoPrefixo = 5 + ++prefix;
 
-int postfix = 7;
-int postfixResult = 5 + postfix++;
+int posfixo = 7;
+int resultadoPosfixo = 5 + postfix++;
 ----
 
-Após a execução do código, os valores de `prefix` e `postfix` são
-ambos `8`. No entanto, `prefixResult` é `13`, enquanto `postfixResult` é apenas
-`12`. O valor original de `postfix`, que é `7`, é somado a `5`,
+Após a execução do código, os valores de `prefixo` e `posfixo` são
+ambos `8`. No entanto, `resultadoPrefixo` é `13`, enquanto `resultadoPosfixo` é apenas
+`12`. O valor original de `posfixo`, que é `7`, é somado a `5`,
 e só então a operação de incremento ocorre.
 
 .Armadilha: Confusão com incremento
@@ -962,7 +961,7 @@ bit a bit: `<<` para deslocamento à esquerda com sinal, `>>` para deslocamento 
 `>>>` para deslocamento à direita sem sinal. Não há operador de deslocamento à esquerda sem sinal
 em Java.
 
-[.center%autowidth%unbreakable,cols=“^.^l,^.^,<”,]
+[.center%autowidth%unbreakable,cols="^.^l,^.^,<",]
 |=======================================================================
 |Operador |Nome |Descrição
 
@@ -1014,17 +1013,17 @@ representação de complemento de dois de 32 bits, `3` =
 int x = 3;
 int y = -7;
 int z = x & y;
-System.out.println(“x & y\t= ” + z);
+System.out.println("x & y\t= " + z);
 z = x | y;
-System.out.println(“x | y\t= ” + z);
+System.out.println("x | y\t= " + z);
 z = x ^ y;
-System.out.println(“x ^ y\t= ” + z);
+System.out.println("x ^ y\t= " + z);
 z = x << 2;
-System.out.println(“x << 2\t= ” + z);
+System.out.println("x << 2\t= " + z);
 z = y >> 2;
-System.out.println(“y >> 2\t= ” + z);
+System.out.println("y >> 2\t= " + z);
 z = y >>> 2;
-System.out.println(“y >>> 2\t= ” + z);
+System.out.println("y >>> 2\t= " + z);
 ----
 
 A saída deste fragmento de código é:
@@ -1134,7 +1133,7 @@ Considere a seguinte instrução.
 
 [source, java]
 ----
-double tolerance = 3;
+double tolerancia = 3;
 ----
 
 O literal `3` tem tipo `int`, mas é automaticamente convertido para o
@@ -1148,7 +1147,7 @@ automaticamente convertido para o tipo mais amplo.
 
 [source, java]
 ----
-double value = 3 + 7.2;
+double valor = 3 + 7.2;
 ----
 
 Nesta instrução, `3` é automaticamente convertido para sua versão `double`
@@ -1156,8 +1155,8 @@ Nesta instrução, `3` é automaticamente convertido para sua versão `double`
 
 ====
 
-Para realizar um downcast, o programador precisa indicar que
-pretende que a conversão ocorra. Um downcast é indicado
+Para realizar um _downcast_, o programador precisa indicar que
+pretende que a conversão ocorra. Um _downcast_ é indicado
 colocando-se o tipo do resultado entre parênteses antes da expressão que você deseja
 converter. O próximo exemplo ilustra como converter um valor `double` para
 o tipo `int`.
@@ -1170,8 +1169,8 @@ do tipo `double` não pode ser armazenada em uma variável do tipo `int`.
 
 [source, java]
 ----
-double roomArea = 3.5;
-int houseArea = roomArea * 4.0;
+double areaDoQuarto = 3.5;
+int areaDaCasa = areaDoQuarto * 4.0;
 ----
 
 Um downcast pode causar perda de precisão, e é por isso que o Java não o permite.
@@ -1184,8 +1183,8 @@ convertida para o tipo `int`.
 
 [source, java]
 ----
-double roomArea = 3.5;
-int houseArea = (int) (roomArea * 4.0);
+double areaDoQuarto = 3.5;
+int areaDaCasa = (int) (areaDoQuarto * 4.0);
 ----
 
 Nesse caso, a expressão tem valor `14.0`. Consequentemente, a versão `int`
@@ -1196,7 +1195,7 @@ instrução:
 
 [source, java]
 ----
-int count = (int) 15.99999;
+int contagem = (int) 15.99999;
 ----
 
 Matematicamente, parece óbvio que `15.99999` deveria ser arredondado para
@@ -1207,7 +1206,7 @@ o Java fornece um método para arredondamento na classe `Math`. A versão de arr
 
 [source, java]
 ----
-int count = (int) Math.round(15.99999);
+int contagem = (int) Math.round(15.99999);
 ----
 
 O valor retornado por `Math.round()` é do tipo `long`. Os criadores da
@@ -1215,7 +1214,7 @@ classe `Math` escolheram `long` para que o mesmo método pudesse ser usado para 
 grandes valores `double` para um valor `long`, já que o resultado pode não
 caber em um valor `int`. Como `long` é um tipo mais amplo que `int`,
 precisamos fazer o downcast do resultado para um `int` para que possamos armazená-lo em
-`count`.
+`contagem`.
 ====
 
 ****
@@ -1226,12 +1225,12 @@ precisamos fazer o downcast do resultado para um `int` para que possamos armazen
 ====
 
 Considere a seguinte declaração e atribuição da variável
-`roomArea`.
+`areaDoQuarto`.
 
 [source, java]
 ----
-float roomArea;
-roomArea = 2.0;
+float areaDoQuarto;
+areaDoQuarto = 2.0;
 ----
 
 Essa atribuição é inválida em Java, e o compilador exibe uma mensagem de erro
@@ -1246,9 +1245,9 @@ necessário: float
 Como mencionamos anteriormente, o literal `2.0` tem o tipo `double`. Quando você
 tenta atribuir um valor `double` a uma variável `float`, há sempre o
 risco de perda de precisão. A melhor maneira de evitar o erro acima
-é declarar `roomArea` com o tipo `double`. Alternativamente, poderíamos
-armazenar o literal `float` `2.0f` em `roomArea`. Também poderíamos atribuir
-`2` em vez de `2.0` a `roomArea`, já que a conversão para um tipo superior a partir de `int` é feita
+é declarar `areaDoQuarto` com o tipo `double`. Alternativamente, poderíamos
+armazenar o literal `float` `2.0f` em `areaDoQuarto`. Também poderíamos atribuir
+`2` em vez de `2.0` a `areaDoQuarto`, já que a conversão para um tipo superior a partir de `int` é feita
 automaticamente.
 
 Lembre-se de que você deve quase sempre usar o tipo `double` para representar
@@ -1303,30 +1302,30 @@ atribuições de variáveis do tipo `char`.
 
 [source, java]
 ----
-char letter = ‘A’;
-char punctuation = ‘?’;
-char digit = ‘7’;
+char letra = "A";
+char pontuacao = "?";
+char digito = "7";
 ----
 
 Estamos armazenando literais `char` em cada uma das variáveis acima. A maioria dos
 literais `char` que você usará com frequência é criada digitando o único
-caractere desejado entre * aspas simples (`‘`), como `'z’`. Esses
+caractere desejado entre * aspas simples (`"`), como `'z"`. Esses
 caracteres podem ser letras maiúsculas ou minúsculas, dígitos numéricos únicos,
 ou outros símbolos.
 
-O literal do caractere de espaço é `‘ ’`, mas alguns caracteres são mais difíceis de
+O literal do caractere de espaço é `" "`, mas alguns caracteres são mais difíceis de
 representar. Por exemplo, uma nova linha (o equivalente a pressionar
 `<enter>`) é representada como um único caractere, mas não podemos digitar uma
 aspas simples, pressionar `<enter>`, e depois digitar a segunda aspa. Em vez disso,
-o caractere para representar uma nova linha é `‘\n’`, ao qual nos referiremos
+o caractere para representar uma nova linha é `"\n"`, ao qual nos referiremos
 simplesmente como uma _nova linha_. Cada variável `char` pode conter apenas um único
-caractere. Parece que `‘\n’` contém vários caracteres, mas
+caractere. Parece que `"\n"` contém vários caracteres, mas
 não tem. O uso da barra invertida (`\`) marca uma _sequência de escape_,
 que é uma combinação de caracteres usada para representar um
 caractere específico difícil de digitar ou representar. Aqui está uma tabela de
 sequências de escape comuns.
 
-[.center%autowidth%unbreakable,cols=“^l,^”,]
+[.center%autowidth%unbreakable,cols="^l,^",]
 |==============================
 |Sequência de escape |Caractere
 
@@ -1338,8 +1337,8 @@ sequências de escape comuns.
 
 Lembre-se: tudo dentro de um computador é representado por números,
 e cada valor `char` tem algum equivalente numérico. Esses números são
-arbitrários, mas sistemáticos. Por exemplo, o caractere `‘a’` tem um
-valor numérico de `97`, e `‘b’` tem um valor numérico de `98`. Os
+arbitrários, mas sistemáticos. Por exemplo, o caractere `"a"` tem um
+valor numérico de `97`, e `"b"` tem um valor numérico de `98`. Os
 códigos para todas as letras minúsculas do alfabeto latino são sequenciais em
 ordem alfabética . (Os códigos das letras maiúsculas também são sequenciais,
 mas há um intervalo entre eles e os códigos das minúsculas.)
@@ -1349,32 +1348,32 @@ sistema operacional não oferece uma maneira fácil de produzir o caractere. Out
 de sequência de escape permite que você especifique qualquer caractere por seu valor Unicode
 . Existem grandes tabelas listando todos os caracteres Unicode possíveis por
 valores numéricos. Se você quiser representar um literal específico, você digita
-`‘\uxxxx’`, onde `xxxx` é um número hexadecimal representando o valor.
-Por exemplo, `‘\u0064’` convertido para decimal é
-16 × 6 + 4 = 100, que é a letra `‘d’`.
+`"\uxxxx"`, onde `xxxx` é um número hexadecimal representando o valor.
+Por exemplo, `"\u0064"` convertido para decimal é
+16 × 6 + 4 = 100, que é a letra `"d"`.
 
 .Imprimindo caracteres únicos
 ====
 
 Se você imprimir uma variável `char` ou um literal diretamente, ela imprimirá a
 representação do caractere na tela. Por exemplo, a seguinte
-instrução imprime `A`, não `65`, o valor Unicode de `‘A’`.
+instrução imprime `A`, não `65`, o valor Unicode de `"A"`.
 
 [source, java]
 ----
-System.out.println(‘A’);
+System.out.println("A");
 ----
 
 No entanto, os valores Unicode *são* números. Se você tentar realizar
 operações aritméticas com eles, o Java os tratará como números. Por exemplo, a
 instrução a seguir soma os equivalentes inteiros dos caracteres
 (65 + 66 = 131), concatena a soma com a `String`
-`“C”` e concatena o resultado com uma representação `String` do
+`"C"` e concatena o resultado com uma representação `String` do
 literal `int` `999`. A surpreendente saída final é `131C999`.
 
 [source, java]
 ----
-System.out.println(‘A’ + ‘B’ + “C” + 999);
+System.out.println("A" + "B" + "C" + 999);
 ----
 
 ====
@@ -1393,8 +1392,8 @@ duas declarações e atribuições de variáveis `boolean`.
 
 [source, java]
 ----
-boolean awesome = true;
-boolean testFailed = false;
+boolean incrivel = true;
+boolean testeFalhou = false;
 ----
 
 Se pudéssemos armazenar apenas esses dois literais, as variáveis `boolean` teriam
@@ -1405,7 +1404,7 @@ se dois números são iguais, e a resposta é `true` ou `false`.
 Todos os operadores relacionais do Java estão listados na tabela abaixo. Suponha que
 todas as variáveis usadas na coluna *Exemplo* tenham tipo numérico.
 
-[.center%autowidth%unbreakable,cols=“^l,<,<l”,]
+[.center%autowidth%unbreakable,cols="^l,<,<l",]
 |============================================
 |Símbolo |Lê-se como |Exemplo
 
@@ -1428,15 +1427,15 @@ variáveis `boolean`. Observe o uso dos operadores relacionais `==` e
 ----
 int x = 3;
 int y = 4;
-boolean same = (x == 3); // <.>
-same = (x == y); // <.>
-boolean xIsGreater = (x > y); // <.>
+boolean igual = (x == 3); // <.>
+igual = (x == y); // <.>
+boolean xEhMaior = (x > y); // <.>
 ----
-<.> No primeiro uso de `==`, o valor de `same` é `true` porque
+<.> No primeiro uso de `==`, o valor de `igual` é `true` porque
 o valor de `x` é `3`.
-<.> Na segunda, o valor de `same` é `false` porque os valores de `x` e
+<.> Na segunda, o valor de `igual` é `false` porque os valores de `x` e
 `y` são diferentes.
-<.> O valor de `xIsGreater` também é `false`, já que o valor de `x` não é maior que
+<.> O valor de `xEhMaior` também é `false`, já que o valor de `x` não é maior que
 o valor de `y`.
 
 Todos os parênteses neste exemplo são desnecessários e são usados apenas para
@@ -1449,7 +1448,7 @@ são os operadores lógicos AND (`&&`), OR (`||`), XOR (`^`) e
 NOT (`!`).
 
 
-[.center%autowidth%unbreakable,cols=“^.^,^.^l,<.^”,]
+[.center%autowidth%unbreakable,cols="^.^,^.^l,<.^",]
 |=====================================================
 |Nome |Operador |Descrição
 
@@ -1479,15 +1478,15 @@ blocos de construção para os tipos de referência.
 
 Lembre-se de que uma variável com um tipo de referência não contém um
 valor concreto como uma variável primitiva. Em vez disso, o valor que ela contém é uma
-referência ou seta apontando para o objeto “`real`”. É como um nome para
+referência ou seta apontando para o objeto "`real`". É como um nome para
 um objeto. Quando você declara uma variável de referência em Java, ela inicialmente não
 apontar para nada, e você receberá um erro do compilador se tentar usar seu valor. Por
-exemplo, o código a seguir cria uma variável `Wombat` chamada `w`, mas ela
+exemplo, o código a seguir cria uma variável `Vombate` chamada `v`, mas ela
 ainda não aponta para nada.
 
 [source, java]
 ----
-Wombat w;
+Vombate v;
 ----
 
 Para criar um objeto em Java, você usa a palavra-chave `new` seguida do
@@ -1495,20 +1494,20 @@ nome do tipo e parênteses, que podem estar vazios ou conter
 os dados que você deseja usar para inicializar o objeto. Esse processo é chamado de
 invocação do _construtor_, que cria espaço para o objeto e, em seguida,
 o inicializa com os valores que você especificar ou com valores padrão, caso você
-deixe os parênteses vazios. Abaixo, invocamos o construtor padrão `Wombat`
-e direcionamos a variável `w` para o objeto resultante.
+deixe os parênteses vazios. Abaixo, invocamos o construtor padrão `Vombate`
+e direcionamos a variável `v` para o objeto resultante.
 
 [source, java]
 ----
-w = new Wombat();
+v = new Vombate();
 ----
 
-Alternativamente, um construtor `Wombat` pode permitir que você especifique sua massa em
+Alternativamente, um construtor `Vombate` pode permitir que você especifique sua massa em
 quilogramas ao criar um, como segue.
 
 [source, java]
 ----
-w = new Wombat(26.3);
+v = new Vombate(26.3);
 ----
 
 A atribuição de tipos de referência aponta as duas referências para o mesmo
@@ -1517,25 +1516,25 @@ o mesmo objeto.
 
 [source, java]
 ----
-Wombat w1 = new Wombat(26.3);
-Wombat w2 = w1;
+Vombate v1 = new Vombate(26.3);
+Vombate v2 = v1;
 ----
 
 [.text-center]
-.Duas referências `Wombat` apontando para o mesmo objeto.
+.Duas referências `Vombate` apontando para o mesmo objeto.
 image::wombat.svg[scaledwidth=50%,pdfwidth=50%,width=50%]
 
 
-Então, qualquer coisa que fazermos com `w1` afetará `w2` e vice-versa. Por
-exemplo, podemos instruir `w1` a comer folhas usando o método `eatLeaves()`.
+Então, qualquer coisa que fazermos com `v1` afetará `v2` e vice-versa. Por
+exemplo, podemos instruir `v1` a comer folhas usando o método `comerFolhas()`.
 
 [source, java]
 ----
-w1.eatLeaves();
+v1.comerFolhas();
 ----
 
-Talvez isso aumente a massa do objeto para o qual `w1` aponta para
-`26,9` quilogramas. Mas a massa do objeto para o qual `w2` aponta também será
+Talvez isso aumente a massa do objeto para o qual `v1` aponta para
+`26,9` quilogramas. Mas a massa do objeto para o qual `V2` aponta também será
 aumentada, porque eles são o *mesmo objeto*. Como as variáveis primitivas
 armazenam valores e não referências a objetos, esse tipo de código
 funciona de maneira muito diferente com elas. Considere o seguinte.
@@ -1567,7 +1566,7 @@ O tipo `String` é usado para representar texto em Java. Um objeto `String`
 contém uma sequência de zero ou mais valores `char`. Ao contrário de todos os outros
 tipos de referência, existe uma forma literal para objetos `String`. Esses
 literais são escritos com o texto que você deseja representar entre
-aspas duplas (`“`), como `”Fight the power!"`. Você pode declarar uma
+aspas duplas (`"`), como `"Fight the power!"`. Você pode declarar uma
 referência `String` e inicializá-la atribuindo-a a outra
 referência `String` ou a um literal `String`. Como qualquer outra referência, você
 pode deixá-la não inicializada.
@@ -1579,11 +1578,11 @@ pode deixá-la não inicializada.
 
 Há uma diferença entre uma `String` não inicializada (uma referência
 que aponta para `null`) e uma `String` de comprimento 0. Uma `String` de comprimento
-0 também é conhecida como _string vazia_ e é escrita como `“”`. O caractere de espaço
-(`‘ ’`) e sequências de escape como `‘\n’` também podem fazer parte de
-uma `String` e aumentar seu comprimento. Por exemplo, `“ABC”` contém três
-caracteres, mas a `String` `“A B C”` tem cinco, porque os espaços em
-cada lado de `‘B’` contam. O próximo exemplo ilustra algumas maneiras de
+0 também é conhecida como _string vazia_ e é escrita como `""`. O caractere de espaço
+(`" "`) e sequências de escape como `"\n"` também podem fazer parte de
+uma `String` e aumentar seu comprimento. Por exemplo, `"ABC"` contém três
+caracteres, mas a `String` `"A B C"` tem cinco, porque os espaços em
+cada lado de `"B"` contam. O próximo exemplo ilustra algumas maneiras de
 definir e usar o tipo `String`.
 
 
@@ -1599,8 +1598,8 @@ As declarações a seguir definem duas referências `String` chamadas
 
 [source, java]
 ----
-String greeting = “Bonjour!”
-String title = “French Greeting”;
+String greeting = "Bonjour!"
+String title = "French Greeting";
 ----
 
 Como você viu em <<intro#intro>>,
@@ -1638,25 +1637,25 @@ Aqui está outro exemplo de combinação de objetos `String` usando o operador `
 
 [source, java]
 ----
-String argument = “the cannon”;
-String phrase = “No argument but ” + argument + “!”;
+String argument = "the cannon";
+String phrase = "No argument but " + argument + "!";
 ----
 
-Nessas instruções, inicializamos `argument` como `“the cannon”`. Em seguida,
+Nessas instruções, inicializamos `argument` como `"the cannon"`. Em seguida,
 calculamos o valor de `phrase` somando, ou concatenando, três
-valores `String`: `“No argument but ”`, o valor de `argument` e
-`“!” . O resultado é `“No argument but the cannon!”`. Se `argument` tivesse
-sido inicializado como `“a pie in the face”`, então `phrase` apontaria, em vez disso, para
-`“No argument but a pie in the face!”`.
+valores `String`: `"No argument but "`, o valor de `argument` e
+`"!" . O resultado é `"No argument but the cannon!"`. Se `argument` tivesse
+sido inicializado como `"a pie in the face"`, então `phrase` apontaria, em vez disso, para
+`"No argument but a pie in the face!"`.
 
 Outra maneira de concatenar dois objetos `String` é usando o
 método `concat()` de `String`.
 
 [source, java]
 ----
-String argument = “the cannon”;
-String exclamation = “!”;
-String phraseStart = “No argument but ”;
+String argument = "the cannon";
+String exclamation = "!";
+String phraseStart = "No argument but ";
 String phrase = phraseStart.concat(argument);
 phrase = phrase.concat(exclamation);
 ----
@@ -1680,7 +1679,7 @@ Por exemplo, o comprimento de um `String` pode ser obtido usando o método `leng
 
 [source, java]
 ----
-String motto = “Lute pelo seu direito de festejar!”;
+String motto = "Lute pelo seu direito de festejar!";
 System.out.println(motto.length()):
 ----
 
@@ -1689,7 +1688,7 @@ sobre eles. O código a seguir armazena `11` em `letters`.
 
 [source, java]
 ----
-int letters = “cellar door”.length();
+int letters = "cellar door".length();
 ----
 
 Lembre-se de que um `String` é uma sequência de valores `char`. Se você quiser
@@ -1712,34 +1711,34 @@ Para ver qual é o `char` em uma determinada posição, chamamos `charAt()` com 
 
 [source, java]
 ----
-String word = “antidisestablishmentarianism”;
+String word = "antidisestablishmentarianism";
 char letter = word.charAt(11);
 ----
 
-Nesse caso, `letter` recebe o valor `‘b’`. Lembre-se de que os índices
+Nesse caso, `letter` recebe o valor `"b"`. Lembre-se de que os índices
 para valores `char` dentro de uma `String` começam em 0. Assim, o `char` no
-índice 0 é `‘a’`, o `char` no índice 1 é `‘n’`, o `char` no índice 2
-é `‘t’` e assim por diante. Se você contar até o décimo segundo `char` (que tem
-índice 11), ele deve ser `‘b’ `.
+índice 0 é `"a"`, o `char` no índice 1 é `"n"`, o `char` no índice 2
+é `"t"` e assim por diante. Se você contar até o décimo segundo `char` (que tem
+índice 11), ele deve ser `"b" `.
 
 Cada `char` dentro de uma `String` conta, seja uma letra, um
 dígito, um espaço, um sinal de pontuação ou algum outro símbolo.
 
 [source, java]
 ----
-String text = “^_^ l337 #haxor# skillz!”;
+String text = "^_^ l337 #haxor# skillz!";
 System.out.println(text.charAt(10));
 ----
 
-Este código imprime `h`, já que `‘h’` é o décimo primeiro `char` (com índice
+Este código imprime `h`, já que `"h"` é o décimo primeiro `char` (com índice
 10) em `text`.
 
 ====
 
 Uma sequência contígua de caracteres dentro de uma `String` é chamada de
 _substring_. Por exemplo, algumas substrings de
-`“Throw your hands in the air!”` são `“T”`, `“Throw”`, `‘hands’` e
-`“ur ha”`. Observe que `“Ty”` *não* é uma substring porque esses caracteres
+`"Throw your hands in the air!"` são `"T"`, `"Throw"`, `"hands"` e
+`"ur ha"`. Observe que `"Ty"` *não* é uma substring porque esses caracteres
 não aparecem um ao lado do outro.
 
 O próximo exemplo mostra como usar o método `substring()` para recuperar uma
@@ -1754,17 +1753,17 @@ a subcadeia começa e o índice *imediatamente após* seu término, conforme mos
 
 [source, java]
 ----
-String description = “slovenly”;
+String description = "slovenly";
 String emotion = description.substring(1, 5);
 System.out.println(emotion);
 ----
 
 Este trecho de código imprime `love`, já que esses são os caracteres nos índices
-1 a 4 de `“slovenly”`. Lembre-se de que os índices de `String` são sempre baseados em zero. Além disso,
+1 a 4 de `"slovenly"`. Lembre-se de que os índices de `String` são sempre baseados em zero. Além disso,
 o segundo argumento de `substring()` é o índice após o último que você deseja na sua subcadeia.
 Embora esse comportamento seja confuso, é um padrão comum em muitas bibliotecas de strings diferentes em várias
 linguagens diferentes. Uma maneira de pensar nisso é que o comprimento da subcadeia é o
-segundo parâmetro menos o primeiro. Neste caso, 5 - 1 = 4, o comprimento de `“love”`.
+segundo parâmetro menos o primeiro. Neste caso, 5 - 1 = 4, o comprimento de `"love"`.
 
 ====
 
@@ -1780,22 +1779,22 @@ chamamos o método `indexOf()` na `String` em que estamos pesquisando
 
 [source, java]
 ----
-String countries = “USA Mexico China Canada”;
-String search = “China”;
+String countries = "USA Mexico China Canada";
+String search = "China";
 System.out.println(countries.indexOf(search));
 ----
 
 O método `indexOf()` retorna um valor `int` que indica a posição da
 `String` que estamos procurando. No código acima, a saída é `11`
-porque `“China”` aparece a partir do índice 11 dentro da `String`
+porque `"China"` aparece a partir do índice 11 dentro da `String`
 `String`. Outra maneira de pensar nisso é que há 11 caracteres
-antes de `“China”` em `countries`. Se a substring fornecida não for encontrada, o método `indexOf()`
+antes de `"China"` em `countries`. Se a substring fornecida não for encontrada, o método `indexOf()`
 retorna `-1`. Por exemplo, `-1` será impresso no terminal
 se substituirmos a instrução de impressão acima pela seguinte.
 
 [source, java]
 ----
-System.out.println(countries.indexOf(“Honduras”));
+System.out.println(countries.indexOf("Honduras"));
 ----
 
 ====
@@ -1889,9 +1888,9 @@ Agora, considere o código a seguir:
 
 [source, java]
 ----
-String thing1 = new String(“Magical mystery”);
-String thing2 = new String(“Magical mystery”);
-String thing3 = new String(“Tragical tapestry”);
+String thing1 = new String("Magical mystery");
+String thing2 = new String("Magical mystery");
+String thing3 = new String("Tragical tapestry");
 ----
 
 [[differentObjectsFigure]]
@@ -1979,8 +1978,8 @@ usado para separar palavras. Aqui estão alguns exemplos de declarações de con
 final int POPULATION = 25000;
 final double PLANCK_CONSTANT = 6.626E-34;
 final boolean FLAG = false;
-final char FIRST_INITIAL = ‘A’;
-final String MESSAGE = “All your base are belong to us.”;
+final char FIRST_INITIAL = "A";
+final String MESSAGE = "All your base are belong to us.";
 ----
 
 Neste código, o valor de `POPULATION` é `25000` e não pode ser
@@ -2013,7 +2012,7 @@ de valor inicial.
 [source, java]
 ----
 int x = 10;
-String message = “Hello there.”
+String message = "Hello there."
 Wombat w = new Wombat();
 ----
 
@@ -2024,7 +2023,7 @@ variável `message` é obviamente um `String` e a variável `w` é obviamente um
 A partir do Java 10, o compilador pode inferir o tipo da variável a partir 
 do tipo do valor inicial, eliminando a necessidade de uma declaração de tipo. 
 Esse recurso é chamado de _inferência de tipo de variável local_. A declaração 
-de tipo pode ser substituída pelo “`nome de tipo reservado`” `var` e o 
+de tipo pode ser substituída pelo "`nome de tipo reservado`" `var` e o 
 compilador fará a inferência.
 
 [source, java]
@@ -2075,7 +2074,7 @@ https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/lang/Math.html
 Observe que todos os ângulos são expressos em radianos.
 
 
-[.center%autowidth%unbreakable,cols=“^.^l,<.^l,<.^”]
+[.center%autowidth%unbreakable,cols="^.^l,<.^l,<.^"]
 |=======================================================================
 |Método |Exemplo de uso |Finalidade
 
@@ -2271,14 +2270,14 @@ suportam: `Byte`, `Short`, `Integer`, `Long`, `Float`, `Double`,
 ===== Conversões de `String` para numéricos
 
 Uma tarefa comum para uma classe wrapper é converter uma representação `String`
-de um número, como `“37”` ou `“2.097”`, para seu
+de um número, como `"37"` ou `"2.097"`, para seu
 valor numérico correspondente. Tivemos uma situação desse tipo em
 <<GetInputGUIProgram>>, onde fizemos a conversão da seguinte maneira.
 
 [source, java]
 ----
 String response = JOptionPane.showInputDialog(null, 
-“Digite a altura: ”, title, JOptionPane.QUESTION_MESSAGE);
+"Digite a altura: ", title, JOptionPane.QUESTION_MESSAGE);
 height = Double.parseDouble(response); 
 ----
 
@@ -2301,17 +2300,17 @@ convertida em um valor numérico.
 
 [source,java]
 ----
-String text = “15”;
+String text = "15";
 int count = Integer.parseInt(text);
 float value = Float.parseFloat(text);
 double tolerance = Double.parseDouble(text);
 ----
 
 Neste exemplo, declaramos um objeto `String` chamado `text` e
-o inicializamos como `“15”`. Como `text` é um `String` e não um número,
+o inicializamos como `"15"`. Como `text` é um `String` e não um número,
 expressões aritméticas como `(text*29)` são inválidas.
 
-Para usar o `String` `“15”` em um cálculo numérico, precisamos
+Para usar o `String` `"15"` em um cálculo numérico, precisamos
 convertê-lo em um número. Usamos os métodos `Integer.parseInt()`,
 `Float.parseFloat()` e `Double.parseDouble()` para converter o
 `String` em valores `int`, `float` e `double`, respectivamente. Cada
@@ -2322,7 +2321,7 @@ método nos fornece 15 armazenado como o tipo apropriado.
 <<badInputFormatExercise>>
 ****
 
-O que acontece se a `String` `“15.5”` (ou mesmo `“cinnamon”`) for fornecida como
+O que acontece se a `String` `"15.5"` (ou mesmo `"cinnamon"`) for fornecida como
 entrada para o método `Integer.parseInt()`? Se a `String` não estiver
 formatada como o tipo apropriado de número, o Java lança uma
 `NumberFormatException`, provavelmente causando a falha do programa. Uma _exceção_
@@ -2339,30 +2338,30 @@ ou `Double`, dependendo do tipo do número.
 
 [source,java]
 ----
-String value = Integer.toString(68); // Contém “68”
+String value = Integer.toString(68); // Contém "68"
 ----
 
 Cada classe wrapper de inteiros (`Byte`, `Short`, `Integer` e `Long`) possui até mesmo uma
 versão do método `toString()` que converte um número em uma representação `String`
 em uma base específica. Por exemplo, o método a seguir converte
-`604` para sua representação `String` em hexadecimal, `“25c”`.
+`604` para sua representação `String` em hexadecimal, `"25c"`.
 
 [source,java]
 ----
-String hex = Integer.toString(604, 16); // Contém “25c”
+String hex = Integer.toString(604, 16); // Contém "25c"
 ----
 
 Exceto por esse tipo de conversão de base, muitos programadores raramente usam
 métodos `toString()` porque há uma maneira mais fácil de converter um número (ou qualquer
 tipo) em uma `String`. O operador de concatenação (`+`) discutido no
 <<Concatenando valores `String`>> pode ser usado para concatenar um número à
-string vazia (`“”`), “adicionando” uma versão `String` do número a, bem,
+string vazia (`""`), "adicionando" uma versão `String` do número a, bem,
 nada. Usando esse estilo, você pode encontrar um código como o seguinte.
 
 [source,java]
 ----
 int number = 68;
-String text = "" + number; // Contém “68”
+String text = "" + number; // Contém "68"
 ----
 
 Embora se possa argumentar que usar o método `toString()` é mais
@@ -2377,7 +2376,7 @@ ser útil converter um `char` para maiúsculas ou minúsculas. Aqui está uma
 lista parcial dos métodos fornecidos pela classe wrapper `Character` para
 realizar essas tarefas. +
 
-[.center%autowidth%unbreakable,cols=“<.^l,<.^”,]
+[.center%autowidth%unbreakable,cols="<.^l,<.^",]
 |=======================================================================
 |Método |Finalidade
 
@@ -2393,33 +2392,33 @@ uma letra e `false` caso contrário.
 |isLowerCase(valor char)|Retorna `true` se `valor` for uma letra minúscula
 e `false` caso contrário.
 
-|isUpperCase(char value)|Retorna `true` se `value` for uma letra maiúscula
+|isUpperCase(char value)|Retorna `true` se `valor` for uma letra maiúscula
 e `false` caso contrário.
 
-|isWhitespace(char value)|Retorna `true` se `value` for um caractere de espaço em branco
+|isWhitespace(char value)|Retorna `true` se `valor` for um caractere de espaço em branco
 , como espaço, tabulação ou nova linha, e `false` caso contrário.
 
-|toLowerCase(char value)|Retorna uma versão em minúsculas de `value`,
+|toLowerCase(char value)|Retorna uma versão em minúsculas de `valor`,
 sem alteração se não for uma letra.
 
-|toUpperCase(char value)|Retorna uma versão em maiúscula de `value`,
+|toUpperCase(char value)|Retorna uma versão em maiúscula de `valor`,
 sem alteração se não for uma letra.
 |=======================================================================
 
-Por exemplo, a variável `test` contém `true` após a execução do seguinte
+Por exemplo, a variável `teste` contém `true` após a execução do seguinte
 código.
 
 [source,java]
 ----
-boolean test = Character.isLetter(‘x’);
+boolean teste = Character.isLetter("x");
 ----
 
-E a variável `letter` contém `‘M’` após a execução do código a seguir
+E a variável `letter` contém `"M"` após a execução do código a seguir
 .
 
 [source,java]
 ----
-char letter = Character.toUpperCase(‘m’);
+char letter = Character.toUpperCase("m");
 ----
 
 Esses métodos podem ser especialmente úteis ao processar entradas.
@@ -2450,7 +2449,7 @@ confuso. Para tipos inteiros, é o maior número negativo em magnitude
 . Para tipos de ponto flutuante, é o menor valor positivo diferente de zero
 que pode ser representado. Aqui está uma tabela listando essas constantes.
 
-[.center%autowidth%unbreakable,cols=“<.^l,<.^”,]
+[.center%autowidth%unbreakable,cols="<.^l,<.^",]
 |======================================================================
 |Constante |Significado
 
@@ -2505,7 +2504,7 @@ tipo primitivo pode ser armazenado em seu tipo wrapper, conforme mostrado abaixo
 ----
 Integer fingers = new Integer(5);
 Double pi = new Double(3.141592);
-Character question = new Character(‘?’);
+Character question = new Character("?");
 ----
 
 Por que faríamos isso? Há muitas situações em que um
@@ -2527,7 +2526,7 @@ apropriado. Assim, o código anterior poderia ser escrito da seguinte forma.
 ----
 Integer dedos = 5;
 Double pi = 3.141592;
-Character pergunta = ‘?’;
+Character pergunta = "?";
 ----
 
 Programadores que não entendem classes wrapper às vezes usam
@@ -2654,7 +2653,7 @@ double value = f(a,b)*g(c);
 ----
 
 Esta instrução avalia os métodos `f()` e `g()`, multiplica os
-valores calculados e atribui o resultado à variável `value`. Em
+valores calculados e atribui o resultado à variável `valor`. Em
 <<splitExpressionFigure>>, mostramos duas maneiras de avaliar a
 expressão `f(a,b)*g(c)`. <<splitExpressionFigure>>(a) mostra
 a avaliação sequencial da expressão, onde `f()` é calculada, seguida por `g()`
@@ -2691,7 +2690,7 @@ código (como o método `join()`) que pode causar certos tipos de
 exceções (como a `InterruptedException`) precisa estar dentro de um
 bloco `try`. Após o bloco `try` vem um bloco `catch` que determina o que
 fazer caso ocorra essa exceção. No nosso caso, imprimimos
-`“Computação interrompida!”`
+`"Computação interrompida!"`
 <.> Esperamos que a segunda thread termine.
 <.> Assim que as threads concluírem suas respectivas tarefas, a execução do
 <<SplitExpressionProgram>> é retomada, e obtemos o resultado da
@@ -2848,8 +2847,8 @@ seguintes instruções são executadas.
 [source, java]
 ----
 System.out.println(15 + 20);
-System.out.println(“15” + 20);
-System.out.println(“” + 15 + 20);
+System.out.println("15" + 20);
+System.out.println("" + 15 + 20);
 ----
 . [[implicitTypeConversionExercise]] Para cada uma das
 seguintes expressões Java, indique os tipos de cada valor utilizado
@@ -2891,9 +2890,9 @@ declarações de três objetos `Car`.
 [source, java]
 ----
  
-Car car1 = new Car(“Mercedes”, “C300 Sport”, 75000);
- Car car2 = new Car(“Pontiac”, “Vibe”, 17000);
- Car car3 = new Car(‘Mercedes’, “C300 Sport”, 75000);
+Car car1 = new Car("Mercedes", "C300 Sport", 75000);
+ Car car2 = new Car("Pontiac", "Vibe", 17000);
+ Car car3 = new Car("Mercedes", "C300 Sport", 75000);
 ----
 +
 Seja `same` uma variável do tipo `boolean`. Qual é o valor da
@@ -2909,12 +2908,12 @@ pelos construtores dos dois objetos forem iguais.
 .. `same = (car2 == car3);`
 .. `same = car2.equals(car3);`
 
-. Os caracteres `‘a’` e `‘A’` têm valores Unicode
+. Os caracteres `"a"` e `"A"` têm valores Unicode
 `\u0061` e `\u0041`, respectivamente. Indique a representação desses
 dois caracteres como inteiros binários sem sinal de 16 bits.
 . Supondo que cada caractere ocupe 16
 bits (dois bytes) na memória e seja codificado usando Unicode, use números hexadecimais
-para mostrar como a palavra `“Java”` será representada na memória do computador
+para mostrar como a palavra `"Java"` será representada na memória do computador
 . Os valores Unicode para o alfabeto latino são os mesmos que os valores
 do padrão ASCII mais antigo. Você pode encontrar uma lista desses valores em
 muitos sites, como https://www.asciitable.com[Tabela ASCII^].
@@ -2923,8 +2922,8 @@ sequência de instruções?
 +
 [source, java]
 ----
-String p = “Break it”;
-String q = “down like this!”;
+String p = "Break it";
+String q = "down like this!";
 System.out.println((p + q).length());
 ----
 . [[stringLengthExercise]] Qual é a saída da
@@ -2933,9 +2932,9 @@ seguinte sequência de instruções? Observe que `r` contém um único caractere
 +
 [source, java]
 ----
-String p = “This is not a string.”;
-String q = ‘’;
-String r = “ ”;
+String p = "This is not a string.";
+String q = "";
+String r = " ";
 System.out.println((p + q + r).length());
 ----
 
