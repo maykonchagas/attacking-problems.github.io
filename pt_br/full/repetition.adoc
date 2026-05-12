@@ -1,7 +1,7 @@
 [#repetition]
 :imagesdir: chapters/repetition/images
 :programsdir: chapters/repetition/programs
-== Repetition
+== Repetição
 
 [quote, A Tribe Called Quest]
 ____
@@ -14,399 +14,206 @@ ____
 *Q-Tip:* Well, then grab the microphone and let your words rip.
 ____
 
-=== Problem: DNA searching
+=== Problema: Pesquisa de DNA
 
-The world of bioinformatics is the intersection between biology and
-computer science. Sequencing genomes, determining the function of
-specific genes, the analysis and prediction of protein structures, and
-biomedical imaging are just a few of the areas under the umbrella of
-bioinformatics. Much fascinating research is being done in this area as
-biologists become better programmers and computer scientists apply their
-techniques to biology.
+O mundo da bioinformática é a interseção entre a biologia e a ciência da computação. O sequenciamento de genomas, a determinação da função de genes específicos, a análise e a previsão de estruturas proteicas e a imagem biomédica são apenas algumas das áreas abrangidas pela bioinformática. Muitas pesquisas fascinantes estão sendo realizadas nessa área, à medida que os biólogos se tornam melhores programadores e os cientistas da computação aplicam suas técnicas à biologia.
 
-Because of its fundamental importance and the incredible amount of
-information involved, with tens or hundreds of millions of base pairs of
-DNA in each human chromosome, DNA is a central focus of bioinformatics.
-As you may know, a DNA strand is made up of a sequence of four
-nucleotide bases: adenine, cytosine, guanine, and thymine. These bases
-are usually abbreviated as A, C, G, and T, respectively.
+Devido à sua importância fundamental e à incrível quantidade de informações envolvidas, com dezenas ou centenas de milhões de pares de bases de DNA em cada cromossomo humano, o DNA é o foco central da bioinformática. Como você deve saber, uma fita de DNA é composta por uma sequência de quatro bases nucleotídicas: adenina, citosina, guanina e timina. Essas bases são geralmente abreviadas como A, C, G e T, respectivamente.
 
-Searching for a specific DNA subsequence within a larger sequence is a
-common task for biologists to perform. Your goal is to write a program
-that will search for a subsequence and report how many times it was
-found within the sequence. For example, if you are given the sequence
-ATTAGACCATATA and asked to search for CAT, your program should output 1,
-since there is exactly 1 occurrence of CAT within ATTAGACCATATA. One
-feature of this problem that makes it more interesting is that
-occurrences can overlap. For example, given the sequence TATTATTAGATTA
-and asked to search for TATTA, the correct answer is 2. The sequence
-begins with a TATTA, but the third T in the sequence is also the first T
-in a second instance of TATTA.
+Buscar uma subseqüência específica de DNA dentro de uma sequência maior é uma tarefa comum para os biólogos. Seu objetivo é escrever um programa que busque uma subseqüência e informe quantas vezes ela foi encontrada na sequência. Por exemplo, se você receber a sequência ATTAGACCATATA e for solicitado a buscar CAT, seu programa deve retornar 1, já que há exatamente 1 ocorrência de CAT em ATTAGACCATATA. Uma característica deste problema que o torna mais interessante é que as ocorrências podem se sobrepor. Por exemplo, dada a sequência TATTATTAGATTA e solicitado a procurar por TATTA, a resposta correta é 2. A sequência começa com um TATTA, mas o terceiro T na sequência também é o primeiro T em uma segunda instância de TATTA.
 
-In <<selection#selection>>, you learned tools that allow you to do
-comparisons and make choices based on the results. These tools will
-become even more useful. For example, when you come across a `char` in a
-sequence, you know how to compare it to a `char` in the subsequence you
-are searching for. The tools you do not yet have are those that allow
-_repetition_. Because this problem requires the program to process a DNA
-sequence of arbitrary length, we will need some way to perform an
-action repeatedly.
+Em <<selection#selection>>, você aprendeu ferramentas que permitem fazer comparações e escolhas com base nos resultados. Essas ferramentas se tornarão ainda mais úteis. Por exemplo, quando você se depara com um `char` em uma sequência, você sabe como compará-lo a um `char` na subseqüência que está procurando. As ferramentas que você ainda não possui são aquelas que permitem a _repetição_. Como este problema exige que o programa processe uma sequência de DNA de comprimento arbitrário, precisaremos de alguma maneira de realizar uma ação repetidamente.
 
-=== Concepts: Repetition
+=== Conceitos: Repetição
 
-You now know how to write choices into a Java program, but so far, each
-choice can only be made once. So if you want the computer to do a lot
-of things, you have to type a lot of things. One of the big
-disadvantages of computers is that they have no intelligence: They can
-follow instructions blindly, but they can't do anything else. One of
-the big advantages of computers is that they're fast. Modern computers
-can perform mathematical operations billions of times faster than human
-beings. To take advantage of this speed, we need to give computers
-instructions to perform tasks over and over. Such an instruction must
-have two components to be useful:
-It must have a way to change the task slightly each time so that
-each task accomplishes something different. It must also have a way to
-decide when to stop, otherwise it will continue forever.
+Você já sabe como incluir opções em um programa Java, mas, até agora, cada opção só pode ser escolhida uma vez. Portanto, se quiser que o computador faça muitas coisas, você precisa digitar muitas coisas. Uma das grandes desvantagens dos computadores é que eles não têm inteligência: podem seguir instruções cegamente, mas não conseguem fazer mais nada. Uma das grandes vantagens dos computadores é que eles são rápidos. Os computadores modernos podem realizar operações matemáticas bilhões de vezes mais rápido do que os seres humanos. Para aproveitar essa velocidade, precisamos dar aos computadores instruções para realizar tarefas repetidamente. Para ser útil, essa instrução deve ter dois componentes: deve ter uma maneira de alterar ligeiramente a tarefa a cada vez, de modo que cada tarefa realize algo diferente. Também deve ter uma maneira de decidir quando parar; caso contrário, continuará para sempre.
 
-The first component is the more subtle one. Crafting a set of
-instructions so that each repetition of the task is appropriate
- will be different for every problem. The second component is
-easier to describe: We're going to rely on Boolean logic, just as we
-did for conditional statements. The main tool for repetition in Java and
-many other languages is called a _loop_. The body of a loop contains the
-task to be performed. The rest of the loop, at the very
-least, contains a condition. Every time the task given in the
-body of the loop completes, the computer will check the condition. If the condition is true,
-it'll do the task again. If the condition is false, the computer is done
-with the loop and can move on to the code that comes afterward.
+O primeiro componente é o mais sutil. Criar um conjunto de instruções para que cada repetição da tarefa seja apropriada será diferente para cada problema. O segundo componente é mais fácil de descrever: vamos nos basear na lógica booleana, assim como fizemos para as instruções condicionais. A principal ferramenta para repetição em Java e em muitas outras linguagens é chamada de _loop_. O corpo de um loop contém a tarefa a ser executada.
+ O restante do loop, no mínimo, contém uma condição. Toda vez que a tarefa especificada no corpo do loop for concluída, o computador verificará a condição. Se a condição for verdadeira, ele executará a tarefa novamente. Se a condição for falsa, o computador encerra o loop e pode passar para o código que vem a seguir.
 
-One of the difficulties of programming a computer is that we must be
-very explicit. Even the most obvious tasks must be spelled out
-in meticulous detail. Let's consider a simple task, one that we perform every
-day. If we're in a room and we want to leave, we simply walk out the
-nearest door. Assuming there is only one door in the room, how can we
-describe this process by breaking it down into the steps we (literally)
-take? Perhaps we could say the following.
+Uma das dificuldades de programar um computador é que precisamos ser muito explícitos. Mesmo as tarefas mais óbvias devem ser descritas com detalhes meticulosos. Vamos considerar uma tarefa simples, uma que realizamos todos os dias. Se estivermos em uma sala e quisermos sair, simplesmente saímos pela porta mais próxima. Supondo que haja apenas uma porta na sala, como podemos descrever esse processo dividindo-o nas etapas que (literalmente) damos? Talvez pudéssemos dizer o seguinte.
 
 ====
-_Walk toward the door until you reach it._
+_Caminhe em direção à porta até chegar nela._
 ====
 
-This statement is a little more specific than _Leave the room_, but it
-doesn't conform nicely to the paradigm of a loop, that is, a clearly
-separated task and a condition. The following is better.
-
+Essa instrução é um pouco mais específica do que _Saia da sala_, mas não se encaixa perfeitamente no paradigma de um loop, ou seja, uma tarefa claramente definida e uma condição. A seguinte opção é melhor.
 
 ====
-_While you're not at the door,_
+_Enquanto você não estiver na porta,_
 =====
-_take a step toward the door._
+_de um passo em direção a porta._
 =====
 ====
 
-Now we have good separation between the work done and the condition for
-repeating. What's the task performed in the body of this loop, and what's
-the condition? The task is taking a step toward the door. The
-condition is *not* being at the door. It seems a little awkward to
-include that "`not,`" but in our definition of loops, the body is
-executed as long as the condition is true.
+Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse loop e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é *não* estar na porta. Parece um pouco estranho incluir esse “`não`”, mas, na nossa definição de loops, o corpo é executado enquanto a condição for verdadeira.
 
-In a loop, we call each execution of the body of the loop an
-_iteration_. When we say that a program _iterates_ over the statements
-in a loop, we are referring to a single pass through the body of a loop.
-In this case, the loop will iterate however many times there are steps
-to the door from the starting position. It is even possible that the
-loop will iterate zero times: The person following this set of
-instructions might already be at the door!
+Em um loop, chamamos cada execução do corpo do loop de _iteração_. Quando dizemos que um programa _itera_ pelas instruções em um loop, estamos nos referindo a uma única passagem pelo corpo de um loop. Nesse caso, o loop irá iterar quantas vezes forem necessárias, dependendo do número de passos até a porta a partir da posição inicial. É até possível que o loop itere zero vezes: A pessoa que seguir este conjunto de instruções talvez já esteja na porta!
 
-It's hard to get away from numbers in a computer program, especially
-since everything is fundamentally stored as numbers inside of a
-computer. So, the most common kind of loop is one that iterates a fixed
-number of times. For example, your morning exercise routine might
-include jumping rope 100 times. We could formulate a loop to do that
-like so.
+É difícil escapar dos números em um programa de computador, especialmente porque tudo é fundamentalmente armazenado como números dentro de um computador. Portanto, o tipo mais comum de loop é aquele que itera um número fixo de vezes. Por exemplo, sua rotina de exercícios matinais pode incluir pular corda 100 vezes. Poderíamos formular um loop para fazer isso da seguinte maneira.
 
 ====
-_Set your counter to 0._ +
-_While your counter is less than 100,_
+_Zere o seu contador._ +
+_Enquanto o seu contador for menor que 100,_
 =====
-_jump rope._ +
-_Increase your counter by 1._
+_pule corda._ +
+_Aumente o seu contador em 1._
 =====
 ====
-This loop requires set up to start the counter at the right value.
-Then, the work done by the loop is the
-actual rope jumping and the counter increment. The condition is the
-counter being less than 100. Note that this is strictly *less* than 100.
-After the first jump, the counter will be incremented to 1. After the
-100^th^ jump, the counter will be incremented to 100. Since 100 is *not*
-less than 100, the loop will exit. If the condition was the counter
-being less than or equal to 100, the person following the instructions
-would jump 101 times.
+Este loop requer uma configuração inicial para que o contador comece com o valor correto. Em seguida, o trabalho realizado pelo loop consiste no próprio ato de pular corda e no incremento do contador. A condição é que o contador seja menor que 100. Observe que se trata estritamente de um valor *menor* que 100. Após o primeiro salto, o contador será incrementado para 1. Após o 100º salto, o contador será incrementado para 100. Como 100 *não* é menor que 100, o loop será encerrado. Se a condição fosse o contador ser menor ou igual a 100, a pessoa seguindo as instruções saltaria 101 vezes.
 
-Input can also be a factor in loop repetitions. For example, you might
-be a soldier training in the U.S. Marine Corps. Perhaps your drill
-sergeant has commanded you to do push-ups until he says you can stop. We
-might formulate a loop to do this as follows. +
+A entrada também pode ser um fator nas repetições do loop. Por exemplo, você pode ser um soldado em treinamento no Corpo de Fuzileiros Navais dos EUA. Talvez seu sargento instrutor tenha ordenado que você faça flexões até que ele diga que você pode parar. Poderíamos formular um loop para fazer isso da seguinte maneira. +
 
 ====
-_Do:_
+_Faça:_
 =====
-_Push-up._ +
-_Ask the drill sergeant if you can stop._
+_Flexão._ +
+_Pergunte ao sargento se você pode parar._
 =====
-_While the answer is pass:q["`no.`"]_
+_Enquanto a resposta for `não`_
 ====
 
-As is the case with user input, you must often go into the loop at least
-once to get the input. This loop requires the soldier to do at least one
-push-up before asking to stop. Some systems might use input but have
-other constraints. A more realistic version of this loop might be the
+Assim como acontece com a entrada do usuário, muitas vezes é necessário entrar no ciclo pelo menos uma vez para obter a entrada. Esse ciclo exige que o soldado faça pelo menos uma flexão antes de pedir para parar. Alguns sistemas podem usar entradas, mas apresentam outras restrições. Uma versão mais realista desse ciclo poderia ser a seguinte.
 following.
 
 ====
-_Do:_
+_Faça:_
 =====
-_Push-up._ +
-_Ask the drill sergeant if you can stop._
+_Flexão._ +
+_Pergunte ao sargento se você pode parar._
 =====
-_While the answer is "`no`" and you haven't collapsed._
+_Enquanto a resposta for `não` e você não tiver colapsado._
 ====
 
-Remember, the condition for a loop should be a Boolean, and the loop
-runs as long as the condition is true. However, there is no reason why
-the Boolean can't be a complicated expression using all the Boolean
-logic we have come to know and love.
+Lembre-se de que a condição de um loop deve ser um valor booleano, e o loop é executado enquanto a condição for verdadeira. No entanto, não há motivo para que o valor booleano não possa ser uma expressão complexa, utilizando toda a lógica booleana que conhecemos e apreciamos.
 
-It's also possible to _nest_ loops. Nesting loops means putting
-one loop inside of another, similar to the way that conditional
-statements could be nested inside of other conditional statements. Just
-like any other statement, an inner loop will be run as many times as the
-outer loop runs. Of course, the statements inside of the inner loop will
-be run according to the conditions of that loop. So, if an outer loop
-runs 10 times and an inner loop runs 50 times, a statement in the body
-of an inner loop would run 500 times!
+Também é possível _aninhar_ loops. Aninhar loops significa colocar um loop dentro de outro, de forma semelhante à maneira como instruções condicionais podem ser aninhadas dentro de outras instruções condicionais. Assim como qualquer outra instrução, um loop interno será executado tantas vezes quantas o loop externo for executado. É claro que as instruções dentro do loop interno serão executadas de acordo com as condições desse loop. 
+Portanto, se um loop externo for executado 10 vezes e um loop interno for executado 50 vezes, uma instrução no corpo de um loop interno seria executada 500 vezes!
 
-As an example, if you're working out, you might do several sets of
-bench presses with a fixed number of reps in each set. If you did 3 sets
-of 15 bench presses each, your workout program might look like this: +
+Por exemplo, se você estiver malhando, pode fazer várias séries de supino com um número fixo de repetições em cada série. Se você fizesse 3 séries de 15 repetições de supino cada, seu programa de treino poderia ficar assim: +
 
 ====
-_Set your set counter to 0._ +
-_While your set counter is less than 3,_ +
+_Defina o contador de séries para 0._ +
+_Enquanto o contador de séries estiver menor que 3,_ +
 =====
-_set your rep counter to 0._ +
-_While your rep counter is less than 15,_
+_defina o contador de repetições para 0._ +
+_Enquanto o contador de repetições estiver menor que 15,_
 ======
-_do a bench press._ +
-_Increase your rep counter by 1._
+_faça um supino._ +
+_Aumente o contador de repetições em 1._
 ======
-_Rest for 2 minutes._ +
-_Increase your set counter._
+_Descanse por 2 minutos._ +
+_Aumente o contador de séries._
 =====
 ====
 
-This way of describing the workout program seems tedious. Most of the
-description is structural: conditions for the loops and increments for
-the counters. The only "`real`" activities are the bench press and the
-resting. As you can see, the bench press is inside the inner rep loop
-and will be executed 15 times for each complete execution of
-the inner rep loop. Since the inner rep loop sits inside the outer set
-loop, it'll be executed 3 times, giving a grand total of 45 bench
-presses. Resting, however, is after the inner rep loop but still
-contained in the outer set loop and will be executed 3 times, totaling 6
-minutes of rest.
+Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os loops e incrementos para os contadores. As únicas atividades “reais” são o supino e o descanso. Como você pode ver, o supino está dentro do loop de repetições interno e será executado 15 vezes a cada execução completa desse loop. Como o loop de repetições interno está dentro do loop de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o loop de repetições interno, mas ainda está contido no loop de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.
 
-As with conditionals, writing out loops in English is tedious and
-imprecise. In the next section, we'll discuss the tools for writing
-loops in Java. Because Java was designed with loops as a central tool,
-we can write loops more succinctly than in English, squeezing a lot
-of information into a small space. Because we pack so much information
-into them, loops can look daunting at first. Remember that the syntax we'll
-introduce is only the formal Java way of expressing a condition and
-a list of instructions to execute repeatedly.
+Assim como nas condições, escrever loops em inglês é tedioso e impreciso. Na próxima seção, discutiremos as ferramentas para escrever loops em Java. Como o Java foi projetado tendo os loops como ferramenta central, podemos escrevê-los de forma mais sucinta do que em inglês, concentrando muitas informações em um espaço reduzido. Por contermos tanta informação neles, os loops podem parecer intimidadores à primeira vista. Lembre-se de que a sintaxe que apresentaremos é apenas a maneira formal do Java de expressar uma condição e uma lista de instruções a serem executadas repetidamente.
 
-=== Syntax: Loops in Java
+=== Sintaxe: Loops no Java
 
-The Java programming language contains three differently named kinds of
-loops: `while` loops, `for` loops, and `do`-`while` loops. All of them
-allow you to write code that will be executed repeatedly. In fact, any
-program that uses one kind of loop to solve a problem could be
-converted to use either of the other two kinds. The three kinds are
-provided in Java partly so that it's easy to code certain typical forms
-of repetition and partly because the C language, an ancestor of Java,
-contained these three. We'll begin by describing `while` loops because
-they have the simplest form and then move on to the other two kinds. We'll
-then explain the syntax for nesting together multiple loops and
-finally discuss several of the common pitfalls encountered by
-programmers when coding loops.
+A linguagem de programação Java contém três tipos de loops com nomes diferentes: loops `while`, loops `for` e loops `do`-`while`. Todos eles permitem escrever código que será executado repetidamente. Na verdade, qualquer programa que utilize um tipo de loop para resolver um problema poderia ser adaptado para usar qualquer um dos outros dois tipos. Os três tipos são fornecidos em Java, em parte para facilitar a codificação de certas formas típicas de repetição e, em parte, porque a linguagem C, antecessora do Java, os continha. Começaremos descrevendo os loops `while`, pois eles têm a forma mais simples, e depois passaremos para os outros dois tipos. Em seguida, explicaremos a sintaxe para aninhar vários loops e, finalmente, discutiremos várias das armadilhas comuns encontradas pelos programadores ao codificar loops.
 
-==== `while` loops
+==== loops `while`
 
-Superficially, the syntax of a `while` loop resembles an `if` statement.
-It starts with the keyword `while` followed by a `boolean` condition in
-parentheses with a block of code surrounded by braces (`{ }`)
-afterward. This similarity is not accidental. The only difference
-between the two is that the body of the `if` statement will run a only
-single time, while the body of the `while` loop will run as long as the
-condition remains `true`. <<figure-while>> shows the pattern of
-execution for `while` loops.
+À primeira vista, a sintaxe de um loop `while` se assemelha a uma instrução `if`. Ela começa com a palavra-chave `while`, seguida por uma condição `booleana` entre parênteses e, em seguida, por um bloco de código entre chaves (`{ }`). Essa semelhança não é por acaso. A diferença entre os dois é que o corpo da instrução `if` será executado apenas uma vez, enquanto o corpo do loop `while` será executado enquanto a condição permanecer `true`. <<figure-while>> mostra o padrão de execução dos loops `while`.
 
 [[figure-while]]
 [.text-center]
-.If the condition is `true`, all of the statements in the body of the loop are executed, and then the condition is checked again. When the check is `false`, execution skips past the body of the loop.
+.Se a condição for `true`, todas as instruções no corpo do loop são executadas e, em seguida, a condição é verificada novamente. Quando a condição é `false`, a execução ignora o corpo do loop.
 image::while.svg[scaledwidth=75%,pdfwidth=75%,width=75%]
 
 
-If we assume that the `boolean` value `atDoor` says whether or not we
-have reached the door and the method `walkTowardsDoor()` allows us to
-take one step closer to the door, we could formulate our example from
-the beginning of the previous section as follows.
+Se considerarmos que o valor booleano `naPorta` indica se chegamos ou não à porta e que o método `andeAteAPorta()` nos permite dar um passo em direção à porta, poderíamos reformular nosso exemplo do início da seção anterior da seguinte maneira.
 
 [source,java]
 ----
-while (!atDoor) {
-    atDoor = walkTowardsDoor();
+while (!naPorta) {
+    naPorta = andeAteAPorta();
 }
 ----
 
-Here we assume that the `walkTowardsDoor()` method gives back a
-`boolean` value that is `true` if we have reached the door and `false`
-otherwise. Unless the `walkTowardsDoor()` method is able to change the
-value of `atDoor`, the loop will repeat forever, a phenomenon known as
-an _infinite loop_.
+Aqui, partimos do princípio de que o método `andeAteAPorta()` retorna um valor `boolean` que é `true` se tivermos chegado à porta e `false` caso contrário. A menos que o método `andeAteAPorta()` seja capaz de alterar o valor de `naPorta`, o loop se repetirá indefinidamente, um fenômeno conhecido como _loop infinito_.
 
 [source,java]
 ----
 while (true) {
-    System.out.println("Help me!");
+    System.out.println("Me ajude!");
 }
 ----
 
-This code gives an example of an infinite loop. If you run this code inside
-of a program, it'll print out an endless succession of `Help me!`
-messages. Be prepared to stop the program by typing `Ctrl+C` (hold down
-the `Control` key and press `C`) because it won't end otherwise. Not
-all infinite loops are this obvious. A programmer will not usually use
-`true` as the condition of a loop, but doing so is not always wrong.
-Some loops are expected to continue for quite some time with no definite
-end. To leave a loop abruptly, you can use the `break` command. Note that the
-`break` command exists in many languages, but it should be used rarely, if at
-all, to leave a loop.
+Este código apresenta um exemplo de um loop infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens “Me ajude!”. Esteja preparado para interromper o programa digitando “Ctrl+C” (mantenha pressionada a tecla “Control” e pressione “C”), pois, de outra forma, ele não terminará. Nem todos os loops infinitos são tão óbvios assim. Um programador não usaria `true` como condição de um loop, mas fazer isso nem sempre é errado. Espera-se que alguns loops continuem por um bom tempo sem um fim definido. Para sair de um loop abruptamente, você pode usar o comando `break`. Observe que o comando `break` existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um loop.
 
 [source,java]
 ----
 while (true) {
-    System.out.println("Help me!");
+    System.out.println("Me ajude!");
     break;
 }
 ----
 
-This loop will only print out a single `Help me!` before exiting. A
-`break` command can be used with an `if` statement to make a loop that
-repeats more than once.
+Este loop exibirá apenas uma vez “Me ajude!” antes de encerrar. É possível usar um comando `break` junto com uma instrução `if` para criar um loop que se repita mais de uma vez.
 
 [source,java]
 ----
-int counter = 0;
+int contador = 0;
 while (true) {
-    System.out.print("the loop ");
-    ++counter;
-    if (counter >= 3) {
+    System.out.print("o loop ");
+    ++contador;
+    if (contador >= 3) {
         break;
     }
 }
-System.out.println("is on fire!");
+System.out.println("Está pegando fogo!");
 ----
 
-This loop will print out `the loop the loop the loop is on fire!` Of
-course, the `break` statement unnecessarily complicates the code. We
-could have written equivalent code as follows.
+Este loop exibirá `o loop o loop o loop está pegando fogo!`. É claro que a instrução `break` complica desnecessariamente o código. Poderíamos ter escrito um código equivalente da seguinte forma.
 
 [source,java]
 ----
-int counter = 0;
-while (counter < 3) {
-    System.out.print("the loop ");
-    ++counter;
+int contador = 0;
+while (contador < 3) {
+    System.out.print("o loop ");
+    ++contador;
 }
-System.out.println("is on fire!");
+System.out.println("está pegando fogo!");
 ----
 
-Now, we move on to a more complicated example that can print out the
-binary representation of a number.
+Agora, vamos passar para um exemplo mais complexo, capaz de imprimir a representação binária de um número.
 
-.Binary Conversion
+.Conversão binária
 ====
-As we discussed in <<computer-basics#computer-basics>>, binary numbers
-are the building blocks of every piece of data inside a modern
-computer's memory. Integers are stored in binary. The representation of
-floating-point numbers is more complicated, but it also uses 1s and 0s.
-Even the `char` data type and the `String` values built from them are
-fundamentally stored as binary numbers. For this reason, computer
-scientists tend to be familiar with the base 2 number system and how to
-convert between it and base 10, our usual number system.
+Conforme discutimos em <<computer-basics#computer-basics>>, os números binários são os blocos de construção de todos os dados contidos na memória de um computador moderno. Os números inteiros são armazenados em binário. A representação de números de ponto flutuante é mais complicada, mas também usa 1s e 0s. Até mesmo o tipo de dados `char` e os valores `String` construídos a partir deles são fundamentalmente armazenados como números binários. Por esse motivo, os cientistas da computação tendem a estar familiarizados com o sistema numérico de base 2 e com a forma de converter entre ele e a base 10, nosso sistema numérico habitual.
 
-In base 10, the number 379 is equal to
-3 · 100 + 7 · 10 + 9 · 1 = 3 · 10^2^ + 7 · 10^1^ + 9 · 10^0^.
-Moving from right to left, the value of each place increases by a factor
-of 10. A binary number is the same, except that the increase is by a
-factor of 2 and no single digit is greater than 1. Thus, the number
-101011~2~ = 1 · 2^5^ + 0 · 2^4^ + 1 · 2^3^ + 0 · 2^2^ + 1 · 2 + 1 · 2^0^ = 1 · 32 + 0 · 16 + 1 · 8 + 0 · 4 + 1 · 2 + 1 · 0 = 43.
-In binary, the number 379 = 101111011~2~.
+Na base 10, o número 379 é igual a 3 · 100 + 7 · 10 + 9 · 1 = 3 · 10^2^ + 7 · 10^1^ + 9 · 10^0^. Movendo-se da direita para a esquerda, o valor de cada posição aumenta por um fator de 10. Um número binário é igual, exceto que o aumento é por um fator de 2 e nenhum dígito é maior que 1. Assim, o número 101011~2~ = 1 · 2^5^ + 0 · 2^4^ + 1 · 2^3^ + 0 · 2^2^ + 1 · 2 + 1 · 2^0^ = 1 · 32 + 0 · 16 + 1 · 8 + 0 · 4 + 1 · 2 + 1 · 0 = 43. Em binário, o número 379 = 101111011~2~.
 
-To convert a number _n_ to binary, we first find the largest
-power of 2 that is not larger than _n_. Then, we begin a
-repetitive process that stops when the power of 2 under consideration is
-0. If 2 raised to the current power is bigger than _n_, we
-print out a 0 because that power is too big for _n_.
-Otherwise, we print out a 1, subtract 2 raised to that power from
-_n_, and move on to the next smaller power of 2. This
-process will print a 0 for every power of 2 that's not in
-_n_ and a 1 for every one that is, giving exactly the
-definition of a number written in base 2.
+Para converter um número _n_ para binário, primeiro encontramos a maior potência de 2 que não seja maior que _n_. Em seguida, iniciamos um processo repetitivo que termina quando a potência de 2 em questão é 0. Se 2 elevado à potência atual for maior que _n_, imprimimos um 0, pois essa potência é grande demais para _n_. Caso contrário, imprimimos um 1, subtraímos 2 elevado a essa potência de _n_ e passamos para a próxima potência de 2 menor. Esse processo imprimirá um 0 para cada potência de 2 que não esteja em _n_ e um 1 para cada uma que esteja, fornecendo exatamente a definição de um número escrito na base 2.
 
-.Outputs a binary representation of a decimal number.
+.Gera uma representação binária de um número decimal.
 [source, java]
 [[DecimalToBinaryProgram]]
 ----
 include::{programsdir}/DecimalToBinary.java[]
 ----
 
-The first `while` loop in this program doubles the value of `power`
-until doubling it again would make it larger than `number`. We go up to
-and including `number/2`, otherwise we'd stop when `power` was
-larger than `number`. After that loop, we begin repeatedly checking to
-see if a given power of 2 is bigger than the value left in `number`. If
-it is, we know that we do not use that power. If it's not, we do and
-must remove that power from the value of `number`.
+O primeiro loop `while` neste programa dobra o valor de `power` até que dobrá-lo novamente o tornaria maior que `number`. Subimos até `number/2`, inclusive; caso contrário, pararíamos quando `power` fosse maior que `number`. Após esse loop, começamos a verificar repetidamente se uma determinada potência de 2 é maior que o valor restante em `number`. Se for, sabemos que não devemos usar essa potência. Se não for, usamos e devemos remover essa potência do valor de `number`.
 
-You may have been tempted to solve this problem by determining if a
-given number is even or odd. If it's even, then you record a 0, and if
-it's odd, then you record a 1. You could then divide the number by two
-and repeat the process of determining whether it is even or odd. You
-would continue this process until the number became 0. This procedure
-requires only a single `while` loop and would give the digits of the
-number in base 2. Unfortunately, you would get the digits in reverse
-order. Because we write our numbers with the most significant digit on
-the left, we had to use the code given above to first find the largest
-value and work backward, in order to determine the binary digits in the
-correct sequence.
+Você pode ter ficado tentado a resolver este problema determinando se um determinado número é par ou ímpar. Se for par, você registra um 0, e se for ímpar, registra um 1. Você poderia então dividir o número por dois e repetir o processo de determinar se ele é par ou ímpar. Você continuaria esse processo até que o número se tornasse 0. Esse procedimento requer apenas um único loop `while` e forneceria os dígitos do número na base 2. Infelizmente, você obteria os dígitos na ordem inversa. Como escrevemos nossos números com o dígito mais significativo à esquerda, tivemos que usar o código fornecido acima para primeiro encontrar o maior valor e trabalhar de trás para frente, a fim de determinar os dígitos binários na sequência correta.
 ====
 
-==== `for` loops
+==== loops `for`
 
-Let's return to our code that prints out
-`the loop the loop the loop is on fire!`
+Agora vamos voltar ao nosso código que retorna `o loop o loop o loop está pegando fogo!`
 
 [source,java]
 ----
-int counter = 0;
-while (counter < 3) {
-    System.out.print("the loop ");
+int contador = 0;
+while (contador < 3) {
+    System.out.print("o loop ");
     ++counter;
 }
-System.out.println("is on fire!");
+System.out.println("está pegando fogo!");
 ----
 
 This code involves some initialization, a condition, and an update, as
