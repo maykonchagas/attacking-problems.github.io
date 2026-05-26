@@ -28,8 +28,8 @@ Em <<selection#selection>>, você aprendeu ferramentas que permitem fazer compar
 
 Você já sabe como incluir opções em um programa Java, mas, até agora, cada opção só pode ser escolhida uma vez. Portanto, se quiser que o computador faça muitas coisas, você precisa digitar muitas coisas. Uma das grandes desvantagens dos computadores é que eles não têm inteligência: podem seguir instruções cegamente, mas não conseguem fazer mais nada. Uma das grandes vantagens dos computadores é que eles são rápidos. Os computadores modernos podem realizar operações matemáticas bilhões de vezes mais rápido do que os seres humanos. Para aproveitar essa velocidade, precisamos dar aos computadores instruções para realizar tarefas repetidamente. Para ser útil, essa instrução deve ter dois componentes: deve ter uma maneira de alterar ligeiramente a tarefa a cada vez, de modo que cada tarefa realize algo diferente. Também deve ter uma maneira de decidir quando parar; caso contrário, continuará para sempre.
 
-O primeiro componente é o mais sutil. Criar um conjunto de instruções para que cada repetição da tarefa seja apropriada será diferente para cada problema. O segundo componente é mais fácil de descrever: vamos nos basear na lógica booleana, assim como fizemos para as instruções condicionais. A principal ferramenta para repetição em Java e em muitas outras linguagens é chamada de _loop_. O corpo de um loop contém a tarefa a ser executada.
- O restante do loop, no mínimo, contém uma condição. Toda vez que a tarefa especificada no corpo do loop for concluída, o computador verificará a condição. Se a condição for verdadeira, ele executará a tarefa novamente. Se a condição for falsa, o computador encerra o loop e pode passar para o código que vem a seguir.
+O primeiro componente é o mais sutil. Criar um conjunto de instruções para que cada repetição da tarefa seja apropriada será diferente para cada problema. O segundo componente é mais fácil de descrever: vamos nos basear na lógica booleana, assim como fizemos para as instruções condicionais. A principal ferramenta para repetição em Java e em muitas outras linguagens é chamada de _laço_. O corpo de um laço contém a tarefa a ser executada.
+ O restante do laço, no mínimo, contém uma condição. Toda vez que a tarefa especificada no corpo do laço for concluída, o computador verificará a condição. Se a condição for verdadeira, ele executará a tarefa novamente. Se a condição for falsa, o computador encerra o laço e pode passar para o código que vem a seguir.
 
 Uma das dificuldades de programar um computador é que precisamos ser muito explícitos. Mesmo as tarefas mais óbvias devem ser descritas com detalhes meticulosos. Vamos considerar uma tarefa simples, uma que realizamos todos os dias. Se estivermos em uma sala e quisermos sair, simplesmente saímos pela porta mais próxima. Supondo que haja apenas uma porta na sala, como podemos descrever esse processo dividindo-o nas etapas que (literalmente) damos? Talvez pudéssemos dizer o seguinte.
 
@@ -37,7 +37,7 @@ Uma das dificuldades de programar um computador é que precisamos ser muito expl
 _Caminhe em direção à porta até chegar nela._
 ====
 
-Essa instrução é um pouco mais específica do que _Saia da sala_, mas não se encaixa perfeitamente no paradigma de um loop, ou seja, uma tarefa claramente definida e uma condição. A seguinte opção é melhor.
+Essa instrução é um pouco mais específica do que _Saia da sala_, mas não se encaixa perfeitamente no paradigma de um laço, ou seja, uma tarefa claramente definida e uma condição. A seguinte opção é melhor.
 
 ====
 _Enquanto você não estiver na porta,_
@@ -46,11 +46,11 @@ _de um passo em direção a porta._
 =====
 ====
 
-Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse loop e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é *não* estar na porta. Parece um pouco estranho incluir esse “`não`”, mas, na nossa definição de loops, o corpo é executado enquanto a condição for verdadeira.
+Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse laço e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é *não* estar na porta. Parece um pouco estranho incluir esse “`não`”, mas, na nossa definição de laços, o corpo é executado enquanto a condição for verdadeira.
 
-Em um loop, chamamos cada execução do corpo do loop de _iteração_. Quando dizemos que um programa _itera_ pelas instruções em um loop, estamos nos referindo a uma única passagem pelo corpo de um loop. Nesse caso, o loop irá iterar quantas vezes forem necessárias, dependendo do número de passos até a porta a partir da posição inicial. É até possível que o loop itere zero vezes: A pessoa que seguir este conjunto de instruções talvez já esteja na porta!
+Em um laço, chamamos cada execução do corpo do laço de _iteração_. Quando dizemos que um programa _itera_ pelas instruções em um laço, estamos nos referindo a uma única passagem pelo corpo de um laço. Nesse caso, o laço irá iterar quantas vezes forem necessárias, dependendo do número de passos até a porta a partir da posição inicial. É até possível que o laço itere zero vezes: A pessoa que seguir este conjunto de instruções talvez já esteja na porta!
 
-É difícil escapar dos números em um programa de computador, especialmente porque tudo é fundamentalmente armazenado como números dentro de um computador. Portanto, o tipo mais comum de loop é aquele que itera um número fixo de vezes. Por exemplo, sua rotina de exercícios matinais pode incluir pular corda 100 vezes. Poderíamos formular um loop para fazer isso da seguinte maneira.
+É difícil escapar dos números em um programa de computador, especialmente porque tudo é fundamentalmente armazenado como números dentro de um computador. Portanto, o tipo mais comum de laço é aquele que itera um número fixo de vezes. Por exemplo, sua rotina de exercícios matinais pode incluir pular corda 100 vezes. Poderíamos formular um laço para fazer isso da seguinte maneira.
 
 ====
 _Zere o seu contador._ +
@@ -60,9 +60,9 @@ _pule corda._ +
 _Aumente o seu contador em 1._
 =====
 ====
-Este loop requer uma configuração inicial para que o contador comece com o valor correto. Em seguida, o trabalho realizado pelo loop consiste no próprio ato de pular corda e no incremento do contador. A condição é que o contador seja menor que 100. Observe que se trata estritamente de um valor *menor* que 100. Após o primeiro salto, o contador será incrementado para 1. Após o 100º salto, o contador será incrementado para 100. Como 100 *não* é menor que 100, o loop será encerrado. Se a condição fosse o contador ser menor ou igual a 100, a pessoa seguindo as instruções saltaria 101 vezes.
+Este laço requer uma configuração inicial para que o contador comece com o valor correto. Em seguida, o trabalho realizado pelo laço consiste no próprio ato de pular corda e no incremento do contador. A condição é que o contador seja menor que 100. Observe que se trata estritamente de um valor *menor* que 100. Após o primeiro salto, o contador será incrementado para 1. Após o 100º salto, o contador será incrementado para 100. Como 100 *não* é menor que 100, o laço será encerrado. Se a condição fosse o contador ser menor ou igual a 100, a pessoa seguindo as instruções saltaria 101 vezes.
 
-A entrada também pode ser um fator nas repetições do loop. Por exemplo, você pode ser um soldado em treinamento no Corpo de Fuzileiros Navais dos EUA. Talvez seu sargento instrutor tenha ordenado que você faça flexões até que ele diga que você pode parar. Poderíamos formular um loop para fazer isso da seguinte maneira. +
+A entrada também pode ser um fator nas repetições do laço. Por exemplo, você pode ser um soldado em treinamento no Corpo de Fuzileiros Navais dos EUA. Talvez seu sargento instrutor tenha ordenado que você faça flexões até que ele diga que você pode parar. Poderíamos formular um laço para fazer isso da seguinte maneira. +
 
 ====
 _Faça:_
@@ -85,10 +85,10 @@ _Pergunte ao sargento se você pode parar._
 _Enquanto a resposta for `não` e você não tiver colapsado._
 ====
 
-Lembre-se de que a condição de um loop deve ser um valor booleano, e o loop é executado enquanto a condição for verdadeira. No entanto, não há motivo para que o valor booleano não possa ser uma expressão complexa, utilizando toda a lógica booleana que conhecemos e apreciamos.
+Lembre-se de que a condição de um laço deve ser um valor booleano, e o laço é executado enquanto a condição for verdadeira. No entanto, não há motivo para que o valor booleano não possa ser uma expressão complexa, utilizando toda a lógica booleana que conhecemos e apreciamos.
 
-Também é possível _aninhar_ loops. Aninhar loops significa colocar um loop dentro de outro, de forma semelhante à maneira como instruções condicionais podem ser aninhadas dentro de outras instruções condicionais. Assim como qualquer outra instrução, um loop interno será executado tantas vezes quantas o loop externo for executado. É claro que as instruções dentro do loop interno serão executadas de acordo com as condições desse loop. 
-Portanto, se um loop externo for executado 10 vezes e um loop interno for executado 50 vezes, uma instrução no corpo de um loop interno seria executada 500 vezes!
+Também é possível _aninhar_ laços. Aninhar laços significa colocar um laço dentro de outro, de forma semelhante à maneira como instruções condicionais podem ser aninhadas dentro de outras instruções condicionais. Assim como qualquer outra instrução, um laço interno será executado tantas vezes quantas o laço externo for executado. É claro que as instruções dentro do laço interno serão executadas de acordo com as condições desse laço. 
+Portanto, se um laço externo for executado 10 vezes e um laço interno for executado 50 vezes, uma instrução no corpo de um laço interno seria executada 500 vezes!
 
 Por exemplo, se você estiver malhando, pode fazer várias séries de supino com um número fixo de repetições em cada série. Se você fizesse 3 séries de 15 repetições de supino cada, seu programa de treino poderia ficar assim: +
 
@@ -107,21 +107,21 @@ _Aumente o contador de séries._
 =====
 ====
 
-Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os loops e incrementos para os contadores. As únicas atividades “reais” são o supino e o descanso. Como você pode ver, o supino está dentro do loop de repetições interno e será executado 15 vezes a cada execução completa desse loop. Como o loop de repetições interno está dentro do loop de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o loop de repetições interno, mas ainda está contido no loop de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.
+Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os laços e incrementos para os contadores. As únicas atividades “reais” são o supino e o descanso. Como você pode ver, o supino está dentro do laço de repetições interno e será executado 15 vezes a cada execução completa desse laço. Como o laço de repetições interno está dentro do laço de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o laço de repetições interno, mas ainda está contido no laço de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.
 
-Assim como nas condições, escrever loops em inglês é tedioso e impreciso. Na próxima seção, discutiremos as ferramentas para escrever loops em Java. Como o Java foi projetado tendo os loops como ferramenta central, podemos escrevê-los de forma mais sucinta do que em inglês, concentrando muitas informações em um espaço reduzido. Por contermos tanta informação neles, os loops podem parecer intimidadores à primeira vista. Lembre-se de que a sintaxe que apresentaremos é apenas a maneira formal do Java de expressar uma condição e uma lista de instruções a serem executadas repetidamente.
+Assim como nas condições, escrever laços em inglês é tedioso e impreciso. Na próxima seção, discutiremos as ferramentas para escrever laços em Java. Como o Java foi projetado tendo os laços como ferramenta central, podemos escrevê-los de forma mais sucinta do que em inglês, concentrando muitas informações em um espaço reduzido. Por contermos tanta informação neles, os laços podem parecer intimidadores à primeira vista. Lembre-se de que a sintaxe que apresentaremos é apenas a maneira formal do Java de expressar uma condição e uma lista de instruções a serem executadas repetidamente.
 
-=== Sintaxe: Loops no Java
+=== Sintaxe: Laços no Java
 
-A linguagem de programação Java contém três tipos de loops com nomes diferentes: loops `while`, loops `for` e loops `do`-`while`. Todos eles permitem escrever código que será executado repetidamente. Na verdade, qualquer programa que utilize um tipo de loop para resolver um problema poderia ser adaptado para usar qualquer um dos outros dois tipos. Os três tipos são fornecidos em Java, em parte para facilitar a codificação de certas formas típicas de repetição e, em parte, porque a linguagem C, antecessora do Java, os continha. Começaremos descrevendo os loops `while`, pois eles têm a forma mais simples, e depois passaremos para os outros dois tipos. Em seguida, explicaremos a sintaxe para aninhar vários loops e, finalmente, discutiremos várias das armadilhas comuns encontradas pelos programadores ao codificar loops.
+A linguagem de programação Java contém três tipos de laços com nomes diferentes: laços `while`, laços `for` e laços `do`-`while`. Todos eles permitem escrever código que será executado repetidamente. Na verdade, qualquer programa que utilize um tipo de laço para resolver um problema poderia ser adaptado para usar qualquer um dos outros dois tipos. Os três tipos são fornecidos em Java, em parte para facilitar a codificação de certas formas típicas de repetição e, em parte, porque a linguagem C, antecessora do Java, os continha. Começaremos descrevendo os laços `while`, pois eles têm a forma mais simples, e depois passaremos para os outros dois tipos. Em seguida, explicaremos a sintaxe para aninhar vários laços e, finalmente, discutiremos várias das armadilhas comuns encontradas pelos programadores ao codificar laços.
 
-==== loops `while`
+==== Laços `while`
 
-À primeira vista, a sintaxe de um loop `while` se assemelha a uma instrução `if`. Ela começa com a palavra-chave `while`, seguida por uma condição `booleana` entre parênteses e, em seguida, por um bloco de código entre chaves (`{ }`). Essa semelhança não é por acaso. A diferença entre os dois é que o corpo da instrução `if` será executado apenas uma vez, enquanto o corpo do loop `while` será executado enquanto a condição permanecer `true`. <<figure-while>> mostra o padrão de execução dos loops `while`.
+À primeira vista, a sintaxe de um laço `while` se assemelha a uma instrução `if`. Ela começa com a palavra-chave `while`, seguida por uma condição `booleana` entre parênteses e, em seguida, por um bloco de código entre chaves (`{ }`). Essa semelhança não é por acaso. A diferença entre os dois é que o corpo da instrução `if` será executado apenas uma vez, enquanto o corpo do laço `while` será executado enquanto a condição permanecer `true`. <<figure-while>> mostra o padrão de execução dos laços `while`.
 
 [[figure-while]]
 [.text-center]
-.Se a condição for `true`, todas as instruções no corpo do loop são executadas e, em seguida, a condição é verificada novamente. Quando a condição é `false`, a execução ignora o corpo do loop.
+.Se a condição for `true`, todas as instruções no corpo do laço são executadas e, em seguida, a condição é verificada novamente. Quando a condição é `false`, a execução ignora o corpo do laço.
 image::while.svg[scaledwidth=75%,pdfwidth=75%,width=75%]
 
 
@@ -134,7 +134,7 @@ while (!naPorta) {
 }
 ----
 
-Aqui, partimos do princípio de que o método `andeAteAPorta()` retorna um valor `boolean` que é `true` se tivermos chegado à porta e `false` caso contrário. A menos que o método `andeAteAPorta()` seja capaz de alterar o valor de `naPorta`, o loop se repetirá indefinidamente, um fenômeno conhecido como _loop infinito_.
+Aqui, partimos do princípio de que o método `andeAteAPorta()` retorna um valor `boolean` que é `true` se tivermos chegado à porta e `false` caso contrário. A menos que o método `andeAteAPorta()` seja capaz de alterar o valor de `naPorta`, o laço se repetirá indefinidamente, um fenômeno conhecido como _laço infinito_.
 
 [source,java]
 ----
@@ -143,7 +143,7 @@ while (true) {
 }
 ----
 
-Este código apresenta um exemplo de um loop infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens “Me ajude!”. Esteja preparado para interromper o programa digitando “Ctrl+C” (mantenha pressionada a tecla “Control” e pressione “C”), pois, de outra forma, ele não terminará. Nem todos os loops infinitos são tão óbvios assim. Um programador não usaria `true` como condição de um loop, mas fazer isso nem sempre é errado. Espera-se que alguns loops continuem por um bom tempo sem um fim definido. Para sair de um loop abruptamente, você pode usar o comando `break`. Observe que o comando `break` existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um loop.
+Este código apresenta um exemplo de um laço infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens “Me ajude!”. Esteja preparado para interromper o programa digitando “Ctrl+C” (mantenha pressionada a tecla “Control” e pressione “C”), pois, de outra forma, ele não terminará. Nem todos os laços infinitos são tão óbvios assim. Um programador não usaria `true` como condição de um laço, mas fazer isso nem sempre é errado. Espera-se que alguns laços continuem por um bom tempo sem um fim definido. Para sair de um laço abruptamente, você pode usar o comando `break`. Observe que o comando `break` existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um laço.
 
 [source,java]
 ----
@@ -153,13 +153,13 @@ while (true) {
 }
 ----
 
-Este loop exibirá apenas uma vez “Me ajude!” antes de encerrar. É possível usar um comando `break` junto com uma instrução `if` para criar um loop que se repita mais de uma vez.
+Este laço exibirá apenas uma vez “Me ajude!” antes de encerrar. É possível usar um comando `break` junto com uma instrução `if` para criar um laço que se repita mais de uma vez.
 
 [source,java]
 ----
 int contador = 0;
 while (true) {
-    System.out.print("o loop ");
+    System.out.print("o laço ");
     ++contador;
     if (contador >= 3) {
         break;
@@ -168,13 +168,13 @@ while (true) {
 System.out.println("Está pegando fogo!");
 ----
 
-Este loop exibirá `o loop o loop o loop está pegando fogo!`. É claro que a instrução `break` complica desnecessariamente o código. Poderíamos ter escrito um código equivalente da seguinte forma.
+Este laço exibirá `o laço o laço o laço está pegando fogo!`. É claro que a instrução `break` complica desnecessariamente o código. Poderíamos ter escrito um código equivalente da seguinte forma.
 
 [source,java]
 ----
 int contador = 0;
 while (contador < 3) {
-    System.out.print("o loop ");
+    System.out.print("o laço ");
     ++contador;
 }
 System.out.println("está pegando fogo!");
@@ -197,73 +197,73 @@ Para converter um número _n_ para binário, primeiro encontramos a maior potên
 include::{programsdir}/DecimalToBinary.java[]
 ----
 
-O primeiro loop `while` neste programa dobra o valor de `power` até que dobrá-lo novamente o tornaria maior que `number`. Subimos até `number/2`, inclusive; caso contrário, pararíamos quando `power` fosse maior que `number`. Após esse loop, começamos a verificar repetidamente se uma determinada potência de 2 é maior que o valor restante em `number`. Se for, sabemos que não devemos usar essa potência. Se não for, usamos e devemos remover essa potência do valor de `number`.
+O primeiro laço `while` neste programa dobra o valor de `power` até que dobrá-lo novamente o tornaria maior que `number`. Subimos até `number/2`, inclusive; caso contrário, pararíamos quando `power` fosse maior que `number`. Após esse laço, começamos a verificar repetidamente se uma determinada potência de 2 é maior que o valor restante em `number`. Se for, sabemos que não devemos usar essa potência. Se não for, usamos e devemos remover essa potência do valor de `number`.
 
-Você pode ter ficado tentado a resolver este problema determinando se um determinado número é par ou ímpar. Se for par, você registra um 0, e se for ímpar, registra um 1. Você poderia então dividir o número por dois e repetir o processo de determinar se ele é par ou ímpar. Você continuaria esse processo até que o número se tornasse 0. Esse procedimento requer apenas um único loop `while` e forneceria os dígitos do número na base 2. Infelizmente, você obteria os dígitos na ordem inversa. Como escrevemos nossos números com o dígito mais significativo à esquerda, tivemos que usar o código fornecido acima para primeiro encontrar o maior valor e trabalhar de trás para frente, a fim de determinar os dígitos binários na sequência correta.
+Você pode ter ficado tentado a resolver este problema determinando se um determinado número é par ou ímpar. Se for par, você registra um 0, e se for ímpar, registra um 1. Você poderia então dividir o número por dois e repetir o processo de determinar se ele é par ou ímpar. Você continuaria esse processo até que o número se tornasse 0. Esse procedimento requer apenas um único laço `while` e forneceria os dígitos do número na base 2. Infelizmente, você obteria os dígitos na ordem inversa. Como escrevemos nossos números com o dígito mais significativo à esquerda, tivemos que usar o código fornecido acima para primeiro encontrar o maior valor e trabalhar de trás para frente, a fim de determinar os dígitos binários na sequência correta.
 ====
 
-==== loops `for`
+==== Laços `for`
 
-Agora vamos voltar ao nosso código que retorna `o loop o loop o loop está pegando fogo!`
+Agora vamos voltar ao nosso código que retorna `o laço o laço o laço está pegando fogo!`
 
 [source,java]
 ----
 int contador = 0;
 while (contador < 3) {
-    System.out.print("o loop ");
-    ++counter;
+    System.out.print("o laço ");
+    ++contador;
 }
 System.out.println("está pegando fogo!");
 ----
 
-This code involves some initialization, a condition, and an update, as
-many loops do. The initialization sets `counter` to `0`, the condition
-checks to make sure that `counter` is less than `3`, and the update
-increments `counter` by 1 every iteration of the loop. These three
-elements are so common that a special kind of loop called the `for` loop
-was designed with them explicitly in mind. Most `for` loops are
-dependent on a single counting variable. To make the loop easy to read,
-the initialization, condition, and update, all of which relate to this
-variable, are pulled into the header of the loop. We could code the
-previous `while` loop example more cleanly, using a `for` loop, as
-follows.
+Este código envolve uma inicialização, uma condição e uma atualização, como
+ocorre em muitos laços. A inicialização define `contador` como `0`, a condição
+verifica se `contador` é menor que `3`, e a atualização
+incrementa `contador` em 1 a cada iteração do laço. Esses três
+elementos são tão comuns que um tipo especial de laço chamado laço `for`
+foi projetado tendo-os explicitamente em mente. A maioria dos laços `for` 
+depende de uma única variável de contagem. Para tornar o laço fácil de ler,
+a inicialização, a condição e a atualização, todas relacionadas a essa
+variável, são colocadas no cabeçalho do laço. Poderíamos codificar o
+exemplo anterior do laço `while` de forma mais clara, usando um laço `for`, como
+segue.
 
 [source,java]
 ----
 for (int i = 0; i < 3; ++i) {
-    System.out.print("the loop ");
+    System.out.print("o laço ");
 }
-System.out.println("is on fire!");
+System.out.println("está pegando fogo!");
 ----
 
-The header of a `for` loop consists of those three parts: the
-initialization, the condition, and the update, all separated by
-semicolons. <<figure-for>> shows the pattern of execution for
-`for` loops.
+O cabeçalho de um laço `for` é composto por três partes: a
+inicialização, a condição e a atualização, todas separadas por
+ponto-e-vírgula. A <<figure-for>> mostra o padrão de execução dos
+laços `for`.
 
 [[figure-for]]
 [.text-center]
-.The loop is initialized. If the condition is `true`, all of the statements in the body of the loop are executed, followed by the increment step. Then the condition is checked again. When the check is `false`, execution skips past the body of the loop.
+.O laço é inicializado. Se a condição for `verdadeira`, todas as instruções no corpo do laço são executadas, seguidas pela etapa de incremento. Em seguida, a condição é verificada novamente. Quando a verificação é `falsa`, a execução ignora o corpo do laço.
 image::for.svg[scaledwidth=75%,pdfwidth=75%,width=75%]
 
-You may have noticed that we changed the variable name used within
-the loop from `counter` to `i`. Doing so doesn't change the function of
-the code. We did so because using the variables `i`, `j`, and sometimes
-`k` is a very common practice with `for` loops. By using variables named
-like this, we are indicating that the variable is just a dummy counter
-that we are using to make the loop work, not some variable with a
-grander purpose. Also, with three uses of a single variable in the
-header of a `for` loop, a long variable name takes up a lot of space.
+Você deve ter notado que mudamos o nome da variável usada dentro
+do laço de `contador` para `i`. Isso não altera a função do
+código. Fizemos isso porque usar as variáveis `i`, `j` e, às vezes,
+`k` é uma prática muito comum em laços `for`. Ao usar variáveis com nomes
+como esses, estamos indicando que a variável é apenas um contador fictício
+que estamos usando para fazer o laço funcionar, e não uma variável com um
+propósito mais abrangente. Além disso, com três utilizações de uma única variável no
+cabeçalho de um laço `for`, um nome de variável longo ocupa muito espaço.
 
-`for` loops are used in Java programs more than the other two loops.
-They work well when you know how many times you want to iterate through
-the loop, which you often do. You can think of the first part of the
-`for` loop header as the starting point, the second part as the ending
-point, and the third part as how you get from the start to the end. Many
-beginning programmers get stuck on the idea that every `for` loop starts
-with `int i = 0` and ends with `++i`. While this pattern is often true,
-there are many other ways to use a for loop. For example, we could print
-the powers of 2 that are less than 1000.
+Os laços `for` são mais utilizados em programas Java do que os outros dois tipos de laço.
+Eles funcionam bem quando você sabe quantas vezes deseja iterar pelo
+laço, o que geralmente é o caso. Você pode pensar na primeira parte do
+cabeçalho do laço `for` como o ponto de partida, na segunda parte como o ponto de
+chegada e na terceira parte como a forma de ir do início ao fim. Muitos
+programadores iniciantes ficam presos à ideia de que todo laço `for` começa
+com `int i = 0` e termina com `++i`. Embora esse padrão seja frequentemente verdadeiro,
+há muitas outras maneiras de usar um laço `for`. Por exemplo, poderíamos imprimir
+as potências de 2 menores que 1000.
 
 [source,java]
 ----
@@ -272,172 +272,174 @@ for (int i = 1; i < 1000; i *= 2) {
 }
 ----
 
-This segment of code prints out `1`, `2`, `4`, `8`, `16`, `32`, `64`,
-`128`, `256`, and `512` on separate lines, which are the powers of
-2 from 2^0^ up to 2^9^.
+Este trecho de código exibe `1`, `2`, `4`, `8`, `16`, `32`, `64`,
+`128`, `256` e `512` em linhas separadas, que são as potências de
+2, de 2^0 até 2^9.
 
-Both of the examples of `for` loops we
-have given have only had a single executable line in the body of the
-loop. Like `if` statements, loops only require braces if their bodies
-have more than one executable line. Many of the `while` loops from the
-previous subsection could have been written without braces.
+Ambos os exemplos de laços `for` que
+apresentamos tinham apenas uma única linha executável no corpo do
+laço. Assim como as instruções `if`, os laços só exigem chaves se seus corpos
+tiverem mais de uma linha executável. Muitos dos laços `while` da
+subseção anterior poderiam ter sido escritos sem chaves.
 
-Just because a `for` loop already has a counting mechanism doesn't mean
-that we won't need other variables to perform useful tasks. For
-example, given a `String`, we could try to find the letter of the
-alphabet in the `String` which is closest to the end of the alphabet.
-For the `String` `"Pluto is no longer a planet"`, the latest letter in
-the alphabet is `'u'`. To write code that will do this job, we must use
-the counting variable from the `for` loop as an _index_ into the
-`String`. Then, we must also have a temporary variable where we keep the
-latest letter found so far. To get the _i_^th^ `char` from a
-`String`, we can use the `charAt()` method. Recall that the index of the first
-`char` in a `String` is 0, and the index of the last `char` is one less
-than the length of the `String`.
+O fato de um laço `for` já possuir um mecanismo de contagem não significa
+que não precisaremos de outras variáveis para realizar tarefas úteis. Por
+exemplo, dada uma `String`, poderíamos tentar encontrar a letra do
+alfabeto na `String` que está mais próxima do final do alfabeto.
+Para a `String` `“Pluto não é mais um planeta”`, a última letra do
+alfabeto a aparecer é `‘u’`. Para escrever código que faça esse trabalho, devemos usar
+a variável de contagem do laço `for` como um _índice_ na
+`String`. Então, também precisamos de uma variável temporária onde guardemos a
+última letra encontrada até o momento. Para obter o _i_^ésimo^ `char` de uma
+`String`, podemos usar o método `charAt()`. Lembre-se de que o índice do primeiro
+`char` em uma `String` é 0, e o índice do último `char` é um a menos
+que o comprimento da `String`.
 
 [source,java]
 ----
-String s = "The quick brown fox jumps over the lazy dog.";
-String lower = s.toLowerCase();
-char latest = ' ';
+String s = "A raposa marrom ágil salta por cima do cão preguiçoso.";
+String minusculo = s.toLowerCase();
+char ultimo= ' ';
 char c;
-for (int i = 0; i < lower.length(); ++i) {
-    c = lower.charAt(i);
-    if (c >= 'a' && c <= 'z' && c > latest) {
-        latest = c;
+for (int i = 0; i < minusculo.length(); ++i) {
+    c = minusculo.charAt(i);
+    
+if (c >= 'a' && c <= 'z' && c > ultimo) {
+        ultimo= c;
     }
 }
-System.out.println("The latest character in the alphabet from your message is: '"
-	+ latest + "'.");
+System.out.println("O último caractere do alfabeto da sua mensagem é: '"
++ ultimo + "'.");
 ----
 
-The first thing we do in this example is convert `s` to lowercase, so
-that we are comparing all `char` values in the same case. Next, we run
-through `lower`, starting at index 0 and going until we reach the end of
-the `String`. For each `char`, we check to see if it is an alphabetic
-character and then if it is later in the alphabet than our current
-latest. If it is, we store it into `latest`. After the loop, we print
-out the value in `latest`. We have chosen the `char` `' '` because it is
-numerically earlier than all the letters in the alphabet. If the output
-is a space, we'd know that none of the characters in `s` were
-alphabetic.
+A primeira coisa que fazemos neste exemplo é converter `s` para minúsculas, de modo
+que estejamos comparando todos os valores `char` no mesmo formato. Em seguida, percorremos
+`minusculo`, começando no índice 0 e avançando até chegarmos ao fim da
+`String`. Para cada `char`, verificamos se é um caractere alfabético
+e, em seguida, se está mais à direita no alfabeto do que o nosso atual
+ultimo. 
+Se for, armazenamos em `ultimo`. Após o laço, imprimimos
+o valor em `ultimo`. Escolhemos o `char` `‘ ’` porque ele é
+numericamente anterior a todas as letras do alfabeto. Se a saída
+for um espaço, saberemos que nenhum dos caracteres em `s` era
+alfabético.
 
-For the example given, the latest character in the alphabet is `'z'`
-because of the word `"lazy"`. One weakness in this code is that it will
-always search through the entire `String`, even if the letter `'z'` has
-already been found. For the `String`
-`"The quick brown fox jumps over the lazy dog."`, we're not wasting too
-much time. However, if the `String` were `"Zanzibar!"` followed by the
-full text of _War and Peace_, we'd be wasting thousands and
-thousands of operations reading characters when we knew that `'z'` was
-going to be the latest letter, no matter what. We can rewrite our
-`for` loop so that it quits early if it reaches a `'z'`.
+Para o exemplo dado, o último caractere do alfabeto é `'u'`
+devido à palavra `“preguiçoso”`. Uma fraqueza desse código é que ele
+sempre vasculhará toda a `String`, mesmo que a letra `'u'` já tenha
+sido encontrada. Para a `String`
+`"A raposa marrom ágil salta por cima do cão preguiçoso."`, não estamos perdendo muito
+tempo. No entanto, se a `String` fosse `"Zanzibar!"` seguida pelo
+texto completo de _Guerra e Paz_, estaríamos desperdiçando milhares e
+milhares de operações lendo caracteres quando sabíamos que `'z'`
+seria a última letra, não importa o que acontecesse. Podemos reescrever nosso
+laço `for` para que ele termine mais cedo se chegar a um `'z'`.
 
 [source,java]
 ----
-for (int i = 0; i < lower.length(); ++i) {
-    c = lower.charAt(i);
-    if (c >= 'a' && c <= 'z' && c > latest) {
-        latest = c;
+for (int i = 0; i < minusculo.length(); ++i) {
+    c = minusculo.charAt(i);
+    if (c >= 'a' && c <= 'z' && c > ultimo) {
+        ultimo = c;
     }
-    if (latest == 'z') {
+    if (ultimo == 'z') {
         break;
     }
 }
 ----
 
-This version of the `for` loop will break out immediately if the latest
-is already a `'z'`. This code will work efficiently, but many
-professional programmers discourage the use of `break` except when
-absolutely necessary (like in a `switch` statement). If a `break` is
-used to exit the loop, this logic can be encoded into the condition of
-the loop. Thus, the same loop written with better style would be the
-following.
+Esta versão do laço `for` sairá imediatamente se o último
+já for um `‘z’`. Este código funcionará de forma eficiente, mas muitos
+programadores profissionais desaconselham o uso de `break`, exceto quando
+for absolutamente necessário (como em uma instrução `switch`). Se um `break` for
+usado para sair do laço, essa lógica pode ser codificada na condição do
+laço. Assim, o mesmo laço escrito com um estilo melhor seria o
+seguinte.
 
 [source,java]
 ----
-for (int i = 0; i < lower.length() && latest != 'z'; ++i) {
-    c = lower.charAt(i);
-    if (c >= 'a' && c <= 'z' && c > latest) {
-        latest = c;
+for (int i = 0; i < minusculo.length() && ultimo != 'z'; ++i) {
+    c = minusculo.charAt(i);
+    if (c >= 'a' && c <= 'z' && c > ultimo) {
+        ultimo = c;
     }
 }
 ----
 
-For this final version of the loop, we have made the conditional portion
-of the header more complex. The comparison using `<` gives a `boolean`
-that we combine using `&&` with the `boolean` from the comparison
-using `!=`. As always, remember that the loop will continue iterating as
-long as the condition is `true`. Since we need both parts of the
-condition to be `true` to continue executing, we use the `&&` operator
-to connect them.
+Nesta versão final do laço, tornamos a parte condicional
+do cabeçalho mais complexa. A comparação usando `<` retorna um valor `booleano`
+que combinamos usando `&&` com o valor `booleano` da comparação
+que usa `!=`. Como sempre, lembre-se de que o ciclo continuará iterando enquanto
+a condição for `true`. Como precisamos que ambas as partes da
+condição sejam `true` para continuar a execução, usamos o operador `&&`
+para conectá-las.
 
-We apologize to international readers for focusing on the Latin alphabet
-used by English and many other Western European languages. It should be
-possible to make a localized version of this example with any alphabet
-by checking the return value of `Character.isLetter(c)`, which is valid
-for all single-character Unicode values, although the idea of
-alphabetical order doesn't really apply to some character systems like
-the hanzi and kanji of Chinese and Japanese. Regardless, using the
-`Character.isLetter()` method is recommended for almost all
-applications, since it's more general and more readable.
+Pedimos desculpas aos leitores internacionais por nos concentrarmos no alfabeto latino
+usado pelo inglês e por muitas outras línguas da Europa Ocidental. Deve ser
+possível criar uma versão localizada deste exemplo com qualquer alfabeto
+verificando o valor de retorno de `Character.isLetter(c)`, que é válido
+para todos os valores Unicode de caractere único, embora a ideia de
+ordem alfabética não se aplique realmente a alguns sistemas de caracteres, como
+os hanzi e kanji do chinês e do japonês. Independentemente disso, o uso do método 
+`Character.isLetter()` é recomendado para quase todas as
+aplicações, uma vez que é mais geral e mais legível.
 
 
 [[primalityTestingExample]]
-.Primality testing
+.Teste de primalidade
 ====
-Prime numbers are integers greater than 1 whose only factors are 1 and themselves.
-If you've encountered prime numbers before, they probably seemed like a
-mathematical curiosity and nothing more. In fact, prime numbers are the
-basis of a very practical application of mathematics: cryptography. With
-the use of some math and very large prime numbers, computer scientists
-have devised techniques that make messages sent over the Internet more secure.
+Números primos são números inteiros maiores que 1 cujos únicos divisores são 1 e eles mesmos.
+Se você já se deparou com números primos antes, eles provavelmente pareceram uma
+curiosidade matemática e nada mais. Na verdade, os números primos são a
+base de uma aplicação muito prática da matemática: a criptografia. Com
+o uso de um pouco de matemática e de números primos muito grandes, os cientistas da computação
+desenvolveram técnicas que tornam as mensagens enviadas pela Internet mais seguras.
 
-These techniques are beyond the scope of this book, but we can at least
-write some code to determine if a number _n_ is prime. To do
-so, we can simply divide _n_ by all the numbers between 2
-and _n_ - 1. If none of the numbers divide it evenly, it
-must be prime. Here is this basic solution.
+Essas técnicas estão além do escopo deste livro, mas podemos pelo menos
+escrever algum código para determinar se um número _n_ é primo. Para isso
+, basta dividir _n_ por todos os números entre 2
+e _n_ - 1. Se nenhum desses números o dividir sem sobras, ele
+deve ser primo. Aqui está essa solução básica.
 
-.Gives a naive approach for testing if a number is prime.
+.Apresenta uma abordagem simples para verificar se um número é primo.
 [source, java]
 [[PrimalityTester0Program]]
 ----
 include::{programsdir}/PrimalityTester0.java[]
 ----
 
-This program has a `for` loop that runs from `2` up to `number - 1`,
-provided that we don't find a number that evenly divides `number`. This
-optimization means that the program will output the moment that it knows
-that the number *is not* prime, but we'll have to wait for it to
-check all the other possibilities before it is sure that the number *is*
-prime.
+Este programa possui um laço `for` que vai de `2` até `número - 1`,
+desde que não encontremos um número que divida `número` por inteiro. Essa
+otimização significa que o programa exibirá o resultado assim que souber
+que o número *não é* primo, mas teremos que esperar que ele
+verifique todas as outras possibilidades antes de ter certeza de que o número *é*
+primo.
 
-One insight that we can use to make the program more efficient is that,
-after checking 2, we don't have to divide it by any even numbers. So, we
-can do half the checking with a few simple modifications.
+Uma observação que podemos usar para tornar o programa mais eficiente é que,
+depois de verificar 2, não precisamos dividi-lo por nenhum número par. Portanto,
+podemos fazer metade da verificação com algumas modificações simples.
 
-.Gives a slightly cleverer approach for testing if a number is prime.
+.Oferece uma abordagem um pouco mais inteligente para testar se um número é primo.
 [source, java]
 [[PrimalityTester1Program]]
 ----
 include::{programsdir}/PrimalityTester1.java[]
 ----
 
-This version of the program sets the `boolean` variable `prime` to
-`false` if `number` is divisible by 2 (unless it's 2 itself) and `true` otherwise. Then, it
-starts the search at 3 and continues in jumps of 2. Although we save half the checks,
-we can do much better. Note that if a number _n_ is divisible by 2, then it's also divisible by
-_n_/2. So, if a number is *not* divisible by 2, it's also not divisible by any
-number larger than _n_/2. If it's not divisible by 2 or 3, then it's also not divisible by any number
-larger than _n_/3. If it's not divisible by 2 or 3
-or 4, it's not divisible by any number larger than
-_n_/4, and so on. Thus, we don't have to check all
-the way up to _n_ - 1. If we're checking to see if
-_n_ is divisible by _x_ and learning that
-_n_ is not divisible by anything larger than
-_n_/_x_, the point where _x_ = _n_/_x_
-is as follows.
+Esta versão do programa define a variável `boolean` `prime` como
+`false` se `number` for divisível por 2 (a menos que seja o próprio 2) e como `true` caso contrário. Em seguida,
+inicia a busca em 3 e continua em incrementos de 2. Embora economizemos metade das verificações,
+podemos fazer muito melhor. Observe que, se um número _n_ é divisível por 2, então também é divisível por
+_n_/2. Portanto, se um número *não* é divisível por 2, também não é divisível por nenhum
+número maior que _n_/2. Se não for divisível por 2 ou 3, então também não é divisível por nenhum número
+maior que _n_/3. Se não for divisível por 2 ou 3
+ou 4, não é divisível por nenhum número maior que
+_n_/4, e assim por diante. Assim, não precisamos verificar todos
+os números até _n_ - 1. Se estivermos verificando se
+_n_ é divisível por _x_ e descobrirmos que
+_n_ não é divisível por nenhum número maior que
+_n_/_x_, o ponto em que _x_ = _n_/_x_
+é o seguinte.
 
 //[stem]
 //++++
@@ -451,71 +453,71 @@ is as follows.
 [.text-center]
 image::root.svg[scaledwidth=8%,pdfwidth=8%,width=8%]
 
-Thus, we only need to search up to
-the square root of _n_, which will save much more time.
+Assim, precisamos pesquisar apenas até
+a raiz quadrada de _n_, o que economizará muito mais tempo.
 
-.Gives a much faster approach for testing if a number is prime.
+.Isso proporciona uma abordagem muito mais rápida para verificar se um número é primo.
 [source, java]
 [[PrimalityTester2Program]]
 ----
 include::{programsdir}/PrimalityTester2.java[]
 ----
 
-Note in this version of the program we do go up to and including `root`,
-because there's the possibility that `number` is a perfect square.
+Observe que, nesta versão do programa, vamos até `raiz`, inclusive,
+pois existe a possibilidade de que `numero` seja um quadrado perfeito.
 ====
 
 ****
 <<primeEfficiencyExercise>>
 ****
 
-.DNA reverse complement
+.Complemento reverso do DNA
 ====
-DNA is usually double stranded, with each base paired to another
-specific base, called its complementary base. The following table shows
-the association between each base and its complementary base.
+O DNA é geralmente de fita dupla, com cada base emparelhada com outra
+base específica, chamada de base complementar. A tabela a seguir mostra
+a relação entre cada base e sua base complementar.
 
-[.center%autowidth%unbreakable,cols="^,^,^",]
+[.center%autowidth%unbreakable,cols=“^,^,^”,]
 |============================================
-|Base|Abbreviation|Complementary Base
+|Base|Abreviação|Base complementar
 
-|Adenine |A |T
-|Cytosine |C |G
-|Guanine |G |C
-|Thymine |T |A
+|Adenina |A |T
+|Citosina |C |G
+|Guanina |G |C
+|Timina |T |A
 |============================================
 
-A simple but common task is finding the reverse complement of a DNA
-sequence. The reverse complement of a DNA sequence is its sequence of
-complementary bases given in reverse order. For example, the reverse
-complement of ACATGAG is CTCATGT. This sequence is found by first
-finding the complement of ACATGAG, which is TGTACTC, and then reversing
-its order.
+Uma tarefa simples, mas comum, é encontrar o complemento reverso de uma sequência de DNA
+. O complemento reverso de uma sequência de DNA é a sequência de
+bases complementares apresentada na ordem inversa. Por exemplo, o complemento
+reverso de ACATGAG é CTCATGT. Essa sequência é obtida primeiro
+encontrando o complemento de ACATGAG, que é TGTACTC, e depois invertendo
+sua ordem.
 
-We'll write a program that finds the reverse complement of a DNA
-sequence entered by a user. This sequence will be entered as a sequence
-of characters made up of the four abbreviations for the bases: A, C, G,
-and T. We'll store this sequence as a `String` and perform some
-manipulations on it to get the reverse complement.
+Vamos escrever um programa que encontre o complemento reverso de uma sequência de DNA
+inserida por um usuário. Essa sequência será inserida como uma sequência
+de caracteres composta pelas quatro abreviações das bases: A, C, G
+e T. Vamos armazenar essa sequência como uma `String` e realizar algumas
+manipulações nela para obter o complemento reverso.
 
-.Finds the reverse complement of a DNA sequence.
+.Encontra o complemento reverso de uma sequência de DNA.
 [source, java]
 [[ReverseComplementProgram]]
 ----
 include::{programsdir}/ReverseComplement.java[]
 ----
-<.> This example first creates a `String` filled with the complement of the
-base pairs from the input `String`.
-<.> Then, it creates a new `String` that is the reverse of the complement
-sequence.
+<.> Este exemplo cria primeiro uma `String` preenchida com o complemento dos
+pares de bases da `String` de entrada.
+<.> Em seguida, cria uma nova `String` que é o inverso da sequência
+complementar.
 
-Note how
-`complement` is created by appending the `char` corresponding to the
-complementary base at the *end* of `complement`. If we inserted each
-`char` at the beginning of `complement`, we wouldn't need to reverse in
-a separate step.
+Observe como
+`complement` é criada anexando o `char` correspondente à
+base complementar no *final* de `complement`. Se inseríssemos cada
+`char` no início de `complement`, não precisaríamos inverter em
+uma etapa separada.
 
-.More cleverly finds the reverse complement of a DNA sequence.
+.Encontra de forma mais inteligente o complemento reverso de uma sequência de DNA.
 [source, java]
 [[CleverReverseComplementProgram]]
 ----
@@ -525,65 +527,65 @@ include::{programsdir}/CleverReverseComplement.java[]
 
 
 [[efficientConcatenationExample]]
-.Efficient concatenation
+.Concatenação eficiente
 ====
-Since `String` values are immutable, they can never be changed. Thus, the `+=`
-operator doesn't change the `String`; instead, it creates a new `String` with
-the new information concatenated onto it. Unfortunately, it's inefficient to do
-so if there are many repeated concatenations. DNA sequences could contain
-billions of bases, and building up the reverse complement of a sequence that
-long would generate billions of new `String` objects, putting a strain on memory
-management. In situations where repetitive `String` concatenation occurs, it's
-more efficient to use a `StringBuilder` object, which is similar to a `String`
-but mutable. `StringBuilder` objects have an `append()` method that will insert
-data at the end of the current text representation. They also have an `insert()`
-method that will insert data at the given index. Once the text has been built,
-calling the `toString()` method on the `StringBuilder` object will return the
-`String` object that contains the text represented inside the `StringBuilder`.
+Como os valores `String` são imutáveis, eles nunca podem ser alterados. Portanto, o operador `+=`
+não altera a `String`; em vez disso, ele cria uma nova `String` com
+as novas informações concatenadas a ela. Infelizmente, isso é ineficiente
+se houver muitas concatenações repetidas. Sequências de DNA podem conter
+bilhões de bases, e construir o complemento reverso de uma sequência tão
+longa geraria bilhões de novos objetos `String`, sobrecarregando o gerenciamento de memória
+. Em situações em que ocorre concatenação repetitiva de `String`, é
+mais eficiente usar um objeto `StringBuilder`, que é semelhante a um `String`
+mas mutável. Os objetos `StringBuilder` possuem um método `append()` que insere
+dados no final da representação de texto atual. Eles também possuem um método `insert()`
+que insere dados no índice especificado. Uma vez que o texto tenha sido construído,
+chamar o método `toString()` no objeto `StringBuilder` retornará o
+objeto `String` que contém o texto representado dentro do `StringBuilder`.
 
-The following code is a version of the clever reverse complement using a
-`StringBuilder` instead of `String` concatenation.
+O código a seguir é uma versão do complemento reverso inteligente usando um
+`StringBuilder` em vez da concatenação de `String`.
 
-.Reverse complement of a DNA sequence using `StringBuilder`.
+.Complemento reverso de uma sequência de DNA usando `StringBuilder`.
 [source, java]
 [[StringBuilderReverseComplementProgram]]
 ----
 include::{programsdir}/StringBuilderReverseComplement.java[]
 ----
 
-Some IDEs will prompt you to automatically convert `String` concatenation inside
-of a loop into equivalent `StringBuilder` code.
+Algumas IDEs solicitarão que você converta automaticamente a concatenação de `String` dentro
+de um laço em código `StringBuilder` equivalente.
 ====
 
-==== `do`-`while` loops
+==== Laços `do`-`while`
 
-Use this rule of thumb for deciding which kind of loop to use: If you
-know how many times you want the loop to execute, use a `for` loop. If
-you don't know how many times you want it to execute, use a `while`
-loop. Clearly, this rule is not iron-clad. In the previous example, we
-used a `for` loop even though it would stop executing as soon as a `'z'`
-was encountered. Nevertheless, it seems like we have covered all of the
-possible situations with `while` and `for` loops. When should we use
-`do`-`while` loops? The simple answer is: never.
+Use esta regra prática para decidir que tipo de laço usar: se você
+sabe quantas vezes deseja que o laço seja executado, use um laço `for`. Se
+você não sabe quantas vezes deseja que ele seja executado, use um laço `while`
+. É claro que essa regra não é infalível. No exemplo anterior, nós
+usamos um laço `for` mesmo que ele parasse de ser executado assim que um `‘z’`
+fosse encontrado. No entanto, parece que cobrimos todas as
+situações possíveis com laços `while` e `for`. Quando devemos usar
+laços `do`-`while`? A resposta simples é: nunca.
 
-You never *have* to use a `do`-`while` loop. With a little bit of effort,
-you could use a single kind of loop for every job. The key difference between
-a `do`-`while` loop and a regular `while` loop is that a `do`-`while` loop
-will always run at least once. Neither of the other two loops give you
-that guarantee. The syntax for a `do`-`while` loop is a `do` at the top of
-a loop body enclosed in braces, with a normal `while` header at the end,
-including a condition in parentheses, followed by a semicolon.
-<<figure-do-while>> shows the pattern of execution for `do`-`while`
-loops.
+Você nunca *precisa* usar um laço `do`-`while`. Com um pouco de esforço,
+você poderia usar um único tipo de laço para todas as tarefas. A principal diferença entre
+um laço `do`-`while` e um laço `while` comum é que um laço `do`-`while`
+sempre será executado pelo menos uma vez. Nenhum dos outros dois laços oferece
+essa garantia. A sintaxe de um laço `do`-`while` é um `do` no início de
+um corpo de laço entre chaves, com um cabeçalho `while` normal no final,
+incluindo uma condição entre parênteses, seguida por um ponto-e-vírgula.
+<<figure-do-while>> mostra o padrão de execução dos laços `do`-`while`
+.
 
 [[figure-do-while]]
 [.text-center]
-.The statements in the body of the loop are executed, and then the condition is checked. When the check is `false`, execution skips past the body of the loop. A `do`-`while` loop is guaranteed to run at least once.
+.As instruções no corpo do laço são executadas e, em seguida, a condição é verificada. Quando a verificação é `false`, a execução pula o corpo do laço. Um laço `do`-`while` tem a garantia de ser executado pelo menos uma vez.
 image::dowhile.svg[scaledwidth=75%,pdfwidth=75%,width=75%]
 
 
-We can use a `do`-`while` loop to print out the first 10 perfect squares
-as follows.
+Podemos usar um laço `do`-`while` para imprimir os primeiros 10 quadrados perfeitos
+da seguinte forma.
 
 [source,java]
 ----
@@ -594,7 +596,7 @@ do {
 } while (x <= 10);
 ----
 
-This loop behaves exactly the same as the following loop.
+Este laço se comporta exatamente da mesma forma que o laço a seguir.
 
 [source,java]
 ----
@@ -605,15 +607,15 @@ while (x <= 10) {
 }
 ----
 
-The time when a `do`-`while` loop is really going to shine is when your
-program will work incorrectly if the loop doesn't run at least once.
-This situation often occurs with input, when the loop must run at least
-once before checking the condition. For example, imagine that you want
-to write a program that picks a random number between 1 and 100 and lets
-the user guess what it is until the user gets it right. You need a loop
-because it's a repetitive activity, but you need to let the user guess
-at least once so that you can check if he or she was right. The
-following program fragment does exactly that.
+O momento em que um laço `do`-`while` realmente se destaca é quando seu
+programa funcionará incorretamente se o laço não for executado pelo menos uma vez.
+Essa situação ocorre frequentemente com entradas, quando o laço deve ser executado pelo menos
+uma vez antes de verificar a condição. Por exemplo, imagine que você queira
+escrever um programa que escolha um número aleatório entre 1 e 100 e permita
+que o usuário adivinhe qual é até acertar. Você precisa de um laço
+porque é uma atividade repetitiva, mas precisa permitir que o usuário adivinhe
+pelo menos uma vez para que você possa verificar se ele acertou. O
+fragmento de programa a seguir faz exatamente isso.
 
 [source,java]
 ----
@@ -622,98 +624,99 @@ Random random = new Random();
 int guess;
 int number = random.nextInt(100) + 1;
 do {
-    System.out.print("What's your guess? ");
+    System.out.print(“Qual é o seu palpite? ”);
     guess = in.nextInt();
 } while (guess != number);
-System.out.println("You got it! The number was " + number + ".");
+System.out.println(“Você acertou! O número era ” + number + “.”);
 ----
 
-You could perform the same function with a `while` loop, but you'd
-need to get input from the user before the loop starts. Using the
-`do`-`while` loop is a little more elegant.
+Você poderia executar a mesma função com um laço `while` , mas precisaria
+obter a entrada do usuário antes do início do laço. Usar o
+laço `do`-`while` é um pouco mais elegante.
 
-==== Nested loops
+==== Laços aninhados
 
-Just as you can nest `if` statements, it's possible to nest loops inside of other
-loops. In the simplest case, you may have some repetitive activity that
-itself needs to be performed several times. For example, when you were
-younger, you probably had to learn your multiplication tables. For each
-number, a multiplication table gave the value of the product of that
-number by every integer between 1 and 12. We can write code to print out
-out the multiplication table for every number from 1 to 10 by simply
-repeating the process.
+Assim como é possível aninhar instruções `if`, também é possível aninhar laços dentro de outros
+laços. No caso mais simples, você pode ter alguma atividade repetitiva que
+precisa ser executada várias vezes. Por exemplo, quando você era
+mais jovem, provavelmente teve que aprender as tabuadas. Para cada
+número, uma tabuada fornecia o valor do produto desse
+número por todos os números inteiros entre 1 e 12. Podemos escrever um código para imprimir
+a tabuada de cada número de 1 a 10 simplesmente
+repetindo o processo.
 
 [source,java]
 ----
 for (int number = 1; number <= 10; number++) {
     for (int factor = 1; factor <= 12; factor++) {
-        System.out.println(number + " x " + factor +
-            " = " + number*factor);
+        System.out.println(number + “ x ” + factor +
+            “ = ” + number*factor);
     }
-    System.out.println();
+    
+System.out.println();
 }
 ----
 
-The outer loop incrementing `number` runs 10 times. The inner loop
-incrementing `factor` will run 12 times for each iteration of the outer
-loop. Thus, the code in the inner loop will run a total of 120 times.
-Every 12 iterations, the inner loop will stop, and an extra blank line
-will be added by the `System.out.println()` method in the outer loop.
+O laço externo que incrementa `number` é executado 10 vezes. O laço interno
+que incrementa `factor` será executado 12 vezes a cada iteração do laço externo
+. Assim, o código no laço interno será executado um total de 120 vezes.
+A cada 12 iterações, o laço interno irá parar, e uma linha em branco extra
+será adicionada pelo método `System.out.println()` no laço externo.
 
-.Triangular numbers
+.Números triangulares
 ====
-The sequence consisting of 1, 3, 6, 10, 15, and so on is known as the
-_triangular numbers_. The _i_^th^ triangular number is the sum
-of the first _i_ integers. They are called triangular
-numbers because they can be drawn as equilateral triangles in a very
-natural way, if you use a number of dots equal to the number.
+A sequência composta por 1, 3, 6, 10, 15 e assim por diante é conhecida como
+_números triangulares_. O _i_^ésimo^ número triangular é a soma
+dos primeiros _i_ inteiros. Eles são chamados de números
+triangulares porque podem ser representados como triângulos equiláteros de uma maneira muito
+natural, se você usar um número de pontos igual ao número.
 
-We can use nested loops to print out the first _n_
-triangular numbers, where _n_ is specified by the user.
+Podemos usar laços aninhados para imprimir os primeiros _n_
+números triangulares, onde _n_ é especificado pelo usuário.
 
-.Prints out triangular numbers.
+.Imprime números triangulares.
 [source, java]
 [[TriangularNumbersProgram]]
 ----
 include::{programsdir}/TriangularNumbers.java[]
 ----
 
-As you can see, the outer loop iterates through each of the `n`
-different triangular numbers. Then, the inner loop does the summation
-needed to compute the given triangular number. However, producing a sequence of
-triangular numbers this way is inefficient. Nested loops are an effective way to solve many problems,
-particularly certain types of problems using arrays, but we can generate
-triangular numbers using only a single `for` loop. The key insight is
-that we can keep track of the previous triangular number and add
-_i_ to it, as _i_ increases.
+Como você pode ver, o laço externo percorre cada um dos `n`
+números triangulares diferentes. Em seguida, o laço interno realiza a soma
+necessária para calcular o número triangular dado. No entanto, produzir uma sequência de
+números triangulares dessa maneira é ineficiente. Laços aninhados são uma maneira eficaz de resolver muitos problemas,
+principalmente certos tipos de problemas que usam matrizes, mas podemos gerar
+números triangulares usando apenas um único laço `for`. A ideia principal é
+que podemos acompanhar o número triangular anterior e adicionar
+_i_ a ele, à medida que _i_ aumenta.
 
-.Prints out triangular numbers more cleverly.
+.Imprime números triangulares de maneira mais inteligente.
 [source, java]
 [[CleverTriangularNumbersProgram]]
 ----
 include::{programsdir}/CleverTriangularNumbers.java[]
 ----
 
-By removing the inner `for` loop, the total amount of work needed is
-greatly reduced.
+Ao remover o laço interno `for`, a quantidade total de trabalho necessária é
+consideravelmente reduzida.
 ====
 
-==== Common pitfalls
+==== Armadilhas comuns
 
-With great power comes great responsibility. The power to repeat things
-a large number of times means that we can also repeat our mistakes a
-large number of times. Many classic bugs occur as a result of logical or
-typographical errors in loops. We list a few of the most
-common below.
+Com grande poder vem grande responsabilidade. O poder de repetir coisas
+inúmeras vezes significa que também podemos repetir nossos erros
+inúmeras vezes. Muitos bugs clássicos ocorrem como resultado de erros lógicos ou
+tipográficos em laços. Listamos alguns dos mais
+comuns a seguir.
 
-.Pitfall: Infinite loops
+.Armadilha: Laços infinitos
 [WARNING]
 ====
-It's possible to create a loop that never terminates. Your program may
-take a long time to finish, but if it takes much longer than you
-expect, an infinite loop might be the culprit. Infinite loops might
-occur because you forgot to include an appropriate statement to advance
-a counter.
+É possível criar um laço que nunca termina. Seu programa pode
+demorar muito tempo para terminar, mas se demorar muito mais do que você
+espera, um laço infinito pode ser o culpado. Laços infinitos podem
+ocorrer porque você se esquece de incluir uma instrução apropriada para avançar
+um contador.
 
 [source,java]
 ----
@@ -723,67 +726,67 @@ while (number <= 100) {
 }
 ----
 
-This code is presumably intended to print out the first 100 integers,
-but there's no code that increases the value of `number`. As a
-consequence, the number `1` will be printed out over and over until the
-user stops the program from executing. Usually, the cause is more
-subtle, as in the following code.
+Presume-se que este código tenha a intenção de imprimir os primeiros 100 números inteiros,
+mas não há código que aumente o valor de `number`. Como
+consequência, o número `1` será impresso repetidamente até que o
+usuário interrompa a execução do programa. Normalmente, a causa é mais
+sutil, como no código a seguir.
 
 [source,java]
 ----
 for (int i = 0; i < 10; i += 0.5) {
-    System.out.println("Half a step forward, half a step back...");
+    System.out.println(“Meio passo à frente, meio passo atrás...”);
 }
 ----
 
-One might expect this code to print out 20 lines of output. However,
-remember that `i` is an `int`. Adding `0.5` to `0` and then casting it
-to an `int` gives `0` again. What's particularly insidious about this
-loop is that it compiles without even a warning in Java. Usually
-conversion from a `double` to an `int` requires an explicit cast, but
-the `pass:[+=]` operator (and other similar operators) behave a little
-differently for technical reasons.
+Seria de se esperar que este código imprimisse 20 linhas de saída. No entanto,
+lembre-se de que `i` é um `int`. Adicionar `0.5` a `0` e depois convertê-lo
+para um `int` resulta em `0` novamente. O que é particularmente perigoso neste
+laço é que ele compila sem sequer emitir um aviso em Java. Normalmente
+a conversão de um `double` para um `int` requer uma conversão explícita, mas
+o operador `pass:[+=]` (e outros operadores semelhantes) se comportam de maneira um pouco
+diferente por razões técnicas.
 ====
 
-.Pitfall: Almost infinite loops
+.Armadilha: laços quase infinitos
 [WARNING]
 ====
-Many loops are truly infinite; others take a really long time. For
-example, if you intended to run a loop down from 10 to 0, but increment
-your counter instead of decrementing it, overflow means that you will
-eventually get to a number less than 0, but it will take more than 2
-billion increments instead of the expected 10 decrements.
+Muitos laços são realmente infinitos; outros demoram muito tempo. Por
+exemplo, se você pretendia executar um laço de 10 a 0, mas incrementou
+seu contador em vez de decrementá-lo, o estouro de memória significa que você
+acabará chegando a um número menor que 0, mas isso levará mais de 2
+bilhões de incrementos em vez dos 10 decrementos esperados.
 
 [source,java]
 ----
 for (int i = 10; i > 0; ++i) {
     System.out.println(i);
 }
-System.out.println("Blast off!");
+System.out.println(“Decolagem!”);
 ----
 
-This loop will significantly slow your code. Everyone will be so tired
-of waiting that they might leave the rocket launch. Of course,
-another problem with almost infinite loops is that you are dealing with
-the wrong values. No one expects to hear the number 2,147,483,647 in a
-countdown.
+Este laço irá desacelerar significativamente seu código. Todos ficarão tão cansados
+de esperar que podem acabar saindo do lançamento do foguete. É claro que
+outro problema com laços quase infinitos é que você está lidando com
+valores errados. Ninguém espera ouvir o número 2.147.483.647 em uma
+contagem regressiva.
 ====
 
-.Pitfall: Fencepost errors
+.Armadilha: Erros de “fencepost”
 [WARNING]
 ====
-Perhaps the most common loop errors are fencepost errors, often known as
-off-by-one errors. The name "`fencepost`" comes from a related mistake
-that someone might make when putting up a fence. Imagine that you want
-to erect a 10 meter long chain link fence with a support
-post every meter, how many posts do you need? In fact, we haven't given
-you enough information to answer the question correctly. If your fence
-is built in a straight line, you'll need 11 posts so that you
-have a post at each end. However, if your fence is a rectangular
-enclosure, say 3 meters by 2 meters, you'll only need 10 posts.
+Talvez os erros de laço mais comuns sejam os erros de poste de cerca, frequentemente conhecidos como
+erros off-by-one. O nome “`fencepost`” vem de um erro relacionado
+que alguém poderia cometer ao montar uma cerca. Imagine que você queira
+erguer uma cerca de arame de 10 metros de comprimento com um poste de suporte
+a cada metro; quantos postes você precisa? Na verdade, não fornecemos
+informações suficientes para responder à pergunta corretamente. Se sua cerca
+for construída em linha reta, você precisará de 11 postes para que
+haja um poste em cada extremidade. No entanto, se sua cerca for um recinto retangular
+, digamos, de 3 metros por 2 metros, você precisará apenas de 10 postes.
 
-In loops, fencepost errors are often due to zero-based counting. A `for`
-loop that iterates 10 times is below.
+Em laços, os erros de poste de cerca geralmente se devem à contagem baseada em zero. Um laço `for`
+que itera 10 vezes está abaixo.
 
 [source,java]
 ----
@@ -792,9 +795,9 @@ for (int i = 0; i < 10; ++i) {
 }
 ----
 
-Of course, sometimes we need one-based counting instead. After being
-used to zero-based counting, a programmer might make the following loop
-that incorrectly iterates 9 times.
+É claro que, às vezes, precisamos da contagem a partir de 1. Depois de se
+habituar à contagem a partir de zero, um programador pode criar o seguinte laço
+que itera incorretamente 9 vezes.
 
 [source,java]
 ----
@@ -803,7 +806,7 @@ for (int i = 1; i < 10; ++i) {
 }
 ----
 
-The correct version that iterates 10 times is below.
+A versão correta, que itera 10 vezes, está abaixo.
 
 [source,java]
 ----
@@ -812,27 +815,27 @@ for (int i = 1; i <= 10; ++i) {
 }
 ----
 
-If you want to iterate _n_ times, start at 0 and go up to
-but not including _n_ or alternately start at 1 and go up to and
-including _n_. To keep loop headers consistent, some
-programmers always start at 0 and then adjust the values inside the
-loop, printing out `i + 1` in this case.
+Se você quiser iterar _n_ vezes, comece em 0 e vá até
+mas sem incluir _n_ ou, alternativamente, comece em 1 e vá até e
+incluindo _n_. Para manter a consistência dos cabeçalhos dos laços, alguns
+programadores sempre começam em 0 e, em seguida, ajustam os valores dentro do
+laço, imprimindo `i + 1` neste caso.
 ====
 
 
-.Pitfall: Skipped loops
+.Armadilha: Laços ignorados
 [WARNING]
 ====
-A loop runs as long as its condition is `true`. For `for` loops and
-`while` loops, this could mean that the loop is never even entered.
-Sometimes, that behavior is intended by the programmer. Sometimes, the
-programmer made a mistake.
+Um laço é executado enquanto sua condição for `true`. Para laços `for` e
+`while`, isso pode significar que o laço nem sequer é iniciado.
+Às vezes, esse comportamento é intencional por parte do programador. Às vezes, o
+programador cometeu um erro.
 
-For example, we can write a program that will add any number of positive
-values. When the user is finished using the adder, he or she enters a
-negative number. This negative number, called a _sentinel value_, tells
-the program to stop executing the loop. Below is an incorrect
-implementation of such a program.
+Por exemplo, podemos escrever um programa que somará qualquer número de valores positivos
+. Quando o usuário terminar de usar o somador, ele ou ela digita um
+número negativo. Esse número negativo, chamado de _valor sentinela_, diz
+ao programa para parar de executar o laço. Abaixo está uma implementação incorreta
+de tal programa.
 
 [source,java]
 ----
@@ -841,28 +844,27 @@ int number = 0;
 int sum = 0;
 while (number > 0) {
     sum += number;
-    System.out.print("Enter the next number to add: ");
+    System.out.print(“Digite o próximo número a ser somado: ”);
     number = in.nextInt();
 }
-System.out.println("The total sum is " + sum);
+System.out.println(“A soma total é ” + sum);
 ----
 
-This loop will never be executed because `0` is not greater than `0`.
-The program could be changed by making the condition of the `while` loop
-`number >= 0`. Doing so will allow the user to enter `0` as input, which
-is fine since it doesn't change the value of the `sum`. If you want to
-force the user to enter only numbers greater than zero, you could change
-the loop into a `do`-`while` loop.
+Este laço nunca será executado porque `0` não é maior que `0`.
+O programa poderia ser alterado tornando a condição do laço `while`
+`number >= 0`. Isso permitirá que o usuário insira `0` como entrada, o que
+é aceitável, já que não altera o valor de `sum`. Se você quiser
+forçar o usuário a inserir apenas números maiores que zero, pode alterar para um laço `do`-`while`.
 ====
 
-.Pitfall: Misplaced semicolons
+.Armadilha: Pontos-e-vírgulas mal posicionados
 [WARNING]
 ====
-The idea of a statement in Java is often amorphous in the minds of
-beginning programmers. An entire loop (with any number of loops nested
-inside of it) is considered one statement. An executable statement ending with
-a semicolon is one statement as well, even when that executable
-statement is empty. Thus, the following is a legal (but infinite) loop.
+A noção de uma instrução em Java costuma ser confusa na mente de
+programadores iniciantes. Um laço inteiro (com qualquer número de laços aninhados
+dentro dele) é considerado uma instrução. Uma instrução executável que termina com
+um ponto-e-vírgula também é uma instrução, mesmo quando essa instrução
+executável está vazia. Assim, o seguinte é um laço válido (mas infinito).
 
 [source,java]
 ----
@@ -871,23 +873,23 @@ while (i > 0); {
     System.out.println(i);
     --i;
 }
-System.out.println("Ready or not, here I come!");
+System.out.println(“Pronto ou não, aqui vou eu!”);
 ----
 
-This code was supposed to count down from 100, just like in the game of
-Hide and Seek; however, there is a semicolon *after* the condition of the
-`while` loop. This semicolon is treated like an executable statement
-that does nothing. As a consequence, the `while` loop does the single
-statement, checks if the condition is `true` (which it is), and
-continues to do the empty statement and check the condition, forever.
-The extra braces enclose two statements unnecessarily, but Java allows
-extra braces, as long as they are evenly matched.
+Esse código deveria fazer uma contagem regressiva a partir de 100, assim como no jogo
+esconde-esconde; no entanto, há um ponto-e-vírgula *após* a condição do
+laço `while`. Esse ponto-e-vírgula é tratado como uma instrução executável
+que não faz nada. Como consequência, o laço `while` executa a única
+instrução, verifica se a condição é `true` (o que é verdade) e
+continua a executar a instrução vazia e a verificar a condição, para sempre.
+As chaves extras envolvem duas instruções desnecessariamente, mas o Java permite
+chaves extras, desde que estejam emparelhadas.
 
-This error is common especially for those new to loops and conditional
-statements and are in the habit of putting semicolons after everything.
-A misplaced semicolon doesn't always result in an infinite loop. Here
-is the `for` loop version of the same code, also with a semicolon
-inserted after the loop header.
+Esse erro é comum especialmente para quem é novo em laços e instruções condicionais
+e tem o hábito de colocar ponto-e-vírgulas depois de tudo.
+Um ponto-e-vírgula mal colocado nem sempre resulta em um laço infinito. Aqui
+está a versão com laço `for` do mesmo código, também com um ponto-e-vírgula
+inserido após o cabeçalho do laço.
 
 [source,java]
 ----
@@ -895,116 +897,116 @@ int i;
 for (i = 100; i > 0; --i); {
     System.out.println(i);
 }
-System.out.println("Ready or not, here I come!");
+System.out.println(“Pronto ou não, aqui vou eu!”);
 ----
 
-This version of the code will execute similarly, except the decrement is
-built into the header of the loop. So, the loop will execute the empty
-statement, but it will also decrement `i`. This code will decrement `i`
-100 times, then print out `0` exactly once, then print
-`Ready or not, here I come!`.
+Esta versão do código será executada de forma semelhante, exceto que a decrementação está
+incorporada no cabeçalho do laço. Assim, o laço executará a instrução vazia
+, mas também decrementará `i`. Este código decrementará `i`
+100 vezes, depois imprimirá `0` exatamente uma vez e, em seguida, imprimirá
+`Pronto ou não, aqui vou eu!`.
 
-There are some cases when an empty statement for a loop body is
-useful although it is never necessary. In future chapters, we'll
-point out situations in which you may wish to use an empty statement
-this way.
+Existem alguns casos em que uma instrução vazia no corpo de um laço é
+útil, embora nunca seja necessária. Nos próximos capítulos, vamos
+apontar situações em que você pode querer usar uma instrução vazia
+dessa maneira.
 ====
 
-=== Solution: DNA searching
+=== Solução: Pesquisa de DNA
 
-Below we give a solution to the DNA searching problem posed at the
-beginning of the second half of this chapter. Our solution prints out
-the index within the sequence when it finds a match with the
-subsequence it's looking for. Afterward, it prints out the total number of
-matches. Our code also does error checking to make sure that the user
-only enters valid DNA sequences containing the letters A, C, G, and T.
-We begin our code with the standard `import` statement and class
-definition.
-
-[source, java]
-----
-include::{programsdir}/DNASearch.java[lines=1..8]
-----
-<.> The `main()` method instantiates a `Scanner` object and declares both of
-the `String` variables we'll need to store the DNA sequences.
-<.> The method
-also declares a `boolean` and a `char` we'll use for input checking.
+A seguir, apresentamos uma solução para o problema de pesquisa de DNA proposto no
+início da segunda metade deste capítulo. Nossa solução exibe
+o índice dentro da sequência quando encontra uma correspondência com a
+subsequência que está procurando. Em seguida, ela exibe o número total de
+correspondências. Nosso código também faz verificação de erros para garantir que o usuário
+insira apenas sequências de DNA válidas contendo as letras A, C, G e T.
+Começamos nosso código com a instrução `import` padrão e a definição de classe
+.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[lines=10..21]
+include::{programsdir}/DNASearch.java[linhas=1..8]
 ----
-<.> Next, the user is prompted for a DNA sequence to search in.
-<.> This
-`String` stored in `sequence` is converted to uppercase just in case
-the user is not being consistent.
-<.> The inner `for` loop in this code checks each `char` inside of `sequence`.
-<.> If any `char` is not an
-`'A'`, `'C'`, `'G'`, or `'T'`, then `valid` is set to `false`. As a
-result, the `for` loop terminates. Also, the `do`-`while` loop repeats the
-prompt and gets a new `String` for `sequence` from the user.
-<.> This outer
-`do`-`while` loop continues as long as the user keeps entering invalid DNA
-sequences.
+<.> O método `main()` instancia um objeto `Scanner` e declara as duas
+variáveis `String` de que precisaremos para armazenar as sequências de DNA.
+<.> O método
+também declara um `boolean` e um `char` que usaremos para a verificação de entrada.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[lines=23..34]
+include::{programsdir}/DNASearch.java[linhas=10..21]
 ----
-
-The code used to input `subsequence` while doing error checking is
-virtually identical to the code to input `sequence`.
+<.> Em seguida, o usuário é solicitado a inserir uma sequência de DNA para pesquisa.
+<.> Esta
+`String` armazenada em `sequence` é convertida para maiúsculas, caso
+o usuário não esteja sendo consistente.
+<.> O laço `for` interno neste código verifica cada `char` dentro de `sequence`.
+<.> Se algum `char` não for um
+`‘A’`, `‘C’`, `‘G’` ou `‘T’`, então `valid` é definido como `false`. Como
+resultado, o laço `for` é encerrado. Além disso, o laço `do`-`while` repete o
+prompt e obtém uma nova `String` para `sequence` do usuário.
+<.> Este laço externo
+`do`-`while` continua enquanto o usuário continuar inserindo sequências de DNA
+inválidas.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[lines=36..47]
+include::{programsdir}/DNASearch.java[linhas=23..34]
 ----
-<.> The workhorse of the search is found in these nested `for` loops.
-The outer loop iterates through every index in `sequence`, until it
-comes to an index that is too late to be the start of a new subsequence
-(since the subsequence would be too long to fit anymore). This happens
-to be when the value of `i` is greater than or equal to
-`sequence.length() - subsequence.length() + 1`. It may take some thought
-to verify that this condition is the correct one. One way to think about
-this problem is by noting that, when `sequence` and `subsequence` have
-the same length, you need to check starting at index `0` of `sequence`
-but not any later indexes. Also, if `subsequence` is one `char` longer
-than `sequence`, there can never be a match. In that case, the value of
-`sequence.length() - subsequence.length() + 1` would be `0`. Since `0`
-is not less than `0`, the outer `for` loop would never execute.
-<.> The inner `for` loop iterates through the length of `subsequence`,
-making sure that every `char` in `sequence`, starting at the appropriate
-offset, exactly matches a `char` in `subsequence`.
-<.> If, at any point, the
-two `char` values do not match, the inner `for` loop will immediately
-exit, using the `break` command.
-<.> On the last iteration of the
-inner `for` loop, when `j` is one less than the length of `subsequence`,
-we know that all of `subsequence` matched a part of `sequence`. As a
-result, we print out the index of `sequence` where `subsequence` started
-and increment the `found` counter.
 
-If you know the `String` class well, you can use the `indexOf()` method
-to replace the inner `for` loop. We leave that approach as an exercise.
+O código usado para inserir `subsequence` durante a verificação de erros é
+praticamente idêntico ao código para inserir `sequence`.
+
+[source, java]
+----
+include::{programsdir}/DNASearch.java[linhas=36..47]
+----
+<.> O núcleo da pesquisa está nesses laços `for` aninhados.
+O laço externo percorre todos os índices em `sequence`, até que
+chegue a um índice que seja tarde demais para ser o início de uma nova subsequência
+(já que a subsequência seria longa demais para caber). Isso ocorre
+quando o valor de `i` é maior ou igual a
+`sequence.length() - subsequence.length() + 1`. Pode ser necessário refletir um pouco
+para verificar se essa condição está correta. Uma maneira de pensar sobre
+esse problema é observar que, quando `sequence` e `subsequence` têm
+o mesmo comprimento, você precisa verificar a partir do índice `0` de `sequence`
+, mas não os índices posteriores. Além disso, se `subsequence` for um `char` mais longo
+que `sequence`, nunca poderá haver uma correspondência. Nesse caso, o valor de
+`sequence.length() - subsequence.length() + 1` seria `0`. Como `0`
+não é menor que `0`, o laço `for` externo nunca seria executado.
+<.> O laço `for` interno percorre o comprimento de `subsequence`,
+garantindo que cada `char` em `sequence`, começando no deslocamento apropriado,
+corresponda exatamente a um `char` em `subsequence`.
+<.> Se, em qualquer ponto, os
+dois valores `char` não corresponderem, o laço `for` interno será imediatamente
+encerrado, usando o comando `break`.
+<.> Na última iteração do
+laço `for` interno, quando `j` for um a menos que o comprimento de `subsequence`,
+sabemos que toda a `subsequence` correspondeu a uma parte de `sequence`. Como 
+resultado, imprimimos o índice de `sequence` onde `subsequence` começou
+e incrementamos o contador `found`.
+
+Se você conhece bem a classe `String`, pode usar o método `indexOf()`
+para substituir o laço `for` interno. Deixamos essa abordagem como um exercício.
 
 ****
 <<indexOfSearchExercise>>
 ****
 
-Finally, we print out the total number of matches found. In order to
-avoid awkward output like `1 matches found.`, we used an `if`-`else` to
-customize the output based on the value of `found`.
+Por fim, imprimimos o número total de correspondências encontradas. Para
+evitar uma saída estranha como `1 correspondência encontrada.`, usamos um `if`-`else` para
+personalizar a saída com base no valor de `found`.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[lines=49..55]
+include::{programsdir}/DNASearch.java[linhas=49..55]
 ----
 
-The ideas needed to correctly implement the solution are not difficult,
-but catching all the off-by-one errors and getting every detail right
-takes care. There's also more than one way to code this solution. For
-example, we could have written the nested loops that do the searching as
-follows.
+As ideias necessárias para implementar corretamente a solução não são difíceis,
+mas detectar todos os erros de deslocamento de um e acertar todos os detalhes
+exige cuidado. Também há mais de uma maneira de codificar essa solução. Por
+exemplo, poderíamos ter escrito os laços aninhados que fazem a busca da seguinte
+forma.
 
 [source,java]
 ----
@@ -1012,163 +1014,166 @@ int found = 0;
 for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
     for (int j = 0; j < subsequence.length() &&
         subsequence.charAt(j) == sequence.charAt(i + j); ++j) {
-        if (j == subsequence.length() - 1) { // Matches
-            System.out.println("Match found at index " + i);
+        
+if (j == subsequence.length() - 1) { // Correspondências
+            System.out.println(“Correspondência encontrada no índice ” + i);
             ++found;
         }
     }
 }
 ----
 
-This design is preferred by many since it removes the `break`. By using
-an empty statement, it's possible to move the check to see if the
-matching process is done outside of the inner `for` loop.
+Esse design é preferido por muitos, pois elimina o `break`. Ao usar
+uma instrução vazia, é possível mover a verificação para ver se o
+processo de correspondência foi concluído para fora do laço `for` interno.
 
 [source,java]
 ----
 int found = 0;
 int j;
 for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
-    for (j = 0; j < subsequence.length() &&
+    
+for (j = 0; j < subsequence.length() &&
         subsequence.charAt(j) == sequence.charAt(i + j); ++j);
-    if (j == subsequence.length()) { // Matches
-        System.out.println("Match found at index " + i);
+    if (j == subsequence.length()) { // Correspondências
+        System.out.println(“Correspondência encontrada no índice ” + i);
         ++found;
     }
 }
 ----
 
-In this case, note that we must declare `j` outside of the inner `for`
-loop, since it will be used outside. This approach is more efficient
-because we only need to perform the check once. Note that the
-condition of the `if` statement has also changed. Now, we know that all of
-`subsequence` matches because the loop ran to completion. If the loop
-did not run to completion, then `j` would be smaller than
-`subsequence.length()` and the loop must have terminated because the two
-`char` values did not match. Although more efficient, some programmers
-would avoid this approach because it uses confusing syntax in which
-the body of the `for` loop is a single empty statement followed by a
-semicolon. Likewise, the logic about exiting the loop and the condition
-of the `if` statement is murkier.
+Nesse caso, observe que devemos declarar `j` fora do laço `for`
+interno, já que ele será usado fora dele. Essa abordagem é mais eficiente
+porque precisamos realizar a verificação apenas uma vez. Observe que a
+condição da instrução `if` também mudou. Agora, sabemos que toda a
+`subsequência` corresponde porque o laço foi executado até o fim. Se o laço
+não tivesse sido executado até o fim, então `j` seria menor que
+`subsequence.length()` e o laço deve ter terminado porque os dois
+valores `char` não corresponderam. Embora seja mais eficiente, alguns programadores
+evitariam essa abordagem porque ela usa uma sintaxe confusa na qual
+o corpo do laço `for` é uma única instrução vazia seguida por um
+ponto-e-vírgula. Da mesma forma, a lógica sobre sair do laço e a condição
+da instrução `if` fica mais obscura.
 
-=== Concurrency: Loops
+=== Concorrência: Laços
 
-Many programmers use concurrency for speedup, to make their programs
-to run faster. Most programs that run for a long time use loops to do
-repetitive tasks. If these loops are doing the same operation to many
-different pieces of data, we may be able to speed up the process by
-splitting up the data and letting different threads operate on their own
-segment of the data. Splitting up data this way is called _domain
-decomposition_ which allows us to achieve _data parallelism_. These
-topics are discussed further in <<Concepts: Splitting up work>>.
+Muitos programadores utilizam a concorrência para aumentar a velocidade, a fim de fazer com que seus programas
+sejam executados mais rapidamente. A maioria dos programas que são executados por um longo período utiliza laços para realizar
+tarefas repetitivas. Se esses laços estiverem realizando a mesma operação em muitos
+conjuntos de dados diferentes, podemos acelerar o processo ao
+dividir os dados e permitir que diferentes threads operem em seu próprio
+segmento dos dados. Dividir os dados dessa maneira é chamado de _decomposição de domínio
+, o que nos permite alcançar o _paralelismo de dados_. Esses
+tópicos são discutidos mais detalhadamente em <<Conceitos: Dividindo o trabalho>>.
 
-Performing repetitive tasks is one of the great strengths of computers.
-For most programs that run a long time, incredible amounts of
-computation are being done inside of (usually nested) loops. Domain
-decomposition will not work for all of these programs. Some cannot be
-parallelized at all, but this book is about finding problems that can
-have parallel and concurrent solutions.
+Executar tarefas repetitivas é um dos grandes pontos fortes dos computadores.
+Para a maioria dos programas que rodam por muito tempo, quantidades incríveis de
+cálculos estão sendo feitas dentro de loops (geralmente aninhados). A 
+decomposição de domínios não funcionará para todos esses programas. Alguns não podem ser
+paralelizados de forma alguma, mas este livro trata de encontrar problemas que possam
+ter soluções paralelas e concorrentes.
 
-In <<concurrency#concurrency>>, we'll introduce tools
-for writing a concurrent program with different threads of execution
-running at the exactly the same time and potentially interacting. Using
-only the power of loops, you can see parallelism in action now.
+Em <<concorrência#concorrência>>, apresentaremos ferramentas
+para escrever um programa concorrente com diferentes threads de execução
+rodando exatamente ao mesmo tempo e potencialmente interagindo. Usando
+apenas o poder dos laços, você pode ver o paralelismo em ação agora.
 
 
 [[parallelismWithoutThreadsExample]]
-.Parallelism without threads
+.Paralelismo sem threads
 ====
-Consider the problem of computing the sum of the sines of a range of
-integers. At its heart is a loop from the start of the range to the end.
+Considere o problema de calcular a soma dos senos de um intervalo de
+números inteiros. Em sua essência, há um laço do início ao fim do intervalo.
 
 [source,java]
 ----
 for (int i = start; i <= end; ++i) {
-    sum += Math.sin(start);
+    
+sum += Math.sin(start);
 }
 ----
 
-If we want to allow the user to specify the start and the end and print
-out the sum, we need to make a program with a little bit of input and
-output around this loop.
+Se quisermos permitir que o usuário especifique o início e o fim e imprima
+a soma, precisamos criar um programa com um pouco de entrada e
+saída em torno desse laço.
 
-.Adds the sines of all integers in a range specified by the user.
+.Soma os senos de todos os inteiros em um intervalo especificado pelo usuário.
 [source, java]
 [[SumSinesProgram]]
-----
+-- --
 include::{programsdir}/SumSines.java[]
 ----
 
-If you compile and run this program with `1` as the start value and
-`100000000` as the end, the answer should be `1.7136493465700542`. One
-hundred million values is a lot to find the sine for. Depending on your
-machine, this task should take between 10 seconds and over a minute. Try
-to time how long this takes as accurately as possible.
+Se você compilar e executar este programa com `1` como valor inicial e
+`100000000` como final, a resposta deve ser `1.7136493465700542`. Cem
+milhões de valores é uma quantidade enorme para calcular o seno. Dependendo da sua
+máquina, essa tarefa deve levar entre 10 segundos e mais de um minuto. Tente
+cronometrar o tempo que isso leva com a maior precisão possível.
 
-Now, open a total of four terminal windows and navigate them all to the
-directory with `SumSines.class` in it. Run `SumSines` in each one. For
-the first terminal, enter `1` as the start and `25000000` as the end. For
-the second, enter `25000001` and `50000000`. For the third, enter
-`50000001` and `75000000`. For the last, enter `75000000` and
-`100000000`. Once they have run, you should get, respectively,
-`1.4912473269134603`, `-0.6795491754132104`, `-0.2893142602684644`, and
-`1.1912654553381272`. If you add these together using a calculator, you
-should get `1.7136493465699127`, which is almost exactly the same answer
-we got before. (Floating-point rounding errors cause the slight
-difference.)
+Agora, abra um total de quatro janelas de terminal e navegue em todas elas até o
+diretório que contém `SumSines.class`. Execute `SumSines` em cada uma delas. Para
+o primeiro terminal, digite `1` como início e `25000000` como fim. Para
+o segundo, digite `25000001` e `50000000`. Para o terceiro, digite
+`50000001` e `75000000`. Para o último, digite `75000000` e
+`100000000`. Após a execução, você deverá obter, respectivamente,
+`1.4912473269134603`, `-0.6795491754132104`, `-0.2893142602684644` e
+`1.1912654553381272`. Se você somar esses valores usando uma calculadora,
+deverá obter `1.7136493465699127`, que é quase exatamente a mesma resposta
+que obtivemos antes. (Erros de arredondamento de ponto flutuante causam a ligeira
+diferença.)
 
-If you try to start them computing at about the same time, you can try
-to see how long it takes for all of them to complete. Did it take less
-time than before? If you have a single core processor, it might have
-taken just as long or longer. If you have a dual-core processor, it
-should have taken less time, and if you have a quad core processor, even
-less. Since we're dividing the problem into four pieces, we don't
-expect to see any improvement with more than four cores.
+Se você tentar iniciá-los para fazer o cálculo mais ou menos ao mesmo tempo, pode tentar
+ver quanto tempo leva para todos eles concluírem. Demorou menos
+tempo do que antes? Se você tiver um processador de núcleo único, pode ter
+demorado o mesmo tempo ou mais. Se você tiver um processador de dois núcleos,
+deveria ter demorado menos tempo, e se você tiver um processador de quatro núcleos, ainda
+menos. Como estamos dividindo o problema em quatro partes, não
+esperamos ver nenhuma melhoria com mais de quatro núcleos.
 
-Most operating systems provide a graphical way of viewing the load on
-each processor. If you examine your CPU usage while running those
-programs, you should see it spike up when the programs start and then
-come down when they finish. For multiple cores, how did we say which
-core we wanted each program to run on? We didn't. In general, it's
-difficult to specify which core we want to run a program, process, or
-thread on. The OS does the job of scheduling and picks a free processor
-when it needs to run a program. It's even possible for programs and
-threads to change from one core to another while running if the OS needs
-to balance out the workload.
+A maioria dos sistemas operacionais oferece uma maneira gráfica de visualizar a carga em
+cada processador. Se você examinar o uso da CPU enquanto executa esses
+programas, deverá ver um pico quando os programas começarem e, em seguida,
+uma queda quando eles terminarem. Para múltiplos núcleos, como determinamos em qual
+núcleo queríamos que cada programa fosse executado? Não dissemos. Em geral, é
+difícil especificar em qual núcleo queremos executar um programa, processo ou
+thread. O SO faz o trabalho de agendamento e escolhe um processador livre
+quando precisa executar um programa. É até possível que programas e
+threads mudem de um núcleo para outro durante a execução, se o SO precisar
+equilibrar a carga de trabalho.
 
-This sines example is similar to <<arraySummationExample>> in <<concurrency#concurrency>>.
-As you may have noticed, running four programs simultaneously is not convenient.
-You have to open several windows, you have to type starting and ending points
-very carefully, and you have to combine the answers at the end since
-your programs cannot interact directly with each other. Features of Java
-will make this job easier, allowing us to run more than one thread of
-execution at a time without the need to run multiple programs by hand.
+Este exemplo de seno é semelhante ao <<arraySummationExample>> em <<concurrency#concurrency>>.
+Como você deve ter percebido, rodar quatro programas simultaneamente não é prático.
+Você precisa abrir várias janelas, digitar os pontos inicial e final
+com muito cuidado e combinar as respostas no final, já que
+seus programas não podem interagir diretamente entre si. Os recursos do Java
+facilitarão esse trabalho, permitindo que executemos mais de uma thread de
+execução por vez, sem a necessidade de executar vários programas manualmente.
 ====
 
 ****
 <<parallelPrimesExercise>>
 ****
 
-=== Exercises
-*Conceptual Problems*
+=== Exercícios
+*Problemas conceituais*
 
-.  If you have a `String` containing a long text and you want to count
-the number of words in the text that begin with the letter `'m'`, which
-of the three kinds of loops would you use, and why?
-.  [[primeEfficiencyExercise]] In <<primalityTestingExample>>,
-our last version of the primality tester `PrimalityTester2` computes the
-square root of the number being tested. Instead of computing this value
-before the loop, how would performance be affected by changing the head
-of the `for` loop to the following?
+. Se você tiver uma `String` contendo um texto longo e quiser contar
+o número de palavras no texto que começam com a letra `‘m’`, qual
+dos três tipos de loop você usaria e por quê?
+. [[primeEfficiencyExercise]] Em <<primalityTestingExample>>,
+nossa última versão do testador de primalidade `PrimalityTester2` calcula a
+raiz quadrada do número que está sendo testado. Em vez de calcular esse valor
+antes do laço, como o desempenho seria afetado se alterássemos o cabeçalho
+do laço `for` para o seguinte?
 +
 [source,java]
 ----
 for (long i = 3; i <= Math.sqrt(number) && prime; i += 2)
 ----
-. How many different DNA sequences of length _n_ are
-there?
-. There are three different errors in the following loop intended to
-print out the numbers 1 through 10. What are they?
+. Quantas sequências de DNA diferentes de comprimento _n_ existem
+?
+. Existem três erros diferentes no laço a seguir, destinado a
+imprimir os números de 1 a 10. Quais são eles?
 +
 [source,java]
 ----
@@ -1176,7 +1181,7 @@ for (int i = 1; i < 10; --i); {
     System.out.println(i);
 }
 ----
-. Consider the following code containing nested `for` loops.
+. Considere o código a seguir contendo laços `for` aninhados.
 +
 [source,java]
 ----
@@ -1190,99 +1195,99 @@ for (int i = 1; i <= n; ++i) {
 }
 ----
 +
-In terms of the value of `n`, how many times is `count` incremented? If
-it's not immediately obvious, trace through the execution of the
-program by hand or run the code for several different values of `n` and
-try to detect a pattern.
+Em termos do valor de `n`, quantas vezes `count` é incrementado? Se
+isso não for imediatamente óbvio, acompanhe a execução do
+programa manualmente ou execute o código para vários valores diferentes de `n` e
+tente detectar um padrão.
 
-*Programming Practice*
+*Exercício de Programação*
 
-.  Write a program that converts base 10 numbers into base 3 numbers.
-If you find that task too easy, write a program that will convert base
-10 numbers to any base in the range 2 to 16. Hint: Use letters A through
-Z, in order, to represent digits larger than 9.
-.  The greatest common divisor (GCD) of two integers is the largest
-integer that divides both of them evenly. The GCD for any two positive
-integers is at least 1 and at most the smaller of the two numbers. Write
-a program that prompts a user for two `int` values and finds their GCD.
-Although there are more efficient methods, you can count down from
-either number. If the counter ever divides *both* numbers evenly, it's
-the GCD. The counter is guaranteed to divide them both if it reaches 1.
-.  [[indexOfSearchExercise]] In the solution to the DNA searching
-problem given in <<Solution: DNA searching>>, we used two `for`
-loops to find occurrences of a DNA subsequence inside of a larger
-sequence. Professional Java developers would have used a single `for`
-loop and the `indexOf()` method in the `String` class. One version of
-this method returns the index of a substring within a `String` object,
-starting from a particular offset, as shown below.
+. Escreva um programa que converta números na base 10 em números na base 3.
+Se essa tarefa lhe parecer muito fácil, escreva um programa que converta números na base
+10 para qualquer base no intervalo de 2 a 16. Dica: use as letras de A a
+Z, em ordem, para representar dígitos maiores que 9.
+. O maior divisor comum (MDC) de dois números inteiros é o maior
+número inteiro que divide ambos sem sobras. O MDC de quaisquer dois números inteiros positivos
+é, no mínimo, 1 e, no máximo, o menor dos dois números. Escreva
+um programa que solicite ao usuário dois valores `int` e encontre o MDC deles.
+Embora existam métodos mais eficientes, você pode contar de
+qualquer um dos números. Se o contador dividir *ambos* os números sem sobras, esse é
+o MCD. É garantido que o contador os dividirá se chegar a 1.
+. [[indexOfSearchExercise]] Na solução para o problema de busca de DNA
+apresentado em <<Solução: Pesquisa de DNA>`, usamos dois laços `for`
+para encontrar ocorrências de uma subsequência de DNA dentro de uma sequência maior
+. Desenvolvedores profissionais de Java teriam usado um único laço `for`
+e o método `indexOf()` na classe `String`. Uma versão
+desse método retorna o índice de uma substring dentro de um objeto `String`,
+começando a partir de um deslocamento específico, conforme mostrado abaixo.
 +
 [source,java]
 ----
-String text = "fun dysfunction";
-String search = "fun";
-System.out.println("Location: " + text.indexOf(search, 4));
+String text = “fun dysfunction”;
+String search = “fun”;
+System.out.println(“Localização: ” + text.indexOf(search, 4));
 ----
 +
-This code will output `Location: 7` since the first occurrence of
-`"fun"` from index `4` or later starts at index `7`. If there are no
-more occurrences of the substring beyond the starting index, the method
-will return `-1`. Rewrite the solution to the DNA searching problem,
-replacing the inner searching `for` loop with the `indexOf()` method.
-.  Write a program that reads a number _n_ from a user and
-then prints all possible DNA sequences of length _n_. Be
-careful not to supply too large of a value when you run this program.
-Hint: Represent the sequence as a `String`. On each iteration, focus on
-the last `char` in the `String`. If it is an `'A'`, change it to a
-`'C'`. If it is a `'C'`, change it to a `'G'`. If it is a `'G'`, change
-it to a `'T'`. If it is a `'T'`, change it back to an `'A'`, but
-"`carry`" the increment over to the next `char`, like a rolling
-odometer. You will have to design loops that can deal with carries that
-cascade across multiple indexes.
-. Re-implement the solution to the DNA searching program given in
-<<Solution: DNA searching>> using `JOptionPane` to generate GUIs
-for input and output.
+Este código irá exibir `Localização: 7`, já que a primeira ocorrência de
+`“fun”` a partir do índice `4` ou posterior começa no índice `7`. Se não houver
+mais ocorrências da substring além do índice inicial, o método
+retornará `-1`. Reescreva a solução para o problema de pesquisa de DNA,
+substituindo o laço interno de pesquisa `for` pelo método `indexOf()`.
+. Escreva um programa que leia um número _n_ de um usuário e
+em seguida imprima todas as sequências de DNA possíveis de comprimento _n_. Tenha
+cuidado para não fornecer um valor muito grande ao executar este programa.
+Dica: Represente a sequência como uma `String`. Em cada iteração, concentre-se no 
+último `char` na `String`. Se for um `‘A’`, altere-o para um
+`‘C’`. Se for um `‘C’`, altere-o para um `‘G’`. Se for um `‘G’`, altere-
+o para um `‘T’`. Se for um `‘T’`, altere-o de volta para um `‘A’`, mas
+“`carregue`” o incremento para o próximo `char`, como um
+odômetro giratório. Você terá que projetar laços que possam lidar com carregamentos que
+se propagam por vários índices.
+. Reimplemente a solução para o programa de busca de DNA apresentado em
+<<Solução: Pesquisa de DNA>> usando `JOptionPane` para gerar GUIs
+para entrada e saída.
 
-*Experiments*
+*Experimentos*
 
-. Using a `for` loop, record the Monty Hall simulation so that you can
-run it 100 times, always choosing to switch doors. Keep a record of how
-many times you win. Change your code again to run the Monty Hall
-simulation 100 more times, always choosing to keep your initial choice.
-Again, keep a record of how many times you win. Compare the two records.
-Choosing to switch should perform roughly twice as well as sticking with
-your initial choice. Increase the number of iterations to 1,000 and then 10,000
-times. Does the performance of switching get closer to twice the
-performance of not switching?
-. Write three nested `for` loops, each of which run 1,000 times.
-Increment a counter in the innermost `for` loop. If that counter starts
-at 0, its final value should be 1,000,000,000. Time how long your
-program takes to run to completion using either a stopwatch or, if you're
-on a Unix or Linux system, the `time` command. Feel free to increase
-and decrease the amount that each loop runs to see the effect on the
-time. However, if you increase the values of all three loops too much,
-you may have to wait a long while.
-. In <<Common pitfalls>>, one of the common loop
-mistakes we discuss is an almost infinite loop. Create your own almost
-infinite loop that runs from `10` to `0`, incrementing instead of
-decrementing. Time the execution of your program. Unlike our example, do
-not use an output statement or your code will take too long to run. How
-much longer would your code take to run if you used a `long` instead of
-an `int`?
-. In <<primalityTestingExample>>, we gave three programs to
-test a number for primality. Run each of these prime testers on a large
-prime such as 982,451,653 and time them. Is there a significant
-difference in the running time of `PrimalityTester0` and
-`PrimalityTester1`? What about `PrimalityTester1` and
+. Usando um laço `for` , registre a simulação de Monty Hall de modo que você possa
+executá-la 100 vezes, sempre optando por trocar de porta. Mantenha um registro de quantas
+vezes você ganha. Altere seu código novamente para executar a simulação de Monty Hall
+mais 100 vezes, sempre optando por manter sua escolha inicial.
+Mais uma vez, mantenha um registro de quantas vezes você ganha. Compare os dois registros.
+Escolher trocar deve ter um desempenho aproximadamente duas vezes melhor do que manter
+sua escolha inicial. Aumente o número de iterações para 1.000 e depois para 10.000
+vezes. O desempenho de trocar se aproxima do dobro do
+desempenho de não trocar?
+. Escreva três laços `for` aninhados, cada um dos quais executado 1.000 vezes.
+Incremente um contador no laço `for` mais interno. Se esse contador começar
+em 0, seu valor final deve ser 1.000.000.000. Cronometre quanto tempo seu
+programa leva para ser executado até o fim usando um cronômetro ou, se você estiver
+em um sistema Unix ou Linux, o comando `time`. Sinta-se à vontade para aumentar
+e diminuir o número de vezes que cada laço é executado para ver o efeito no
+tempo. No entanto, se você aumentar demais os valores dos três laços,
+pode ser que tenha que esperar um bom tempo.
+. Em <<Armadilhas comuns>>, um dos erros comuns em laços
+que discutimos é um laço quase infinito. Crie seu próprio laço quase
+infinito que vá de `10` a `0`, incrementando em vez de
+decrementar. Cronometre a execução do seu programa. Ao contrário do nosso exemplo, 
+não use uma instrução de saída, ou seu código levará muito tempo para ser executado. Quanto
+tempo a mais seu código levaria para ser executado se você usasse um `long` em vez de
+um `int`?
+. Em <<primalityTestingExample>>, apresentamos três programas para
+testar se um número é primo. Execute cada um desses testadores de primos em um grande
+primo, como 982.451.653, e cronometre-os. Existe uma diferença significativa
+no tempo de execução de `PrimalityTester0` e
+`PrimalityTester1`? E quanto a `PrimalityTester1` e
 `PrimalityTester2`?
-. [[parallelPrimesExercise]] In <<parallelismWithoutThreadsExample>>, we ran four programs at the same time to solve a
-problem in parallel. Use the same framework (combined with your
-knowledge of primes from <<primalityTestingExample>>) to write
-a program that can see how many prime numbers are in a user specified
-range of integers. Then, use it to find the total number of primes
-between 2 and 500,000,000. Now, run two copies of the program with one
-starting at 2 and going up to 250,000,000 and the other starting at
-250,000,001 and going up to 500,000,000. If you add the numbers
-together, do you get the same answer? (If not, there is a bug in your
-program.) Now, divide the work into four pieces. How much quicker, if at
-all, is running all four programs instead of one? Does one of the four
-pieces run significantly faster or slower than the others?
+. [[parallelPrimesExercise]] Em <<parallelismWithoutThreadsExample>>, executamos quatro programas ao mesmo tempo para resolver um
+problema em paralelo. Use a mesma estrutura (combinada com seu
+conhecimento sobre números primos de <<primalityTestingExample>>) para escrever
+um programa que possa verificar quantos números primos existem em um
+intervalo de inteiros especificado pelo usuário. Em seguida, use-o para encontrar o número total de números primos
+entre 2 e 500.000.000. Agora, execute duas cópias do programa, com uma
+começando em 2 e indo até 250.000.000 e a outra começando em
+250.000.001 e indo até 500.000.000. Se você somar os números
+, obtém a mesma resposta? (Se não, há um bug no seu
+programa.) Agora, divida o trabalho em quatro partes. Quão mais rápido, se é que
+há diferença, é executar todos os quatro programas em vez de um? Uma das quatro
+partes é executada significativamente mais rápido ou mais lento do que as outras?
