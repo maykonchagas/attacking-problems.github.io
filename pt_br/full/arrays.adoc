@@ -5,284 +5,286 @@
 
 [quote, Mae West]
 ____
-Too much of a good thing can be wonderful.
+O excesso de algo bom pode ser maravilhoso.
 ____
 
-=== Introduction
+=== Introdução
 
-With one exception, all the types we've talked about in this book
-have held a single value. For example, an `int` variable can only
-contain a single `int` value. If you try to put a second `int` value
-into a variable, it will overwrite the first.
+Com uma exceção, todos os tipos sobre os quais falamos neste livro
+armazenam um único valor. Por exemplo, uma variável `int` só pode
+conter um único valor `int`. Se você tentar inserir um segundo valor `int`
+numa variável, ele substituirá o primeiro.
 
-The `String` type, of course, is the exception. `String` objects can
-contain `char` sequences of any length from 0 up to a practically
-limitless size (the theoretical maximum length of a Java `String` is
-`Integer.MAX_INT`, more than 650 times the length of _War and Peace_).
-As remarkable as `String` objects are, this chapter is about a more
-general kind of list called an _array_. We can create arrays to hold a
-list of any type of variable in Java.
+O tipo `String`, é claro, é a exceção. Objetos `String` podem
+conter sequências `char` de qualquer comprimento, de 0 até um tamanho praticamente
+ilimitado (o comprimento máximo teórico de um `String` em Java é
+`Integer.MAX_INT`, mais de 650 vezes o comprimento de _Guerra e Paz_).
+Por mais notáveis que sejam os objetos `String`, este capítulo trata de um tipo mais
+geral de lista chamado _array_. Podemos criar arrays para armazenar uma
+lista de qualquer tipo de variável em Java.
 
-The ability to work with lists expands the scope of problems that we can
-solve. Beyond simple lists, we can use the same tools to create tables,
-grids, and other structures to solve fascinating problems like the one
-that comes next.
+A capacidade de trabalhar com listas amplia o escopo dos problemas que podemos
+resolver. Além de listas simples, podemos usar as mesmas ferramentas para criar tabelas,
+grades e outras estruturas para resolver problemas fascinantes como o que
+vem a seguir.
 
-=== Problem: Game of Life
+=== Problema: Jogo da Vida
 
-Some physicists insist that the rules governing the universe are
-horribly complicated. Some insist that the fundamental laws are simple
-and only their overall interaction is complex. With the power to do
-simulations quickly, computer scientists have shown that some systems
-can exhibit very complex interactions using simple rules. Perhaps the
-best known examples of these systems are _cellular automata_, of which
-Conway's Game of Life is the most famous.
+Alguns físicos insistem que as regras que regem o universo são
+terrivelmente complicadas. Outros insistem que as leis fundamentais são simples
+e que apenas a interação global entre elas é complexa. Com a capacidade de realizar
+simulações rapidamente, os cientistas da computação demonstraram que alguns sistemas
+podem apresentar interações muito complexas utilizando regras simples. Talvez os
+exemplos mais conhecidos desses sistemas sejam os _autômatos celulares_, dos quais
+o Jogo da Vida de Conway é o mais famoso.
 
-The framework for Conway's Game of Life is an infinite grid made up of
-squares called cells. Some cells in the grid are black (or alive, to
-give it a biological flavor), and the rest are white (or dead). Any
-given cell has 8 neighbors as shown in the figure below.
+A estrutura do Jogo da Vida de Conway é uma grade infinita composta por
+quadrados chamados células. Algumas células na grade são pretas (ou vivas, para
+dar um toque biológico), e o restante é branco (ou morto). Qualquer
+célula tem 8 vizinhas, conforme mostrado na figura abaixo.
 
 [.text-center]
-.Cell (shown in gray) surrounded by 8 neighboring cells.
-image::cell.svg[scaledwidth=25%,pdfwidth=25%,width=25%,align="center"]
+.Célula (mostrada em cinza) cercada por 8 células vizinhas.
+image::cell.svg[scaledwidth=25%,pdfwidth=25%,width=25%,align=“center”]
 
-The pattern of alive and dead cells at any given time on the grid is
-called a _generation_. To determine the next generation, we use the
-following rules.
+O padrão de células vivas e mortas em um determinado momento na grade é
+chamado de _geração_. Para determinar a próxima geração, usamos as
+seguintes regras.
 
-1.  If a living cell has fewer than two living neighbors, it dies from
-loneliness.
-2.  If a living cell has more than three neighbors, it dies because of
-overcrowding.
-3.  If a living cell has exactly two or three living neighbors, it lives
-to the next generation.
-4.  If a dead cell has exactly three live neighbors, it becomes a living
-cell.
+1. Se uma célula viva tiver menos de dois vizinhos vivos, ela morre de
+solidão.
+2. Se uma célula viva tiver mais de três vizinhos, ela morre por causa da
+superlotação.
+3. Se uma célula viva tiver exatamente dois ou três vizinhos vivos, ela sobrevive
+até a próxima geração.
+4. Se uma célula morta tiver exatamente três vizinhas vivas, ela se torna uma
+célula viva.
 
-These four simple rules allow for more complex interactions than you might expect.
-The patterns that emerge from applying these rules to a starting
-configuration of alive and dead cells strike a balance between complete
-chaos and rigid order. As the name of the game implies, the similarity
-to biological patterns of development can be surprising.
+Essas quatro regras simples permitem interações mais complexas do que você poderia imaginar.
+Os padrões que surgem da aplicação dessas regras a uma
+configuração inicial de células vivas e mortas estabelecem um equilíbrio entre o caos
+total e a ordem rígida. Como o nome do jogo sugere, a semelhança
+com padrões biológicos de desenvolvimento pode ser surpreendente.
 
-Your problem is to create a Life simulator of size _n_ × _m_,
-specific values for which will be discussed below. The
-program should simulate the process at a speed that is engaging to
-watch, with a new generation every tenth of a second. The program should
-begin by randomly making 10% of all the cells living and the rest dead.
+Sua tarefa é criar um simulador de Life de tamanho _n_ × _m_,
+cujos valores específicos serão discutidos a seguir. O
+programa deve simular o processo a uma velocidade que seja envolvente de
+se assistir, com uma nova geração a cada décimo de segundo. O programa deve
+começar tornando aleatoriamente 10% de todas as células vivas e o restante morto.
 
-==== Terminal limitations
+==== Limitações do terminal
 
-One problem you might be worrying about is how to display the
-simulation. In <<gui#gui>> you'll learn how to make a graphical user interface (GUI)
-that can display a grid of cells in black and white and much more
-interesting things as well. For now, the main tool that we can use for
-output is still the terminal. The output method we recommend is printing
-an asterisk (`'*\'`) for a living cell and a space (`' '`) for a dead
-one. In this way you can easily see the patterns form on the screen and
-change over time.
+Um problema que talvez esteja te preocupando é como exibir a
+simulação. Em <<gui#gui>>, você aprenderá a criar uma interface gráfica de usuário (GUI)
+capaz de exibir uma grade de células em preto e branco e muitas outras
+coisas interessantes também. Por enquanto, a principal ferramenta que podemos usar para
+saída ainda é o terminal. O método de saída que recomendamos é imprimir
+um asterisco (`'*\'`) para uma célula viva e um espaço (`' '`) para uma
+morta. Dessa forma, você pode ver facilmente os padrões se formando na tela e
+mudando com o tempo.
 
-The classic terminal isn't very big. For this reason, we suggest that
-you set the height of your simulation to 24 rows and the width of your
-simulation to 80 columns. These dimensions conform to the most ancient
-terminal sizes. If your terminal screen is much larger, you can change
-the width and height later to perform a larger simulation. No matter how
-large the display for the game is, the ideal size of the game.
-Because our size is so limited, we must deal with the problem of a cell on the boundary.
-Anything beyond the boundaries should be counted as dead. Thus, a cell right on the edge
-of the simulation grid can have a maximum of 5 neighbors. A cell in one
-of the four corners can only have 3 neighbors.
+O terminal clássico não é muito grande. Por esse motivo, sugerimos que
+você defina a altura da sua simulação para 24 linhas e a largura da sua
+simulação para 80 colunas. Essas dimensões estão em conformidade com os tamanhos mais antigos
+de terminais. Se a tela do seu terminal for muito maior, você pode alterar
+a largura e a altura posteriormente para realizar uma simulação maior. Não importa o quão
+grande seja a tela do jogo, o tamanho ideal do jogo.
+Como nosso tamanho é tão limitado, precisamos lidar com o problema de uma célula na borda.
+Qualquer coisa além dos limites deve ser considerada morta. Assim, uma célula bem na borda
+da grade de simulação pode ter no máximo 5 vizinhos. Uma célula em um
+dos quatro cantos pode ter apenas 3 vizinhos.
 
-In order to give the appearance of smooth transitions, you need to print
-out each new generation of cells quickly, and in the same locations as
-the previous generation. Simply printing one set after another will not
-achieve this effect unless your terminal screen is exactly 24 rows tall.
-So, you will need to clear the screen each time. In an effort to be
-platform independent, Java does not provide an easy way to clear the
-terminal screen. A quick and simple hack is to simply print out 100
-blank lines before printing the next generation. This hack will work as
-long as your terminal is not significantly more than 100 rows in height.
-If it is, you'll need to print a larger number of blank rows.
+Para dar a aparência de transições suaves, você precisa imprimir
+cada nova geração de células rapidamente e nos mesmos locais que
+a geração anterior. Simplesmente imprimir um conjunto após o outro não
+alcançará esse efeito, a menos que a tela do seu terminal tenha exatamente 24 linhas de altura.
+Portanto, você precisará limpar a tela a cada vez. Em um esforço para ser
+independente de plataforma, o Java não oferece uma maneira fácil de limpar a
+tela do terminal. Um truque rápido e simples é simplesmente imprimir 100
+linhas em branco antes de imprimir a próxima geração. Esse truque funcionará
+desde que a altura do seu terminal não seja significativamente superior a 100 linhas.
+Se for, você precisará imprimir um número maior de linhas em branco.
 
-Finally, you need to wait a short period of time between generations so
-that the user can see each configuration before it's cleared away and
-replaced by the next one. The simplest way to do this is by having your
-program go to sleep for a short period of time, a tenth of a second as
-we suggested before. The code to make your program sleep for that amount
-of time is:
+Por fim, você precisa esperar um breve intervalo de tempo entre as gerações para
+que o usuário possa ver cada configuração antes que ela seja apagada e
+substituída pela próxima. A maneira mais simples de fazer isso é fazer com que seu
+programa entre em espera por um breve período de tempo, um décimo de segundo, como
+sugerimos anteriormente. O código para fazer seu programa entrar em espera por esse período
+de tempo é:
 
 [source,java]
-----
+--- -
 try { Thread.sleep(100);
 } catch (InterruptedException e) {}
 ----
 
-We'll explain this code in much greater detail in <<concurrency#concurrency>>.
-The key item of importance is the number passed into the `sleep()` method.
-This value is the number of milliseconds you want your program to sleep.
-100 milliseconds is, of course, one tenth of a second.
+Explicaremos esse código com muito mais detalhes em <<concurrency#concurrency>>.
+O item-chave de importância é o número passado para o método `sleep()`.
+Esse valor é o número de milissegundos que você deseja que seu programa fique em espera.
+100 milissegundos são, obviamente, um décimo de segundo.
 
-In order to simulate the Game of Life, we need to store information,
-namely the liveness or deadness of cells, in a grid. First, we need to
-discuss the simpler task of storing data in a list.
+Para simular o Jogo da Vida, precisamos armazenar informações,
+ou seja, se as células estão vivas ou mortas, em uma grade. Primeiro, precisamos
+discutir a tarefa mais simples de armazenar dados em uma lista.
 
-=== Concepts: Lists of data
+=== Conceitos: Listas de dados
 
-Lists of data are of paramount importance in many different areas of
-life: shopping lists, packing lists, lists of employees working at a
-company, address books, top ten lists, and more. Lists are even more
-important in programming. As you know, one of the great strengths of
-computers is their speed. If we have a long list of data, we can use
-that speed to perform operations on all the data quickly. E-mail
-contact lists, entries in a database, and cells in a spreadsheet are
-just a few of the most obvious ways that lists come up in computer
-applications.
+As listas de dados são de suma importância em muitas áreas diferentes da
+vida: listas de compras, listas de itens a levar, listas de funcionários que trabalham em uma
+empresa, agendas de endereços, listas dos dez melhores e muito mais. As listas são ainda mais
+importantes na programação. Como você sabe, um dos grandes pontos fortes dos
+computadores é a velocidade. Se tivermos uma longa lista de dados, podemos usar
+essa velocidade para realizar operações em todos os dados rapidamente. Listas de contatos de e-mail
+, entradas em um banco de dados e células em uma planilha são
+apenas algumas das formas mais óbvias como as listas aparecem em
+aplicativos de computador.
 
-Even in Java, there are many different ways to record a list of
-information, but a list is only one form of _data structure_. As the
-name implies, a data structure is a way to organize data, whether in a
-list, in a tree, in sorted order, in some kind of hierarchy, or in any
-other way that might be useful. We'll only talk about the array data
-structure in this chapter, but other data structures will be discussed
-in <<dynamic-data-structures#dynamic-data-structures>>.
-Below, we give a short explanation of some of the attributes any given
-data structure might have.
+Mesmo em Java, há muitas maneiras diferentes de registrar uma lista de
+informações, mas uma lista é apenas uma forma de _estrutura de dados_. Como o
+nome indica, uma estrutura de dados é uma maneira de organizar dados, seja em uma
+lista, em uma árvore, em ordem classificada, em algum tipo de hierarquia ou de qualquer
+outra forma que possa ser útil. Neste capítulo, falaremos apenas sobre a 
+estrutura de dados de matriz, mas outras estruturas de dados serão discutidas
+em <<dynamic-data-structures#dynamic-data-structures>>.
+Abaixo, apresentamos uma breve explicação de alguns dos atributos que qualquer
+estrutura de dados pode ter.
 
-==== Data structure attribute
+==== Atributo da estrutura de dados
 
-Contents:::
-  Keeping only a single value in a data structure defeats the purpose of
-  a data structure. But, if we can store more than a single value, must
-  all of those values come from the same type? If a data structure can
-  hold several different types of data, we call it _heterogeneous_, but
-  if it can only hold one type, we call it _homogeneous_.
-Size:::
-  The size of a data structure may be something that's fixed when it's
-  created or it could change on the fly. If a data structure's size or
-  length can change, we call it a _dynamic_ data structure. If the data
-  structure has a size or length that can never change after it's been
-  created, we call it a _static_ data structure.
-Element Access:::
-  One of the reasons there are so many different data structures is that
-  different ways of structuring data are better or worse for a given
-  task. For example, if your task is to add a list of numbers, then
-  you're expecting to access every single element in the list. However, if
-  you're searching for a word in a dictionary, you don't want to check
-  every dictionary entry to find it. +
+Conteúdo:::
+  Manter apenas um único valor em uma estrutura de dados vai contra o propósito de
+  uma estrutura de dados. Mas, se podemos armazenar mais de um valor, será que
+  todos esses valores devem ser do mesmo tipo? Se uma estrutura de dados pode
+  conter vários tipos diferentes de dados, chamamos-na de _heterogênea_, mas
+  se ela puder conter apenas um tipo, chamamos-na de _homogênea_.
+Tamanho:::
+O tamanho de uma estrutura de dados pode ser algo fixo no momento em que é
+criada ou pode mudar dinamicamente. Se o tamanho ou
+comprimento de uma estrutura de dados pode mudar, chamamos-a de estrutura de dados _dinâmica_. Se a estrutura de dados
+tem um tamanho ou comprimento que nunca pode mudar após ter sido
+criada, chamamos-a de estrutura de dados _estática_.
+Acesso a Elementos:::
+  Uma das razões pelas quais existem tantas estruturas de dados diferentes é que
+  diferentes formas de estruturar dados são melhores ou piores para uma determinada
+  tarefa. Por exemplo, se sua tarefa for adicionar uma lista de números, então
+  você espera acessar cada elemento da lista. No entanto, se
+  você estiver procurando uma palavra em um dicionário, não vai querer verificar
+  todas as entradas do dicionário para encontrá-la. +
 {empty} +
-  Some data structures are optimized so that you can efficiently read,
-  insert, or delete only a single item, often the first (or last) item
-  in the data structure. Some data structures only allow you to move
-  through the structure sequentially, one item after another. Such a
-  data structure has what is called _sequential access_. Still others
-  allow you to jump randomly to any point you want inside the data
-  structure efficiently. These data structures have what is called
-  _random access_. Advanced programmers take into account many different
-  factors before deciding which data structure is best suited to their
-  problem.
+  Algumas estruturas de dados são otimizadas para que você possa ler,
+  inserir ou excluir com eficiência apenas um único item, geralmente o primeiro (ou último) item
+  na estrutura de dados. Algumas estruturas de dados permitem apenas que você se desloque
+  pela estrutura sequencialmente, um item após o outro. Tal
+  estrutura de dados possui o que se chama de _acesso sequencial_. Outras ainda
+  permitem que você salte aleatoriamente para qualquer ponto que desejar dentro da estrutura de dados
+  de forma eficiente. Essas estruturas de dados possuem o que se chama de
+  _acesso aleatório_. Programadores avançados levam em consideração muitos fatores diferentes
+  antes de decidir qual estrutura de dados é mais adequada para o seu
+  problema.
 
-==== Characteristics of an array
+==== Características de um vetor
 
-Now that we've defined these attributes, we can say that an array is a
-homogeneous, static data structure with random access. An array is
-homogeneous because it can only hold a list of a single type of data,
-such as `int`, `double`, or `String`. An array is static because it has
-a fixed length that is set only when the array is instantiated. An array
-also has random access because jumping to any element in the array is
-fast and takes about the same amount of time as jumping to any
-other.
+Agora que definimos esses atributos, podemos dizer que um vetor é uma
+estrutura de dados homogênea e estática com acesso aleatório. Um vetor é
+homogêneo porque só pode conter uma lista de um único tipo de dados,
+como `int`, `double` ou `String`. Um vetor é estático porque tem
+um comprimento fixo que é definido apenas quando o vetor é instanciado. 
+Um array
+também possui acesso aleatório porque saltar para qualquer elemento no array é
+rápido e leva aproximadamente o mesmo tempo que saltar para qualquer
+outro.
 
-An array is a list of a specific type of elements that has length
-_n_, a length specified when the array is created. Each of
-the _n_ elements is indexed using a number between 0 and
-_n_ - 1]. Once again, zero-based counting rears its ugly
-head. Consider the following list of items: {9, 4, 2, 1, 6, 8, 3}
+Um array é uma lista de um tipo específico de elementos que tem comprimento
+_n_, um comprimento especificado quando o array é criado. Cada um dos
+_n_ elementos é indexado usando um número entre 0 e
+_n_ - 1].
+ Mais uma vez, a contagem baseada em zero mostra sua face feia
+. Considere a seguinte lista de itens: {9, 4, 2, 1, 6, 8, 3}
 
-If this list is stored in an array, the first element, 9,
-would have index 0, 4 would have index
-1, and so on, finishing at 3 with an index
-of 6, although the total number of items is
-7. Not all languages use zero-based counting for array
-indexes, but many do, including C, {cpp}, and Java. The reason that
-languages like C originally used zero-based counting for indexes is that
-the variable corresponding to the array is an address inside the
-computer's memory giving the first element in the array. Thus, an index
-of 0 is 0 times the size of an element added to the starting address,
-and an index of 5 is 5 times the size of an element added to the
-starting address. So, zero-based indexes gave a quick way for the
-program to compute where in memory a given element of an array is.
+Se essa lista for armazenada em um array, o primeiro elemento, 9,
+teria o índice 0, 4 teria o índice
+1, e assim por diante, terminando em 3 com um índice
+de 6, embora o número total de itens seja
+7. Nem todas as linguagens usam contagem baseada em zero para índices de vetor
+, mas muitas o fazem, incluindo C, {cpp} e Java. A razão pela qual
+linguagens como C originalmente usavam contagem baseada em zero para índices é que
+a variável correspondente ao vetor é um endereço dentro da
+memória do computador que aponta para o primeiro elemento da vetor. Assim, um índice
+de 0 é 0 vezes o tamanho de um elemento somado ao endereço inicial,
+e um índice de 5 é 5 vezes o tamanho de um elemento somado ao
+endereço inicial. Portanto, os índices baseados em zero proporcionavam uma maneira rápida para o
+programa calcular em que ponto da memória um determinado elemento de um array se encontrava.
 
-=== Syntax: Arrays in Java
+=== Sintaxe: Arrays em Java
 
-The idea of a list is not mysterious. Numbering each element of the list
-is natural, even though the numbers start at 0 instead of 1.
-Nevertheless, arrays are the source of many errors that cause Java programs
-to crash. Below, we explain the basics of creating arrays, indexing into
-arrays, and using arrays with loops. Then, there's an extra subsection
-explaining how to send data from a file to a program as if the file were
-being typed in by a user. Using this technique can save a lot of
-time when you're experimenting with arrays.
+O conceito de lista não é nada misterioso. Numerar cada elemento da lista
+é algo natural, mesmo que a numeração comece no 0 em vez de no 1.
+No entanto, os arrays são a fonte de muitos erros que fazem com que os programas Java
+travem. Abaixo, explicamos os fundamentos da criação de arrays, indexação em
+arrays e uso de arrays com laços. Em seguida, há uma subseção extra
+explicando como enviar dados de um arquivo para um programa como se o arquivo estivesse
+sendo digitado por um usuário. Usar essa técnica pode economizar muito
+tempo quando você estiver experimentando com arrays.
 
-==== Array declaration and instantiation
+==== Declaração e instanciação de um array
 
-To create an array, you usually need to create an array variable first.
-Remember that an array is a homogeneous data structure, meaning that it
-can only store elements of a single type. When you create an array
-variable, you have to specify what that type is. To declare an array
-variable, you use the type it's going to hold, followed by square
-brackets (`[]`), followed by the name of the variable. For example, if
-you want to create an array called `numbers` that can hold integers, you
-would type the following.
+Para criar um array, geralmente é necessário criar primeiro uma variável de array.
+Lembre-se de que um array é uma estrutura de dados homogênea, o que significa que ele
+só pode armazenar elementos de um único tipo. Ao criar uma variável de array
+, você precisa especificar qual é esse tipo. Para declarar uma variável de
+array, use o tipo que ela irá conter, seguido de colchetes
+(`[]`), seguido do nome da variável. Por exemplo, se
+você quiser criar um array chamado `numbers` que possa conter inteiros, você
+digitaria o seguinte.
 
 [source,java]
 ----
 int[] numbers;
 ----
 
-If you have some C or {cpp} programming experience, you might be used to
-the brackets being on the other side of the variable, like so.
+Se você tem alguma experiência em programação em C ou {cpp}, talvez esteja acostumado a
+ver os colchetes do outro lado da variável, assim.
 
 [source,java]
 ----
 int numbers[];
 ----
 
-In Java, both declarations are perfectly legal and equivalent. However,
-the first declaration is preferred from a stylistic perspective. It
-follows the pattern of using the type (an array of `int` values in this
-case) followed by the variable name as the syntax for a declaration.
+Em Java, ambas as declarações são perfeitamente válidas e equivalentes. No entanto,
+a primeira declaração é preferível do ponto de vista estilístico. Ela
+segue o padrão de usar o tipo (um array de valores `int`, neste
+caso) seguido pelo nome da variável como sintaxe para uma declaração.
 
-As we said, arrays are also static data structures, meaning that their
-length is fixed at the time of their creation. Yet we didn't specify a
-length above. This declaration has not yet created an array, just a
-variable that can point at an array. In the second half of this chapter,
-we will further discuss this difference between the way an array is
-created and the way an `int` or any other variable of primitive type is
-created. To actually create the array, we need to use another step,
-involving the keyword `new`. Here's how we instantiate an array of
-`int` type with 10 elements.
+Como dissemos, os arrays também são estruturas de dados estáticas, o que significa que seu
+comprimento é fixado no momento da criação. No entanto, não especificamos um
+comprimento acima. Essa declaração ainda não criou um array, apenas uma
+variável que pode apontar para um array. Na segunda metade deste capítulo,
+discutiremos mais detalhadamente essa diferença entre a maneira como um array é
+criado e a maneira como um `int` ou qualquer outra variável de tipo primitivo é
+criada. Para realmente criar o array, precisamos usar outra etapa,
+envolvendo a palavra-chave `new`. Veja como instanciamos uma matriz do tipo 
+`int` com 10 elementos.
 
-[source,java]
+[fonte,java]
 ----
 numbers = new int[10];
 ----
 
-We use the keyword `new`, followed by the type of element, followed by
-the number of elements the array can hold in square brackets. This new
-array is stored into `numbers`. In other words, the variable `numbers`
-is now a name for the array. Commonly, the two steps of declaring and
-instantiating an array will be combined into one line of code.
+Usamos a palavra-chave `new`, seguida do tipo de elemento, seguida
+do número de elementos que o array pode conter entre colchetes. Esse novo
+array é armazenado em `numbers`. Em outras palavras, a variável `numbers`
+é agora um nome para o array. Normalmente, as duas etapas de declarar e
+instanciar um array serão combinadas em uma única linha de código.
 
 [source,java]
 ----
 int[] numbers = new int[10];
 ----
 
-It's always possible to separate the two steps. In some cases, a single
-variable might be used to point at an array of one particular length,
-then changed to point at an array of another length, and so on, as
-below.
+É sempre possível separar as duas etapas. Em alguns casos, uma única
+variável pode ser usada para apontar para um array de um comprimento específico,
+depois alterada para apontar para um array de outro comprimento, e assim por diante, como
+mostrado abaixo.
 
 [source,java]
 ----
@@ -292,79 +294,79 @@ numbers = new int[100];
 numbers = new int[1000];
 ----
 
-Here, the variable `numbers` starts off pointing at no array. Next, it's
-made to point at a new array with 10 elements. Then, it's made to
-point at a new array with 100 elements, ignoring the 10 element array.
-Finally, it's made to point at an array with 1,000 elements, ignoring
-the 100 element array. Remember, the arrays themselves are static; their
-lengths can't change. The array type variables, however, can point at
-different arrays with different lengths, provided that they're still
-the right type (in this case, arrays of `int` values).
+Aqui, a variável `numbers` começa sem apontar para nenhum array. Em seguida, ela é
+configurada para apontar para um novo array com 10 elementos. Depois, ela é configurada para
+apontar para um novo array com 100 elementos, ignorando o array de 10 elementos.
+Por fim, ela é configurada para apontar para um array com 1.000 elementos, ignorando
+o array de 100 elementos. Lembre-se de que os próprios arrays são estáticos; seus
+comprimentos não podem mudar. As variáveis do tipo array, no entanto, podem apontar para
+diferentes arrays com comprimentos diferentes, desde que ainda sejam
+do tipo correto (neste caso, arrays de valores `int`).
 
-What values are inside the array when it's first created? Let's return
-to the case where `numbers` points at a new array with 10 elements. Each
-of those elements contains the `int` value `0`, as shown below.
+Quais valores estão dentro do array quando ele é criado pela primeira vez? Vamos voltar
+ao caso em que `numbers` aponta para um novo array com 10 elementos. Cada
+um desses elementos contém o valor `int` `0`, conforme mostrado abaixo.
 
 [.text-center]
-.Array elements showing index values.
-image::array.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align="center"]
+Elementos do array mostrando valores de índice.
+image::array.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align=“center”]
 
 
-Whenever an array is instantiated, each of its _n_ elements
-is set to some default value. For `int`, `long`, `short`, and `byte`
-this value is `0`. For `double` and `float`, this value is `0.0`. For
-`char`, this value is `'\0'`, a special unprintable character. For
-`boolean`, this value is `false`. For `String` or any other reference
-type, this value is `null`, a special value that means there's no
-object.
+Sempre que um array é instanciado, cada um de seus _n_ elementos
+é definido com algum valor padrão. Para `int`, `long`, `short` e `byte`
+esse valor é `0`. Para `double` e `float`, esse valor é `0.0`. Para
+`char`, esse valor é `‘\0’`, um caractere especial não imprimível. Para
+`boolean`, esse valor é `false`. Para `String` ou qualquer outro tipo de referência
+, esse valor é `null`, um valor especial que significa que não há
+objeto.
 
-It's also possible to use a list to initialize an array. For example,
-we can create an array of type `double` that contains the values `0.5`,
-`1.0`, `1.5`, `2.0`, and `2.5` using the following code.
+Também é possível usar uma lista para inicializar um array. Por exemplo,
+podemos criar um array do tipo `double` que contenha os valores `0.5`,
+`1.0`, `1.5`, `2.0` e `2.5` usando o código a seguir.
 
 [source,java]
 ----
 double[] increments = {0.5, 1.0, 1.5, 2.0, 2.5};
 ----
 
-This line of code is equivalent to using the `new` keyword to create a
-`double` array with 5 elements and then setting each to the values
-shown.
+Esta linha de código é equivalente a usar a palavra-chave `new` para criar um
+vetor `double` com 5 elementos e, em seguida, definir cada um com os valores
+mostrados.
 
-==== Indexing into arrays
+==== Acessando índices em arrays
 
-To use a value in an array, you must _index_ into the array, using the
-square brackets once again. Returning to the example of the `int` array
-`numbers` with length 10, we can read the value at index 4 from the
-array and print it out.
+Para usar um valor em um array, você deve acessar o índice do array, utilizando
+novamente os colchetes. Voltando ao exemplo do array `int`
+`numbers` com comprimento 10, podemos ler o valor no índice 4 do
+array e exibi-lo.
 
 [source,java]
 ----
 System.out.println(numbers[4]);
 ----
 
-Until some other value has been stored there, the value of `numbers[4]` is `0`,
-and so `0` is all that will be printed out.
-We can set the value at `numbers[4]` to `17` as follows.
+Até que algum outro valor seja armazenado ali, o valor de `numbers[4]` é `0`,
+e, portanto, `0` é tudo o que será impresso.
+Podemos definir o valor em `numbers[4]` como `17` da seguinte maneira.
 
 [source,java]
 ----
 numbers[4] = 17;
 ----
 
-Then, if we try to print out `numbers[4]`, `17` will be printed. The
-contents of the `numbers` array will look like this.
+Então, se tentarmos imprimir `numbers[4]`, `17` será impresso. O
+conteúdo do array `numbers` ficará assim.
 
 [.text-center]
-.Array showing contents of elements.
-image::array2.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align="center"]
+.Array mostrando o conteúdo dos elementos.
+image::array2.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align=“center”]
 
 
-The key thing to understand about indexing into an array is that it
-gives you an element of the specified type. In other words, `numbers[4]`
-*is* an `int` variable in every possible sense. You can read its value.
-You can change its value. You can pass it into a method. It can be used
-anywhere a normal `int` can be used, as in the following example.
+O ponto-chave a entender sobre a indexação em um array é que ela
+fornece um elemento do tipo especificado. Em outras palavras, `numbers[4]`
+*é* uma variável `int` em todos os sentidos possíveis. Você pode ler seu valor.
+Você pode alterar seu valor. Você pode passá-lo para um método. Ele pode ser usado
+em qualquer lugar onde um `int` normal possa ser usado, como no exemplo a seguir.
 
 [source,java]
 ----
@@ -373,56 +375,56 @@ double y = Math.sqrt(numbers[2]) + numbers[4];
 numbers[9] = (int)(y*x);
 ----
 
-Executing this code will store `17` into `x` and `17.0` into `y`. Then,
-the product of those two, `289`, will be stored into `numbers[9]`.
-Remember, in Java, the type on the left and the type on the right of the
-assignment operator (`=`) must match, except in cases of automatic
-casting, like storing an `int` value into a `double` variable. Since
-they have the same type, it makes sense to store an element of an `int`
-array like `numbers[4]` into an `int` variable like `x`. However, an
-array of `int` values *can't* be stored into an `int` type.
+A execução deste código armazenará `17` em `x` e `17.0` em `y`. Em seguida,
+o produto desses dois, `289`, será armazenado em `numbers[9]`.
+Lembre-se: em Java, o tipo à esquerda e o tipo à direita do
+operador de atribuição (`=`) devem coincidir, exceto em casos de conversão automática
+, como armazenar um valor `int` em uma variável `double`. Como
+eles têm o mesmo tipo, faz sentido armazenar um elemento de uma matriz `int`
+como `numbers[4]` em uma variável `int` como `x`. No entanto, um
+array de valores `int` *não pode* ser armazenada em um tipo `int`.
 
 [source,java]
 ----
 int z = numbers;
 ----
 
-This code will cause a compiler error. What would it mean? You can't put
-a list of variables into a single variable. And the converse is true as
-well.
+Este código causará um erro de compilação. O que isso significa? Você não pode colocar
+uma lista de variáveis em uma única variável. E o inverso também é verdadeiro
+.
 
 [source,java]
 ----
 numbers = 31;
 ----
 
-This code will also cause a compiler error. A single value *can't* be
-stored into a whole list. You would have to specify an index where it can be
-stored. Furthermore, you must be careful to specify a legal index. No
-negative index will ever be legal, and neither will an index greater
-than or equal to the number of elements in the array.
+Este código também causará um erro de compilação. Um único valor *não pode* ser
+armazenado em uma lista inteira. Você teria que especificar um índice onde ele possa ser
+armazenado. Além disso, você deve ter cuidado para especificar um índice válido. Nenhum
+índice negativo será válido, nem um índice maior
+ou igual ao número de elementos na matriz.
 
 [source,java]
 ----
 numbers[10] = 99;
 ----
 
-This code will compile correctly. If you remember, we instantiated the
-array that `numbers` points at to have 10 elements, numbered 0 through
-9. Thus, we are trying to store `99` into the element that is one index
-*after* the last legal element. As a result, Java will cause an error
-called an `ArrayIndexOutOfBoundsException` to happen, which will crash
-your program.
+Este código será compilado corretamente. Se você se lembra, instanciamos o
+array para o qual `numbers` aponta para ter 10 elementos, numerados de 0 a
+9. Assim, estamos tentando armazenar `99` no elemento que está um índice
+*depois* do último elemento válido. Como resultado, o Java causará um erro
+chamado `ArrayIndexOutOfBoundsException`, o que fará com que
+seu programa trave.
 
-==== Using loops with arrays
+==== Usando laços com arrays
 
-One reason to use arrays is to avoid declaring 10 separate variables
-just to have 10 `int` values to work with. But once you have the array,
-you'll often need an automated way to process it. Any of the three
-kinds of loops provides a powerful tool for performing operations on an
-array, but the `for` loop is an especially good match. Here is an
-example of a `for` loop that sets the values in an array to their
-indexes.
+Uma razão para usar arrays é evitar declarar 10 variáveis separadas
+apenas para ter 10 valores `int` com os quais trabalhar. Mas, uma vez que você tenha o array,
+muitas vezes precisará de uma maneira automatizada de processá-lo. Qualquer um dos três
+tipos de laços oferece uma ferramenta poderosa para realizar operações em um
+array, mas o laço `for` é especialmente adequado para isso. Aqui está um
+exemplo de um laço `for` que define os valores em um array para seus
+índices.
 
 [source,java]
 ----
@@ -432,17 +434,17 @@ for (int i = 0; i < 100; ++i) {
 }
 ----
 
-This sample of code shows how easy it is to iterate over every element
-in an array with a `for` loop, but it has a flaw in its style. Note that
-the number `100` is used twice: once in the instantiation of the array
-and a second time in the termination condition of the `for` loop. This
-fragment of code works fine, but if the programmer changes the length of
-`values` to be `50` or `500`, the bounds of the `for` loop will also
-need to change. Furthermore, the length of the array might be determined
-by user input.
+Este exemplo de código mostra como é fácil iterar sobre todos os elementos
+de um array com um laço `for`, no entanto, ele apresenta uma falha de estilo. Observe que
+o número `100` é usado duas vezes: uma vez na instanciação do array
+e uma segunda vez na condição de terminação do laço `for`. Este
+fragmento de código funciona bem, mas se o programador alterar o comprimento de
+`values` para `50` ou `500`, os limites do laço `for` também
+precisarão ser alterados. Além disso, o comprimento do array pode ser determinado
+pela entrada do usuário.
 
-To make the code both more robust and readable, we can use the `length`
-field of the `values` array for the bound of the `for` loop.
+Para tornar o código mais robusto e legível, podemos usar o campo `length`
+do array `values` como limite do laço `for`.
 
 [source,java]
 ----
@@ -452,18 +454,18 @@ for (int i = 0; i < values.length; ++i) {
 }
 ----
 
-The `length` field gives the length of the array that `values` points
-to. If the programmer wants to instantiate the array with a different
-length, that's fine. The `length` field will always reflect the correct
-value. Whenever possible, use the `length` field of arrays in your code.
-Note that the `length` field is read-only. If you try to set
-`values.length` to a specific value, your code will not compile.
+O campo `length` fornece o comprimento do array que `values` aponta
+. Se o programador quiser instanciar o array com um comprimento diferente
+, tudo bem. O campo `length` sempre refletirá o 
+valor correto. Sempre que possível, use o campo `length` dos arrays em seu código.
+Observe que o campo `length` é somente leitura. Se você tentar definir
+`values.length` com um valor específico, seu código não será compilado.
 
-Setting the values in an array is only one possible task you can perform
-with a loop. Let's assume that an array of type `double` named `data`
-has been declared, instantiated, and filled with user input. We could
-sum all its elements using the following code. A more elegant way to do
-the same summation is discussed in <<Enhanced `for` loops>>.
+Definir os valores em um array é apenas uma das tarefas possíveis que você pode realizar
+com um laço. Vamos supor que um array do tipo `double` chamado `data`
+tenha sido declarado, instanciado e preenchido com a entrada do usuário. Poderíamos
+somar todos os seus elementos usando o código a seguir. Uma maneira mais elegante de fazer
+a mesma soma é discutida em <<Laços `for` aprimorados>>.
 
 [source,java]
 ----
@@ -471,18 +473,18 @@ double sum = 0.0;
 for (int i = 0; i < data.length; ++i) {
     sum += data[i];
 }
-System.out.println("The sum of your data is: " + sum);
+System.out.println(“A soma dos seus dados é: ” + sum);
 ----
 
-So far, we've only discussed operations on the *values* in an array. It
-is important to realize that the *order* of those values can be equally
-important. We're going to create an array of `char` type named
-`letters`, initialized with some values, and then reverse the order of
-the array.
+Até agora, discutimos apenas operações sobre os *valores* em um array. É
+importante perceber que a *ordem* desses valores pode ser igualmente
+importante. Vamos criar um array do tipo `char` chamado
+`letters`, inicializado com alguns valores, e depois inverter a ordem do
+array.
 
 [source,java]
 ----
-char[] letters = {'b', 'y', 'z', 'a', 'n', 't', 'i', 'n', 'e'}; // <1>
+char[] letters = {‘b’, ‘y’, ‘z’, ‘a’, ‘n’, ‘t’, ‘i’, ‘n’, ‘e’}; // <1>
 int start = 0; // <2>
 int end = letters.length - 1; // <3>
 char temp;
@@ -498,370 +500,370 @@ for (int i = 0; i < letters.length; ++i) { //<7>
 }
 ----
 
-<1> After initializing the `letters`
-array, we declare `start` and `end`.
-<2> `start` gets the value `0`, the
-first index of `letters`.
-<3> `end` gets the value `letters.length - 1`, the last valid index
-of `letters`.
-<4> The `while` loop continues as long as
-the `start` is less than the `end`.
-<5> The first three lines of each
-iteration of the `while` loop will swap the `char` at index `start` with
-the `char` at index `end`.
-<6> The two lines after that will increment and
-decrement `start` and `end`, respectively. When the two meet in the
-middle, the entire array has been reversed.
-<7> The simple `for` loop at the
-end prints out each `char` in `letters`, giving the output `enitnazyb`.
+<1> Após inicializar o array `letters`
+, declaramos `start` e `end`.
+`start` recebe o valor `0`, o
+primeiro índice de `letters`.
+`end` recebe o valor `letters.length - 1`, o último índice válido
+de `letters`.
+O laço `while` continua enquanto
+`start` for menor que `end`.
+<2> As três primeiras linhas de cada
+iteração do loop `while` trocam o `char` no índice `start` pelo
+`char` no índice `end`.
+<3> As duas linhas seguintes incrementam e
+decrementam `start` e `end`, respectivamente. Quando os dois se encontram no
+meio, toda o array foi invertido.
+<4> O laço `for` simples no
+final imprime cada `char` em `letters`, gerando a saída `enitnazyb`.
 
-Of course, we could have
-printed out the array elements in reverse order without changing their
-order, but we wanted to reverse them, perhaps because we will need them
-reversed in the future.
+É claro que poderíamos ter
+impresso os elementos do array na ordem inversa sem alterar sua
+ordem, mas queríamos invertê-los, talvez porque precisaremos deles
+invertidos no futuro.
 
-==== Redirecting input
+==== Redirecionando a entrada
 
-With arrays and loops, we can process a lot of data, but testing
-programs that process a lot of data can be tedious. Instead of typing
-data into the terminal, we can read data from a file. In Java, file I/O
-is a messy process that involves several objects and method calls. We're
-going to talk about it in depth in <<file-io#file-io>>, but for
-now we can use a quick and easy workaround.
+Com arrays e loops, podemos processar uma grande quantidade de dados, mas testar
+programas que processam muitos dados pode ser tedioso. Em vez de digitar
+os dados no terminal, podemos lê-los a partir de um arquivo. Em Java, a E/S de arquivos
+é um processo complicado que envolve vários objetos e chamadas de métodos. Vamos
+falar sobre isso em profundidade em <<file-io#file-io>>, mas, por
+enquanto, podemos usar uma solução alternativa rápida e fácil.
 
-If you create a text file using a simple text editor, you can _redirect_
-the file as input to a program. Everything you've written in the text
-file is treated as if it were being typed into the command line by a
-person. To do so, you type the command using `java` to run your class
-file normally, type the `<` sign, and then type the name of the file you
-want to use as input. For example, if you have a text file called
-`numbers.txt` that you want to use as input to a program stored in
-`Summer.class`, you could do so as follows.
+Se você criar um arquivo de texto usando um editor de texto simples, poderá _redirecionar_
+o arquivo como entrada para um programa. Tudo o que você escreveu no arquivo de texto
+é tratado como se estivesse sendo digitado na linha de comando por uma
+pessoa. Para fazer isso, digite o comando usando `java` para executar sua classe
+normalmente, digite o sinal `<` e, em seguida, digite o nome do arquivo que você
+deseja usar como entrada. Por exemplo, se você tiver um arquivo de texto chamado
+`numbers.txt` que deseja usar como entrada para um programa armazenado em
+`Summer.class`, você poderia fazer isso da seguinte maneira.
 
 ----
 java Summer < numbers.txt
 ----
 
-Redirecting input this way is not a part of Java. Instead, it's a
-feature of the terminal running under your OS. Not all operating systems
-support input redirection, but virtually every flavor of Linux and Unix
-do, as well as the Windows command line and the macOS terminal. We
-could write the program mentioned above and give it the simple task of
-summing all the numbers it gets as input.
+Redirecionar a entrada dessa maneira não faz parte do Java. Em vez disso, é um
+recurso do terminal em execução no seu sistema operacional. Nem todos os sistemas operacionais
+suportam redirecionamento de entrada, mas praticamente todas as versões do Linux e do Unix
+suportam, assim como a linha de comando do Windows e o terminal do macOS. Nós
+poderíamos escrever o programa mencionado acima e atribuir a ele a tarefa simples de
+somar todos os números que receber como entrada.
 
-.Sums a list of numbers given as input.
+.Soma uma lista de números fornecidos como entrada.
 [source, java]
 [[SummerProgram]]
 ----
 include::{programsdir}/Summer.java[]
 ----
 
-Now, we can type out a file with a list of numbers in it and save it as
-`numbers.txt`. To conform with the program we wrote, we should also put
-the total count of numbers as the first value in the file. You can put
-each number on a separate line or just leave a space between each one.
-As long as they are separated by white space, the `Scanner` object will
-take care of the rest. You'll have to type the numbers into the file
-once, but then you can test your program over and over with the same file.
+Agora, podemos criar um arquivo com uma lista de números e salvá-lo como
+`numbers.txt`. Para estar em conformidade com o programa que escrevemos, devemos também colocar
+a contagem total de números como o primeiro valor no arquivo. Você pode colocar
+cada número em uma linha separada ou apenas deixar um espaço entre cada um.
+Desde que estejam separados por espaços em branco, o objeto `Scanner` irá
+cuidar do resto. Você terá que digitar os números no arquivo
+uma vez, mas depois poderá testar seu programa repetidamente com o mesmo arquivo.
 
-If you do run the program with the file you've created, you'll notice
-that the program still prompts you once for the total count of numbers
-and then prompts you many times to enter the next number. With
-redirected input, all that text runs together in a bizarre way. All the
-input is coming from `numbers.txt`. If you expect a program to read
-strictly from redirected input, you can design your code a little
-differently. For one thing, you don't need to have explicit prompts for
-the user. For another, you can use a number of special methods from the
-`Scanner` class. The `Scanner` class has a several methods like
-`hasNextInt()` and `hasNextDouble()`. These methods will examine the
-input and see if there is another legal `int` or `double` and return
-`true` or `false` accordingly. If you expect a file to have only a long
-sequence of `int` values, you can use `hasNextInt()` to determine if
-you've reached the end of the file or not. Using `hasNextInt()`, we can
-simplify the program and remove the expectation that the first number
-gives the total count of numbers.
+Se você executar o programa com o arquivo que criou, perceberá
+que o programa ainda solicita uma vez a contagem total de números
+e, em seguida, solicita várias vezes que você insira o próximo número. Com
+entrada redirecionada, todo esse texto é processado de forma confusa. Toda a
+entrada vem de `numbers.txt`. Se você espera que um programa leia
+estritamente a partir da entrada redirecionada, pode projetar seu código de maneira um pouco
+diferente. Por um lado, você não precisa de solicitações explícitas para
+o usuário. Por outro lado, você pode usar vários métodos especiais da
+classe `Scanner`. A classe `Scanner` possui vários métodos como
+`hasNextInt()` e `hasNextDouble()`. Esses métodos examinam a
+entrada e verificam se há outro `int` ou `double` válido, retornando
+`true` ou `false` conforme o caso. Se você espera que um arquivo tenha apenas uma longa
+sequência de valores `int`, pode usar `hasNextInt()` para determinar se
+chegou ao fim do arquivo ou não. Usando `hasNextInt()`, podemos
+simplificar o programa e remover a expectativa de que o primeiro número
+forneça a contagem total de números.
 
-.Sums a list of numbers given as input without prompting the user.
+.Soma uma lista de números fornecidos como entrada sem solicitar nada ao usuário.
 [source, java]
 [[QuietSummerProgram]]
 ----
 include::{programsdir}/QuietSummer.java[]
 ----
 
-On the other hand, you might be interested in the output of a program.
-The output could be very long or it might take a lot of time to produce
-or you might want to store it permanently. For these situations, it is
-possible to _redirect output_ as well. Instead of printing to the
-screen, you can send the output to a file of your choosing. The syntax
-for this operation is just like the syntax for input redirection except
-that you use the `>` sign instead of `<`. To run `QuietSummer` with
-input from `numbers.txt` and output to `sum.txt`, we could do the
-following.
+Por outro lado, você pode estar interessado na saída de um programa.
+A saída pode ser muito longa ou pode levar muito tempo para ser produzida
+ou você pode querer armazená-la permanentemente. Para essas situações, é
+possível _redirecionar a saída_ também. Em vez de imprimir na
+tela, você pode enviar a saída para um arquivo de sua escolha. A sintaxe
+para essa operação é igual à sintaxe para redirecionamento de entrada, exceto
+que você usa o sinal `>` em vez de `<`. Para executar `QuietSummer` com
+entrada de `numbers.txt` e saída para `sum.txt`, poderíamos fazer o
+seguinte.
 
 `java QuietSummer < numbers.txt > sum.txt`
 
-You would be free to examine `sum.txt` at any time with your text editor
-of choice. When using output redirection, it makes more sense to run
-`QuietSummer` than `Summer`. If we had run `Summer`, all of that
-unnecessary output prompting the user to enter numbers would be saved in
+Você pode examinar o `sum.txt` a qualquer momento com o editor de texto
+de sua preferência. Ao usar o redirecionamento de saída, faz mais sentido executar
+o `QuietSummer` do que o `Summer`. Se tivéssemos executado o `Summer`, toda aquela
+saída desnecessária solicitando que o usuário insira números seria salva no
 `sum.txt`.
 
-=== Examples: Array usage
+=== Exemplos: uso dos arrays
 
-Here are a few examples of practical array usage. We're going to
-discuss some techniques useful mostly for searching and sorting.
-Searching for values in a list seems mundane, but it's one of the most
-practical tasks that a computer scientist routinely carries out. By
-making a computer do the work, it saves human beings countless hours of
-tedious searching and checking. Another important task is sorting.
-Sorting a list can make future searches faster and is the simplest way
-to find the median of a list of values. Sorting is a fundamental part of
-countless real world problems.
+Aqui estão alguns exemplos de uso prático dos arrays. Vamos
+discutir algumas técnicas úteis principalmente para pesquisa e classificação.
+Pesquisar valores em uma lista pode parecer algo rotineiro, mas é uma das tarefas mais
+práticas que um cientista da computação realiza diariamente. Ao
+fazer com que um computador faça esse trabalho, poupamos dos seres humanos inúmeras horas de
+pesquisas e verificações tediosas. Outra tarefa importante é a classificação.
+Classificar uma lista pode tornar pesquisas futuras mais rápidas e é a maneira mais simples
+de encontrar a mediana de uma lista de valores. A classificação é uma parte fundamental de
+inúmeros problemas do mundo real.
 
-In the examples below, we'll first discuss finding the largest (or
-smallest) value in a list, move on to sorting lists, and then talk about
-a task that searches for words, like a dictionary look up.
+Nos exemplos abaixo, discutiremos primeiro como encontrar o maior (ou
+menor) valor em uma lista, passaremos para a classificação de listas e, em seguida, falaremos sobre
+uma tarefa que pesquisa palavras, como uma consulta em um dicionário.
 
 [[kingOfTheHillExample]]
-.King of the hill
+.Rei da colina
 ====
 
-Finding the largest value input by a user is not difficult. Applying
-that knowledge to an array is pretty straightforward as well. This
-simple task is also a building block of the sorting algorithm we'll
-discuss below. The key to finding the largest value in any list is to
-keep a temporary variable that records the largest value found so far.
-As we go along, we update the variable if we find a larger value. The
-only trick is initializing the variable to some appropriate starting
-value. We could initialize it to zero, but what if entire list of
-numbers is negative? Then, our answer would be larger than any of the
-numbers in the list. If our list of numbers is of type `int`, we could
-initialize our variable to `Integer.MIN_VALUE`, the smallest possible
-`int`. This approach works, but you have to remember the name of the
-constant, and it doesn't improve the readability of the code.
+Encontrar o maior valor inserido por um usuário não é difícil. Aplicar
+esse conhecimento a um array também é bastante simples. Essa
+tarefa simples também é um alicerce do algoritmo de classificação que discutiremos
+abaixo. A chave para encontrar o maior valor em qualquer lista é
+manter uma variável temporária que registre o maior valor encontrado até o momento.
+À medida que avançamos, atualizamos a variável se encontrarmos um valor maior. O
+único truque é inicializar a variável com algum valor inicial apropriado
+. Poderíamos inicializá-la com zero, mas e se toda a lista de
+números for negativa? Nesse caso, nossa resposta seria maior do que qualquer um dos
+números da lista. Se nossa lista de números for do tipo `int`, poderíamos
+inicializar nossa variável como `Integer.MIN_VALUE`, o menor
+`int` possível. Essa abordagem funciona, mas você precisa se lembrar do nome da
+constante, e isso não melhora a legibilidade do código.
 
-When working with an array, the best way to find the largest value in
-the list is by setting your temporary variable to the first element
-(index `0`) in the array. Below is a short snippet of code that finds
-the largest value in an `int` array named `values` in exactly this way.
-
-[source,java]
-----
-int largest = values[0];
-for (int i = 1; i < values.length; ++i) {
-    if (values[i] > largest) {
-        largest = values[i];
-    }
-}
-System.out.println("The largest value is " + largest);
-----
-
-Note that the `for` loop starts at `1` not `0`. Because `largest` is
-initialized to be `values[0]`, there's no reason to check that value a second time.
-Doing so would still give the correct answer, but it wastes a tiny
-amount of time.
-
-What's the feature of this code that makes it find the largest value?
-The key is the `>` operator. With the change of a single character, we
-could find the smallest value instead.
+Ao trabalhar com um array, a melhor maneira de encontrar o maior valor na
+lista é definindo sua variável temporária como o primeiro elemento
+(índice `0`) do array. Abaixo está um pequeno trecho de código que encontra
+o maior valor em um array `int` chamado `values` exatamente dessa maneira.
 
 [source,java]
 ----
-int smallest = values[0];
-for (int i = 1; i < values.length; ++i) {
-    if (values[i] < smallest) {
-        smallest = values[i];
+int maior = valores[0];
+for (int i = 1; i < valores.length; ++i) {
+    if (valores[i] > maior) {
+        maior = valores[i];
     }
 }
-System.out.println("The smallest value is " + smallest);
+System.out.println(“O maior valor é ” + maior);
 ----
 
-In addition to the necessary change from `>` to `<`, we also changed the
-output and the name of the variable to avoid confusion. Now, we'll show
-how repeatedly finding the smallest value in an array can be used to
-sort it. Alternatively, the largest value could be used equally well.
+Observe que o laço `for` começa em `1`, não em `0`. Como `largest` é
+inicializado como `values[0]`, não há motivo para verificar esse valor uma segunda vez.
+Fazer isso ainda daria a resposta correta, mas desperdiçaria uma pequena
+quantidade de tempo.
+
+Qual é a característica desse código que faz com que ele encontre o maior valor?
+A chave é o operador `>`. Com a alteração de um único caractere,
+poderíamos encontrar o menor valor em vez disso.
+
+[source,java]
+----
+int menor = valores[0];
+for (int i = 1; i < valores.length; ++i) {
+    if (valores[i] < menor) {
+        menor = valores[i];
+    }
+}
+System.out.println(“O menor valor é ” + smallest);
+----
+
+Além da alteração necessária de `>` para `<`, também alteramos a
+saída e o nome da variável para evitar confusão. Agora, vamos mostrar
+como encontrar repetidamente o menor valor em um array pode ser usado para
+ordená-lo. Alternativamente, o maior valor poderia ser usado igualmente bem.
 
 ====
 
 
 [[selectionSortExample]]
-.Selection sort
+.Classificação por seleção
 ====
 
-Sorting is the bread and butter of computer scientists. Much research
-has been devoted to finding the fastest ways to sort a list of data. The
-rest of the world assumes that sorting a list of data is trivial because
-computer scientists have done such a good job solving this problem. The
-name of the sorting algorithm we are going to describe below is
-_selection sort_. It's *not* one of the fastest ways to sort data, but
-it's simple and easy to understand.
+A classificação é o pão com manteiga dos cientistas da computação. Muitas pesquisas
+têm se dedicado a encontrar as maneiras mais rápidas de ordenar uma lista de dados. O
+resto do mundo presume que ordenar uma lista de dados é trivial porque
+os cientistas da computação fizeram um excelente trabalho ao resolver esse problema. O
+nome do algoritmo de ordenação que descreveremos a seguir é
+_ordenação por seleção_. Ela *não é* uma das maneiras mais rápidas de ordenar dados, mas
+é simples e fácil de entender.
 
-The idea behind selection sort is to find the smallest element in an
-array and put it at index `0` of the array. Then, from the remaining
-elements, find the smallest element and put it at index `1` of the
-array. The process continues, filling the array up from the beginning
-with the smallest values until the entire array is sorted. If the length
-of the array is _n_, we'll need to look for the smallest
-element in the array _n_ - 1 times. By putting the code that
-searches for the smallest value inside of an outer loop, we can write a
-program that does selection sort of `int` values input by the user as
-follows. This program's not very long, but there's a lot going on.
+A ideia por trás da ordenação por seleção é encontrar o menor elemento em um
+array e colocá-lo no índice `0` do array. Em seguida, a partir dos
+elementos restantes, encontrar o menor elemento e colocá-lo no índice `1` do
+array. O processo continua, preenchendo o array a partir do início
+com os menores valores até que todo o array esteja ordenado. Se o comprimento
+do array for _n_, precisaremos procurar o menor
+elemento no array _n_ - 1 vezes. Ao colocar o código que
+procura o menor valor dentro de um laço externo, podemos escrever um
+programa que faça a ordenação por seleção de valores `int` inseridos pelo usuário da
+seguinte forma. Este programa não é muito longo, mas há muita coisa acontecendo.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=1..12]
+include::{programsdir}/SelectionSort.java[linhas=1..12]
 ----
-<.> After
-instantiating a `Scanner`, we read in the total number of values the
-list will hold. We cannot rely on the `hasNextInt()` method to tell us
-when to stop reading values.
-<.> We need to know up front how many values we
-are going to store so that we can instantiate our array with the
-appropriate length.
-<.> Then, we read each value into the array using the
-first `for` loop.
+<.> Após
+instanciar um `Scanner`, lemos o número total de valores que a
+lista irá conter. Não podemos confiar no método `hasNextInt()` para nos dizer
+quando parar de ler valores.
+<.> Precisamos saber antecipadamente quantos valores
+vamos armazenar para que possamos instanciar nosso array com o
+comprimento apropriado.
+<.> Em seguida, lemos cada valor no array usando o
+primeiro loop `for`.
 
 [source, java]
 ----
 include::{programsdir}/SelectionSort.java[lines=13..23]
 ----
-<.> The next `for` loop is where the actual sort happens. We start at index
-`0` and then try to find the smallest value to be put in that spot.
-Then, we move on to index `1`, and so on, just as we described before.
-Note that we only go up to `n - 2`. We don't need to find the value to
-put in index `n - 1`, because the rest of the list has the `n - 1`
-smallest numbers in it and so the last number *must* already be the
-largest.
-<.> If you look carefully, you'll notice that the inner `for`
-loop has the same overall shape as the loop used to find the smallest
-value in the previous example; however, there is one key difference:
-<.> Instead of storing the *value* of the smallest number in `smallest`, we
-now store the *index* of the smallest number. We need to store the index
-of the smallest number so that, in the next step, we can swap the
-corresponding element with the element at `i`, the spot in the array
-we're trying to fill.
-<.> The three lines after the inner `for` loop are a
-simple swap to do exactly that.
+<.> O próximo laço `for` é onde a classificação propriamente dita ocorre. Começamos no índice
+`0` e, em seguida, tentamos encontrar o menor valor para ser colocado nesse local.
+Depois, passamos para o índice `1`, e assim por diante, exatamente como descrevemos anteriormente.
+Observe que só vamos até `n - 2`. Não precisamos encontrar o valor a
+ser colocado no índice `n - 1`, porque o restante da lista contém os `n - 1`
+menores números e, portanto, o último número *deve* já ser o
+maior.
+<.> Se você observar com atenção, perceberá que o laço interno `for`
+tem a mesma estrutura geral do laço usado para encontrar o menor
+valor no exemplo anterior; no entanto, há uma diferença fundamental:
+<.> Em vez de armazenar o *valor* do menor número em `smallest`, nós
+agora armazenamos o *índice* do menor número. Precisamos armazenar o índice
+do menor número para que, na próxima etapa, possamos trocar o
+elemento correspondente com o elemento em `i`, o local no array
+que estamos tentando preencher.
+<.> As três linhas após o loop `for` interno são uma
+troca simples para fazer exatamente isso.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=24..29]
+include::{programsdir}/SelectionSort.java[linhas=24..29]
 ----
-<.> After all the sorting is done, the final `for` loop prints out the newly
-sorted list.
+<.> Depois que toda a classificação estiver concluída, o laço `for` final imprime a lista recém-
+classificada.
 
-This program gives no prompts for user input, so it's well
-designed for input redirection. If you're going to make a file
-containing numbers you want to sort with this program, make sure that
-the first number is the total count of numbers in the file.
+Este programa não solicita nenhuma entrada do usuário, portanto, está bem
+projetado para redirecionamento de entrada. Se você for criar um arquivo
+contendo números que deseja classificar com este programa, certifique-se de que
+o primeiro número seja a contagem total de números no arquivo.
 
-Again, this program sorts the list in ascending order (from smallest to
-largest). If you wanted to sort the list in descending order, you would
-only need to change the `<` to a `>` in the comparison of the inner
-`for` loop, although other changes are recommended for the sake of
-readability.
+Mais uma vez, este programa ordena a lista em ordem crescente (do menor para o
+maior). Se você quisesse ordenar a lista em ordem decrescente,
+bastaria alterar o `<` para um `>` na comparação do laço interno
+`for`, embora outras alterações sejam recomendadas para facilitar a
+legibilidade.
 
 ====
 
 [[wordSearchExample]]
-.Word search
+.Busca de palavras
 ====
 
-In this example, we read in a list of words and a long passage of
-text and keep track of the number of times each word in the list occurs
-in the passage. This kind of text searching has many applications.
-Similar ideas are used in a spell checker that needs to look up words in
-a dictionary. The incredibly valuable find and replace tools in modern
-word processors use some of the same techniques.
+Neste exemplo, lemos uma lista de palavras e uma longa passagem de
+texto e registramos o número de vezes que cada palavra da lista aparece
+na passagem. Esse tipo de pesquisa de texto tem muitas aplicações.
+Ideias semelhantes são usadas em um corretor ortográfico que precisa consultar palavras em
+um dicionário. As ferramentas de localização e substituição, incrivelmente valiosas nos modernos
+processadores de texto, utilizam algumas dessas mesmas técnicas.
 
-To make this program work, however, we need to read in a (potentially
-long) list of words and then a lot of text. We are forced to use input
-redirection (or some other file input) because typing this text in
-multiple times would be tedious. When we get to <<file-io#file-io>>,
-we'll talk about ways to read from multiple files at the same
-time. Right now, we can only redirect input from a single file, and so
-we're forced to put the list of words at the top of the file, followed by
-the text we want to search through.
-
-[source, java]
-----
-include::{programsdir}/WordCount.java[lines=1..12]
-----
-<.> As in the last example, this program begins by reading in the length of
-the list of words.
-<.> Then, it instantiates the `String` array `words` to
-hold these words.
-<.> It also instantiates an array `counts` of type `int`
-to keep track of the number of times each word is found. By default,
-each element in `counts` is initialized to `0`.
-<.> The first `for` loop in
-the program reads in each word and stores it into the array `words`.
+Para fazer este programa funcionar, no entanto, precisamos ler uma lista (potencialmente
+longa) de palavras e, em seguida, uma grande quantidade de texto. Somos obrigados a usar redirecionamento de entrada
+(ou alguma outra forma de entrada de arquivo) porque digitar esse texto
+várias vezes seria tedioso. Quando chegarmos a <<file-io#file-io>>,
+falaremos sobre maneiras de ler de vários arquivos ao mesmo
+tempo. No momento, só podemos redirecionar a entrada de um único arquivo e, portanto,
+somos obrigados a colocar a lista de palavras no início do arquivo, seguida pelo
+texto que queremos pesquisar.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=13..21]
+include::{programsdir}/WordCount.java[linhas=1..12]
 ----
-<.> The `while` loop reads in each word from the text following the list and
-stores it in a variable called `temp`.
-<.> Then, it loops through `words`
-and tests to see if `temp` matches any of the elements in the list.
-<.> If it does, it increases the value of the element of `counts` that has the
-same index and breaks out of the inner `for` loop.
+<.> Assim como no último exemplo, este programa começa lendo o comprimento da
+lista de palavras.
+<.> Em seguida, ele instancia o array `String` `words` para
+armazenar essas palavras.
+<.> Ele também instancia um array `counts` do tipo `int`
+para acompanhar o número de vezes que cada palavra é encontrada. Por padrão,
+cada elemento em `counts` é inicializado como `0`.
+<.> O primeiro laço `for` no
+programa lê cada palavra e a armazena no array `words`.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=22..27]
+include::{programsdir}/WordCount.java[linhas=13..21]
 ----
-<.> After all the words in the text have been processed, the final `for`
-loop prints out each word from the list, along with its counts.
+<.> O laço `while` lê cada palavra do texto que segue a lista e
+a armazena em uma variável chamada `temp`.
+<.> Em seguida, ele percorre `words`
+e verifica se `temp` corresponde a algum dos elementos da lista.
+<.> Se corresponder, ele aumenta o valor do elemento de `counts` que tem o
+mesmo índice e sai do loop `for` interno.
 
-This program uses two different arrays for bookkeeping: `words` contains
-the words we are searching for and `counts` contains the number of times
-each word has been found. These two arrays are separate data structures.
-The only link between them is the code we wrote to maintain the
-correspondence between their elements.
+[source, java]
+----
+include::{programsdir}/WordCount.java[linhas=22..27]
+----
+<.> Depois que todas as palavras do texto forem processadas, o laço `for` final
+imprime cada palavra da lista, juntamente com suas contagens.
 
-To give a clear picture of how this program should behave, here's a
-sample input file with two paragraphs from the beginning of _The Count
-of Monte Cristo_ by Alexandre Dumas.
+Este programa usa dois arrays diferentes para registro: `words` contém
+as palavras que estamos procurando e `counts` contém o número de vezes
+que cada palavra foi encontrada. Esses dois arrays são estruturas de dados separadas.
+A única ligação entre elas é o código que escrevemos para manter a
+correspondência entre seus elementos.
+
+Para dar uma ideia clara de como este programa deve se comportar, aqui está um
+arquivo de entrada de exemplo com dois parágrafos do início de _O Conde
+de Monte Cristo_, de Alexandre Dumas.
 
 ....
 7
-and
-at
-bridge
-for
-pilot
-vessel
-walnut
-On the 24th of February, 1815, the look-out at Notre-Dame de la Garde signaled the three-master, the Pharaon from Smyrna, Trieste, and Naples. As usual, a pilot put off immediately, and rounding the Chateau d'If, got on board the vessel between Cape Morgion and Rion island.
+e
+na
+ponte
+para
+piloto
+navio
+noz
+Em 24 de fevereiro de 1815, o vigia de Notre-Dame de la Garde sinalizou para o veleiro de três mastros, o Pharaon, proveniente de Esmirna, Trieste e Nápoles. Como de costume, um piloto partiu imediatamente e, contornando o Château d’If, embarcou no navio entre o Cabo Morgion e a ilha de Rion.
 
-Immediately, and according to custom, the ramparts of Fort Saint-Jean were covered with spectators; it is always an event at Marseilles for a ship to come into port, especially when this ship, like the Pharaon, has been built, rigged, and laden at the old Phocee docks, and belongs to an owner of the city.
+Imediatamente, e conforme o costume, as muralhas do Forte Saint-Jean ficaram repletas de espectadores; é sempre um evento em Marselha quando um navio entra no porto, especialmente quando esse navio, como o Pharaon, foi construído, equipado e carregado nas antigas docas de Foceia e pertence a um armador da cidade.
 ....
 
-And here's the output one should get from running `WordCount` with
-input redirected from the file given above.
+E aqui está a saída que se deve obter ao executar `WordCount` com
+a entrada redirecionada do arquivo fornecido acima.
 
 ....
-The word counts are:
-and 6
-at 3
-bridge 0
-for 1
-pilot 1
-vessel 1
-walnut 0
+As contagens de palavras são:
+e 6
+em 3
+ponte 0
+para 1
+piloto 1
+navio 1
+noz 0
 ....
 
-For this example, the program works fine. However, our program would
-have given incorrect output if `ship`, `spectators`, or several other
-words in the text had been on the word list. You see, the `next()`
-method in the `Scanner` class reads in `String` values separated by
-white space. The word `ship` appears twice in the text, but the second
-instance is followed by a comma. Since the words are separated by white
-space only, the `String` `"ship,"` does not match the `String` `"ship"`.
-Dealing with punctuation is not difficult, but it would increase the
-length of the code, so we leave it as an exercise.
+Para este exemplo, o programa funciona bem. No entanto, nosso programa
+teria gerado uma saída incorreta se `ship`, `spectators` ou várias outras
+palavras no texto estivessem na lista de palavras. Veja bem, o método `next()`
+na classe `Scanner` lê valores `String` separados por
+espaços em branco. A palavra `ship` aparece duas vezes no texto, mas a segunda
+ocorrência é seguida por uma vírgula. Como as palavras são separadas apenas por espaços em branco
+, a `String` `"ship,"` não corresponde à `String` `"ship"`.
+Lidar com pontuação não é difícil, mas aumentaria o
+comprimento do código, então deixamos isso como um exercício.
 ====
 
 ****
@@ -869,145 +871,148 @@ length of the code, so we leave it as an exercise.
 ****
 
 [[statisticsExample]]
-.Statistics
+.Estatísticas
 ====
 
-Imagine you're a teacher who has just given an exam. You want to
-produce statistics for the class so that the students have some idea how
-well they have done. You want to write a Java program to help you
-produce the statistics, to save time now and in the future.
+Imagine que você é um professor que acabou de aplicar uma prova. Você deseja
+produzir estatísticas para a turma, para que os alunos tenham uma ideia de
+como se saíram. Você quer escrever um programa em Java para ajudá-lo
+a produzir as estatísticas, a fim de economizar tempo agora e no futuro.
 
-The statistics you want to collect are listed in the following table.
+As estatísticas que você deseja coletar estão listadas na tabela a seguir.
 
-[.center%autowidth%unbreakable,cols="<,<"]
+[.center%autowidth%unbreakable,cols=“<,<”]
 |===========================================================
-|Statistic |Description
+|Estatística |Descrição
 
-|Maximum |Maximum score
-|Minimum |Minimum score
-|Mean |Average of all the scores
-|Standard Deviation |Sample standard deviation of the scores
-|Median |Middle value of the scores when ordered
+|Máximo |Pontuação máxima
+|Mínimo |Pontuação mínima
+|Média |Média de todas as pontuações
+|Desvio Padrão |Desvio padrão amostral das pontuações
+|Mediana |Valor central das pontuações quando ordenadas
 |===========================================================
 
-<<kingOfTheHillExample>> covered how to find the maximum and
-minimum scores in a list. The mean is simply the sum of all the scores
-divided by the total number of scores. Standard deviation is a little
-bit trickier. It gives a measurement of how spread out the data is. Let
-_n_ be the number of data points, label each data point
-_x~i~_, where 1 ≤ _i_ ≤ _n_, and let
-_μ_ be the mean of all the data points. Then, the
-formula for the sample standard deviation is as follows.
+<<kingOfTheHillExample>> abordou como encontrar as pontuações máxima e
+mínima em uma lista. A média é simplesmente a soma de todas as pontuações
+dividida pelo número total de pontuações. O desvio padrão é um pouco
+mais complicado. Ele fornece uma medida de quão dispersos os dados estão. Seja
+_n_ o número de pontos de dados, denotemos cada ponto de dados como
+_x_i_, onde 1 ≤ _i_ ≤ _n_, e seja
+_μ_ a média de todos os pontos de dados. Então, a
+fórmula para o desvio padrão amostral é a seguinte.
 
-//[stem]
+// [stem]
 //++++
 //\sigma = \sqrt{\frac{1}{n - 1}\sum_{i = 1}^n (x_i - \mu)^2}
 //++++
 
 [.text-center]
-image::deviation.svg[scaledwidth=25%,pdfwidth=25%,width=25%,align="center"]
+image::deviation.svg[scaledwidth=25%,pdfwidth=25%,width=25%,align=“center”]
 
-Finally, if you sort a list of numbers in order, the median is the
-middle value in the list, or the average of the two middle values, if
-the list has an even length.
+Por fim, se você classificar uma lista de números em ordem, a mediana é o
+valor do meio da lista, ou a média dos dois valores do meio, se
+a lista tiver um número par de elementos.
 
-These kinds of statistical operations are useful and are packaged
-into many important business applications such as Microsoft Excel. This
-version will have a simple interface whose input comes from the command
-line. First, the total number of scores will be entered. Then, each
-score should be entered one by one. After all the data has been entered,
-the program should compute and output the five values.
+Esses tipos de operações estatísticas são úteis e estão integrados
+em muitos aplicativos empresariais importantes, como o Microsoft Excel. Esta
+versão terá uma interface simples cuja entrada é feita pela linha de comando
+. Primeiro, o número total de pontuações será inserido. Em seguida, cada
+pontuação deve ser inserida uma a uma. Depois que todos os dados forem inseridos,
+o programa deve calcular e exibir os cinco valores.
 
-Below we give the solution to this statistics problem. Several different
-tasks are combined here, but each of them should be reasonably easy to
-solve after the previous examples.
+Abaixo apresentamos a solução para este problema estatístico. Várias tarefas diferentes
+são combinadas aqui, mas cada uma delas deve ser razoavelmente fácil de
+resolver após os exemplos anteriores.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=1..10]
+include::{programsdir}/Statistics.java[linhas=1..10]
 ----
-<.> In our solution, the `main()` method begins by reading in the total
-number of scores.
-<.> It declares an `int` array of that length named
+<.> Em nossa solução, o método `main()` começa lendo o
+número total de pontuações.
+<.> Ele declara um array `int` com esse comprimento chamado
 `scores`.
-<.> Then, we read in each of the scores and store them into
+<.> Em seguida, lemos cada uma das pontuações e as armazenamos em
 `scores`.
 
 [source, java]
 ----
 include::{programsdir}/Statistics.java[lines=11..22]
 ----
-<.> Here we declare variables `max`, `min`, and `sum` to hold, respectively,
-the maximum, minimum, and sum of the elements in the array. Then, we set
-all three variables to the value of the first element of the array.
-These initializations make the following code work.
-<.> In a single `for`
-loop, we find the maximum, minimum, and sum of all the values in the
+<.> Aqui declaramos as variáveis `max`, `min` e `sum` para armazenar, respectivamente,
+o máximo, o mínimo e a soma dos elementos do array. Em seguida, definimos
+todas as três variáveis com o valor do primeiro elemento do array.
+Essas inicializações fazem com que o código a seguir funcione.
+<.> Em um único laço `for`
+, encontramos o máximo, o mínimo e a soma de todos os valores no
 array.
 
-We could have done so with three separate loops, but this
-approach is more efficient. Setting `max` and `min` to `scores[0]`
-follows the pattern we've used before, but setting `sum` to the same
-value is also necessary in this case. Because the loop iterates from `1`
-up to `scores.length - 1`, we must include the value at index `0` in
-`sum`. Alternatively, we could have set `sum` to `0` and started the
-`for` loop at `i = 0`.
+Poderíamos ter feito isso com três laços separados, mas esta
+abordagem é mais eficiente. Definir `max` e `min` como `scores[0]`
+segue o padrão que usamos anteriormente, mas definir `sum` com o mesmo
+valor também é necessário neste caso. Como o laço itera de `1`
+até `scores.length - 1`, devemos incluir o valor no índice `0` em
+`sum`.
+ Como alternativa, poderíamos ter definido `sum` como `0` e iniciado o
+laço `for` em `i = 0`.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=23..26]
+include::{programsdir}/Statistics.java[linhas=23..26]
 ----
 
-In this short snippet of code, we compute the mean, being careful to
-cast it into type `double` before the division, and then print out the three
-statistics we've computed.
-
-[source, java]
-----
-include::{programsdir}/Statistics.java[lines=27..32]
-----
-<.> At this point, we use the mean we've already computed to find the
-sample standard deviation. Following the formula for sample standard
-deviation, we subtract the mean from each score, square the result, and
-add it to a running total. Although the formula for sample standard
-deviation uses the bounds 1 to _n_, we
-translate them to `0` to `n - 1` because of zero-based array numbering.
-<.> Dividing the total by `n - 1` gives the sample variance.
-<.> Then, the
-square root of the variance is the standard deviation.
+Neste pequeno trecho de código, calculamos a média, tomando o cuidado de
+convertê-la para o tipo `double` antes da divisão, e então imprimimos as três
+estatísticas que calculamos.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=33..44]
+include::{programsdir}/Statistics.java[linhas=27..32]
 ----
-<.> To find the median, we use our selection sort code.
-
-Note that we have
-reused the variable `min` to hold the smallest value found so far,
-instead of declaring a new variable such as `smallest`. Some programmers
-might object to doing so, since we run the risk of interpreting the
-variable as the minimum value in the entire array, as it was before.
-Either approach is fine. If you worry about confusing people reading
-your code, add a comment.
+<.
+ 
+> Neste ponto, usamos a média que já calculamos para encontrar o
+desvio padrão amostral. Seguindo a fórmula para o desvio padrão
+amostral, subtraímos a média de cada pontuação, elevamos o resultado ao quadrado e
+o adicionamos a um total acumulado. Embora a fórmula para o desvio padrão
+amostral use os limites de 1 a _n_, nós
+os convertemos de `0` a `n - 1` devido à numeração do array baseada em zero.
+<.> Dividindo o total por `n - 1`, obtemos a variância amostral.
+<.> Então, a
+raiz quadrada da variância é o desvio padrão.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=45..53]
+include::{programsdir}/Statistics.java[linhas=33..44]
 ----
-<.> After the array has been sorted, we need to do a quick check to see if
-its length is odd or even.
-<.> If its length is even, we need to find the average of the two middle elements.
-<.> If its length is odd, we can report the value of the single middle element.
+<.> Para encontrar a mediana, usamos nosso código de ordenação por seleção.
 
-Note that some of the statistics we found, such as the maximum, minimum,
-or mean, could be computed with a single pass over the data
-without the need for an array for storage.
-However, the last two tasks need to store all the values to work.
-The simplest way to find the sample standard deviation of a list of values
-requires its mean, requiring one pass to find the mean and a second
-to sum the squares of the difference of the mean and each value.
-Likewise, it's impossible to find the median of a list of values without
-storing the list.
+Observe que reutilizamos
+a variável `min` para armazenar o menor valor encontrado até o momento,
+em vez de declarar uma nova variável como `smallest`. Alguns programadores
+podem se opor a isso, já que corremos o risco de interpretar a
+variável como o valor mínimo em todo o array, como era antes.
+Qualquer uma das abordagens está correta. Se você se preocupa em confundir quem estiver lendo
+seu código, adicione um comentário.
+
+[source, java]
+----
+include::{programsdir}/Statistics.java[linhas=45..53]
+----
+<.> Depois que o array foi ordenado, precisamos fazer uma verificação rápida para ver se
+seu comprimento é ímpar ou par.
+<.> Se seu comprimento for par, precisamos encontrar a média dos dois elementos do meio.
+<.> Se o comprimento for ímpar, podemos reportar o valor do único elemento do meio.
+
+Observe que algumas das estatísticas que encontramos, como o máximo, o mínimo
+ou a média, poderiam ser calculadas com uma única passagem pelos dados
+sem a necessidade de um array para armazenamento.
+No entanto, as duas últimas tarefas precisam armazenar todos os valores para funcionar.
+A maneira mais simples de encontrar o desvio padrão amostral de uma lista de valores
+requer sua média, exigindo uma passagem para encontrar a média e uma segunda
+para somar os quadrados da diferença entre a média e cada valor.
+Da mesma forma, é impossível encontrar a mediana de uma lista de valores sem
+armazenar a lista.
 
 ****
 <<modeExercise>>

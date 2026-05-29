@@ -82,11 +82,11 @@
 </li>
 <li><a href="chap6.html">Capítulo 6. Arrays</a>
 <ul class="sectlevel2">
-<li><a href="chap6.html#_introduction">6.1. Introduction</a></li>
-<li><a href="chap6.html#_problem_game_of_life">6.2. Problem: Game of Life</a></li>
-<li><a href="chap6.html#_concepts_lists_of_data">6.3. Concepts: Lists of data</a></li>
-<li><a href="chap6.html#_syntax_arrays_in_java">6.4. Syntax: Arrays in Java</a></li>
-<li><a href="chap6.html#_examples_array_usage">6.5. Examples: Array usage</a></li>
+<li><a href="chap6.html#_introdução">6.1. Introdução</a></li>
+<li><a href="chap6.html#_problema_jogo_da_vida">6.2. Problema: Jogo da Vida</a></li>
+<li><a href="chap6.html#_conceitos_listas_de_dados">6.3. Conceitos: Listas de dados</a></li>
+<li><a href="chap6.html#_sintaxe_arrays_em_java">6.4. Sintaxe: Arrays em Java</a></li>
+<li><a href="chap6.html#_exemplos_uso_dos_arrays">6.5. Exemplos: uso dos arrays</a></li>
 <li><a href="chap6.html#_concepts_multidimensional_lists">6.6. Concepts: Multidimensional lists</a></li>
 <li><a href="chap6.html#_syntax_advanced_arrays_in_java">6.7. Syntax: Advanced arrays in Java</a></li>
 <li><a href="chap6.html#_examples_two_dimensional_arrays">6.8. Examples: Two-dimensional arrays</a></li>
@@ -175,7 +175,7 @@
 </li>
 <li><a href="chap14.html">Capítulo 14. Concurrent Programming</a>
 <ul class="sectlevel2">
-<li><a href="chap14.html#_introduction_2">14.1. Introduction</a></li>
+<li><a href="chap14.html#_introduction">14.1. Introduction</a></li>
 <li><a href="chap14.html#_problem_deadly_virus">14.2. Problem: Deadly virus</a></li>
 <li><a href="chap14.html#_concepts_splitting_up_work">14.3. Concepts: Splitting up work</a></li>
 <li><a href="chap14.html#_syntax_threads_in_java">14.4. Syntax: Threads in Java</a></li>
@@ -189,7 +189,7 @@
 </li>
 <li><a href="chap15.html">Capítulo 15. Synchronization</a>
 <ul class="sectlevel2">
-<li><a href="chap15.html#_introduction_3">15.1. Introduction</a></li>
+<li><a href="chap15.html#_introduction_2">15.1. Introduction</a></li>
 <li><a href="chap15.html#_problem_dining_philosophers">15.2. Problem: Dining philosophers</a></li>
 <li><a href="chap15.html#_concepts_thread_interaction">15.3. Concepts: Thread interaction</a></li>
 <li><a href="chap15.html#_syntax_thread_synchronization">15.4. Syntax: Thread synchronization</a></li>
@@ -2087,7 +2087,7 @@ tópicos são discutidos mais detalhadamente em <a href="#Conceitos: Dividindo o
 <div class="paragraph">
 <p>Executar tarefas repetitivas é um dos grandes pontos fortes dos computadores.
 Para a maioria dos programas que rodam por muito tempo, quantidades incríveis de
-cálculos estão sendo feitas dentro de loops (geralmente aninhados). A
+cálculos estão sendo feitas dentro de laços (geralmente aninhados). A
 decomposição de domínios não funcionará para todos esses programas. Alguns não podem ser
 paralelizados de forma alguma, mas este livro trata de encontrar problemas que possam
 ter soluções paralelas e concorrentes.</p>
@@ -2121,57 +2121,57 @@ saída em torno desse laço.</p>
 <div id="SumSinesProgram" class="listingblock">
 <div class="title">Código 5.10 Soma os senos de todos os inteiros em um intervalo especificado pelo usuário.</div>
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="o">--</span> <span class="o">--</span>
-<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">SumSines</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Scanner</span> <span class="n">in</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Scanner</span><span class="o">(</span><span class="nc">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter starting value: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">start</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Enter ending value: "</span><span class="o">);</span>
+        <span class="kt">int</span> <span class="n">end</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+        
+        <span class="kt">double</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="n">start</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">end</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>     
+            <span class="n">sum</span> <span class="o">+=</span> <span class="nc">Math</span><span class="o">.</span><span class="na">sin</span><span class="o">(</span><span class="n">start</span><span class="o">);</span>
+        <span class="o">}</span>
+        
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Sum of sines: "</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>public class SumSines {
-    public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        System.out.print("Enter starting value: ");
-        int start = in.nextInt();
-        System.out.print("Enter ending value: ");
-        int end = in.nextInt();
-        
-        double sum = 0;
-        for (int i = start; i ⇐ end; ++i) {     
-            sum += Math.sin(start);
-        }
-        
-        System.out.println("Sum of sines: " + sum);
-    }
-}</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>Se você compilar e executar este programa com `1` como valor inicial e
-`100000000` como final, a resposta deve ser `1.7136493465700542`. Cem
+<p>Se você compilar e executar este programa com <code>1</code> como valor inicial e
+<code>100000000</code> como final, a resposta deve ser <code>1.7136493465700542</code>. Cem
 milhões de valores é uma quantidade enorme para calcular o seno. Dependendo da sua
 máquina, essa tarefa deve levar entre 10 segundos e mais de um minuto. Tente
-cronometrar o tempo que isso leva com a maior precisão possível.
-
-Agora, abra um total de quatro janelas de terminal e navegue em todas elas até o
-diretório que contém `SumSines.class`. Execute `SumSines` em cada uma delas. Para
-o primeiro terminal, digite `1` como início e `25000000` como fim. Para
-o segundo, digite `25000001` e `50000000`. Para o terceiro, digite
-`50000001` e `75000000`. Para o último, digite `75000000` e
-`100000000`. Após a execução, você deverá obter, respectivamente,
-`1.4912473269134603`, `-0.6795491754132104`, `-0.2893142602684644` e
-`1.1912654553381272`. Se você somar esses valores usando uma calculadora,
-deverá obter `1.7136493465699127`, que é quase exatamente a mesma resposta
+cronometrar o tempo que isso leva com a maior precisão possível.</p>
+</div>
+<div class="paragraph">
+<p>Agora, abra um total de quatro janelas de terminal e navegue em todas elas até o
+diretório que contém <code>SumSines.class</code>. Execute <code>SumSines</code> em cada uma delas. Para
+o primeiro terminal, digite <code>1</code> como início e <code>25000000</code> como fim. Para
+o segundo, digite <code>25000001</code> e <code>50000000</code>. Para o terceiro, digite
+<code>50000001</code> e <code>75000000</code>. Para o último, digite <code>75000000</code> e
+<code>100000000</code>. Após a execução, você deverá obter, respectivamente,
+<code>1.4912473269134603</code>, <code>-0.6795491754132104</code>, <code>-0.2893142602684644</code> e
+<code>1.1912654553381272</code>. Se você somar esses valores usando uma calculadora,
+deverá obter <code>1.7136493465699127</code>, que é quase exatamente a mesma resposta
 que obtivemos antes. (Erros de arredondamento de ponto flutuante causam a ligeira
-diferença.)
-
-Se você tentar iniciá-los para fazer o cálculo mais ou menos ao mesmo tempo, pode tentar
+diferença.)</p>
+</div>
+<div class="paragraph">
+<p>Se você tentar iniciá-los para fazer o cálculo mais ou menos ao mesmo tempo, pode tentar
 ver quanto tempo leva para todos eles concluírem. Demorou menos
 tempo do que antes? Se você tiver um processador de núcleo único, pode ter
 demorado o mesmo tempo ou mais. Se você tiver um processador de dois núcleos,
 deveria ter demorado menos tempo, e se você tiver um processador de quatro núcleos, ainda
 menos. Como estamos dividindo o problema em quatro partes, não
-esperamos ver nenhuma melhoria com mais de quatro núcleos.
-
-A maioria dos sistemas operacionais oferece uma maneira gráfica de visualizar a carga em
+esperamos ver nenhuma melhoria com mais de quatro núcleos.</p>
+</div>
+<div class="paragraph">
+<p>A maioria dos sistemas operacionais oferece uma maneira gráfica de visualizar a carga em
 cada processador. Se você examinar o uso da CPU enquanto executa esses
 programas, deverá ver um pico quando os programas começarem e, em seguida,
 uma queda quando eles terminarem. Para múltiplos núcleos, como determinamos em qual
@@ -2180,16 +2180,16 @@ difícil especificar em qual núcleo queremos executar um programa, processo ou
 thread. O SO faz o trabalho de agendamento e escolhe um processador livre
 quando precisa executar um programa. É até possível que programas e
 threads mudem de um núcleo para outro durante a execução, se o SO precisar
-equilibrar a carga de trabalho.
-
-Este exemplo de seno é semelhante ao &lt;&lt;arraySummationExample&gt;&gt; em &lt;&lt;concurrency#concurrency&gt;&gt;.
+equilibrar a carga de trabalho.</p>
+</div>
+<div class="paragraph">
+<p>Este exemplo de seno é semelhante ao <a href="chap14.html#arraySummationExample">Exemplo 14.10</a> em <a href="chap14.html">Capítulo 14</a>.
 Como você deve ter percebido, rodar quatro programas simultaneamente não é prático.
 Você precisa abrir várias janelas, digitar os pontos inicial e final
 com muito cuidado e combinar as respostas no final, já que
 seus programas não podem interagir diretamente entre si. Os recursos do Java
 facilitarão esse trabalho, permitindo que executemos mais de uma thread de
-execução por vez, sem a necessidade de executar vários programas manualmente.</pre>
-</div>
+execução por vez, sem a necessidade de executar vários programas manualmente.</p>
 </div>
 </div>
 </div>
@@ -2211,7 +2211,7 @@ execução por vez, sem a necessidade de executar vários programas manualmente.
 <li>
 <p>Se você tiver uma <code>String</code> contendo um texto longo e quiser contar
 o número de palavras no texto que começam com a letra <code>‘m’</code>, qual
-dos três tipos de loop você usaria e por quê?</p>
+dos três tipos de laço você usaria e por quê?</p>
 </li>
 <li>
 <p><a id="primeEfficiencyExercise"></a> Em <a href="chap5.html#primalityTestingExample">Exemplo 5.2</a>,

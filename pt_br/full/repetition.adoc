@@ -1068,7 +1068,7 @@ tópicos são discutidos mais detalhadamente em <<Conceitos: Dividindo o trabalh
 
 Executar tarefas repetitivas é um dos grandes pontos fortes dos computadores.
 Para a maioria dos programas que rodam por muito tempo, quantidades incríveis de
-cálculos estão sendo feitas dentro de loops (geralmente aninhados). A 
+cálculos estão sendo feitas dentro de laços (geralmente aninhados). A 
 decomposição de domínios não funcionará para todos esses programas. Alguns não podem ser
 paralelizados de forma alguma, mas este livro trata de encontrar problemas que possam
 ter soluções paralelas e concorrentes.
@@ -1100,7 +1100,7 @@ saída em torno desse laço.
 .Soma os senos de todos os inteiros em um intervalo especificado pelo usuário.
 [source, java]
 [[SumSinesProgram]]
--- --
+----
 include::{programsdir}/SumSines.java[]
 ----
 
@@ -1159,7 +1159,7 @@ execução por vez, sem a necessidade de executar vários programas manualmente.
 
 . Se você tiver uma `String` contendo um texto longo e quiser contar
 o número de palavras no texto que começam com a letra `‘m’`, qual
-dos três tipos de loop você usaria e por quê?
+dos três tipos de laço você usaria e por quê?
 . [[primeEfficiencyExercise]] Em <<primalityTestingExample>>,
 nossa última versão do testador de primalidade `PrimalityTester2` calcula a
 raiz quadrada do número que está sendo testado. Em vez de calcular esse valor
