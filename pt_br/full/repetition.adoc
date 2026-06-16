@@ -46,7 +46,7 @@ _de um passo em direção a porta._
 =====
 ====
 
-Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse laço e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é *não* estar na porta. Parece um pouco estranho incluir esse “`não`”, mas, na nossa definição de laços, o corpo é executado enquanto a condição for verdadeira.
+Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse laço e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é *não* estar na porta. Parece um pouco estranho incluir esse "`não`", mas, na nossa definição de laços, o corpo é executado enquanto a condição for verdadeira.
 
 Em um laço, chamamos cada execução do corpo do laço de _iteração_. Quando dizemos que um programa _itera_ pelas instruções em um laço, estamos nos referindo a uma única passagem pelo corpo de um laço. Nesse caso, o laço irá iterar quantas vezes forem necessárias, dependendo do número de passos até a porta a partir da posição inicial. É até possível que o laço itere zero vezes: A pessoa que seguir este conjunto de instruções talvez já esteja na porta!
 
@@ -107,7 +107,7 @@ _Aumente o contador de séries._
 =====
 ====
 
-Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os laços e incrementos para os contadores. As únicas atividades “reais” são o supino e o descanso. Como você pode ver, o supino está dentro do laço de repetições interno e será executado 15 vezes a cada execução completa desse laço. Como o laço de repetições interno está dentro do laço de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o laço de repetições interno, mas ainda está contido no laço de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.
+Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os laços e incrementos para os contadores. As únicas atividades "reais" são o supino e o descanso. Como você pode ver, o supino está dentro do laço de repetições interno e será executado 15 vezes a cada execução completa desse laço. Como o laço de repetições interno está dentro do laço de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o laço de repetições interno, mas ainda está contido no laço de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.
 
 Assim como nas condições, escrever laços em inglês é tedioso e impreciso. Na próxima seção, discutiremos as ferramentas para escrever laços em Java. Como o Java foi projetado tendo os laços como ferramenta central, podemos escrevê-los de forma mais sucinta do que em inglês, concentrando muitas informações em um espaço reduzido. Por contermos tanta informação neles, os laços podem parecer intimidadores à primeira vista. Lembre-se de que a sintaxe que apresentaremos é apenas a maneira formal do Java de expressar uma condição e uma lista de instruções a serem executadas repetidamente.
 
@@ -143,7 +143,7 @@ while (true) {
 }
 ----
 
-Este código apresenta um exemplo de um laço infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens “Me ajude!”. Esteja preparado para interromper o programa digitando “Ctrl+C” (mantenha pressionada a tecla “Control” e pressione “C”), pois, de outra forma, ele não terminará. Nem todos os laços infinitos são tão óbvios assim. Um programador não usaria `true` como condição de um laço, mas fazer isso nem sempre é errado. Espera-se que alguns laços continuem por um bom tempo sem um fim definido. Para sair de um laço abruptamente, você pode usar o comando `break`. Observe que o comando `break` existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um laço.
+Este código apresenta um exemplo de um laço infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens "Me ajude!". Esteja preparado para interromper o programa digitando "Ctrl+C" (mantenha pressionada a tecla "Control" e pressione "C"), pois, de outra forma, ele não terminará. Nem todos os laços infinitos são tão óbvios assim. Um programador não usaria `true` como condição de um laço, mas fazer isso nem sempre é errado. Espera-se que alguns laços continuem por um bom tempo sem um fim definido. Para sair de um laço abruptamente, você pode usar o comando `break`. Observe que o comando `break` existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um laço.
 
 [source,java]
 ----
@@ -153,7 +153,7 @@ while (true) {
 }
 ----
 
-Este laço exibirá apenas uma vez “Me ajude!” antes de encerrar. É possível usar um comando `break` junto com uma instrução `if` para criar um laço que se repita mais de uma vez.
+Este laço exibirá apenas uma vez "Me ajude!" antes de encerrar. É possível usar um comando `break` junto com uma instrução `if` para criar um laço que se repita mais de uma vez.
 
 [source,java]
 ----
@@ -286,7 +286,7 @@ O fato de um laço `for` já possuir um mecanismo de contagem não significa
 que não precisaremos de outras variáveis para realizar tarefas úteis. Por
 exemplo, dada uma `String`, poderíamos tentar encontrar a letra do
 alfabeto na `String` que está mais próxima do final do alfabeto.
-Para a `String` `“Pluto não é mais um planeta”`, a última letra do
+Para a `String` `"Pluto não é mais um planeta"`, a última letra do
 alfabeto a aparecer é `‘u’`. Para escrever código que faça esse trabalho, devemos usar
 a variável de contagem do laço `for` como um _índice_ na
 `String`. Então, também precisamos de uma variável temporária onde guardemos a
@@ -325,7 +325,7 @@ for um espaço, saberemos que nenhum dos caracteres em `s` era
 alfabético.
 
 Para o exemplo dado, o último caractere do alfabeto é `'u'`
-devido à palavra `“preguiçoso”`. Uma fraqueza desse código é que ele
+devido à palavra `"preguiçoso"`. Uma fraqueza desse código é que ele
 sempre vasculhará toda a `String`, mesmo que a letra `'u'` já tenha
 sido encontrada. Para a `String`
 `"A raposa marrom ágil salta por cima do cão preguiçoso."`, não estamos perdendo muito
@@ -477,7 +477,7 @@ O DNA é geralmente de fita dupla, com cada base emparelhada com outra
 base específica, chamada de base complementar. A tabela a seguir mostra
 a relação entre cada base e sua base complementar.
 
-[.center%autowidth%unbreakable,cols=“^,^,^”,]
+[.center%autowidth%unbreakable,cols="^,^,^",]
 |============================================
 |Base|Abreviação|Base complementar
 
@@ -624,10 +624,10 @@ Random random = new Random();
 int guess;
 int number = random.nextInt(100) + 1;
 do {
-    System.out.print(“Qual é o seu palpite? ”);
+    System.out.print("Qual é o seu palpite? ");
     guess = in.nextInt();
 } while (guess != number);
-System.out.println(“Você acertou! O número era ” + number + “.”);
+System.out.println("Você acertou! O número era " + number + ".");
 ----
 
 Você poderia executar a mesma função com um laço `while` , mas precisaria
@@ -649,8 +649,8 @@ repetindo o processo.
 ----
 for (int number = 1; number <= 10; number++) {
     for (int factor = 1; factor <= 12; factor++) {
-        System.out.println(number + “ x ” + factor +
-            “ = ” + number*factor);
+        System.out.println(number + " x " + factor +
+            " = " + number*factor);
     }
     
 System.out.println();
@@ -735,7 +735,7 @@ sutil, como no código a seguir.
 [source,java]
 ----
 for (int i = 0; i < 10; i += 0.5) {
-    System.out.println(“Meio passo à frente, meio passo atrás...”);
+    System.out.println("Meio passo à frente, meio passo atrás...");
 }
 ----
 
@@ -762,7 +762,7 @@ bilhões de incrementos em vez dos 10 decrementos esperados.
 for (int i = 10; i > 0; ++i) {
     System.out.println(i);
 }
-System.out.println(“Decolagem!”);
+System.out.println("Decolagem!");
 ----
 
 Este laço irá desacelerar significativamente seu código. Todos ficarão tão cansados
@@ -772,11 +772,11 @@ valores errados. Ninguém espera ouvir o número 2.147.483.647 em uma
 contagem regressiva.
 ====
 
-.Armadilha: Erros de “fencepost”
+.Armadilha: Erros de "fencepost"
 [WARNING]
 ====
 Talvez os erros de laço mais comuns sejam os erros de poste de cerca, frequentemente conhecidos como
-erros off-by-one. O nome “`fencepost`” vem de um erro relacionado
+erros off-by-one. O nome "`fencepost`" vem de um erro relacionado
 que alguém poderia cometer ao montar uma cerca. Imagine que você queira
 erguer uma cerca de arame de 10 metros de comprimento com um poste de suporte
 a cada metro; quantos postes você precisa? Na verdade, não fornecemos
@@ -844,10 +844,10 @@ int number = 0;
 int sum = 0;
 while (number > 0) {
     sum += number;
-    System.out.print(“Digite o próximo número a ser somado: ”);
+    System.out.print("Digite o próximo número a ser somado: ");
     number = in.nextInt();
 }
-System.out.println(“A soma total é ” + sum);
+System.out.println("A soma total é " + sum);
 ----
 
 Este laço nunca será executado porque `0` não é maior que `0`.
@@ -873,7 +873,7 @@ while (i > 0); {
     System.out.println(i);
     --i;
 }
-System.out.println(“Pronto ou não, aqui vou eu!”);
+System.out.println("Pronto ou não, aqui vou eu!");
 ----
 
 Esse código deveria fazer uma contagem regressiva a partir de 100, assim como no jogo
@@ -897,7 +897,7 @@ int i;
 for (i = 100; i > 0; --i); {
     System.out.println(i);
 }
-System.out.println(“Pronto ou não, aqui vou eu!”);
+System.out.println("Pronto ou não, aqui vou eu!");
 ----
 
 Esta versão do código será executada de forma semelhante, exceto que a decrementação está
@@ -1016,7 +1016,7 @@ for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
         subsequence.charAt(j) == sequence.charAt(i + j); ++j) {
         
 if (j == subsequence.length() - 1) { // Correspondências
-            System.out.println(“Correspondência encontrada no índice ” + i);
+            System.out.println("Correspondência encontrada no índice " + i);
             ++found;
         }
     }
@@ -1036,7 +1036,7 @@ for (int i = 0; i < sequence.length() - subsequence.length() + 1; ++i) {
 for (j = 0; j < subsequence.length() &&
         subsequence.charAt(j) == sequence.charAt(i + j); ++j);
     if (j == subsequence.length()) { // Correspondências
-        System.out.println(“Correspondência encontrada no índice ” + i);
+        System.out.println("Correspondência encontrada no índice " + i);
         ++found;
     }
 }
@@ -1223,13 +1223,13 @@ começando a partir de um deslocamento específico, conforme mostrado abaixo.
 +
 [source,java]
 ----
-String text = “fun dysfunction”;
-String search = “fun”;
-System.out.println(“Localização: ” + text.indexOf(search, 4));
+String text = "fun dysfunction";
+String search = "fun";
+System.out.println("Localização: " + text.indexOf(search, 4));
 ----
 +
 Este código irá exibir `Localização: 7`, já que a primeira ocorrência de
-`“fun”` a partir do índice `4` ou posterior começa no índice `7`. Se não houver
+`"fun"` a partir do índice `4` ou posterior começa no índice `7`. Se não houver
 mais ocorrências da substring além do índice inicial, o método
 retornará `-1`. Reescreva a solução para o problema de pesquisa de DNA,
 substituindo o laço interno de pesquisa `for` pelo método `indexOf()`.
@@ -1240,7 +1240,7 @@ Dica: Represente a sequência como uma `String`. Em cada iteração, concentre-s
 último `char` na `String`. Se for um `‘A’`, altere-o para um
 `‘C’`. Se for um `‘C’`, altere-o para um `‘G’`. Se for um `‘G’`, altere-
 o para um `‘T’`. Se for um `‘T’`, altere-o de volta para um `‘A’`, mas
-“`carregue`” o incremento para o próximo `char`, como um
+"`carregue`" o incremento para o próximo `char`, como um
 odômetro giratório. Você terá que projetar laços que possam lidar com carregamentos que
 se propagam por vários índices.
 . Reimplemente a solução para o programa de busca de DNA apresentado em

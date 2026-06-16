@@ -12456,7 +12456,7 @@ entrada e saída.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse laço e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é <strong>não</strong> estar na porta. Parece um pouco estranho incluir esse “<code>não</code>”, mas, na nossa definição de laços, o corpo é executado enquanto a condição for verdadeira.</p>
+<p>Agora temos uma boa separação entre o trabalho realizado e a condição para a repetição. Qual é a tarefa executada no corpo desse laço e qual é a condição? A tarefa é dar um passo em direção à porta. A condição é <strong>não</strong> estar na porta. Parece um pouco estranho incluir esse &#8220;não&#8221;, mas, na nossa definição de laços, o corpo é executado enquanto a condição for verdadeira.</p>
 </div>
 <div class="paragraph">
 <p>Em um laço, chamamos cada execução do corpo do laço de <em>iteração</em>. Quando dizemos que um programa <em>itera</em> pelas instruções em um laço, estamos nos referindo a uma única passagem pelo corpo de um laço. Nesse caso, o laço irá iterar quantas vezes forem necessárias, dependendo do número de passos até a porta a partir da posição inicial. É até possível que o laço itere zero vezes: A pessoa que seguir este conjunto de instruções talvez já esteja na porta!</p>
@@ -12565,7 +12565,7 @@ Portanto, se um laço externo for executado 10 vezes e um laço interno for exec
 </div>
 </div>
 <div class="paragraph">
-<p>Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os laços e incrementos para os contadores. As únicas atividades “reais” são o supino e o descanso. Como você pode ver, o supino está dentro do laço de repetições interno e será executado 15 vezes a cada execução completa desse laço. Como o laço de repetições interno está dentro do laço de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o laço de repetições interno, mas ainda está contido no laço de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.</p>
+<p>Essa forma de descrever o programa de treino parece um pouco entediante. A maior parte da descrição é estrutural: condições para os laços e incrementos para os contadores. As únicas atividades "reais" são o supino e o descanso. Como você pode ver, o supino está dentro do laço de repetições interno e será executado 15 vezes a cada execução completa desse laço. Como o laço de repetições interno está dentro do laço de séries externo, ele será executado 3 vezes, resultando em um total de 45 supinos. O descanso, no entanto, vem após o laço de repetições interno, mas ainda está contido no laço de séries externo e será executado 3 vezes, totalizando 6 minutos de descanso.</p>
 </div>
 <div class="paragraph">
 <p>Assim como nas condições, escrever laços em inglês é tedioso e impreciso. Na próxima seção, discutiremos as ferramentas para escrever laços em Java. Como o Java foi projetado tendo os laços como ferramenta central, podemos escrevê-los de forma mais sucinta do que em inglês, concentrando muitas informações em um espaço reduzido. Por contermos tanta informação neles, os laços podem parecer intimidadores à primeira vista. Lembre-se de que a sintaxe que apresentaremos é apenas a maneira formal do Java de expressar uma condição e uma lista de instruções a serem executadas repetidamente.</p>
@@ -12608,7 +12608,7 @@ Portanto, se um laço externo for executado 10 vezes e um laço interno for exec
 </div>
 </div>
 <div class="paragraph">
-<p>Este código apresenta um exemplo de um laço infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens “Me ajude!”. Esteja preparado para interromper o programa digitando “Ctrl+C” (mantenha pressionada a tecla “Control” e pressione “C”), pois, de outra forma, ele não terminará. Nem todos os laços infinitos são tão óbvios assim. Um programador não usaria <code>true</code> como condição de um laço, mas fazer isso nem sempre é errado. Espera-se que alguns laços continuem por um bom tempo sem um fim definido. Para sair de um laço abruptamente, você pode usar o comando <code>break</code>. Observe que o comando <code>break</code> existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um laço.</p>
+<p>Este código apresenta um exemplo de um laço infinito. Se você executar este código dentro de um programa, ele exibirá uma sucessão interminável de mensagens "Me ajude!". Esteja preparado para interromper o programa digitando "Ctrl+C" (mantenha pressionada a tecla "Control" e pressione "C"), pois, de outra forma, ele não terminará. Nem todos os laços infinitos são tão óbvios assim. Um programador não usaria <code>true</code> como condição de um laço, mas fazer isso nem sempre é errado. Espera-se que alguns laços continuem por um bom tempo sem um fim definido. Para sair de um laço abruptamente, você pode usar o comando <code>break</code>. Observe que o comando <code>break</code> existe em muitas linguagens, mas deve ser usado raramente, se é que deve ser usado, para sair de um laço.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12619,7 +12619,7 @@ Portanto, se um laço externo for executado 10 vezes e um laço interno for exec
 </div>
 </div>
 <div class="paragraph">
-<p>Este laço exibirá apenas uma vez “Me ajude!” antes de encerrar. É possível usar um comando <code>break</code> junto com uma instrução <code>if</code> para criar um laço que se repita mais de uma vez.</p>
+<p>Este laço exibirá apenas uma vez "Me ajude!" antes de encerrar. É possível usar um comando <code>break</code> junto com uma instrução <code>if</code> para criar um laço que se repita mais de uma vez.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -12791,7 +12791,7 @@ subseção anterior poderiam ter sido escritos sem chaves.</p>
 que não precisaremos de outras variáveis para realizar tarefas úteis. Por
 exemplo, dada uma <code>String</code>, poderíamos tentar encontrar a letra do
 alfabeto na <code>String</code> que está mais próxima do final do alfabeto.
-Para a <code>String</code> <code>“Pluto não é mais um planeta”</code>, a última letra do
+Para a <code>String</code> <code>"Pluto não é mais um planeta"</code>, a última letra do
 alfabeto a aparecer é <code>‘u’</code>. Para escrever código que faça esse trabalho, devemos usar
 a variável de contagem do laço <code>for</code> como um <em>índice</em> na
 <code>String</code>. Então, também precisamos de uma variável temporária onde guardemos a
@@ -12832,7 +12832,7 @@ alfabético.</p>
 </div>
 <div class="paragraph">
 <p>Para o exemplo dado, o último caractere do alfabeto é <code>'u'</code>
-devido à palavra <code>“preguiçoso”</code>. Uma fraqueza desse código é que ele
+devido à palavra <code>"preguiçoso"</code>. Uma fraqueza desse código é que ele
 sempre vasculhará toda a <code>String</code>, mesmo que a letra <code>'u'</code> já tenha
 sido encontrada. Para a <code>String</code>
 <code>"A raposa marrom ágil salta por cima do cão preguiçoso."</code>, não estamos perdendo muito
@@ -13055,31 +13055,31 @@ a relação entre cada base e sua base complementar.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Base</th>
-<th class="tableblock halign-left valign-top">Abreviação</th>
-<th class="tableblock halign-left valign-top">Base complementar</th>
+<th class="tableblock halign-center valign-top">Base</th>
+<th class="tableblock halign-center valign-top">Abreviação</th>
+<th class="tableblock halign-center valign-top">Base complementar</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adenina</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Adenina</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">T</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Citosina</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">G</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Citosina</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">G</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Guanina</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">G</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">C</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Guanina</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">G</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">C</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Timina</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">T</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">A</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">Timina</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">T</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">A</p></td>
 </tr>
 </tbody>
 </table>
@@ -13299,10 +13299,10 @@ fragmento de programa a seguir faz exatamente isso.</p>
 <span class="kt">int</span> <span class="n">guess</span><span class="o">;</span>
 <span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="na">nextInt</span><span class="o">(</span><span class="mi">100</span><span class="o">)</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span>
 <span class="k">do</span> <span class="o">{</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="err">“</span><span class="nc">Qual</span> <span class="n">é</span> <span class="n">o</span> <span class="n">seu</span> <span class="n">palpite</span><span class="o">?</span> <span class="err">”</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Qual é o seu palpite? "</span><span class="o">);</span>
     <span class="n">guess</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
 <span class="o">}</span> <span class="k">while</span> <span class="o">(</span><span class="n">guess</span> <span class="o">!=</span> <span class="n">number</span><span class="o">);</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Você</span> <span class="n">acertou</span><span class="o">!</span> <span class="no">O</span> <span class="n">número</span> <span class="n">era</span> <span class="err">”</span> <span class="o">+</span> <span class="n">number</span> <span class="o">+</span> <span class="err">“</span><span class="o">.</span><span class="err">”</span><span class="o">);</span></code></pre>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Você acertou! O número era "</span> <span class="o">+</span> <span class="n">number</span> <span class="o">+</span> <span class="s">"."</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13327,8 +13327,8 @@ repetindo o processo.</p>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">number</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">number</span> <span class="o">&lt;=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">number</span><span class="o">++)</span> <span class="o">{</span>
     <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">factor</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span> <span class="n">factor</span> <span class="o">&lt;=</span> <span class="mi">12</span><span class="o">;</span> <span class="n">factor</span><span class="o">++)</span> <span class="o">{</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="err">“</span> <span class="n">x</span> <span class="err">”</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">+</span>
-            <span class="err">“</span> <span class="o">=</span> <span class="err">”</span> <span class="o">+</span> <span class="n">number</span><span class="o">*</span><span class="n">factor</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">number</span> <span class="o">+</span> <span class="s">" x "</span> <span class="o">+</span> <span class="n">factor</span> <span class="o">+</span>
+            <span class="s">" = "</span> <span class="o">+</span> <span class="n">number</span><span class="o">*</span><span class="n">factor</span><span class="o">);</span>
     <span class="o">}</span>
 
 <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">();</span>
@@ -13456,7 +13456,7 @@ sutil, como no código a seguir.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">+=</span> <span class="mf">0.5</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Meio</span> <span class="n">passo</span> <span class="n">à</span> <span class="n">frente</span><span class="o">,</span> <span class="n">meio</span> <span class="n">passo</span> <span class="n">atrás</span><span class="o">...</span><span class="err">”</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Meio passo à frente, meio passo atrás..."</span><span class="o">);</span>
 <span class="o">}</span></code></pre>
 </div>
 </div>
@@ -13493,7 +13493,7 @@ bilhões de incrementos em vez dos 10 decrementos esperados.</p>
 <pre class="rouge highlight"><code data-lang="java"><span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">10</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Decolagem</span><span class="o">!</span><span class="err">”</span><span class="o">);</span></code></pre>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Decolagem!"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13514,10 +13514,10 @@ contagem regressiva.</p>
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-<div class="title">Armadilha: Erros de “fencepost”</div>
+<div class="title">Armadilha: Erros de "fencepost"</div>
 <div class="paragraph">
 <p>Talvez os erros de laço mais comuns sejam os erros de poste de cerca, frequentemente conhecidos como
-erros off-by-one. O nome “<code>fencepost</code>” vem de um erro relacionado
+erros off-by-one. O nome &#8220;fencepost&#8221; vem de um erro relacionado
 que alguém poderia cometer ao montar uma cerca. Imagine que você queira
 erguer uma cerca de arame de 10 metros de comprimento com um poste de suporte
 a cada metro; quantos postes você precisa? Na verdade, não fornecemos
@@ -13598,10 +13598,10 @@ de tal programa.</p>
 <span class="kt">int</span> <span class="n">sum</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
 <span class="k">while</span> <span class="o">(</span><span class="n">number</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span>
     <span class="n">sum</span> <span class="o">+=</span> <span class="n">number</span><span class="o">;</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="err">“</span><span class="nc">Digite</span> <span class="n">o</span> <span class="n">próximo</span> <span class="n">número</span> <span class="n">a</span> <span class="n">ser</span> <span class="nl">somado:</span> <span class="err">”</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Digite o próximo número a ser somado: "</span><span class="o">);</span>
     <span class="n">number</span> <span class="o">=</span> <span class="n">in</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
 <span class="o">}</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="no">A</span> <span class="n">soma</span> <span class="n">total</span> <span class="n">é</span> <span class="err">”</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span></code></pre>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"A soma total é "</span> <span class="o">+</span> <span class="n">sum</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13637,7 +13637,7 @@ executável está vazia. Assim, o seguinte é um laço válido (mas infinito).</
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
     <span class="o">--</span><span class="n">i</span><span class="o">;</span>
 <span class="o">}</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Pronto</span> <span class="n">ou</span> <span class="n">não</span><span class="o">,</span> <span class="n">aqui</span> <span class="n">vou</span> <span class="n">eu</span><span class="o">!</span><span class="err">”</span><span class="o">);</span></code></pre>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pronto ou não, aqui vou eu!"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13663,7 +13663,7 @@ inserido após o cabeçalho do laço.</p>
 <span class="k">for</span> <span class="o">(</span><span class="n">i</span> <span class="o">=</span> <span class="mi">100</span><span class="o">;</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="o">;</span> <span class="o">--</span><span class="n">i</span><span class="o">);</span> <span class="o">{</span>
     <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
 <span class="o">}</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Pronto</span> <span class="n">ou</span> <span class="n">não</span><span class="o">,</span> <span class="n">aqui</span> <span class="n">vou</span> <span class="n">eu</span><span class="o">!</span><span class="err">”</span><span class="o">);</span></code></pre>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Pronto ou não, aqui vou eu!"</span><span class="o">);</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -13888,7 +13888,7 @@ forma.</p>
         <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
 
 <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">-</span> <span class="mi">1</span><span class="o">)</span> <span class="o">{</span> <span class="c1">// Correspondências</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Correspondência</span> <span class="n">encontrada</span> <span class="n">no</span> <span class="n">índice</span> <span class="err">”</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Correspondência encontrada no índice "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
             <span class="o">++</span><span class="n">found</span><span class="o">;</span>
         <span class="o">}</span>
     <span class="o">}</span>
@@ -13909,7 +13909,7 @@ processo de correspondência foi concluído para fora do laço <code>for</code> 
 <span class="k">for</span> <span class="o">(</span><span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span>
         <span class="n">subsequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">j</span><span class="o">)</span> <span class="o">==</span> <span class="n">sequence</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span> <span class="o">+</span> <span class="n">j</span><span class="o">);</span> <span class="o">++</span><span class="n">j</span><span class="o">);</span>
     <span class="k">if</span> <span class="o">(</span><span class="n">j</span> <span class="o">==</span> <span class="n">subsequence</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span> <span class="c1">// Correspondências</span>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Correspondência</span> <span class="n">encontrada</span> <span class="n">no</span> <span class="n">índice</span> <span class="err">”</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Correspondência encontrada no índice "</span> <span class="o">+</span> <span class="n">i</span><span class="o">);</span>
         <span class="o">++</span><span class="n">found</span><span class="o">;</span>
     <span class="o">}</span>
 <span class="o">}</span></code></pre>
@@ -14153,14 +14153,14 @@ desse método retorna o índice de uma substring dentro de um objeto <code>Strin
 começando a partir de um deslocamento específico, conforme mostrado abaixo.</p>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="err">“</span><span class="n">fun</span> <span class="n">dysfunction</span><span class="err">”</span><span class="o">;</span>
-<span class="nc">String</span> <span class="n">search</span> <span class="o">=</span> <span class="err">“</span><span class="n">fun</span><span class="err">”</span><span class="o">;</span>
-<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nl">Localização:</span> <span class="err">”</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">search</span><span class="o">,</span> <span class="mi">4</span><span class="o">));</span></code></pre>
+<pre class="rouge highlight"><code data-lang="java"><span class="nc">String</span> <span class="n">text</span> <span class="o">=</span> <span class="s">"fun dysfunction"</span><span class="o">;</span>
+<span class="nc">String</span> <span class="n">search</span> <span class="o">=</span> <span class="s">"fun"</span><span class="o">;</span>
+<span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Localização: "</span> <span class="o">+</span> <span class="n">text</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">search</span><span class="o">,</span> <span class="mi">4</span><span class="o">));</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
 <p>Este código irá exibir <code>Localização: 7</code>, já que a primeira ocorrência de
-<code>“fun”</code> a partir do índice <code>4</code> ou posterior começa no índice <code>7</code>. Se não houver
+<code>"fun"</code> a partir do índice <code>4</code> ou posterior começa no índice <code>7</code>. Se não houver
 mais ocorrências da substring além do índice inicial, o método
 retornará <code>-1</code>. Reescreva a solução para o problema de pesquisa de DNA,
 substituindo o laço interno de pesquisa <code>for</code> pelo método <code>indexOf()</code>.</p>
@@ -14174,7 +14174,7 @@ Dica: Represente a sequência como uma <code>String</code>. Em cada iteração, 
 último <code>char</code> na <code>String</code>. Se for um <code>‘A’</code>, altere-o para um
 <code>‘C’</code>. Se for um <code>‘C’</code>, altere-o para um <code>‘G’</code>. Se for um <code>‘G’</code>, altere-
 o para um <code>‘T’</code>. Se for um <code>‘T’</code>, altere-o de volta para um <code>‘A’</code>, mas
-“<code>carregue</code>” o incremento para o próximo <code>char</code>, como um
+&#8220;carregue&#8221; o incremento para o próximo <code>char</code>, como um
 odômetro giratório. Você terá que projetar laços que possam lidar com carregamentos que
 se propagam por vários índices.</p>
 </li>
