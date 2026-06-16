@@ -1398,7 +1398,7 @@ usuário, bem como responder às entradas do usuário.
 
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[linhas=1..11]
+include::{programsdir}/MontyHall.java[lines=1..11]
 ----
 <.> Começamos com a instrução `import`
 necessária para usar as classes `Scanner` e `Random`
@@ -1420,7 +1420,7 @@ Agora, precisamos lidar com uma série complicada de decisões.
 
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[linhas=13..34]
+include::{programsdir}/MontyHall.java[lines=13..34]
 ----
 <.> Neste
 trecho de código, lidamos com a possibilidade de o usuário ter
@@ -1437,7 +1437,7 @@ alternativa para o usuário e abrimos a porta com o número maior.
 
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[linhas=35..56]
+include::{programsdir}/MontyHall.java[lines=35..56]
 ----
 <.> Este bloco `else` abrange o caso em que o jogador *não* escolheu a
 porta vencedora na primeira vez. Ao contrário do segmento de código anterior, não
@@ -1448,7 +1448,7 @@ determinamos qual porta resta para que possamos abri-la.
 
 [source, java]
 ----
-include::{programsdir}/MontyHall.java[linhas=57..73]
+include::{programsdir}/MontyHall.java[lines=57..73]
 ----
 <.> Este segmento final de código informa ao usuário qual porta foi aberta.
 <.> Ele solicita que o usuário altere sua decisão.

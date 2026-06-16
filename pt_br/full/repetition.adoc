@@ -925,7 +925,7 @@ Começamos nosso código com a instrução `import` padrão e a definição de c
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[linhas=1..8]
+include::{programsdir}/DNASearch.java[lines=1..8]
 ----
 <.> O método `main()` instancia um objeto `Scanner` e declara as duas
 variáveis `String` de que precisaremos para armazenar as sequências de DNA.
@@ -934,7 +934,7 @@ também declara um `boolean` e um `char` que usaremos para a verificação de en
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[linhas=10..21]
+include::{programsdir}/DNASearch.java[lines=10..21]
 ----
 <.> Em seguida, o usuário é solicitado a inserir uma sequência de DNA para pesquisa.
 <.> Esta
@@ -951,7 +951,7 @@ inválidas.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[linhas=23..34]
+include::{programsdir}/DNASearch.java[lines=23..34]
 ----
 
 O código usado para inserir `subsequence` durante a verificação de erros é
@@ -959,7 +959,7 @@ praticamente idêntico ao código para inserir `sequence`.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[linhas=36..47]
+include::{programsdir}/DNASearch.java[lines=36..47]
 ----
 <.> O núcleo da pesquisa está nesses laços `for` aninhados.
 O laço externo percorre todos os índices em `sequence`, até que
@@ -999,7 +999,7 @@ personalizar a saída com base no valor de `found`.
 
 [source, java]
 ----
-include::{programsdir}/DNASearch.java[linhas=49..55]
+include::{programsdir}/DNASearch.java[lines=49..55]
 ----
 
 As ideias necessárias para implementar corretamente a solução não são difíceis,

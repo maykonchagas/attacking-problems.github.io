@@ -2568,7 +2568,7 @@ com o objeto `Scanner`.
 
 [source, java]
 ----
-include::{programsdir}/CollegeCosts.java[linhas=8..22]
+include::{programsdir}/CollegeCosts.java[lines=8..22]
 ----
 <.> O programa lê o nome do usuário como um
 `String`,
@@ -2584,7 +2584,7 @@ O próximo trecho de código realiza os cálculos necessários.
 
 [source, java]
 ----
-include::{programsdir}/CollegeCosts.java[linhas=23..29]
+include::{programsdir}/CollegeCosts.java[lines=23..29]
 ----
 <.> Ele calcula o custo anual total multiplicando o custo semestral por dois, multiplicando
 os custos mensais de aluguel e alimentação por 12 e somando os resultados.
