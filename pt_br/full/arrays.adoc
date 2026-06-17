@@ -308,14 +308,14 @@ ao caso em que `numbers` aponta para um novo array com 10 elementos. Cada
 um desses elementos contém o valor `int` `0`, conforme mostrado abaixo.
 
 [.text-center]
-Elementos do array mostrando valores de índice.
+.Elementos do array mostrando valores de índice.
 image::array.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align="center"]
 
 
 Sempre que um array é instanciado, cada um de seus _n_ elementos
 é definido com algum valor padrão. Para `int`, `long`, `short` e `byte`
 esse valor é `0`. Para `double` e `float`, esse valor é `0.0`. Para
-`char`, esse valor é `'\0'`, um caractere especial não imprimível. Para
+`char`, esse valor é `‘\0’`, um caractere especial não imprimível. Para
 `boolean`, esse valor é `false`. Para `String` ou qualquer outro tipo de referência
 , esse valor é `null`, um valor especial que significa que não há
 objeto.
@@ -484,7 +484,7 @@ array.
 
 [source,java]
 ----
-char[] letters = {'b', 'y', 'z', 'a', 'n', 't', 'i', 'n', 'e'}; // <1>
+char[] letters = {‘b’, ‘y’, ‘z’, ‘a’, ‘n’, ‘t’, ‘i’, ‘n’, ‘e’}; // <1>
 int start = 0; // <2>
 int end = letters.length - 1; // <3>
 char temp;
@@ -509,7 +509,7 @@ de `letters`.
 O laço `while` continua enquanto
 `start` for menor que `end`.
 <2> As três primeiras linhas de cada
-iteração do laço `while` trocam o `char` no índice `start` pelo
+iteração do loop `while` trocam o `char` no índice `start` pelo
 `char` no índice `end`.
 <3> As duas linhas seguintes incrementam e
 decrementam `start` e `end`, respectivamente. Quando os dois se encontram no
@@ -524,7 +524,7 @@ invertidos no futuro.
 
 ==== Redirecionando a entrada
 
-Com arrays e laços, podemos processar uma grande quantidade de dados, mas testar
+Com arrays e loops, podemos processar uma grande quantidade de dados, mas testar
 programas que processam muitos dados pode ser tedioso. Em vez de digitar
 os dados no terminal, podemos lê-los a partir de um arquivo. Em Java, a E/S de arquivos
 é um processo complicado que envolve vários objetos e chamadas de métodos. Vamos
@@ -711,7 +711,7 @@ seguinte forma. Este programa não é muito longo, mas há muita coisa acontecen
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=1..12]
+include::{programsdir}/SelectionSort.java[linhas=1..12]
 ----
 <.> Após
 instanciar um `Scanner`, lemos o número total de valores que a
@@ -721,7 +721,7 @@ quando parar de ler valores.
 vamos armazenar para que possamos instanciar nosso array com o
 comprimento apropriado.
 <.> Em seguida, lemos cada valor no array usando o
-primeiro laço `for`.
+primeiro loop `for`.
 
 [source, java]
 ----
@@ -742,12 +742,12 @@ agora armazenamos o *índice* do menor número. Precisamos armazenar o índice
 do menor número para que, na próxima etapa, possamos trocar o
 elemento correspondente com o elemento em `i`, o local no array
 que estamos tentando preencher.
-<.> As três linhas após o laço `for` interno são uma
+<.> As três linhas após o loop `for` interno são uma
 troca simples para fazer exatamente isso.
 
 [source, java]
 ----
-include::{programsdir}/SelectionSort.java[lines=24..29]
+include::{programsdir}/SelectionSort.java[linhas=24..29]
 ----
 <.> Depois que toda a classificação estiver concluída, o laço `for` final imprime a lista recém-
 classificada.
@@ -787,7 +787,7 @@ texto que queremos pesquisar.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=1..12]
+include::{programsdir}/WordCount.java[linhas=1..12]
 ----
 <.> Assim como no último exemplo, este programa começa lendo o comprimento da
 lista de palavras.
@@ -801,18 +801,18 @@ programa lê cada palavra e a armazena no array `words`.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=13..21]
+include::{programsdir}/WordCount.java[linhas=13..21]
 ----
 <.> O laço `while` lê cada palavra do texto que segue a lista e
 a armazena em uma variável chamada `temp`.
 <.> Em seguida, ele percorre `words`
 e verifica se `temp` corresponde a algum dos elementos da lista.
 <.> Se corresponder, ele aumenta o valor do elemento de `counts` que tem o
-mesmo índice e sai do laço `for` interno.
+mesmo índice e sai do loop `for` interno.
 
 [source, java]
 ----
-include::{programsdir}/WordCount.java[lines=22..27]
+include::{programsdir}/WordCount.java[linhas=22..27]
 ----
 <.> Depois que todas as palavras do texto forem processadas, o laço `for` final
 imprime cada palavra da lista, juntamente com suas contagens.
@@ -836,7 +836,7 @@ para
 piloto
 navio
 noz
-Em 24 de fevereiro de 1815, o vigia de Notre-Dame de la Garde sinalizou para o veleiro de três mastros, o Pharaon, proveniente de Esmirna, Trieste e Nápoles. Como de costume, um piloto partiu imediatamente e, contornando o Château d'If, embarcou no navio entre o Cabo Morgion e a ilha de Rion.
+Em 24 de fevereiro de 1815, o vigia de Notre-Dame de la Garde sinalizou para o veleiro de três mastros, o Pharaon, proveniente de Esmirna, Trieste e Nápoles. Como de costume, um piloto partiu imediatamente e, contornando o Château d’If, embarcou no navio entre o Cabo Morgion e a ilha de Rion.
 
 Imediatamente, e conforme o costume, as muralhas do Forte Saint-Jean ficaram repletas de espectadores; é sempre um evento em Marselha quando um navio entra no porto, especialmente quando esse navio, como o Pharaon, foi construído, equipado e carregado nas antigas docas de Foceia e pertence a um armador da cidade.
 ....
@@ -926,7 +926,7 @@ resolver após os exemplos anteriores.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=1..10]
+include::{programsdir}/Statistics.java[linhas=1..10]
 ----
 <.> Em nossa solução, o método `main()` começa lendo o
 número total de pontuações.
@@ -958,7 +958,7 @@ laço `for` em `i = 0`.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=23..26]
+include::{programsdir}/Statistics.java[linhas=23..26]
 ----
 
 Neste pequeno trecho de código, calculamos a média, tomando o cuidado de
@@ -967,7 +967,7 @@ estatísticas que calculamos.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=27..32]
+include::{programsdir}/Statistics.java[linhas=27..32]
 ----
 <.
  
@@ -983,7 +983,7 @@ raiz quadrada da variância é o desvio padrão.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=33..44]
+include::{programsdir}/Statistics.java[linhas=33..44]
 ----
 <.> Para encontrar a mediana, usamos nosso código de ordenação por seleção.
 
@@ -997,7 +997,7 @@ seu código, adicione um comentário.
 
 [source, java]
 ----
-include::{programsdir}/Statistics.java[lines=45..53]
+include::{programsdir}/Statistics.java[linhas=45..53]
 ----
 <.> Depois que o array foi ordenado, precisamos fazer uma verificação rápida para ver se
 seu comprimento é ímpar ou par.
@@ -1023,37 +1023,37 @@ armazenar a lista.
 === Conceitos: Listas multidimensionais
 
 Na primeira metade deste capítulo, focamos em listas de dados e em como
-armazená-las em Java usando vetores. Os vetores que já discutimos
-são vetores _unidimensionais_. Ou seja, cada elemento do vetor possui um
+armazená-las em Java usando arrays. Os arrays que já discutimos
+são arrays _unidimensionais_. Ou seja, cada elemento do array possui um
 único índice que se refere a ele. Dado um índice específico, um elemento 
-terá esse índice, virá antes dele ou virá depois dele. Esses tipos de vetores
+terá esse índice, virá antes dele ou virá depois dele. Esses tipos de array
 podem ser usados para resolver um grande número de problemas envolvendo listas ou
 coleções de dados.
 
 Às vezes, os dados precisam ser representados com mais estrutura. Uma maneira
-de fornecer essa estrutura é com uma matriz _bidimensional_. Você pode
-pensar em uma matriz bidimensional como uma tabela de dados. Em vez de usar um
+de fornecer essa estrutura é com um array bidimensional (que iremos chamar de matriz). Você pode
+pensar em um array bidimensional como uma tabela de dados. Em vez de usar um
 único índice, uma matriz bidimensional possui dois índices. Normalmente, pensamos
 nessas dimensões como linhas e colunas. Abaixo está uma tabela de
-informações que apresenta as distâncias em milhas entre as cinco maiores
-cidades dos Estados Unidos.
+informações que apresenta as distâncias em quilômetros entre as cinco maiores
+cidades do Brasil.
 
 [.center%autowidth%unbreakable,cols="^.^h,5*^.^",]
 |==============================
-| | Nova York | Los Angeles | Chicago | Houston | Phoenix
+| | São Paulo | Rio de Janeiro | Brasília | Fortaleza | Salvador
 
-| Nova York |0 |2.791 |791 |1.632 |2.457
-| Los Angeles |2.791 |0 |2.015 |1.546 |373
-| Chicago |791 |2.015 |0 |1.801 |1.181
-| Houston |1.632 |1.546 |1.801 |0 |1.176
-| Phoenix |2.457 |373 |1.181 |1.176 |0
+| São Paulo |0 | 350 |1.005|3.088 |1.990
+| Rio de Janeiro |350|0 |1.166 |2.581 |1.679
+| Brasília |1.005|1.166 |0 |2.116 |1.443
+| Fortaleza |3.088 |2.581 |2.116 |0 |1.187
+| Salvador |1.990 |1.679 |1.443 |1.187 |0
 |==============================
 
 A posição de cada número na tabela é uma parte fundamental de sua
-utilidade. Sabemos que a distância de Chicago a Houston é de 1.801
-milhas porque esse número está na linha de Chicago e na coluna de Houston.
-Uma matriz bidimensional compartilha quase todas as suas propriedades com um
-vetor unidimensional. Continua sendo uma estrutura de dados homogênea e estática
+utilidade. Sabemos que a distância de Brasília a Fortaleza é de 2.116
+quilômetros porque esse número está na linha de Brasília e na coluna de Fortaleza.
+Uma matriz bidimensional compartilha quase todas as suas propriedades com uma
+matriz unidimensional. Continua sendo uma estrutura de dados homogênea e estática
 com acesso aleatório. Se o exemplo acima fosse transformado em uma matriz Java,
 os próprios números seriam os elementos da matriz. Os nomes das
 cidades precisariam ser armazenados separadamente, talvez em uma matriz do
@@ -1065,18 +1065,18 @@ jogos mais famosos desse tipo é o xadrez. Assim como em tantas outras coisas na
 ciência da computação, precisamos criar uma abstração que reflita
 a realidade e nos permita armazenar as informações dentro de um computador. Para
 o xadrez, precisaremos de uma matriz bidimensional 8 × 8. Podemos representar
-cada peça no tabuleiro com um `char`, usando a codificação fornecida abaixo.
+cada peça no tabuleiro com um `char`, usando a codificação apresentada abaixo.
 
 [.center%autowidth%unbreakable,cols="^,^l"]
 |===================
 |Peça |Codificação
 
-|Peão |'P'
-|Cavalo |'N'
-|Bispo |'B'
-|Torre |'R'
-|Rainha |'Q'
-|Rei |'K'
+|Peão |‘P’
+|Cavalo |‘N’
+|Bispo |‘B’
+|Torre |‘R’
+|Rainha |‘Q’
+|Rei |‘K’
 |===================
 
 Usando letras maiúsculas para as peças pretas e minúsculas
@@ -1087,20 +1087,20 @@ abertura do peão do rei pelas brancas, conforme mostrado.
 |=======================================================
 | | 0 | 1 | 2| 3 | 4 | 5 | 6 | 7
 
-| 0 |'R' |'N' |'B' |'Q' |'K' |'B' |'N' |'R'
-| 1 |'P' |'P' |'P' |'P' |'P' |'P' |'P' |'P'
+| 0 |‘R’ |‘N’ |‘B’ |‘Q’ |‘K’ |‘B’ |‘N’ |‘R’
+| 1 |‘P’ |‘P’ |‘P’ |‘P’ |‘P’ |‘P’ |‘P’ |‘P’
 | 2 | | | | | | | |
 | 3 | | | | | | | |
 | 4 | | | | | | | |
-| 5 | | | | |'p' | | |
-| 6 |'p' |'p' |'p' |'p' | |'p' |'p' |'p'
-| 7 |'r' |'n' |'b' |'q' |'k' |'b' |'n' |'r'
+| 5 | | | | |‘p’ | | |
+| 6 |‘p’ |‘p’ |‘p’ |‘p’ | |‘p’ |‘p’ |‘p’
+| 7 |‘r’ |‘n’ |‘b’ |‘q’ |‘k’ |‘b’ |‘n’ |‘r’
 |=======================================================
 
-Observe que, assim como nas matrizes unidimensionais, os índices para linhas
+Observe que, assim como nos arrays unidimensionais, os índices para linhas
 e colunas em matrizes bidimensionais também usam contagem a partir de zero.
 
-Após a transição das matrizes unidimensionais para as bidimensionais, é
+Após a transição de arrays unidimensionais para matrizes bidimensionais, é
 natural questionar se podem existir matrizes de dimensão ainda maior. Podemos
 visualizar uma matriz bidimensional como uma tabela, mas uma
 matriz tridimensional é mais difícil de visualizar. No entanto, há
@@ -1113,7 +1113,7 @@ como uma dimensão e atribuir um índice a cada valor possível, ela poderia
 armazenar os resultados em uma matriz tridimensional. Para gênero, ela poderia
 escolher masculino = 0 e feminino = 1. Para ano letivo, ela poderia escolher calouro =
 0, segundo ano = 1, terceiro ano = 2, último ano = 3 e outros = 4. Supondo que seja
-uma aula de ciência da computação, para área de especialização ela poderia escolher ciência da computação = 0,
+uma aula de ciência da computação, para curso, ela poderia escolher ciência da computação = 0,
 matemática = 1, outras ciências = 2, engenharia = 3 e ciências humanas = 4. Usando esse
 sistema, ela poderia armazenar de forma compacta o número de alunos em qualquer
 combinação de categorias de seu interesse. Por exemplo, o
@@ -1126,55 +1126,55 @@ dimensões, fique à vontade para fazê-lo, mas isso deve ocorrer com pouca freq
 linguagem Java não tem limite definido para as dimensões de matrizes, mas a maioria das máquinas virtuais
 tem a limitação absurdamente alta de 255 dimensões diferentes.
 
-=== Sintaxe: Matrizes avançadas em Java
+=== Syntax: Advanced arrays in Java
 
-Agora que discutimos a importância de armazenar dados em listas
-multidimensionais, descreveremos os recursos da linguagem Java que permitem
-fazer isso. As alterações necessárias para passar de matrizes unidimensionais para
-matrizes bidimensionais e de dimensões superiores são simples. Primeiro, vamos
-descrever como declarar, instanciar e acessar por índice matrizes bidimensionais
-. Em seguida, discutiremos algumas das maneiras pelas quais as matrizes (tanto 
-unidimensionais quanto de dimensões superiores) diferem dos tipos de dados primitivos.
-Depois, explicaremos como é possível criar matrizes bidimensionais
-em Java nas quais as linhas não têm todas o mesmo comprimento. Por fim,
-abordaremos alguns dos erros mais comuns que os programadores cometem com
-matrizes.
+Now that we've discussed the value of storing data in multidimensional
+lists, we'll describe the Java language features that allow you to do
+so. The changes needed to go from one-dimensional arrays to
+two-dimensional and higher arrays are simple. First, we'll
+describe how to declare, instantiate, and index into two-dimensional
+arrays. Then, we'll discuss some of the ways in which arrays (both
+one-dimensional and higher) are different from primitive data types.
+Next, we'll explain how it's possible to make two-dimensional
+arrays in Java where the rows are not all the same length. Finally,
+we'll cover some of the most common mistakes programmers make with
+arrays.
 
-==== Matrizes multidimensionais
+==== Multidimensional arrays
 
-Ao declarar uma matriz bidimensional, a principal diferença em relação a um
-vetor unidimensional é um par extra de colchetes. Se quisermos
-declarar uma matriz bidimensional do tipo `int` na qual possamos armazenar
-valores como a tabela de distâncias acima, faríamos o seguinte.
+When declaring a two-dimensional array, the main difference from a
+one-dimensional array is an extra pair of brackets. If we wish to
+declare a two-dimensional array of type `int` in which we could store
+values like the table of distances above, we would do so as follows.
 
 [source,java]
 ----
 int[][] distances;
 ----
 
-Assim como nos vetores unidimensionais, é válido colocar os colchetes do
-outro lado do identificador da variável ou, ainda mais estranho, ter um
-par de cada lado.
+As with one-dimensional arrays, it's legal to put the brackets on the
+other side of the variable identifier or, even more bizarrely, have a
+pair on each side.
 
-Depois que a matriz é declarada, ela ainda precisa ser instanciada usando a
-palavra-chave `new` antes de poder ser usada. Desta vez, usaremos dois pares de
-colchetes, com o número no primeiro par especificando o número de
-linhas e o número no segundo par especificando o número de colunas.
+Once the array is declared, it must still be instantiated using the
+`new` keyword before it can be used. This time we will use two pairs of
+brackets, with the number in the first pair specifying the number of
+rows and the number in the second pair specifying the number of columns.
 
 [source,java]
 ----
 distances = new int[5][5];
 ----
 
-Após a instanciação, teremos 5 linhas e 5 colunas, resultando em um
-total de 25 posições onde valores `int` podem ser armazenados. A indexação dessas
-posições é feita especificando-se os valores de linha e coluna entre os colchetes.
-Portanto, para preencher a tabela com as distâncias entre as cidades indicadas acima
-, podemos usar o seguinte código tedioso.
+After the instantiation, we will have 5 rows and 5 columns, giving a
+total of 25 locations where `int` values can be stored. Indexing these
+locations is done by specifying row and column values in the brackets.
+So, to fill up the table with the distances between cities given above
+we can use the following tedious code.
 
 [source,java]
 ----
-// Nova York
+// New York
 distances[0][1] = 2791;
 distances[0][2] = 791;
 distances[0][3] = 1632;
@@ -1186,12 +1186,12 @@ distances[1][3] = 1546;
 distances[1][4] = 373;
 // Chicago
 distances[2][0] = 791;
-distâncias[2][1] = 2015;
-distâncias[2][3] = 1801;
-distâncias[1][4] = 1181;
+distances[2][1] = 2015;
+distances[2][3] = 1801;
+distances[1][4] = 1181;
 // Houston
-distâncias[3][0] = 1632;
-distâncias[3][1] = 1546;
+distances[3][0] = 1632;
+distances[3][1] = 1546;
 distances[3][2] = 1801;
 distances[3][4] = 1176;
 // Phoenix
@@ -1201,15 +1201,15 @@ distances[4][2] = 1181;
 distances[4][3] = 1176;
 ----
 
-Você notará que não especificamos valores para `distances[0][0]`,
-`distances[1][1]`, `distances[2][2]`, `distances[3][3]` ou
-`distances[4][4]`, já que cada um deles já possui o valor padrão de
+You'll notice that we did not specify values for `distances[0][0]`,
+`distances[1][1]`, `distances[2][2]`, `distances[3][3]`, or
+`distances[4][4]`, since each of these already has the default value of
 `0`.
 
-Com muito mais frequência, a manipulação de matrizes multidimensionais usará laços
-`for` aninhados. Por exemplo, poderíamos criar uma matriz com 3 linhas e 4
-colunas e, em seguida, atribuir valores a esses locais de forma que fossem
-numerados em ordem crescente em cada linha.
+Much more often, multidimensional array manipulation will use nested
+`for` loops. For example, we could create an array with 3 rows and 4
+columns, and then assign values to those locations such that they were
+numbered increasing across each row.
 
 [source,java]
 ----
@@ -1223,7 +1223,7 @@ for (int i = 0; i < values.length; ++i) {
 }
 ----
 
-Este código resultaria em uma matriz preenchida como na tabela a seguir.
+This code would result in an array filled up like the following table.
 
 [.center%autowidth%unbreakable,cols="4*^",]
 |=============
@@ -1232,28 +1232,28 @@ Este código resultaria em uma matriz preenchida como na tabela a seguir.
 |9 |10 |11 |12
 |=============
 
-Os limites do laço `for` externo neste exemplo usam
-`values.length`, fornecendo o número total de linhas. Em seguida, o laço `for`
-interno usa `values[i].length`, que é o comprimento (número de colunas)
-da linha atual. Neste caso, todas as linhas da matriz têm o mesmo
-número de colunas, mas isso nem sempre é verdade, como discutiremos
-mais adiante.
+The bounds for the outer `for` loop in this example uses
+`values.length`, giving the total number of rows. Then, the inner `for`
+loops uses `values[i].length`, which is the length (number of columns)
+of the current row. In this case, all the rows of the array have the same
+number of columns, but this is not always true, as we'll discuss
+later.
 
-==== Tipos de referência
+==== Reference types
 
-Todas as variáveis de matriz são variáveis do tipo _referência_, e não valores simples
-como a maioria dos tipos que discutimos até agora. Uma variável de referência é
-um nome para um objeto. Você deve se lembrar que descrevemos a diferença
-entre tipos de referência e tipos primitivos em
-<<Conceitos: Tipos>>, mas o único tipo de referência que
-consideramos em detalhes é `String`.
+All array variables are _reference_ type variables, not simple values
+like most of the types we have discussed so far. A reference variable is
+a name for an object. You might recall that we described the difference
+between reference types and primitive types in
+<<Conceitos: Tipos>>, but the only reference type we've
+considered in detail is `String`.
 
-Mais de uma variável de referência pode apontar para o mesmo objeto. Quando um
-objeto tem mais de um nome, isso é chamado de _aliasing_. O tipo `String`
-é imutável, o que significa que um objeto do tipo `String` não pode mudar
-seu conteúdo. As matrizes, no entanto, são _mutáveis_, o que significa que o aliasing
-pode causar resultados inesperados. Aqui está um exemplo simples com
-aliasing de matriz unidimensional.
+More than one reference variable can point at the same object. When one
+object has more than one name, this is called _aliasing_. The `String`
+type is immutable, meaning that an object of type `String` cannot change
+its contents. Arrays, however, are _mutable_, which means that aliasing
+can cause unexpected results. Here is a simple example with
+one-dimensional array aliasing.
 
 [source,java]
 ----
@@ -1266,30 +1266,30 @@ array2[3] = 17;
 System.out.println(array1[3]);
 ----
 
-Surpreendentemente, o valor impresso será `17`. As variáveis `array1`
-e `array2` são referências à mesma matriz fundamental. Ao contrário dos
-valores primitivos, o conteúdo completo de `array1` *não* é copiado para
-`array2`. Existe apenas uma matriz porque apenas uma matriz foi criada
-pela palavra-chave `new`. Quando o índice 3 de `array2` é atualizado, o índice 3
-de `array1` também muda, porque as duas variáveis são simplesmente dois
-nomes para o mesmo array.
+Surprisingly, the value printed out will be `17`. The variables `array1`
+and `array2` are references to the same fundamental array. Unlike
+primitive values, the complete contents of `array1` are *not* copied to
+`array2`. Only one array exists because only one array has been created
+by the `new` keyword. When index 3 of `array2` is updated, index 3
+of `array1` changes as well, because the two variables are simply two
+names for the same array.
 
 [.text-center]
-.Duas referências de array apontando para um único objeto de array.
+.Two array references pointing to a single array object.
 image::array3.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align="center"]
 
 
-Às vezes, esse recurso de referência do Java nos permite escrever código que é
-confuso ou tem consequências inesperadas. No entanto, a vantagem é que
-podemos atribuir uma matriz a outra sem incorrer no custo de
-copiar a matriz inteira. Se você criar uma matriz com 1.000.000
-elementos, copiar essa matriz várias vezes pode se tornar dispendioso em
-termos de tempo de execução do programa.
+Sometimes this reference feature of Java allows us to write code that is
+confusing or has unexpected consequences. However, the benefit is that
+we can assign one array to another without incurring the expense of
+copying the entire array. If you create an array with 1,000,000
+elements, copying that array several times could get expensive in
+terms of program running time.
 
-A melhor regra prática para entender tipos de referência é que
-existe apenas um objeto real para cada chamada para `new`. A principal exceção
-a essa regra é que os usos de `new` podem ficar ocultos do usuário quando
-estão em chamadas de método.
+The best rule of thumb for understanding reference types is that there
+is only one actual object for every call to `new`. The primary exception
+to this rule is that uses of `new` can be hidden from the user when
+they're in method calls.
 
 [source,java]
 ----
@@ -1297,80 +1297,80 @@ String greeting = new String("Hello");
 String pronoun = greeting.substring(0,2);
 ----
 
-No final deste código, a referência `pronoun` apontará para um objeto
-contendo a `String "He"`. O método `substring()` invoca `new`
-internamente, gerando um novo objeto `String` completamente separado da
-`String` referenciada por `greeting`. Este código pode parecer incomum
-porque estamos usando explicitamente `new` para criar um objeto `String`
-contendo `"Hello"`. A classe `String` é diferente de todas as outras
-classes porque pode ser instanciada sem usar a palavra-chave `new`.
-A linha `String greeting = "Hello";` chama implicitamente `new` para criar um objeto
-contendo a `String "Hello"` e funciona quase da mesma forma que a
-linha semelhante acima.
+At the end of this code, the reference `pronoun` will point to an object
+containing the `String "He"`. The `substring()` method invokes `new`
+internally, generating a new `String` object completely separate from
+the `String` referenced by `greeting`. This code may look unusual
+because we're explicitly using `new` to make a `String` object
+containing `"Hello"`. The `String` class is different from every other
+class because it can be instantiated without using the `new` keyword.
+The line `String greeting = "Hello";` implicitly calls `new` to create an object
+containing the `String "Hello"` and functions nearly the same as the
+similar line above.
 
-==== Matrizes irregulares
+==== Ragged arrays
 
-É com vergonha que admitimos que mentimos para vocês. Em Java, não existe
-algo como uma verdadeira matriz multidimensional! Em vez disso, os exemplos de
-matrizes bidimensionais e tridimensionais que apresentamos acima são,
-na verdade, matrizes de matrizes (de matrizes). Pensar em matrizes multidimensionais
-dessa forma pode dar ao programador mais flexibilidade.
+We're ashamed to say that we've lied to you. In Java, there's no
+such thing as a true multidimensional array! Instead, the examples of
+two-dimensional and three-dimensional arrays we've given above are
+actually arrays of arrays (of arrays). Thinking about multidimensional
+arrays in this way can give the programmer more flexibility.
 
-Se voltarmos à definição da matriz bidimensional com 3 linhas
-e 4 colunas, podemos instanciar cada linha separadamente, em vez de como um
-bloco.
+If we return to the definition of the two-dimensional array with 3 rows
+and 4 columns, we can instantiate each row separately instead of as a
+block.
 
 [source,java]
 ----
-int[][] valores = new int[3][];
-int número = 1;
-for (int i = 0; i < valores.length; ++i) {
-    valores[i] = new int[4];
-    for (int j = 0; j < valores[i].length; ++j) {
-        valores[i][j] = número;
-        ++número;
+int[][] values = new int[3][];
+int number = 1;
+for (int i = 0; i < values.length; ++i) {
+    values[i] = new int[4];
+    for (int j = 0; j < values[i].length; ++j) {
+        values[i][j] = number;
+        ++number;
     }
 }
 ----
 
-Este código é funcionalmente equivalente ao código anterior que
-instanciava todas as 12 posições de uma só vez. O mesmo poderia ser feito com uma
-matriz tridimensional ou de dimensão superior. Podemos especificar o comprimento de cada linha
-independentemente e, o que é mais curioso, podemos atribuir a cada linha um
-comprimento diferente. Uma matriz multidimensional cujas linhas têm comprimentos diferentes é
-chamada de _matriz irregular_.
+This code is functionally equivalent to the earlier code that
+instantiated all 12 locations at once. The same could be done with a
+three-dimensional array or higher. We can specify the length of each row
+independently, and, more bizarrely, we can give each row a different
+length. A multidimensional array whose rows have different lengths is
+called a _ragged array_.
 
-Uma matriz irregular geralmente é desnecessária. A principal razão para usar uma matriz irregular
-é economizar espaço, quando você tem dados tabulares nos quais os comprimentos
-de cada linha variam muito. Se os comprimentos das linhas variam apenas um
-pouco, provavelmente não vale a pena o trabalho extra. No entanto, se algumas linhas
-têm 10 elementos e outras têm 1.000.000, a economia de espaço pode ser
-significativa.
+A ragged array is usually unnecessary. The main reason to use a ragged
+array is to save space, when you have tabular data in which the lengths
+of each row vary a great deal. If the lengths of the rows vary only a
+little, it's probably not worth the extra hassle. However, if some rows
+have 10 elements and others have 1,000,000, the space saved can be
+significant.
 
-Podemos aplicar a ideia de matrizes irregulares à tabela de distâncias entre
-cidades. Se você examinar esta tabela, perceberá que cerca de metade dos
-dados nela contidos se repetem, porque a distância de Chicago a Los Angeles
-é a mesma que a distância de Los Angeles a Chicago, e assim por diante. Podemos
-armazenar os dados em uma forma triangular para manter apenas as informações de distância únicas
-.
+We can apply the idea of ragged arrays to the table of distances between
+cities. If you examine this table, you'll notice that about half the
+data in it is repeated, because the distance from Chicago to Los Angeles
+is the same as the distance from Los Angeles to Chicago, and so on. We
+can store the data in a triangular shape to keep only the unique
+distance information.
 
 [.center%autowidth%unbreakable,cols="^.^h,5*^.^",]
 |============================
-| | Nova York | Los Angeles | Chicago | Houston | Phoenix
+| | New York | Los Angeles | Chicago | Houston | Phoenix
 
-| Nova York |0 4+|
-| Los Angeles |2.791 |0 3+|
-| Chicago |791 |2.015 |0 2+|
-| Houston |1.632 |1.546 |1.801 |0 |
-| Phoenix |2.457 |373 |1.181 |1.176 |0
+| New York |0 4+|
+| Los Angeles |2,791 |0 3+|
+| Chicago |791 |2,015 |0 2+|
+| Houston |1,632 |1,546 |1,801 |0 |
+| Phoenix |2,457 |373 |1,181 |1,176 |0
 |============================
 
-Podemos criar essa tabela em código fazendo o seguinte.
+We could create this table in code by doing the following.
 
 [source,java]
 ----
 distances = new int[5][];
-// Nova York
+// New York
 distances[0] = new int[1];
 // Los Angeles
 distances[1] = new int[2];
@@ -1392,13 +1392,13 @@ distances[4][2] = 1181;
 distances[4][3] = 1176;
 ----
 
-Com esta tabela, um usuário não pode simplesmente digitar `distances[0][4]` e esperar
-obter a distância de Nova York a Phoenix. Em vez disso, precisamos ter
-cuidado para garantir que o índice da primeira cidade nunca seja maior
-do que o índice da segunda cidade. Se estivermos lendo os índices das
-cidades fornecidos por um usuário, podemos escrever um código para fazer essa verificação. Digamos que
-`city1` e `city2`, respectivamente, conterem os índices das cidades que o
-usuário deseja usar para calcular as distâncias entre elas.
+With this table a user cannot simply type in `distances[0][4]` and hope
+to get the distance from New York to Phoenix. Instead, we have to be
+careful to make sure that the index of the first city is never larger
+than the index of the second city. If we're reading in the indexes of
+the cities from a user, we can write some code to do this check. Let
+`city1` and `city2`, respectively, contain the indexes of the cities the
+user wants to use to find the distances between.
 
 [source,java]
 ----
@@ -1407,29 +1407,29 @@ if (city1 > city2) {
     city1 = city2;
     city2 = temp;
 }
-System.out.println("A distância é: " + distances[city1][city2] +
-    " milhas");
+System.out.println("The distance is: " + distances[city1][city2] +
+    " miles");
 ----
 
-Se quiséssemos ser ainda mais espertos, poderíamos eliminar as entradas nulas
-da tabela, mas então a matriz irregular teria uma linha a menos do que
-a matriz bidimensional original.
+If we wanted to be even cleverer, we could eliminate the zero entries
+from the table, but then the ragged array would have one fewer row than
+the original two-dimensional array.
 
-==== Armadilhas comuns
+==== Common pitfalls
 
-Mesmo as matrizes unidimensionais podem dar origem a muitos erros novos. Abaixo, listamos
-dois dos erros mais comuns cometidos tanto com matrizes unidimensionais quanto
-com matrizes multidimensionais.
+Even one-dimensional arrays make many new errors possible. Below we list
+two of the most common mistakes made with both one-dimensional and
+multidimensional arrays.
 
-.Armadilha: Indicação fora dos limites da matriz
+.Pitfall: Array out of bounds
 [WARNING]
 ====
 
-O comprimento de uma matriz é determinado em tempo de execução. Às vezes, o número é
-especificado no código-fonte, mas é sempre possível que uma matriz
-seja instanciada com base na entrada do usuário. O compilador Java não faz nenhuma
-verificação para ver se você está no intervalo correto. Se o seu programa tentar
-acessar um elemento inválido, ele irá travar com uma
+The length of an array is determined at run time. Sometimes the number is
+specified in the source code, but it's always possible for an array to
+be instantiated based on user input. The Java compiler doesn't do any
+checking to see if you're in the right range. If your program tries to
+access an illegal element, it'll crash with an
 `ArrayIndexOutOfBoundsException`.
 
 [source,java]
@@ -1440,55 +1440,55 @@ for (int i = 0; i <= array.length; ++i) {
 }
 ----
 
-Aqui está um exemplo clássico. Ao iterar pelo laço uma vez a mais
-, o programa tentará armazenar `100` em `array[100]`, quando o
-último índice da matriz é `99`. Em C e {cpp}, a aritmética de ponteiros
-permitia que um índice negativo fosse válido para uma matriz em alguns casos. Em
-Java, um índice negativo sempre lançará uma
+Here's a classic example. By iterating through the loop one too many
+times, the program will try to store `100` into `array[100]`, when the
+last index of the array is `99`. In C and {cpp}, pointer arithmetic
+allowed a negative index to be valid for an array in some cases. In
+Java, a negative index will always throw an
 `ArrayIndexOutOfBoundsException`.
 
-Existem outras causas menos comuns para sair dos limites da matriz.
-Imagine que você está lendo um arquivo que foi redirecionado para
-entrada, mantendo uma contagem das ocorrências de cada letra do alfabeto
-no arquivo.
+There are other less common causes for going outside of array bounds.
+Imagine that you're scanning through a file that has been redirected to
+input, keeping a count of the occurrences of each letter of the alphabet
+in the file.
 
 [source,java]
 ----
 Scanner in = new Scanner(System.in);
 int[] counts = new int[26];
-String palavra;
+String word;
 while (in.hasNext()) {
-    palavra = in.next().toLowerCase();
-    for (int i = 0; i < palavra.length(); ++i) {
-        ++contas[palavra.charAt(i) - 'a'];
+    word = in.next().toLowerCase();
+    for (int i = 0; i < word.length(); ++i) {
+        ++counts[word.charAt(i) - 'a'];
     }
 }
 ----
 
-Este trecho de código faz um bom trabalho ao contar as ocorrências de
-cada letra. O laço `while` continua a ser executado enquanto houver
-outra `String` de dados para ler no arquivo. O laço `for` interno
-itera por cada `char` na `String` e incrementa o
-elemento apropriado da matriz `counts`. Ao subtrair o valor
-`'a'`, normalizamos os valores `char` de `'a'` a `'z'` para `0` a
-`25`. No entanto, se houver qualquer sinal de pontuação no arquivo, simplesmente
-subtrair `'a'` não funcionará. O valor Unicode de `'.'`, por
-exemplo, é 46. O valor Unicode de `'a'` é 97. Subtrair 97 de 46
-fará com que este código tente incrementar o índice `-51` da matriz. Uma
-verificação adicional deve ser incluída neste código para garantir que o
-valor `char` que está sendo examinado seja uma letra.
+This segment of code does a decent job of counting the occurrences of
+each letter. The `while` loop continues to execute as long as there is
+another `String` worth of data to read in the file. The inner `for` loop
+iterates through each `char` in the `String` and increments the
+appropriate element of the `counts` array. By subtracting the value
+`'a'`, we normalize the `char` values `'a'` through `'z'` to `0` through
+`25`. However, if there's any punctuation in the file, simply
+subtracting `'a'` will not work. The Unicode value of `'.'`, for
+example, is 46. The Unicode value of `'a'` is 97. Subtracting 97 from 46
+will make this code try to increment index `-51` of the array. An
+additional check should be put into this code to make sure that the
+`char` value being examined is a letter.
 
 ====
 
-.Armadilha: Matrizes de referência não inicializadas
-[AVISO]
+.Pitfall: Uninitialized reference arrays
+[WARNING]
 ====
 
-Outro problema surge apenas com matrizes de tipos de referência. Sempre que
-os elementos de uma matriz são tipos de dados primitivos, a memória para esse tipo
-é alocada. Sempre que os elementos da matriz são tipos de referência,
-apenas referências a objetos, inicializadas como `null`, são alocadas. Como
-é uma matriz de valores primitivos, o código a seguir funciona corretamente.
+Another problem only comes up with arrays of reference types. Whenever
+the elements of an array are primitive data types, memory for that type
+is allocated. Whenever the elements of the array are reference types,
+only references to objects, initialized to `null`, are allocated. Because
+it's an array of primitive values, the following code works fine.
 
 [source,java]
 ----
@@ -1496,7 +1496,7 @@ int[] primitives = new int[100];
 ++primitives[67];
 ----
 
-O código a seguir, no entanto, causará uma `NullPointerException`.
+The following code, however, will cause a `NullPointerException`.
 
 [source,java]
 ----
@@ -1504,8 +1504,8 @@ String[] references = new String[100];
 int x = references[67].length();
 ----
 
-Matrizes de tipos de referência devem inicializar cada elemento antes de usá-lo.
-A `NullPointerException` poderia ser evitada da seguinte forma.
+Arrays of reference types must initialize each element before using it.
+The `NullPointerException` could be avoided as follows.
 
 [source,java]
 ----
@@ -1516,13 +1516,13 @@ for (int i = 0; i < references.length; ++i) {
 int x = references[67].length();
 ----
 
-Nesse caso, não haveria erro, embora
-`references[67].length()` ainda fosse `0`, e isso provavelmente não é
-o que o programador pretendia.
+In this case, there would be no error, although
+`references[67].length()` would still be `0`, and that's probably not
+what the programmer intended.
 
-Um erro semelhante pode ocorrer com matrizes multidimensionais.
+A similar error can happen with multidimensional arrays.
 
-[fonte,java]
+[source,java]
 ----
 int[][] table = new int[10][];
 for (int i = 0; i < table.length; ++i) {
@@ -1530,76 +1530,76 @@ for (int i = 0; i < table.length; ++i) {
 }
 ----
 
-Como uma matriz é, por si só, um tipo de referência, a matriz `table` contém
-`10` referências a `null` para cada uma de suas `10` linhas. A menos que essas linhas
-sejam instanciadas, a JVM lançará novamente uma `NullPointerException` ao
-tentar acessar um valor `int` na tabela. Esse erro confunde
-muitos programadores iniciantes porque nenhum tipo de referência parece estar
-envolvido.
+Because an array is itself a reference type, the `table` array contains
+`10` references to `null` for each of its `10` rows. Unless those rows
+are instantiated, the JVM will again throw a `NullPointerException` when
+attempting to access an `int` value in the table. This error confuses
+many beginner programmers because no reference types appear to be
+involved.
 
 ====
 
-=== Exemplos: Matrizes bidimensionais
+=== Examples: Two-dimensional arrays
 
-A seguir, apresentamos alguns exemplos em que as matrizes bidimensionais podem ser úteis.
-Começamos com um exemplo simples de calendário, passamos para a multiplicação de matrizes e
-vetores, útil em matemática, e terminamos com um jogo.
+Below we give some examples where two-dimensional arrays can be helpful.
+We start with a simple calendar example, move on to matrix and
+vector multiplication useful in math, and finish with a game.
 
-.Calendário
+.Calendar
 ====
 
-Vamos criar um calendário que possa ser exibido no terminal para
-mostrar em que dia da semana cada data cai. Nosso programa solicitará
-ao usuário o dia da semana em que o mês começa e o total
-de dias do mês. Nosso programa imprimirá rótulos para os
-sete dias da semana, seguidos de uma numeração começando no
-lugar apropriado, e com quebra de linha de forma que cada dia numerado do mês
-caia sob o dia da semana apropriado.
+We're going to create a calendar that can be printed to the terminal to
+show which day of the week each day lands on. Our program will prompt
+the user for the day of the week the month starts on and for the total
+number of days in the month. Our program will print out labels for the
+seven days of the week, followed by numbering starting at the
+appropriate place, and wrapping such that each numbered day of the month
+falls under the appropriate day of the week.
 
-.Imprime um calendário para um determinado mês, formatado semana a semana.
+.Prints a calendar for a given month, formatted week by week.
 [source, java]
 [[CalendarProgram]]
 ----
 include::{programsdir}/Calendar.java[]
 ----
-<1> Primeiro, nosso código cria uma matriz 7 × 7 do tipo
-`String` chamado `squares`. A matriz precisa de 7 linhas para que possa começar
-com uma linha para rotular os dias e, em seguida, gerar até 6 linhas para cobrir as
-semanas. (Meses com 31 dias abrangem partes de 6 semanas diferentes se
-começarem em uma sexta-feira ou um sábado.) O número de colunas corresponde aos
-sete dias da semana.
-<2> Em seguida, inicializamos a primeira linha da
-matriz com as abreviações de cada dia da semana.
-<3> Depois, inicializamos o
-resto da matriz com um único espaço.
-<4> Nosso programa então solicita ao usuário o dia em que o mês começa.
-<5> O programa também solicita ao usuário o número total de
-dias do mês.
-<6> O trabalho principal do programa é feito pelo laço `while`, que preenche
-cada quadrado com um número de dia que aumenta progressivamente para cada coluna,
-passando para a próxima linha quando uma linha é preenchida.
-<7> Finalmente, os dois laços `for` aninhados no final imprimem o conteúdo de `squares`, colocando uma
-tabulação (`'\t'`) entre cada coluna e iniciando uma nova linha para cada linha.
+<1> First, our code creates a 7 × 7 array of type
+`String` called `squares`. The array needs 7 rows so that it can start
+with a row to label the days and then output up to 6 rows to cover the
+weeks. (Months with 31 days span parts of 6 different weeks if they
+start on a Friday or a Saturday.) The number of columns corresponds to
+the seven days of the week.
+<2> Next, we initialize the first row of the
+array to abbreviations for each day of the week.
+<3> Then, we initialize the
+rest of the array to be a single space.
+<4> Our program then reads from the user the day the month starts on.
+<5> The program also reads from the user for the total number of
+days in the month.
+<6> The main work of the program is done by the `while` loop, which fills
+each square with a steadily increasing day number for each column,
+moving on to the next row when a row is filled.
+<7> Finally, the two nested `for` loops at the end print out the contents of `squares`, putting a
+tab (`'\t'`) between each column and starting a new line for each row.
 
 ====
 
-.Multiplicação de matriz por vetor
+.Matrix-vector multiplication
 ====
 
-As matrizes oferecem uma maneira natural de representar vetores e matrizes. Em
-gráficos 3D e no design de videogames, podemos representar um ponto no espaço 3D como
-um vetor com três elementos: _x_, _y_ e
-_z_. Se quisermos girar o ponto tridimensional
-representado por esse vetor, podemos multiplicá-lo por uma matriz. Por exemplo,
-para girar um ponto em torno do eixo _x_ em
-_θ_ graus, poderíamos usar a seguinte matriz.
+Arrays give a natural way to represent vectors and matrices. In 3D
+graphics and video game design, we can represent a point in 3D space as
+a vector with three elements: _x_, _y_, and
+_z_. If we want to rotate the three-dimensional point
+represented by this vector, we can multiply it by a matrix. For example,
+to rotate a point around the _x_-axis by
+_θ_ degrees, we could use the following matrix.
 
 //[stem]
 //++++
 //\begin{bmatrix}
 //1 & 0 & 0 \\
 //0 & \cos \theta & -\sin \theta \\
-//0 & \sin \theta & \cos \theta \\
+//0 & \sin \theta  & \cos \theta \\
 //\end{bmatrix}
 //++++
 
@@ -1607,13 +1607,13 @@ _θ_ graus, poderíamos usar a seguinte matriz.
 image::matrix.svg[scaledwidth=20%,pdfwidth=20%,width=20%,align="center"]
 
 
-Dada uma matriz _m_ × _n_ _A_, seja
-_A~ij~_ seja o elemento na _i_^-ésima^ linha,
-_j_^-ésima^ coluna. Dado um vetor _v_ de comprimento
-_n_, seja _v~i~_ o _i_^-ésimo^
-elemento do vetor. Para multiplicar _A_ por _v_,
-usamos a seguinte equação para encontrar o _i_^-ésimo^ elemento do
-vetor resultante _v′_.
+Given an _m_ × _n_ matrix _A_, let
+_A~ij~_ be the element in the _i_^th^ row,
+_j_^th^ column. Given a vector _v_ of length
+_n_, let _v~i~_ be the _i_^th^
+element in the vector. To multiply _A_ by _v_,
+we use the following equation to find the _i_^th^ element of
+the resulting vector _v′_.
 
 //[stem]
 //++++
@@ -1624,71 +1624,71 @@ vetor resultante _v′_.
 image::vector.svg[scaledwidth=20%,pdfwidth=20%,width=20%,align="center"]
 
 
-Ao transformar essa equação em código Java, podemos escrever um programa que
-leia um ponto tridimensional e o gire em torno do
-eixo _x_ na quantidade especificada pelo usuário.
+By transforming this equation to Java code, we can write a program that
+can read in a three-dimensional point and rotate it around the
+_x_-axis by the amount specified by the user.
 
-.Utiliza multiplicação de matrizes para girar um ponto no espaço tridimensional.
+.Uses matrix multiplication to rotate a point in three-dimensional space.
 [source, java]
 [[MatrixRotateProgram]]
 ----
 include::{programsdir}/MatrixRotate.java[]
 ----
-<1> Este programa começa declarando uma matriz do tipo `double` para armazenar o
-vetor.
-<2> Em seguida, ele lê três valores fornecidos pelo usuário e os insere nela.
-<3> Depois, o programa lê o ângulo de rotação em graus e o converte para
-radianos.
-<4> Em seguida, usamos a classe `Math` para calcular os valores na
-matriz de rotação. Observe que não alteramos os valores que precisam ser
+<1> This program begins by declaring a array of type `double` to hold the
+vector.
+<2> Afterward, it reads three values from the user into it.
+<3> Then, the program reads in the angle of rotation in degrees and converts it to
+radians.
+<4> Next, we use the `Math` class to calculate the values in the
+rotation matrix. Note that we do not change the values that need to be
 zero.
-<5> Usamos um laço `for` para realizar a multiplicação matriz-vetor
-. Novamente, a soma realizada por
-nossos cálculos utiliza o fato de que todos os elementos de `rotatedPoint` são
-inicializados como `0.0`.
-<6> Finalmente, imprimimos a resposta.
+<5> We use a `for` loop to perform the matrix-vector
+multiplication. Again, the summing done by
+our calculations uses the fact that all elements of `rotatedPoint` are
+initialized to `0.0`.
+<6> Finally, we print out the answer.
 ====
 
 [[ticTacToeExample]]
-.Jogo da Velha
+.Tic-Tac-Toe
 ====
 
-Quase todas as crianças conhecem o jogo da velha, também conhecido como jogo dos três em linha.
-A área de jogo é uma grade de 3 × 3. Os jogadores se revezam colocando Xs e Os,
-tentando formar uma linha de três. Estrategicamente, não é o jogo mais
-interessante, já que dois jogadores que não cometem erros sempre empatam.
-Ainda assim, apresentamos um programa que permite que dois jogadores humanos joguem o
-jogo, pois as manipulações de uma matriz bidimensional no programa
-são semelhantes às de jogos mais complicados, como Connect Four,
-damas, xadrez ou Go. Nosso programa detectará qualquer tentativa de jogar em um
-lugar que já tenha sido jogado e determinará o vencedor, se
-houver um.
+Almost every child knows the game of tic-tac-toe, also known as noughts and crosses.
+Its playing area is a 3 × 3 grid. Players take turns placing Xs and Os,
+trying to get three in a row. Strategically, it's not the most
+interesting game since two players who make no mistakes will always tie.
+Still, we present a program that allows two human players to play the
+game because the manipulations of a two-dimensional array in the program
+are similar to those for more complicated games such as Connect Four,
+checkers, chess, or Go. Our program will catch any attempt to play on a
+location that has already been played and will determine the winner, if
+there is one.
 
-Os jogos frequentemente dão origem a programas complexos, já que regras que são
-intuitivamente óbvias para os humanos podem ser difíceis de expressar explicitamente em
-Java. Nosso programa começa definindo várias variáveis e
-objetos.
+Games often give rise to complex programs, since rules that are
+intuitively obvious to humans may be difficult to state explicitly in
+Java. Our program begins by setting up quite a few variables and
+objects.
 
 [source, java]
 ----
 include::{programsdir}/TicTacToe.java[lines=1..15]
 ----
-<.> Primeiro, criamos um `Scanner` para ler os dados.
-<.> Em seguida, declaramos
-e instanciamos nosso tabuleiro de jogo 3 × 3 como uma
-matriz bidimensional do tipo `char`.
-<.> Queremos que qualquer espaço não jogado na
-grade seja o `char` correspondente a um espaço, então preenchemos a matriz com `' '`.
-<.> Em seguida, declaramos um valor `boolean` para controlar de quem é a vez e
-outro para controlar se o jogo terminou.
-<.> Por fim,
-declaramos variáveis para armazenar a linha, a coluna, o número de jogadas
-feitas até o momento e a forma atual (`'X'` ou `'O'`).
+<.> First, we create a `Scanner` to read in data.
+<.> Then, we declare
+and instantiate our 3 × 3 playing board as a
+two-dimensional array of type `char`.
+<.> We want any unplayed space on the
+grid to be the `char` for a space, so we fill the array with `' '`.
+<.> Next, we declare a `boolean` value to keep track of whose turn it is and
+another to keep track of whether the game is over.
+<.> Finally, we
+declare variables to hold the row, the column, the number of moves that
+have been made so far and the current shape (`'X'` or `'O'`).
 
-O núcleo do jogo é um laço `while` que é executado até que `gameOver`
-se torne `true`. A primeira linha do corpo desse laço é um atalho
-obscuro de Java, frequentemente chamado de _operador ternário_. Essa linha é
-na verdade uma abreviação do seguinte.
+The core of the game is a `while` loop that runs until `gameOver`
+becomes `true`. The first line of the body of this loop is an obscure
+Java shortcut often referred to as the _ternary operator_. This line is
+really shorthand for the following.
 
 [source,java]
 ----
@@ -1699,83 +1699,84 @@ if (turn) {
 }
 ----
 
-O operador ternário funciona com uma condição seguida por um ponto de interrogação
-e, em seguida, dois valores separados por dois pontos. Se a condição for `true`,
-o primeiro valor é atribuído; caso contrário, o segundo valor é atribuído.
-É perfeito para situações como esta, em que um valor é necessário quando
-`turn` é `true` e outro é necessário quando `turn` é `false`. O
-operador ternário é um truque útil, mas não deve ser usado em excesso.
+The ternary operator works with a condition followed by a question mark
+and then two values separated by a colon. If the condition is `true`,
+the first value is assigned, otherwise the second value is assigned.
+It's perfect for situations like this where one value is needed when
+`turn` is `true` and another is needed when `turn` is `false`. The
+ternary operator is a useful trick, but it shouldn't be overused.
 
 [source, java]
 ----
 include::{programsdir}/TicTacToe.java[lines=17..37]
 ----
-<.> Após atribuir o valor apropriado a `shape`, nosso código lê os
-valores de linha e coluna para o próximo movimento do jogador atual.
-<.> Se a linha e a
-coluna selecionadas corresponderem a um ponto que já foi ocupado, o
-programa exibe uma mensagem de erro.
-<.> Caso contrário, o programa define
-`board[row][column]` com o símbolo apropriado, incrementa `moves` e
-altera o valor de `turn`.
-<.> Em seguida, ele exibe o tabuleiro.
+<.> After assigning the appropriate value to `shape`, our code reads in the
+row and column values for the current player's next move.
+<.> If the row and
+column selected correspond to a spot that's already been taken, the
+program gives an error message.
+<.> Otherwise, the program sets
+`board[row][column]` to the appropriate symbol, increments `moves`, and
+changes the value of `turn`.
+<.> Then, it prints out the board.
 
-Nosso programa não realiza nenhuma verificação de limites em `row` e `column`.
-Se um usuário tentar fazer uma jogada na linha 5, coluna 3, nosso programa tentará
-fazê-lo e travará. Cláusulas adicionais na instrução `if` poderiam
-ser usadas para adicionar verificações de limites.
+Our program doesn't do any bounds checking on `row` and `column`.
+If a user tries to place a move at row 5 column 3, our program will try
+to do so and crash. Additional clauses in the `if` statement could
+be used to add bounds checking.
 
-Talvez a parte mais complicada do nosso programa de jogo da velha seja verificar se há uma
-vitória.
+Perhaps the trickiest part of our tic-tac-toe program is checking for a
+win.
 
 [source, java]
 ----
 include::{programsdir}/TicTacToe.java[lines=38..70]
 ----
-<.> Primeiro, verificamos cada linha para ver se ela contém três em sequência.
-<.> Em seguida, verificamos cada coluna.
-<.> Por fim, verificamos as duas diagonais.
-<.> Se qualquer uma
-dessas verificações encerrar o jogo, anunciamos um vencedor.
-<.> Caso contrário, se o
-número de jogadas atingir 9 sem um vencedor, deve ser um empate.
+<.> First we check each row to see if it contains three in a row.
+<.> Then, we check each column.
+<.> Finally, we check the two diagonals.
+<.> If any of
+those checks ended the game, we announce a winner.
+<.> Otherwise, if the
+number of moves has reached 9 with no winner, it must be a tie game.
 
-Em
-um jogo maior (como o Connect Four), gostaríamos de encontrar maneiras melhores
-de automatizar a verificação de linhas, colunas e diagonais. Por exemplo, não
-gostaríamos de verificar todo o tabuleiro a cada jogada.
-Em vez disso, poderíamos nos concentrar apenas nas linhas, colunas e diagonais
-afetadas pela última jogada.
+In
+a larger game (such as Connect Four), we would want to find better ways
+to automate checking rows, columns, and diagonals. For example, we wouldn't
+want to check the entirety of a larger board each move.
+Instead, we could focus only on the rows, columns, and diagonals
+affected by the last move.
 ====
 
 ****
 <<connectFourExercise>>
 ****
 
-=== Avançado: Ferramentas especiais para matrizes em Java
 
-As matrizes são estruturas de dados fundamentais em muitas linguagens de programação.
-Frequentemente, existem ferramentas sintáticas especiais ou bibliotecas projetadas para
-facilitar seu uso. Nesta seção, exploramos duas ferramentas avançadas: o
-laço `for` aprimorado e a classe utilitária `Arrays`.
+=== Advanced: Special array tools in Java
+
+Arrays are fundamental data structures in many programming languages.
+There are often special syntactical tools or libraries designed to make
+them easier to use. In this section, we explore two advanced tools, the
+enhanced `for` loop and the `Arrays` utility class.
 
 
-==== Laços `for` aprimorados
+==== Enhanced `for` loops
 
-Em <<repetition#repetition>>, descrevemos três laços: o laço `while`
-, o laço `for` e o laço `do`-`while`. Embora esses sejam os únicos
-três laços em Java, existe uma forma especial do laço `for` projetada
-para uso com matrizes (e algumas outras estruturas de dados). Essa construção é
-frequentemente chamada de _laço `for` aprimorado_.
+In <<repetition#repetition>> we described three loops: `while`
+loops, `for` loops, and `do`-`while` loops. Although these are the only
+three loops in Java, there's a special form of the `for` loop designed
+for use with arrays (and some other data structures). This construct is
+often called the _enhanced `for` loop_.
 
-Um laço `for` aprimorado não possui o cabeçalho de três partes de um laço `for`
-normal. Em vez disso, ele foi projetado para iterar sobre o conteúdo de uma matriz ou outra lista.
-Dentro de seus parênteses há uma declaração de uma variável com o mesmo tipo
-que os elementos da matriz, seguida de dois pontos (`:`), e então o nome da
-matriz. Considere o exemplo a seguir de um laço `for` aprimorado usado para somar os
-valores de uma matriz de valores `int` chamada `array`. Assim como em todos os laços em
-Java, as chaves são opcionais se houver apenas uma instrução executável no
-laço.
+An enhanced `for` loop does not have the three-part header of a regular `for`
+loop. Instead, it's designed to iterate over the contents of an array or other list.
+Inside its parentheses is a declaration of a variable with the same type
+as the elements of the array, then a colon (`:`), then the name of the
+array. Consider the following example of an enhanced `for` loop used to sum the
+values of an array of `int` values called `array`. As with all loops in
+Java, braces are optional if there's only one executable statement in
+the loop.
 
 [source,java]
 ----
@@ -1785,8 +1786,8 @@ for (int value : array) {
 }
 ----
 
-Este código funciona exatamente da mesma maneira que o laço `for`
-tradicional que usaríamos para resolver o mesmo problema.
+This code functions in exactly the same way as the traditional `for`
+loop we would use to solve the same problem.
 
 [source,java]
 ----
@@ -1796,272 +1797,270 @@ for (int i = 0; i < array.length; ++i) {
 }
 ----
 
-A vantagem do laço `for` aprimorado é que ele é mais curto e mais claro.
-Também não há preocupação com erros de deslocamento de um índice. O
-laço `for` aprimorado itera sobre todos os elementos da matriz, sem necessidade de
-índices!
+The advantage of the enhanced `for` loop is that it's shorter and clearer.
+There's also no worry about being off by one with your indexes. The
+enhanced `for` loop iterates over every element in the array, no indexes
+needed!
 
-Os laços `for` aprimorados podem ser aninhados ou usados dentro de outros laços. Considere os
-seguintes laços `for` aprimorados aninhados que imprimem todas as peças de xadrez
-possíveis, nas cores preta e branca.
+Enhanced `for` loops can be nested or used inside of other loops. Consider the
+following nested enhanced `for` loops that print out all possible chess
+pieces, in both black and white colors.
 
 [source,java]
 ----
-String[] cores = {"Preto", "Branco"};
-String[] peças = {"Rei", "Rainha", "Torre", "Bispo", "Cavalo", 'Peão'};
-for (String cor : cores) {
-    for (String peça : peças) {
-        System.out.println(cor + " " + peça);
+String[] colors = {"Black", "White"};
+String[] pieces = {"King", "Queen", "Rook", "Bishop", "Knight", "Pawn"};
+for (String color : colors) {
+    for (String piece : pieces) {
+        System.out.println(color + " " + piece);
     }
 }
 ----
 
-Os laços `for` aprimorados têm algumas desvantagens. Por um lado, eles foram projetados para iterar
-por uma matriz inteira. É complicado tentar fazê-los parar mais cedo, e
-é impossível fazê-los voltar a valores anteriores. Eles também
-foram projetados apenas para acesso de *leitura*, não para acesso de gravação. A variável no
-cabeçalho do laço `for` aprimorado assume cada valor da matriz por vez,
-mas atribuir valores a essa variável *não tem efeito* sobre a
-matriz subjacente. Considere o seguinte laço `for` que atribui `5` a todos os valores
-em `array`.
+Enhanced `for` loops do have a few drawbacks. For one, they're designed for iterating
+through an entire array. It's ugly to try to make them stop early, and
+it's impossible to make them go back to previous values. They're also
+only designed for *read* access, not write access. The variable in the
+header of the enhanced `for` loop takes on each value in the array in turn,
+but assigning values to that variable has *no effect* on the underlying
+array. Consider the following `for` loop that assigns `5` to every value
+in `array`.
 
 [source,java]
 ----
 for (int i = 0; i < array.length; ++i) {
-    
-array[i] = 5;
+    array[i] = 5;
 }
 ----
 
-Esse tipo de atribuição é impossível em um laço `for` aprimorado. O
-laço `for` aprimorado "equivalente" não faz nada. Ele atribui `5` à variável local
-`value`, mas nunca altera o conteúdo de `array`.
+This kind of assignment is impossible in an enhanced `for` loop. The
+"`equivalent`" enhanced `for` loop does nothing. It assigns `5` to the local
+variable `value` but never changes the contents of `array`.
 
 [source,java]
 ----
 for (int value : array) {
-    
-value = 5;
+    value = 5;
 }
 ----
 
-Embora os laços `for` aprimorados sejam ótimos para matrizes, eles também podem ser usados para
-qualquer estrutura de dados que implemente a interface `Iterable`. Nós
-discutimos interfaces em <<interfaces#interfaces>> e estruturas de dados dinâmicas
-em <<dynamic-data-structures#dynamic-data-structures>> e
+While enhanced `for` loops are great for arrays, they can also be used for
+any data structure that implements the `Iterable` interface. We
+discuss interfaces in <<interfaces#interfaces>> and dynamic data
+structures in <<dynamic-data-structures#dynamic-data-structures>> and
 <<recursion#recursion>>.
 
-==== A classe `Arrays`
+==== The `Arrays` class
 
-Os criadores da API Java sabiam que as matrizes eram importantes e adicionaram
-uma classe especial `Arrays` para manipulá-las.
+The designers of the Java API knew that arrays were important and added
+a special `Arrays` class to manipulate them.
 
-Essa classe possui vários métodos estáticos que podem ser usados para procurar
-valores em matrizes, criar cópias de matrizes, copiar intervalos selecionados de matrizes,
-verificar se matrizes são iguais, preencher matrizes com valores específicos, ordenar matrizes,
-converter uma matriz inteira em uma representação `String` e muito mais. As
-assinaturas dos métodos abaixo são fornecidas para matrizes `double`, mas a maioria
-dos métodos é sobrecarregada para funcionar com todos os tipos primitivos e de referência
-.
+This class has a number of static methods that can be used to search for
+values in arrays, make copies of arrays, copy selected ranges of arrays,
+test arrays for equality, fill arrays with specific values, sort arrays,
+convert an entire array into a `String` representation, and more. The
+signatures of the methods below are given for `double` arrays, but most
+methods are overloaded to work with all primitive types and reference
+types.
 
 [.center%unbreakable,width=100%,cols="<.<55%l,<.<45%"]
 |=======================================================================
-|Método |Finalidade
+|Method |Purpose
 
-|binarySearch(double[] array, double value) |Retorna o índice de `value`
-dentro de `array` ou um número negativo se ele não for encontrado. Somar 1 ao
-número negativo e, em seguida, negá-lo resultará no índice onde o
-valor estaria. Observação: `array` deve estar ordenado para que este método funcione.
+|binarySearch(double[] array, double value) |Returns index of `value`
+inside `array` or a negative number if it cannot be found. Adding 1 to
+the negative number and then negating it will give the index where the
+value would have been.  Note: `array` must be sorted for this method to work.
 
-|copyOf(double[] array, int length) |Retorna uma cópia de `array` com
-comprimento `length`, truncada ou preenchida se não corresponder ao
-comprimento de `array`.
+|copyOf(double[] array, int length) |Returns a copy of `array` with
+length `length`, either truncated or padded if it doesn't match the
+length of `array`.
 
-|copyOfRange(double[] array, int from, int to) |Retorna uma cópia de
-`array` do intervalo que começa em `from` e vai até, mas não
-inclui, `to`.
+|copyOfRange(double[] array, int from, int to) |Returns a copy of
+`array` from the range starting at `from` and going up to but not
+including `to`.
 
-|equals(double[] array1, double[] array2) |Retorna `true` se `array1`
-e `array2` tiverem o mesmo número de elementos, sendo que cada par deles é
-igual.
+|equals(double[] array1, double[] array2) |Returns `true` if `array1`
+and `array2` have the same number of elements, each pair of which is
+equal.
 
-|fill(double[] array, double value) |Preenche `array` com cópias de
+|fill(double[] array, double value) |Fills `array` with copies of
 `value`.
 
-|sort(double[] array) |Classifica `array` usando a ordenação natural. Este
-método pode falhar para matrizes `Object` nas quais os objetos não são
-comparáveis.
+|sort(double[] array) |Sorts `array` using natural ordering. This
+method can fail for `Object` arrays in which the objects are not
+comparable.
 
-|toString(double[] a) |Retorna uma `String` contendo representações
-de cada elemento separadas por vírgulas.
+|toString(double[] a) |Returns a `String` containing representations
+of each element separated with commas.
 |=======================================================================
 
-Consulte a API para obter mais informações. Embora tarefas como `fill()`
-sejam simples, vale a pena usar o método de `Arrays` em vez de
-escrever o seu próprio. Os métodos na API Java geralmente foram otimizados para
-velocidade e usam instruções especiais que não estão acessíveis a programadores Java
-comuns.
+Consult the API for more information. Even though tasks like `fill()`
+are simple, it's worth using the method from `Arrays` instead of
+writing your own. The methods in the Java API have often been tuned for
+speed and use special instructions that are not accessible to regular Java
+programmers.
 
-=== Solução: Jogo da Vida
+=== Solution: Game of Life
 
-Aqui apresentamos nossa solução para a simulação do Jogo da Vida de Conway.
-Nosso programa foi projetado para executar a simulação com 24 linhas e 80
-colunas, embora seja fácil alterar essas dimensões.
+Here we present our solution to the Conway's Game of Life simulation.
+Our program is designed to run the simulation with 24 rows and 80
+columns, although it would be easy to change those dimensions.
 
 [source, java]
 ----
 include::{programsdir}/Life.java[lines=1..13]
 ----
-<.> O método `main()` do nosso programa começa definindo `ROWS`, `COLUMNS`
-e `GENERATIONS` como constantes nomeadas usando a palavra-chave `final`.
-<.> Em seguida,
-criamos *duas* matrizes com `ROWS` linhas e `COLUMNS` colunas. A matriz `board`
-armazenará a geração atual. A matriz `temp` será usada para
-preencher a próxima geração. Em seguida, `temp` será copiado para `board`,
-e o processo se repetirá. A variável `swap` é apenas uma referência que usaremos
-para trocar `board` e `temp`.
-<.> Preenchemos o tabuleiro aleatoriamente, tornando
-10% das células vivas. Novamente, você pode querer brincar com esse número para
-ver como os padrões na simulação são afetados.
+<.> The `main()` method of our program starts by defining `ROWS`, `COLUMNS`,
+and `GENERATIONS` as named constants using the `final` keyword.
+<.> Next, we
+create *two* arrays with `ROWS` rows and `COLUMNS` columns. The `board`
+array will hold the current generation. The `temp` array will be used to
+fill in the next generation. Then, `temp` will be copied into `board`,
+and the process will repeat. The `swap` variable is just a reference we'll
+use to swap `board` and `temp`.
+<.> We randomly fill the board, making
+10% of the cells living. Again, you may wish to play with this number to
+see how the patterns in the simulation are affected.
 
 [source, java]
 ----
 include::{programsdir}/Life.java[lines=14..36]
 ----
-<.> O laço `for` no início deste segmento de código é executado uma vez para
-cada geração que simulamos.
-<.> Os dois laços `for` aninhados examinam cada
-célula em `board`.
-<.> Os dois laços `for` aninhados dentro desses laços realizam os
-cálculos para determinar se uma célula estará viva ou morta na próxima
-geração. Esses laços internos começam uma linha antes da linha atual e
-terminam uma linha depois da linha atual. Eles fazem o mesmo para as colunas. Os
-métodos `Math.max()` e `Math.min()` são usados para impedir que os laços
-saíam dos limites da matriz. Ao retroceder uma linha ou uma coluna, os métodos 
-`Math.max()` garantem que não geremos um índice menor
-que 0. Ao avançar uma linha ou uma coluna, os métodos `Math.min()`
-garantem que não geremos um índice maior que `ROWS - 1` ou
+<.> The `for` loop at the beginning of this segment of code runs once for
+each generation we simulate.
+<.> The two nested `for` loops examine each
+cell in `board`.
+<.> The two `for` loops nested inside of those loops do the
+calculations to determine if a cell will be alive or dead in the next
+generation. These inner loops start one row before the current row and
+finish one row after the current row. They do the same for columns. The
+`Math.max()` and `Math.min()` methods are used to keep the loops from
+going out of bounds of the array. When backing up a row or a column, the
+`Math.max()` methods make sure that we do not generate an index smaller
+than 0. When going forward a row or a column, the `Math.min()` methods
+make sure that we do not generate an index greater than `ROWS - 1` or
 `COLUMNS - 1`.
-<.> Depois que esses dois laços `for` mais internos contam o total de células vivas
-ao redor da célula em questão, decidimos o destino da célula para
-a próxima geração. Se a célula estiver viva e tiver exatamente 2 ou 3 vizinhos vivos
-, ela continuará viva.
-<.> Se uma célula estiver morta, ela
-voltará à vida somente se tiver exatamente 3 vizinhos vivos.
-<.> Depois de
-armazenarmos o estado de cada célula na próxima geração em `temp`,
-trocamos `board` e `temp`, usando a variável `swap`. Poderíamos ter descartado
-a matriz antiga armazenada em `board` em vez de trocá-la com `temp`,
-mas então teríamos que criar uma nova matriz para `temp` a cada vez, o que
-é menos eficiente.
+<.> After these two innermost `for` loops have counted the total of living
+cells around the cell in question, we decide the fate of the cell for
+the next generation. If the cell's alive and has exactly 2 or 3 living
+neighbors, it'll continue to live.
+<.> If a cell's dead, it'll
+come to life only if it has exactly 3 living neighbors.
+<.> After we've
+stored the state of each cell in the next generation into `temp`, we
+swap `board` and `temp`, using the `swap` variable. We could have thrown
+out the old array stored in `board` instead of swapping it with `temp`,
+but then we'd have to create a new array for `temp` each time, which
+is less efficient.
 
 [source, java]
 ----
 include::{programsdir}/Life.java[lines=37..54]
 ----
-<.> O primeiro laço `for` neste segmento imprime 100 linhas em branco para limpar a
-tela, como explicamos anteriormente.
-<.> Os dois laços `for` aninhados imprimem
-o estado da geração atual, com um `*` para cada célula viva e
-um espaço em branco para cada célula morta.
-<.> Após a saída, o código fica em espera por
-500 milissegundos para dar o efeito de uma animação. Discutiremos
-exceções em geral em <<exceptions#exceptions>> e daremos mais
-informações sobre o método `Thread.sleep()` em <<concurrency#concurrency>>.
+<.> The first `for` loop in this segment prints 100 blank lines to clear the
+screen, as we explained earlier.
+<.> The two nested `for` loops print out
+the state of the current generation, with a `*` for each living cell and
+a blank space for each dead one.
+<.> After the output, the code sleeps for
+500 milliseconds to give the effect of an animation. We'll discuss
+exceptions in general in <<exceptions#exceptions>> and give more
+information about the `Thread.sleep()` method in <<concurrency#concurrency>>.
 
-Embora 500 milissegundos
-(meio segundo) seja um longo atraso para uma animação, o efeito de rolagem da tela
-torna o padrão de células vivas e mortas difícil de perceber em um terminal.
-Algum tipo de GUI (como discutimos em <<gui#gui>>) poderia oferecer
-uma maneira mais agradável de visualizar o Jogo da Vida, mas desenhar padrões arbitrários
-em uma GUI apresenta suas próprias dificuldades.
+Although 500 milliseconds
+(half a second) is a long delay for animation, the scrolling effect of the screen
+makes the pattern of alive and dead cells hard to perceive on a terminal.
+Some kind of GUI (such as we discuss in <<gui#gui>>) could provide
+a more pleasing way to visualize the Game of Life, but drawing arbitrary
+patterns on a GUI presents its own difficulties.
 
 ****
 <<lifeGUIExercise>>
 ****
 
-=== Concorrência: Matrizes
+=== Concurrency: Arrays
 
-As matrizes são fundamentais para a programação concorrente em Java. Em
-<<concurrency#concurrency>>, explicaremos como
-criar threads de execução independentes, cada uma delas vinculada a um
-objeto `Thread`. Se você tiver um computador com dois, quatro ou mais núcleos,
-talvez queira usar duas ou quatro threads para resolver um problema, mas alguns
-programas podem usar centenas. Como você pode acompanhar todos esses objetos `Thread`
-? Em muitos casos, você manterá referências a eles em uma matriz.
+Arrays are critical to concurrent programming in Java. In
+<<concurrency#concurrency>>, we'll explain how to
+create independent threads of execution, each of which is tied to a
+`Thread` object. If you have a dual, quad, or higher core computer, you
+might want to use two or four threads to solve a problem, but some
+programs can use hundreds. How can you keep track of all those `Thread`
+objects? In many cases, you'll hold references to them in an array.
 
-As matrizes também podem conter grandes listas de dados. É comum que programas com threads
-compartilhem uma única matriz na qual cada thread lê e grava. Dessa
-forma, os custos de memória são mantidos baixos, pois há apenas uma cópia de todos os
-dados. No caso mais simples, cada thread trabalha em alguma parte da
-matriz sem interagir com o restante. Mesmo assim, como você atribui
-partes da matriz às diferentes threads?
+Arrays can also hold large lists of data. It's common for threaded programs
+to share a single array which each thread reads and writes to. In this
+way, memory costs are kept low because there's only one copy of all the
+data. In the simplest case, each thread works on some portion of the
+array without interacting with the rest. Even then, how do you assign
+parts of the array to the different threads?
 
-Vamos supor que cada elemento da matriz precise ser processado de
-alguma forma. Por exemplo, podemos querer registrar se cada
-`long` em uma matriz é primo ou não. Se você tiver _k_ threads
-e uma matriz de comprimento _n_, onde _n_ é
-um múltiplo de _k_, então é fácil: cada thread recebe
-exatamente _n_/_k_ itens para trabalhar. Por exemplo, a primeira
-thread trabalhará nos índices de 0 a _n_/_k_ - 1, a
-segunda thread trabalhará nos índices de _n_/_k_ a
-2__n__/_k_ - 1, e assim por diante, com a última thread trabalhando
-nos índices de (_k_
-- 1)_n_/_k_ a _n_ - 1. Nem todos os elementos da matriz
-exigirão a mesma quantidade de computação, mas frequentemente assumimos que
-sim, pois pode ser difícil adivinhar quais elementos levarão
-mais tempo para serem processados.
+We'll assume that each element of the array needs to be processed in
+some way. For example, we might want to record whether or not each
+`long` in an array is prime or not. If you have _k_ threads
+and an array of length _n_ where _n_ happens to
+be a multiple of _k_, then it's easy: Each thread gets
+exactly _n_/_k_ items to work on. For example, the first
+thread will work on indexes 0 through _n_/_k_ - 1, the
+second thread will work on indexes _n_/_k_ through
+2__n__/_k_ - 1, and so on, with the last thread working
+on indexes (_k_
+- 1)_n_/_k_ through _n_  - 1. Not every element in the array
+will require the same amount of computation, but we often assume that
+they do because it can be difficult to guess which elements will take
+more time to process.
 
-E se o número de elementos na matriz não for um múltiplo do
-número de threads? Ainda assim, queremos distribuir o trabalho da forma mais justa
-possível. Programadores iniciantes às vezes se sentem tentados a usar a mesma
-aritmética do caso em que as threads dividem igualmente o comprimento
-da matriz: cada thread recebe ⌊_n_/_k_⌋ (usando divisão inteira
-) elementos, e deixamos a última thread com o que sobrar. Quão
-ruim isso pode ser?
+What if the number of elements in the array is not a multiple of the
+number of threads? We still want to assign the work the work as fairly
+as possible. New programmers are sometimes tempted to use the same
+arithmetic from the case in which the threads evenly divide the length
+of the array: Each thread gets ⌊_n_/_k_⌋ (using integer
+division) elements, and we stick the last thread with the leftovers. How
+bad can that be?
 
 ****
 <<dividingArraysExercise>>
 ****
 
 
-Essa distribuição de trabalho pode ficar muito mal equilibrada. Considere um caso
-com 10 threads e 28 dados. ⌊28/10⌋ = 2,
-usando divisão inteira. Assim, as primeiras nove threads têm 2 unidades de
-trabalho a fazer, mas a última thread fica com 10! Isso não é apenas
-injusto; é ineficiente. A pessoa que escreve o programa provavelmente quer
-minimizar o tempo total necessário para concluir o trabalho. Neste
-caso, o tempo desde o início da primeira thread até o término da última
-é chamado de _makespan_ da tarefa. Com essa divisão de trabalho,
-o makespan é de 10 unidades de trabalho.
+This assignment of work can be very poorly balanced. Consider a case
+with 10 threads and 28 pieces of data. ⌊28/10⌋ = 2,
+using integer division. Thus, the first nine threads have 2 units of
+work to do, but the last thread is stuck with 10! Not only is this
+unfair; it's inefficient. The person writing the program probably wants
+to minimize the total amount of time needed to finish the job. In this
+case, the time from when the first thread starts to when the last thread
+finishes is called the task's _makespan_. With this division of work,
+the makespan is 10 units of work.
 
 [.text-center]
-.Unidades de trabalho por thread usando uma estratégia ingênua.
+.Units of work per thread using a naive strategy.
 image::split1.svg[scaledwidth=60%,pdfwidth=60%,width=60%,align="center"]
 
 
-.Atribuição justa do trabalho
+.Fairly assigning work
 ====
 
-Uma maneira simples de resolver esse problema é observar o valor
-_n_ mod _k_, o resto da divisão de _n_ por
-_k_. Queremos distribuir esses restos entre as primeiras threads.
-Sabemos que qualquer resto será menor que _k_. Se o
-índice da thread (começando em 0, é claro) for menor que o
-resto, adicionamos um elemento extra ao seu trabalho. Dessa forma, 28 unidades de
-trabalho distribuídas por 10 threads darão 3 elementos às primeiras 8 threads
-e 2 elementos às demais. Usando essa estratégia, o tempo de execução total passa a ser de 3
-unidades de trabalho, uma grande melhoria em relação a 10. Encontrar uma maneira de distribuir
-o trabalho por várias threads para melhorar a eficiência é uma forma de _balanceamento de carga_,
-um termo amplo para a divisão do trabalho entre recursos de computação.
+A simple way to fix this problem is to look at the value
+_n_ mod _k_, the leftovers when you divide _n_ by
+_k_. We want to spread those out over the first few threads.
+We know that any remainder will be smaller than _k_. If the
+index of the thread (starting at 0, of course) is less than the
+remainder, we add an extra element to its work. In this way, 28 units of
+work spread over 10 threads will give 3 elements to the first 8 threads
+and 2 elements to the rest. Using this strategy, the makespan becomes 3
+units of work, a huge improvement over 10. Finding a way to spreading
+work across multiple threads to improve efficiency is a form of _load
+balancing_, a broad term for dividing work across computing resources.
 
 [.text-center]
-.Unidades de trabalho por thread usando uma estratégia justa.
+.Units of work per thread using a fair strategy.
 image::split2.svg[scaledwidth=60%,pdfwidth=60%,width=60%,align="center"]
 
-O programa abaixo lê o comprimento de uma matriz e o número de threads do usuário e, em seguida, imprime a quantidade de trabalho para cada um. Você deve ser capaz de adaptar as ideias contidas nele aos seus próprios programas multithread em <<concurrency#concurrency>>.
+The program below reads the length of an array and the number of threads from the user and then prints out the amount of work for each one. You should be able to adapt the ideas in it to your own multi-threaded programs in <<concurrency#concurrency>>.
 
-.Modelo para atribuir trabalho a threads.
+.Template for assigning work to threads.
 [source, java]
 [[AssigningWorkProgram]]
 ----
@@ -2070,23 +2069,23 @@ include::{programsdir}/AssigningWork.java[]
 
 ====
 
-=== Exercícios
-*Problemas conceituais*
+=== Exercises
+*Conceptual Problems*
 
-. Por que uma matriz não pode ser usada para armazenar uma lista de comprimento arbitrário de
-números inseridos por um usuário? Quais são as estratégias que podem ser utilizadas para
-superar esse problema?
-. Nos próximos capítulos, apresentaremos uma estrutura de dados chamada
-_lista encadeada_. Uma lista encadeada é uma estrutura de dados homogênea e dinâmica
-com acesso sequencial (ao contrário de uma matriz, que tem acesso aleatório). Você
-pode saltar instantaneamente para qualquer lugar em uma matriz, mas precisa percorrer
-cada elemento de uma lista encadeada para chegar ao que deseja, mesmo
-que saiba exatamente sua posição na lista. Por outro lado,
-a inserção de valores no início de uma lista encadeada pode ser feita em uma
-única etapa, enquanto uma matriz precisaria ter seu tamanho redimensionado e seu conteúdo
-copiado. Liste algumas tarefas para as quais uma matriz seria melhor do que uma
-lista encadeada e vice-versa.
-. Dado o seguinte código:
+. Why can't an array be used to hold an arbitrarily long list of
+numbers entered by a user? What are strategies that can be used to
+overcome this problem?
+. In future chapters, we'll introduce a data structure called a
+_linked list_. A linked list is a homogeneous, dynamic data structure
+with sequential access (unlike an array, which has random access). You
+can instantly jump to any place in an array, but you have to step
+through each element of a linked list to get to the one you want, even
+if you know its position in the list exactly. On the other hand,
+inserting values into the beginning of a linked list can be done in one
+step, while an array would need to be resized and have its contents
+copied over. List some tasks for which an array would be better than a
+linked list and vice versa.
+. Given the following code:
 +
 [source,java]
 ----
@@ -2098,164 +2097,163 @@ for (int i = 0; i < array1.length; ++i) {
 }
 array2 = array1;
 for (int i = 1; i < array1.length; ++i) {
-    
-array1[i] = array1[i - 1] + array1[i];
+    array1[i] = array1[i - 1] + array1[i];
 }
 ----
 +
-Qual é o valor em `array2[array2.length - 1]` após a execução deste código
-?
-. Que erro será causado pelo código a seguir e por quê?
+What is the value in `array2[array2.length - 1]` after this code is
+executed?
+. What error will be caused by the following code, and why?
 +
 [source,java]
 ----
 String[] array = new String[100];
 System.out.println(array[99].charAt(0) +
-           " é a primeira letra da última String.");
+           " is the first letter of the last String.");
 ----
-. Uma matriz de comprimento _n_ em Java normalmente ocupa
-_n_ vezes o número de bytes para cada elemento, mais
-16 bytes adicionais de sobrecarga. Como um `int` usa 4 bytes de armazenamento,
-uma matriz de 100 elementos `int` ocuparia 416 bytes. Considere a
-seguinte declaração e alocação de uma matriz tridimensional.
+. An array of length _n_ in Java typically takes
+_n_ times the number of bytes for each element plus an
+additional 16 bytes of overhead. Since an `int` uses 4 bytes of storage,
+an array of 100 `int` elements would take 416 bytes. Consider the
+following three-dimensional array declaration and allocation.
 +
 [source,java]
 ----
 int[][][] data = new int[10][5][20];
 ----
 +
-Quantos bytes são alocados para esta matriz? Lembre-se de que a 
-sobrecarga de 16 bytes ocorrerá repetidamente, já que Java cria uma matriz tridimensional
-como uma matriz de matrizes de matrizes.
-. Nossa tabela original de distâncias entre cidades aloca
-5 · 5 = 25 elementos `int` para armazenar todas as distâncias
-entre as cinco cidades, incluindo repetições. Quantos elementos `int` são
-alocados para a versão em matriz triangular irregular desta tabela de distâncias entre cidades
-? Se usássemos o estilo de tabela normal, _n_ cidades
-exigiriam _n_^2^ elementos `int`. Quantos elementos a
-versão em matriz triangular irregular alocaria para _n_ cidades?
-. [[dividingArraysExercise]] Considere o método ingênuo de dividir
-uma matriz de comprimento _n_ entre _k_ threads que
-foi discutido em <<Concorrência: Matrizes>>: Cada thread recebe
-⌊_n_/_k_⌋ (arredondado para baixo devido à divisão inteira) elementos,
-e a última thread recebe os elementos extras. Que expressão matemática
-descreve quantos elementos extras são alocados para a última thread? Você consegue
-pensar em um exemplo em que o último elemento receba *todos* os
-elementos? O que deveria ter acontecido neste caso usando o outro esquema, mais
-justo, para atribuir os dados às threads?
+How many bytes are allocated for this array? Remember that the 16 byte
+overhead will occur repeatedly, since Java creates a three-dimensional
+array as an array of arrays of arrays.
+.  Our original table of city distances allocates
+5 · 5 = 25 `int` elements to store all the distances
+between the five cities, including repeats. How many `int` elements are
+allocated for the triangular, ragged array version of this city distance
+table? If we used the normal table style, _n_ cities would
+require _n_^2^ `int` elements. How many elements would the
+triangular, ragged array version allocate for _n_ cities?
+.  [[dividingArraysExercise]] Consider the naive method of dividing
+an array of length _n_ among _k_ threads that
+was discussed in <<Concurrency: Arrays>>: Each thread gets
+⌊_n_/_k_⌋ (rounded down because of integer division) elements,
+and the last thread gets any extras. What mathematical expression
+describes how many extra elements are allocated to the last thread? Can
+you come up with an example in which the last element gets *all* the
+elements? What should have happened in this case using the other, more
+fair scheme for assigning the data to threads?
 
-*Exercício de Programação*
+*Programming Practice*
 
-. [[wordSearchPunctuationExercise]] No <<wordSearchExample>>,
-nosso código não consideraria `ship,` como uma ocorrência de `ship` devido à
-vírgula.
+.  [[wordSearchPunctuationExercise]] In <<wordSearchExample>>,
+our code would not count `ship,` as an occurrence of `ship` because of the
+comma.
 +
-Reescreva o código do <<wordSearchExample>> para remover
-sinais de pontuação do início e do fim de uma palavra. Use um laço que seja executado
-enquanto o caractere no início de uma palavra não for uma letra,
-substituindo a palavra por uma subcadeia dela mesma que não inclua o
-primeiro caractere. Use um segundo laço para remover caracteres que não sejam letras do final de
-uma palavra. Tome cuidado para parar se o comprimento da `String` se tornar 0, como
-no caso de um texto composto inteiramente por caracteres que não sejam letras.
-. [[wordBinarySearchExercise]] Em <<wordSearchExample>>, nós
-escrevemos um programa que conta as ocorrências de cada palavra de uma lista
-dentro de um texto. Se a lista de palavras a ser pesquisada for longa, pode
-levar bastante tempo para pesquisar toda a lista. Se a lista de
-palavras estivesse ordenada, poderíamos usar um truque que nos permitiria pesquisar
-muito mais rápido. Poderíamos jogar um jogo de "`alto-baixo`", pesquisando na
-lista verificando a palavra do meio na matriz. Se essa palavra estiver muito
-ao final do alfabeto, repita a pesquisa na primeira metade da lista. Se estiver
-muito no início do alfabeto, repita a pesquisa na segunda metade da
-lista. Ao dividir repetidamente a lista ao meio, até que você encontre
-a palavra que está procurando ou restrinja sua busca a uma única
-palavra incorreta, você pode pesquisar muito mais rápido. Esse tipo de pesquisa é
-chamado de _busca binária_ e usa cerca de log _n_ comparações
-para encontrar um elemento em uma lista de _n_ itens. Em contraste, examinar a lista um
-elemento de cada vez leva cerca de _n_ comparações.
+Rewrite the code from <<wordSearchExample>> to remove
+punctuation from the beginning and end of a word. Use a loop that runs
+as long as the character at the beginning of a word is not a letter,
+replacing the word with a substring of itself that does not include the
+first character. Use a second loop to remove non-letters from the end of
+a word. Be careful to stop if the length of the `String` becomes 0, as
+with text that's entirely composed of non-letters.
+.  [[wordBinarySearchExercise]] In <<wordSearchExample>>, we
+wrote a program that counts the occurrences of each word from a list
+within a text. If the list of words to search within is long, it can
+take quite some time to search through the entire list. If the list of
+words were sorted, we could do a trick that would allow us to search
+much faster. We could play a "`high-low`" game, searching through the
+list by checking the middle word in the array. If that word's too late
+in the alphabet, repeat the search on the first half of the list. If it's
+too early in the alphabet, repeat the search on the second half of
+the list. By repeatedly dividing the list in half, until you either find
+the word you're looking for or narrow your search down to a single
+incorrect word, you can search much faster. This kind of searching is
+called _binary search_ and uses around log _n_ comparisons
+to find an element in a list of _n_ items. In contrast, looking through the list one
+element at a time takes about _n_ comparisons.
 +
-Reescreva o código de <<wordSearchExample>> para usar a
-busca binária, após aplicar a ordenação por seleção de <<selectionSortExample>>. Embora a ordenação por seleção leve algum tempo extra, você deve
-mais do que compensar a diferença com uma busca tão rápida. Para implementar
-a busca binária, mantenha variáveis para o início, meio e fim da
-lista. Continue ajustando as três variáveis até que o índice do meio tenha a
-palavra que você está procurando ou até que as variáveis de início e fim se encontrem. Lembre-se de
-usar o método `compareTo()` da classe `String` para comparar palavras.
-. [[modeExercise]] Em <<statisticsExample>>, apresentamos um programa que encontra o
-máximo, mínimo, média, desvio padrão e mediana de uma lista de
-valores. Outra estatística que às vezes é importante é a _moda_, ou
-o elemento que ocorre com mais frequência. Por exemplo, na lista
-{1, 2, 3, 3, 3, 5, 6, 6, 10}, a moda é 3. Escreva um
-programa que possa determinar a moda de uma determinada lista de valores `int`. Uma
-lista pode ter múltiplas modas se mais de um elemento ocorrer com
-frequência máxima. Para nossos propósitos, consideraremos que qualquer lista com
-múltiplas modas, significa que não tem modas. Você pode querer ordenar a lista antes de
-iniciar o processo de contagem da frequência de cada valor.
-. [[connectFourExercise]] Usamos o exemplo do jogo da velha em
-<<ticTacToeExample>> porque um jogo mais complexo teria
-ocupado muito espaço para ser resolvido. O jogo Connect Four (ou
-_Captain's Mistress_, como era chamado originalmente) coloca dois jogadores
-um contra o outro em um tabuleiro vertical de 6 × 7. Um
-jogador usa peças vermelhas, enquanto o outro usa pretas. Os dois jogadores
-se revezam colocando suas peças nas colunas do tabuleiro, nas quais
-as peças cairão até a linha vazia mais baixa, devido à gravidade. O objetivo
-do jogo é ser o primeiro a formar quatro peças da sua cor em uma linha.
+Rewrite the code from <<wordSearchExample>> to use binary
+search, after applying selection sort from <<selectionSortExample>>. Although selection sort will take some extra time, you should
+more than make up the difference with such a fast search. To implement
+binary search, keep variables for the start, middle, and end of the
+list. Keep adjusting the three variables until the middle index has the
+word you are looking for or the start and end variables reach each other. Remember to
+use the `compareTo()` method from the `String` class to compare words.
+. [[modeExercise]] In <<statisticsExample>>, we gave a program that finds the
+maximum, minimum, mean, standard deviation, and median of a list of
+values. Another statistic that is sometimes important is the _mode_, or
+most commonly occurring element. For example, in the list
+{1, 2, 3, 3, 3, 5, 6, 6, 10}, the mode is 3. Write a
+program that can determine the mode of a given list of `int` values. A
+list can have multiple modes if more than one element occurs with
+maximum frequency. For our purposes, we'll consider any list with
+multiple modes to have no modes. You may wish to sort the list before
+starting the process of counting the frequency of each value.
+. [[connectFourExercise]] We used the example of tic-tac-toe in
+<<ticTacToeExample>> because a more complex game would have
+taken too much space to solve. The game of Connect Four (or the
+Captain's Mistress, as it was originally called) pits two players
+against each other on a 6 × 7 vertical board. One
+player uses red checkers while the other uses black. The two players
+take turns dropping their checkers into columns of the board in which
+the checkers will drop to the lowest empty row, due to gravity. The goal
+of the game is to be the first to make four in a row of your color.
 +
-Implemente uma versão do _Connect Four_ para dois jogadores humanos, semelhante à
-nossa versão do jogo da velha. Muitas das ideias são as mesmas,
-mas os detalhes são mais complicados. Primeiro, um jogador escolherá apenas uma
-coluna específica. Seu programa deve então descobrir em qual linha uma peça
-colocada nessa coluna irá cair. Em seguida, o processo de contar
-quatro em linha é mais difícil do que os três em linha do jogo da velha.
-Você precisará de mais laços para automatizar totalmente o processo.
-. [[lifeGUIExercise]] Depois de dominar o material em
-<<gui#gui>>, adapte a
-solução para o Jogo da Vida de Conway de <<Solução: Jogo da Vida>>
-para exibição em uma interface gráfica de usuário. Você pode usar um
-`GridLayout` para organizar um grande número de objetos `JLabel` em uma grade e
-atualizar suas cores de fundo para `Color.BLACK` e `Color.WHITE` conforme
-necessário, usando o método `setBackground()`. (Para tornar essas cores
-visíveis, você também precisará chamar o método `setOpaque()` uma vez em
-cada `JLabel` com o argumento `true`.) O Jogo da Vida é muito mais
-atraente com uma GUI real em vez de uma representação improvisada na linha de comando
-.
+Implement a version of Connect Four for two human players, similar to
+our version of tic-tac-toe. Many of the ideas are the same,
+but the details are more complicated. First, a player will only choose a
+particular column. Your program must then find which row a checker
+dropped into that column will fall to. Then, the process of counting
+four in a row is more difficult than the three in a row of tic-tac-toe.
+You will need more loops to automate the process fully.
+. [[lifeGUIExercise]] Once you've mastered the material in
+<<gui#gui>>, adapt the
+solution to Conway's Game of Life from <<Solution: Game of Life>>
+to display on a graphical user interface. You can use a
+`GridLayout` to arrange a large number of `JLabel` objects in a grid and
+update their background colors to `Color.BLACK` and `Color.WHITE` as
+needed, using the `setBackground()` method. (To make these colors
+visible, you will also need to call the `setOpaque()` method once on
+each `JLabel` with an argument of `true`.) The Game of Life is much more
+compelling with a real GUI instead of an improvised command line
+representation.
 
-*Experimentos*
+*Experiments*
 
-. Criar matrizes com comprimentos cada vez maiores requer mais
-tempo de processador, já que todos esses elementos devem ser inicializados com
-algum valor padrão. Usando um comando `time` do sistema operacional, determine a quantidade de
-tempo que leva para criar uma matriz `int` de comprimento 10, 10.000 e
-10.000.000. Muito provavelmente, o tempo que a instanciação da
-matriz leva é uma pequena parte do programa, e você deve notar muito
-pouca diferença entre esses três tempos. No entanto, o tempo não é o único
-recurso importante. Quando você executa uma JVM, ela possui um tamanho de heap padrão que
-limita a quantidade de espaço que você pode usar para criar novos objetos, incluindo
-matrizes. Quando você exceder esse tamanho, seu programa irá travar com um
-`OutOfMemoryError`. Experimente diferentes tamanhos de matrizes até que você
-consiga estimar o tamanho do seu heap com uma precisão de cerca de 5 MB.
+. Creating arrays with longer and longer lengths requires more
+processor time, since all of those elements must be initialized to
+some default value. Using an OS `time` command, determine the amount of
+time it takes to create an `int` array of length 10, 10,000, and
+10,000,000. In all likelihood, the amount of time that instantiation of
+the array takes is a small part of the program, and you should see very
+little difference in those three times. However, time is not the only
+important resource. When you run a JVM, it has a default heap size that
+limits the amount of space you can use to create new objects, including
+arrays. When you exceed this size, your program will crash with an
+`OutOfMemoryError`. Experiment with different sizes of arrays until you
+can estimate the size of your heap within 5MB or so.
 +
-Essa estimativa será muito aproximada, já que a JVM usa outra memória em
-segundo plano. Para ter uma ideia mais precisa, você pode usar o
-método `Runtime.getRuntime().maxMemory()` para determinar o tamanho máximo de memória da JVM
-e o
-método `Runtime.getRuntime().totalMemory()` para determinar a memória total da JVM
-em uso.
-. Execute a implementação do programa de busca de palavras usando o aprimoramento de
-busca binária de <<wordBinarySearchExercise>>. Use o comando
-`time` para medir a diferença de tempo entre as versões de busca regular e binária
-do programa com uma longa lista de palavras. Você pode notar
-muito pouca diferença em entradas pequenas, mas pode facilmente encontrar uma lista das
-1.000 palavras mais usadas em inglês na Internet, juntamente com
-textos longos e livres de direitos autorais em
-https://www.gutenberg.org[Projeto Gutenberg^]. Combinar esses dois em uma única entrada
-deve resultar em um aumento significativo na velocidade da versão com busca binária
-em relação à versão regular.
-. Gere arquivos de entrada consistindo em 1.000,
-10.000 e 100.000 valores `int` aleatórios.
-Cronometre nossa implementação da ordenação por seleção de
-<<selectionSortExample>> rodando em cada um desses arquivos de entrada
-e redirecionando a saída para arquivos de saída. Qual é o comportamento do
-tempo de execução à medida que o comprimento da entrada aumenta em um fator de 10? Como uma
-função de _n_, quantas vezes no total o corpo do laço `for` interno
-é executado durante a ordenação por seleção? Essa função reflete fielmente
-o aumento no tempo de execução?
+This estimate will be very rough, since the JVM uses other memory in the
+background. For a more accurate picture, you can use the
+`Runtime.getRuntime().maxMemory()` method to determine the maximum JVM
+memory size and the
+`Runtime.getRuntime().totalMemory()` method to determine the total JVM
+memory being used.
+. Run the implementation of the word search program using the binary
+search improvement from <<wordBinarySearchExercise>>. Use the OS
+`time` command to time the difference between the regular and binary
+search versions of the program with a long list of words. You may see
+very little difference on small input, but you can easily find a list of
+the 1,000 most commonly used words in English on the Internet along with
+long, copyright free texts from
+https://www.gutenberg.org[Project Gutenberg^]. Combining these two into a single input
+should see a significant increase in speed for the binary search version
+relative to the regular version.
+. Generate input files consisting of 1,000,
+10,000, and 100,000 random `int` values.
+Time our implementation of selection sort from
+<<selectionSortExample>> running on each of these input files
+and redirecting output to output files. What's the behavior of the
+running time as the input length increases by a factor of 10? As a
+function of _n_, how many times total does the body of the inner
+`for` loop run during selection sort? Does this function closely
+mirror the increase in running time?
