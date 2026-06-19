@@ -668,7 +668,7 @@ pre.rouge .err {
 <li><a href="#_exercises_2">7.7. Exercises</a></li>
 </ul>
 </li>
-<li><a href="#methods">Capítulo 8. Methods</a>
+<li><a href="#methods">Capítulo 8. Métodos</a>
 <ul class="sectlevel2">
 <li><a href="#_problema_pôquer_de_três_cartas">8.1. Problema: Pôquer de três cartas</a></li>
 <li><a href="#_conceitos_dividindo_o_trabalho_em_segmentos">8.2. Conceitos: Dividindo o trabalho em segmentos</a></li>
@@ -19069,7 +19069,7 @@ There is, of course, no guarantee that an answer is correct just because it&#821
 </div>
 </div>
 <div class="sect1">
-<h2 id="methods">Capítulo 8. Methods</h2>
+<h2 id="methods">Capítulo 8. Métodos</h2>
 <div class="sectionbody">
 <div class="quoteblock">
 <blockquote>
@@ -19305,10 +19305,10 @@ simplesmente <strong>fazer</strong> algo.</p>
 <h4 id="_fluxo_de_controle">8.2.3. Fluxo de controle</h4>
 <div class="paragraph">
 <p>Já discutimos instruções de seleção, como <code>if</code> e <code>switch</code>, bem
-como três estruturas de loop diferentes: <code>for</code>, <code>while</code> e <code>do</code>-<code>while</code>.
+como três estruturas de laço diferentes: <code>for</code>, <code>while</code> e <code>do</code>-<code>while</code>.
 Cada um desses recursos da linguagem Java é usado para o fluxo de controle. As
 instruções de seleção permitem que seu programa escolha qual código executar.
-Os loops permitem que seu código execute repetidamente determinado trecho de código. Os métodos
+Os laços permitem que seu código execute repetidamente determinado trecho de código. Os métodos
 também afetam o fluxo de controle. Quando um método é chamado, a execução do
 programa salta para dentro do método, realiza todo o trabalho necessário ali e
 depois retorna ao código que o chamou. Lembre-se do exemplo muito simples
@@ -19326,7 +19326,7 @@ código dentro do método <code>Math.sqrt()</code>. É necessária uma
 quantidade não trivial de trabalho para calcular a raiz quadrada de um número. Depois que
 esse cálculo é concluído, o fluxo de execução retorna à atribuição
 que ficou aguardando todo esse tempo. Assim como uma função matemática,
-podemos tratar a chamada de método <code>Math.sqrt(5)</code> como se ela tivesse sido “<code>magicamente</code>”
+podemos tratar a chamada de método <code>Math.sqrt(5)</code> como se ela tivesse sido &#8220;magicamente&#8221;
 substituída por um <code>double</code> que aproxima a raiz quadrada de 5.</p>
 </div>
 </div>
@@ -19454,12 +19454,12 @@ tivesse sido retornado.</p>
 já vem programando métodos estáticos desde o seu primeiro programa em Java. O
 método <code>main()</code> é apenas mais um método estático, especial apenas porque a
 JVM opta por iniciar a execução a partir dele. Vamos dar uma olhada no método <code>main()</code>
-de um programa padrão “Hello, World!”.</p>
+de um programa padrão "Hello, World!".</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="err">“</span><span class="nc">Hello</span><span class="o">,</span> <span class="n">world</span><span class="o">!</span><span class="err">”</span><span class="o">);</span>
+    <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hello, world!"</span><span class="o">);</span>
     <span class="k">return</span><span class="o">;</span>
 <span class="o">}</span></code></pre>
 </div>
@@ -19905,12 +19905,12 @@ nenhuma outra variável ou do estado do programa.</p>
 <div class="content">
 <div class="paragraph">
 <p>Um palíndromo é uma palavra ou frase (ou até mesmo um número) que é igual
-quando lida para frente e para trás. “<code>Arara,</code>”, “<code>"A dama amada,</code>” e
-“<code>Socorram-me, subi no ônibus em Marrocos!</code>” são exemplos em português.
+quando lida para frente e para trás. &#8220;Arara,&#8221;, &#8220;"A dama amada,&#8221; e
+&#8220;Socorram-me, subi no ônibus em Marrocos!&#8221; são exemplos em português.
 Normalmente, espaços e sinais de pontuação são ignorados. Vamos escrever uma
 função que, dada uma <code>String</code>, retorne <code>true</code> se for um palíndromo
 e <code>false</code> caso contrário. Para simplificar o problema, <strong>não</strong> vamos
-ignorar espaços e sinais de pontuação. Assim, com nosso método, “<code>arara</code>” conta
+ignorar espaços e sinais de pontuação. Assim, com nosso método, &#8220;arara&#8221; conta
 como um palíndromo, mas nenhum dos outros dois exemplos seria considerado como tal.</p>
 </div>
 <div class="listingblock">
@@ -19947,7 +19947,7 @@ não se altera, pois a referência <code>text</code> é passada por valor.</td>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
 <td>O laço percorre a primeira metade de <code>text</code>, comparando-a com a
-segunda metade. Esse loop reflete a assimetria desse tipo de teste:
+segunda metade. Esse laço reflete a assimetria desse tipo de teste:
 não é possível ter certeza de que <code>text</code> é um palíndromo até que se verifique
 o texto inteiro, mas sabe-se imediatamente que não é, caso mesmo que um único
 par de caracteres não coincida.</td>
@@ -19956,7 +19956,7 @@ par de caracteres não coincida.</td>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
 <td>Se o teste na instrução <code>if</code>
 mostrar que os dois valores <code>char</code> não são iguais, a instrução <code>return false</code>
-sai do método sem concluir o loop.</td>
+sai do método sem concluir o laço.</td>
 </tr>
 </table>
 </div>
@@ -19992,22 +19992,22 @@ a notação científica.</p>
     <span class="kt">boolean</span> <span class="n">negative</span> <span class="o">=</span> <span class="kc">false</span><span class="o">;</span>
     <span class="kt">double</span> <span class="n">temp</span> <span class="o">=</span> <span class="mf">0.0</span><span class="o">;</span>
     <span class="kt">double</span> <span class="n">fraction</span> <span class="o">=</span> <span class="mf">10.0</span><span class="o">;</span>
-    <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="err">‘</span><span class="o">-</span><span class="err">’</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
+    <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'-'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="n">negative</span> <span class="o">=</span> <span class="kc">true</span><span class="o">;</span>
         <span class="o">++</span><span class="n">i</span><span class="o">;</span>
-    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="err">‘</span><span class="o">+</span><span class="err">’</span><span class="o">)</span> <span class="o">{</span>
+    <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">==</span> <span class="sc">'+'</span><span class="o">)</span> <span class="o">{</span>
         <span class="o">++</span><span class="n">i</span><span class="o">;</span>
     <span class="o">}</span>
 
-<span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="err">‘</span><span class="o">.</span><span class="err">’</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
+<span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">()</span> <span class="o">&amp;&amp;</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="sc">'.'</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="n">temp</span> <span class="o">*=</span> <span class="mf">10.0</span><span class="o">;</span>
-        <span class="n">temp</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="err">‘</span><span class="mi">0</span><span class="err">’</span><span class="o">;</span>
+        <span class="n">temp</span> <span class="o">+=</span> <span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">;</span>
         <span class="o">++</span><span class="n">i</span><span class="o">;</span>
     <span class="o">}</span>
     <span class="o">++</span><span class="n">i</span><span class="o">;</span> <span class="c1">// Passar pela casa decimal (se houver) </span><i class="conum" data-value="3"></i><b>(3)</b>
 
 <span class="k">while</span> <span class="o">(</span><span class="n">i</span> <span class="o">&lt;</span> <span class="n">value</span><span class="o">.</span><span class="na">length</span><span class="o">())</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-        <span class="n">temp</span> <span class="o">+=</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="err">‘</span><span class="mi">0</span><span class="err">’</span><span class="o">)</span> <span class="o">/</span> <span class="n">fraction</span><span class="o">;</span>
+        <span class="n">temp</span> <span class="o">+=</span> <span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">charAt</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">-</span> <span class="sc">'0'</span><span class="o">)</span> <span class="o">/</span> <span class="n">fraction</span><span class="o">;</span>
         <span class="n">fraction</span> <span class="o">*=</span> <span class="mf">10.0</span><span class="o">;</span>
         <span class="o">++</span><span class="n">i</span><span class="o">;</span>
     <span class="o">}</span>
@@ -20023,8 +20023,8 @@ a notação científica.</p>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
 <td>Após declarar algumas variáveis, este método verifica primeiro o índice <code>0</code> na
-<code>String</code> de entrada <code>value</code> para ver se é um <code>‘-’</code> ou um <code>‘’`. Se for
-um `‘-’`, ele define `negative` como `true` e segue em frente. Se for um `‘’</code>, ele
+<code>String</code> de entrada <code>value</code> para ver se é um <code>'-'</code> ou um <code>''`. Se for
+um `'-'`, ele define `negative` como `true` e segue em frente. Se for um `''</code>, ele
 simplesmente segue em frente.</td>
 </tr>
 <tr>
@@ -20032,7 +20032,7 @@ simplesmente segue em frente.</td>
 <td>Em seguida, o método percorre <code>value</code> até chegar
 ao fim ou encontrar um ponto decimal. À medida que itera, ele multiplica o
 valor atual de <code>temp</code> por <code>10.0</code> e soma o próximo dígito de <code>value</code>
-(após subtrair <code>‘0’</code> para que o intervalo fique entre 0 e 9).
+(após subtrair <code>'0'</code> para que o intervalo fique entre 0 e 9).
 Essa multiplicação repetitiva por <code>10.0</code> representa as potências crescentes de 10
 no sistema numérico de base 10. Como <code>temp</code> começa com o valor <code>0.0</code>,
 a primeira multiplicação não tem efeito, conforme pretendido.</td>
@@ -20447,7 +20447,7 @@ tempo. Quando isso acontece, efeitos muito curiosos podem ocorrer. Considere o
 programa a seguir.</p>
 </div>
 <div id="AlwaysEvenProgram" class="listingblock">
-<div class="title">Código 8.5 O método <code>print()</code> sempre imprime <code>“Even”</code> quando executado com uma única thread, mas às vezes pode imprimir <code>“Odd”</code> se for chamado repetidamente com várias threads.</div>
+<div class="title">Código 8.5 O método <code>print()</code> sempre imprime <code>"Even"</code> quando executado com uma única thread, mas às vezes pode imprimir <code>"Odd"</code> se for chamado repetidamente com várias threads.</div>
 <div class="content">
 <pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">AlwaysEven</span> <span class="o">{</span>
     <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">value</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
@@ -20611,7 +20611,7 @@ Observe que, se log<sub>2</sub> <em>n</em> = <em>x</em>, também é verdade que
 indica qual é a potência de 2 de um número. Uma maneira de definir
 o log<sub>2</sub> <em>n</em> é o número de vezes que você precisa dividir
 <em>n</em> por 2 para obter 1. Use essa
-definição para criar um loop que calcule o valor sem usar nenhuma chamada
+definição para criar um laço que calcule o valor sem usar nenhuma chamada
 à biblioteca <code>Math</code>.</p>
 <div class="paragraph">
 <p>Aqui estão alguns exemplos dos valores de retorno que seu método deve retornar para
@@ -20627,48 +20627,48 @@ vários valores de entrada de <em>n</em>.</p>
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top"><em>n</em></th>
-<th class="tableblock halign-left valign-top">Valor de retorno</th>
-<th class="tableblock halign-left valign-top"></th>
-<th class="tableblock halign-left valign-top"><em>n</em></th>
-<th class="tableblock halign-left valign-top">Valor de retorno</th>
+<th class="tableblock halign-center valign-top"><em>n</em></th>
+<th class="tableblock halign-center valign-top">Valor de retorno</th>
+<th class="tableblock halign-center valign-top"></th>
+<th class="tableblock halign-center valign-top"><em>n</em></th>
+<th class="tableblock halign-center valign-top">Valor de retorno</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">0</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">16</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">100</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">100</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">6</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">512</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">4</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">2</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">512</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">8</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1000</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">9</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">8</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1000</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">9</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
-<td class="tableblock halign-left valign-top"></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1024</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">3</p></td>
+<td class="tableblock halign-center valign-top"></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">1024</p></td>
+<td class="tableblock halign-center valign-top"><p class="tableblock">10</p></td>
 </tr>
 </tbody>
 </table>
@@ -20676,7 +20676,7 @@ vários valores de entrada de <em>n</em>.</p>
 <li>
 <p><a id="palindromeExercise"></a> Escreva um método que verifique palíndromos como
 o método de <a href="#palindromeTestingExample">Exemplo 8.3</a>, mas que também ignore
-sinais de pontuação e espaços. Assim, <code>“Aí, Lima falou: “Olá, família!”</code> deve
+sinais de pontuação e espaços. Assim, <code>"Aí, Lima falou: "Olá, família!"</code> deve
 ser considerado um palíndromo por esse novo método.</p>
 </li>
 <li>
@@ -20772,10 +20772,10 @@ em cada mão são usadas como critério de desempate, em ordem decrescente de va
 <p>Em termos de tempo, há uma pequena sobrecarga associada à chamada
 de um método e ao retorno de um valor, mas é muito difícil de medir. Escreva um
 programa com duas variáveis <code>int</code>, <code>a</code> e <code>b</code>, em que <code>a</code> começa com um
-valor de <code>1</code> e <code>b</code> começa com um valor de <code>2</code>. Execute um loop <code>for</code>
+valor de <code>1</code> e <code>b</code> começa com um valor de <code>2</code>. Execute um laço <code>for</code>
 100.000.000 de vezes. Em cada iteração, primeiro aumente o valor de <code>a</code> em
 o valor de <code>b</code> e, em seguida, aumente o valor de <code>b</code> em <code>a</code>. Cronometre esse
-loop com <code>System.nanoTime()</code> e, em seguida, imprima o tempo gasto e o
+laço com <code>System.nanoTime()</code> e, em seguida, imprima o tempo gasto e o
 valor de <code>a</code>. O valor de <code>a</code> não é importante, mas o compilador irá
 otimizar as operações matemáticas feitas com <code>a</code> e <code>b</code>, a menos que imprimamos o valor.
 Recomendamos que você execute este programa repetidamente para ter uma noção do
