@@ -1,7 +1,7 @@
 [#methods]
 :imagesdir: chapters/methods/images
 :programsdir: chapters/methods/programs
-== Methods
+== Métodos
 
 [quote, William Shakespeare]
 ____
@@ -723,14 +723,12 @@ for (int i = 0; i < text.length() / 2; ++i) { // <.>
 `boolean`. Muitos métodos que retornam um valor `boolean` têm um nome
 que começa com `is`, como o nosso método.
 <.> A primeira linha do corpo do nosso
-método transforma `text` em letras minúsculas.
- 
-O método `toLowerCase()` da classe `String`
+método transforma `text` em letras minúsculas. O método `toLowerCase()` da classe `String`
 cria uma cópia em letras minúsculas da `String` na qual é chamado, neste caso
 `text`. Em seguida, atribuímos à variável de referência `text` essa nova
 `String` em letras minúsculas. Fora desta função, a `String` passada como parâmetro
 não se altera, pois a referência `text` é passada por valor.
-<.> O loop percorre a primeira metade de `text`, comparando-a com a
+<.> O laço percorre a primeira metade de `text`, comparando-a com a
 segunda metade. Esse loop reflete a assimetria desse tipo de teste:
 não é possível ter certeza de que `text` é um palíndromo até que se verifique
 o texto inteiro, mas sabe-se imediatamente que não é, caso mesmo que um único
@@ -800,9 +798,7 @@ simplesmente segue em frente.
 ao fim ou encontrar um ponto decimal. À medida que itera, ele multiplica o
 valor atual de `temp` por `10.0` e soma o próximo dígito de `value`
 (após subtrair `‘0’` para que o intervalo fique entre 0 e 9).
- 
-Essa
-multiplicação repetitiva por `10.0` representa as potências crescentes de 10
+Essa multiplicação repetitiva por `10.0` representa as potências crescentes de 10
 no sistema numérico de base 10. Como `temp` começa com o valor `0.0`,
 a primeira multiplicação não tem efeito, conforme pretendido.
 <.> Após o primeiro laço `while`, o índice `i` é incrementado uma vez, para pular
@@ -835,7 +831,7 @@ cada método individualmente.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=1..11]
+include::{programsdir}/ThreeCardPoker.java[lines=1..11]
 ----
 <.> Antes do início do nosso método `main()`, declaramos várias
 constantes de classe. Dois vetores constantes de valores `String` nos fornecem
@@ -850,7 +846,7 @@ comum (e boa prática) declará-las no início da classe.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=13..32]
+include::{programsdir}/ThreeCardPoker.java[lines=13..32]
 ----
 <.> No método `main()`, é criado primeiro um vetor que representa um baralho de 52 cartas,
 seguido por um vetor que representa as 3 cartas a serem
@@ -868,7 +864,7 @@ saída apropriada, dependendo da pontuação.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=34..42]
+include::{programsdir}/ThreeCardPoker.java[lines=34..42]
 ----
 
 Este método embaralha o baralho. Sua abordagem consiste em trocar o primeiro elemento
@@ -881,7 +877,7 @@ com igual probabilidade.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=44..52]
+include::{programsdir}/ThreeCardPoker.java[lines=44..52]
 ----
 <.> O primeiro desses métodos imprime uma versão legível por humanos de cada
 carta em um vetor (em vez de 0 - 51). Ele faz isso usando o segundo e
@@ -902,7 +898,7 @@ acima de `print()` ou abaixo dele dentro da definição da classe.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=54..69]
+include::{programsdir}/ThreeCardPoker.java[lines=54..69]
 ----
 
 Este método calcula a pontuação primeiro classificando a mão e, em seguida,
@@ -912,7 +908,7 @@ métodos apropriados para determinar se uma mão possui uma determinada caracter
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=71..84]
+include::{programsdir}/ThreeCardPoker.java[lines=71..84]
 ----
 
 
@@ -924,7 +920,7 @@ efetivamente passado por referência.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[linhas=86..107]
+include::{programsdir}/ThreeCardPoker.java[lines=86..107]
 ----
 <.> O código em `hasPair()` funciona
 verificando se a primeira e a segunda ou a segunda e a terceira cartas têm

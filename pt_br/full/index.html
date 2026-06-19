@@ -19938,24 +19938,27 @@ que começa com <code>is</code>, como o nosso método.</td>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
 <td>A primeira linha do corpo do nosso
-método transforma <code>text</code> em letras minúsculas.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>O método <code>toLowerCase()</code> da classe <code>String</code>
+método transforma <code>text</code> em letras minúsculas. O método <code>toLowerCase()</code> da classe <code>String</code>
 cria uma cópia em letras minúsculas da <code>String</code> na qual é chamado, neste caso
 <code>text</code>. Em seguida, atribuímos à variável de referência <code>text</code> essa nova
 <code>String</code> em letras minúsculas. Fora desta função, a <code>String</code> passada como parâmetro
-não se altera, pois a referência <code>text</code> é passada por valor.
-&lt;.&gt; O loop percorre a primeira metade de <code>text</code>, comparando-a com a
+não se altera, pois a referência <code>text</code> é passada por valor.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>O laço percorre a primeira metade de <code>text</code>, comparando-a com a
 segunda metade. Esse loop reflete a assimetria desse tipo de teste:
 não é possível ter certeza de que <code>text</code> é um palíndromo até que se verifique
 o texto inteiro, mas sabe-se imediatamente que não é, caso mesmo que um único
-par de caracteres não coincida.
-&lt;.&gt; Se o teste na instrução <code>if</code>
+par de caracteres não coincida.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>Se o teste na instrução <code>if</code>
 mostrar que os dois valores <code>char</code> não são iguais, a instrução <code>return false</code>
-sai do método sem concluir o loop.</p>
+sai do método sem concluir o loop.</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -20029,24 +20032,30 @@ simplesmente segue em frente.</td>
 <td>Em seguida, o método percorre <code>value</code> até chegar
 ao fim ou encontrar um ponto decimal. À medida que itera, ele multiplica o
 valor atual de <code>temp</code> por <code>10.0</code> e soma o próximo dígito de <code>value</code>
-(após subtrair <code>‘0’</code> para que o intervalo fique entre 0 e 9).</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>Essa
-multiplicação repetitiva por <code>10.0</code> representa as potências crescentes de 10
+(após subtrair <code>‘0’</code> para que o intervalo fique entre 0 e 9).
+Essa multiplicação repetitiva por <code>10.0</code> representa as potências crescentes de 10
 no sistema numérico de base 10. Como <code>temp</code> começa com o valor <code>0.0</code>,
-a primeira multiplicação não tem efeito, conforme pretendido.
-&lt;.&gt; Após o primeiro laço <code>while</code>, o índice <code>i</code> é incrementado uma vez, para pular
+a primeira multiplicação não tem efeito, conforme pretendido.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Após o primeiro laço <code>while</code>, o índice <code>i</code> é incrementado uma vez, para pular
 a vírgula decimal, se houver. Se não houver ponto decimal, o
-laço deve ter sido encerrado porque o fim de <code>value</code> foi alcançado.
-&lt;.&gt; O segundo laço <code>while</code> é executado até o fim de <code>value</code>, desta vez somando a cada vez
+laço deve ter sido encerrado porque o fim de <code>value</code> foi alcançado.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>O segundo laço <code>while</code> é executado até o fim de <code>value</code>, desta vez somando a cada vez
 o valor de cada dígito dividido por <code>fraction</code>, que é aumentado por um fator de <code>10.0</code>
 a cada vez. Isso nos permite somar dígitos fracionários cada vez menores
-ao total.
-&lt;.&gt; Definimos <code>temp</code> como seu oposto se o sinalizador
-<code>negative</code> tiver sido definido anteriormente e, por fim, retornamos <code>temp</code>.</p>
+ao total.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Definimos <code>temp</code> como seu oposto se o sinalizador
+<code>negative</code> tiver sido definido anteriormente e, por fim, retornamos <code>temp</code>.</td>
+</tr>
+</table>
 </div>
 <div class="paragraph">
 <p>Observe que o método real <code>Double.parseDouble()</code> não apenas
@@ -20085,103 +20094,7 @@ cada método individualmente.</p>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
     <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
-        <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
-            <span class="s">" times your bet."</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
-            <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasThree</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">THREE_OF_A_KIND</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasPair</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">PAIR</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
-            <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]))</span> <span class="o">{</span>
-                    <span class="n">smallest</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
-        <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
-        <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
-                <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
-               <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
-                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span>   
-<span class="o">}</span></code></pre>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -20207,113 +20120,26 @@ comum (e boa prática) declará-las no início da classe.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreeCardPoker</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">SUITS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Spades"</span><span class="o">,</span> <span class="s">"Hearts"</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">"Diamonds"</span><span class="o">,</span> <span class="s">"Clubs"</span><span class="o">};</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">RANKS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"6"</span><span class="o">,</span>
-        <span class="s">"7"</span><span class="o">,</span> <span class="s">"8"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"10"</span><span class="o">,</span> <span class="s">"Jack"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"King"</span><span class="o">,</span> <span class="s">"Ace"</span><span class="o">};</span>   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT_FLUSH</span> <span class="o">=</span> <span class="mi">40</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREE_OF_A_KIND</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
             <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
         <span class="o">}</span>
         <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
             <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
         <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
+        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
         <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
+        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
             <span class="s">" times your bet."</span><span class="o">);</span>
         <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
-            <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasThree</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">THREE_OF_A_KIND</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasPair</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">PAIR</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
-            <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]))</span> <span class="o">{</span>
-                    <span class="n">smallest</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
-        <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
-        <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
-                <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
-               <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
-                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span>   
-<span class="o">}</span></code></pre>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -20349,40 +20175,7 @@ saída apropriada, dependendo da pontuação.</td>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreeCardPoker</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">SUITS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Spades"</span><span class="o">,</span> <span class="s">"Hearts"</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">"Diamonds"</span><span class="o">,</span> <span class="s">"Clubs"</span><span class="o">};</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">RANKS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"6"</span><span class="o">,</span>
-        <span class="s">"7"</span><span class="o">,</span> <span class="s">"8"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"10"</span><span class="o">,</span> <span class="s">"Jack"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"King"</span><span class="o">,</span> <span class="s">"Ace"</span><span class="o">};</span>   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT_FLUSH</span> <span class="o">=</span> <span class="mi">40</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREE_OF_A_KIND</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
-        <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
-            <span class="s">" times your bet."</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
         <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
@@ -20390,72 +20183,7 @@ saída apropriada, dependendo da pontuação.</td>
             <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
             <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
         <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
-            <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasThree</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">THREE_OF_A_KIND</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasPair</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">PAIR</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
-            <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]))</span> <span class="o">{</span>
-                    <span class="n">smallest</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
-        <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
-        <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
-                <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
-               <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
-                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span>   
-<span class="o">}</span></code></pre>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -20469,113 +20197,15 @@ com igual probabilidade.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreeCardPoker</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">SUITS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Spades"</span><span class="o">,</span> <span class="s">"Hearts"</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">"Diamonds"</span><span class="o">,</span> <span class="s">"Clubs"</span><span class="o">};</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">RANKS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"6"</span><span class="o">,</span>
-        <span class="s">"7"</span><span class="o">,</span> <span class="s">"8"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"10"</span><span class="o">,</span> <span class="s">"Jack"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"King"</span><span class="o">,</span> <span class="s">"Ace"</span><span class="o">};</span>   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT_FLUSH</span> <span class="o">=</span> <span class="mi">40</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREE_OF_A_KIND</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
-        <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
-            <span class="s">" times your bet."</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
             <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
         <span class="o">}</span>
     <span class="o">}</span>
 
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasThree</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">THREE_OF_A_KIND</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasPair</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">PAIR</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
-            <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]))</span> <span class="o">{</span>
-                    <span class="n">smallest</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
-        <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
-        <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
-                <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
-               <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
-                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span>   
-<span class="o">}</span></code></pre>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="2"></i><b>(2)</b>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="3"></i><b>(3)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -20611,60 +20241,7 @@ acima de <code>print()</code> ou abaixo dele dentro da definição da classe.</p
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreeCardPoker</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">SUITS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Spades"</span><span class="o">,</span> <span class="s">"Hearts"</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">"Diamonds"</span><span class="o">,</span> <span class="s">"Clubs"</span><span class="o">};</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">RANKS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"6"</span><span class="o">,</span>
-        <span class="s">"7"</span><span class="o">,</span> <span class="s">"8"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"10"</span><span class="o">,</span> <span class="s">"Jack"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"King"</span><span class="o">,</span> <span class="s">"Ace"</span><span class="o">};</span>   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT_FLUSH</span> <span class="o">=</span> <span class="mi">40</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREE_OF_A_KIND</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
-        <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
-            <span class="s">" times your bet."</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
-            <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
         <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
         <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
             <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
@@ -20679,45 +20256,7 @@ acima de <code>print()</code> ou abaixo dele dentro da definição da classe.</p
         <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
             <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
         <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]))</span> <span class="o">{</span>
-                    <span class="n">smallest</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
-        <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
-        <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
-                <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
-               <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
-                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span>   
-<span class="o">}</span></code></pre>
+    <span class="o">}</span>   </code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -20728,77 +20267,7 @@ métodos apropriados para determinar se uma mão possui uma determinada caracter
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreeCardPoker</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">SUITS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Spades"</span><span class="o">,</span> <span class="s">"Hearts"</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">"Diamonds"</span><span class="o">,</span> <span class="s">"Clubs"</span><span class="o">};</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">RANKS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"6"</span><span class="o">,</span>
-        <span class="s">"7"</span><span class="o">,</span> <span class="s">"8"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"10"</span><span class="o">,</span> <span class="s">"Jack"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"King"</span><span class="o">,</span> <span class="s">"Ace"</span><span class="o">};</span>   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT_FLUSH</span> <span class="o">=</span> <span class="mi">40</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREE_OF_A_KIND</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
-        <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
-            <span class="s">" times your bet."</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
-            <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasThree</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">THREE_OF_A_KIND</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasPair</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">PAIR</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
-            <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
         <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
         <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
             <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
@@ -20811,30 +20280,7 @@ métodos apropriados para determinar se uma mão possui uma determinada caracter
             <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
             <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
         <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
-        <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
-        <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
-               <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
-        <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
-                <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
-               <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
-                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span><span class="o">);</span>
-    <span class="o">}</span>   
-<span class="o">}</span></code></pre>
+    <span class="o">}</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -20847,107 +20293,22 @@ efetivamente passado por referência.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="rouge highlight"><code data-lang="java"><span class="kd">public</span> <span class="kd">class</span> <span class="nc">ThreeCardPoker</span> <span class="o">{</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">SUITS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"Spades"</span><span class="o">,</span> <span class="s">"Hearts"</span><span class="o">,</span> <i class="conum" data-value="1"></i><b>(1)</b>
-        <span class="s">"Diamonds"</span><span class="o">,</span> <span class="s">"Clubs"</span><span class="o">};</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="nc">String</span><span class="o">[]</span> <span class="no">RANKS</span> <span class="o">=</span> <span class="o">{</span><span class="s">"2"</span><span class="o">,</span> <span class="s">"3"</span><span class="o">,</span> <span class="s">"4"</span><span class="o">,</span> <span class="s">"5"</span><span class="o">,</span> <span class="s">"6"</span><span class="o">,</span>
-        <span class="s">"7"</span><span class="o">,</span> <span class="s">"8"</span><span class="o">,</span> <span class="s">"9"</span><span class="o">,</span> <span class="s">"10"</span><span class="o">,</span> <span class="s">"Jack"</span><span class="o">,</span> <span class="s">"Queen"</span><span class="o">,</span> <span class="s">"King"</span><span class="o">,</span> <span class="s">"Ace"</span><span class="o">};</span>   
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT_FLUSH</span> <span class="o">=</span> <span class="mi">40</span><span class="o">;</span> <i class="conum" data-value="2"></i><b>(2)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">THREE_OF_A_KIND</span> <span class="o">=</span> <span class="mi">30</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">STRAIGHT</span> <span class="o">=</span> <span class="mi">6</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">FLUSH</span> <span class="o">=</span> <span class="mi">2</span><span class="o">;</span>  
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">PAIR</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="no">NOTHING</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">52</span><span class="o">];</span> <i class="conum" data-value="3"></i><b>(3)</b>
-        <span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">3</span><span class="o">];</span>                
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-        <span class="o">}</span>
-        <span class="n">shuffle</span><span class="o">(</span><span class="n">deck</span><span class="o">);</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="5"></i><b>(5)</b>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>      
-        <span class="o">}</span>
-        <span class="kt">int</span> <span class="n">winnings</span> <span class="o">=</span> <span class="n">score</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> <i class="conum" data-value="6"></i><b>(6)</b>
-        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Hand: "</span><span class="o">);</span>
-        <span class="n">print</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span>
-        <span class="k">if</span> <span class="o">(</span><span class="n">winnings</span> <span class="o">==</span> <span class="mi">0</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="7"></i><b>(7)</b>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win nothing."</span><span class="o">);</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"You win "</span> <span class="o">+</span> <span class="n">winnings</span> <span class="o">+</span>
-            <span class="s">" times your bet."</span><span class="o">);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">shuffle</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">deck</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">index</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">deck</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">index</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="o">(</span><span class="kt">int</span><span class="o">)((</span><span class="n">deck</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="n">i</span><span class="o">)*</span><span class="nc">Math</span><span class="o">.</span><span class="na">random</span><span class="o">());</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">index</span><span class="o">]</span> <span class="o">=</span> <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">deck</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>       
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="8"></i><b>(8)</b>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="no">RANKS</span><span class="o">[</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]</span> <span class="o">+</span> <span class="s">" of "</span>
-            <span class="o">+</span> <span class="no">SUITS</span><span class="o">[</span><span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">])]);</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getRank</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">%</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="9"></i><b>(9)</b>
-    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">getSuit</span><span class="o">(</span><span class="kt">int</span> <span class="n">value</span><span class="o">)</span> <span class="o">{</span> <span class="k">return</span> <span class="n">value</span> <span class="o">/</span> <span class="mi">13</span><span class="o">;</span> <span class="o">}</span> <i class="conum" data-value="10"></i><b>(10)</b>
-    
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">score</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>  
-        <span class="n">sortByRank</span><span class="o">(</span><span class="n">hand</span><span class="o">);</span> 
-        <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">)</span> <span class="o">&amp;&amp;</span> <span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT_FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasThree</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">THREE_OF_A_KIND</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasStraight</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">STRAIGHT</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasFlush</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">FLUSH</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">hasPair</span><span class="o">(</span><span class="n">hand</span><span class="o">))</span> <span class="o">{</span>
-            <span class="k">return</span> <span class="no">PAIR</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span> <span class="o">{</span> 
-            <span class="k">return</span> <span class="no">NOTHING</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>   
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">sortByRank</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span>
-        <span class="kt">int</span> <span class="n">smallest</span><span class="o">,</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span> <span class="o">-</span> <span class="mi">1</span><span class="o">;</span> <span class="o">++</span><span class="n">i</span><span class="o">)</span> <span class="o">{</span>
-            <span class="n">smallest</span> <span class="o">=</span> <span class="n">i</span><span class="o">;</span>
-            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">hand</span><span class="o">.</span><span class="na">length</span><span class="o">;</span> <span class="o">++</span><span class="n">j</span><span class="o">)</span> <span class="o">{</span>
-                <span class="k">if</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">j</span><span class="o">])</span> <span class="o">&lt;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]))</span> <span class="o">{</span>
-                    <span class="n">smallest</span> <span class="o">=</span> <span class="n">j</span><span class="o">;</span>
-                <span class="o">}</span>
-            <span class="o">}</span>
-            <span class="n">temp</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">smallest</span><span class="o">]</span> <span class="o">=</span> <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
-            <span class="n">hand</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-        <span class="o">}</span>
-    <span class="o">}</span>
-
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="11"></i><b>(11)</b>
+<pre class="rouge highlight"><code data-lang="java">    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasPair</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="1"></i><b>(1)</b>
         <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">||</span>
                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
     <span class="o">}</span>
 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="12"></i><b>(12)</b>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasThree</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="2"></i><b>(2)</b>
         <span class="k">return</span> <span class="nf">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
                <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
     <span class="o">}</span>
 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="13"></i><b>(13)</b>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasFlush</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="3"></i><b>(3)</b>
         <span class="k">return</span> <span class="nf">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">&amp;&amp;</span>
                <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getSuit</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">]);</span>
     <span class="o">}</span>
 
-    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="14"></i><b>(14)</b>
+    <span class="kd">private</span> <span class="kd">static</span> <span class="kt">boolean</span> <span class="nf">hasStraight</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">hand</span><span class="o">)</span> <span class="o">{</span> <i class="conum" data-value="4"></i><b>(4)</b>
         <span class="k">return</span> <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="mi">1</span>
                 <span class="o">&amp;&amp;</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">2</span><span class="o">])</span> <span class="o">==</span> <span class="mi">12</span><span class="o">)</span> <span class="o">||</span> <span class="c1">// Ace low</span>
                <span class="o">(</span><span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">1</span><span class="o">])</span> <span class="o">==</span> <span class="n">getRank</span><span class="o">(</span><span class="n">hand</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">&amp;&amp;</span>
