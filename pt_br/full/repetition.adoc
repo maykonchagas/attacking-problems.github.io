@@ -1064,7 +1064,7 @@ conjuntos de dados diferentes, podemos acelerar o processo ao
 dividir os dados e permitir que diferentes threads operem em seu próprio
 segmento dos dados. Dividir os dados dessa maneira é chamado de _decomposição de domínio
 , o que nos permite alcançar o _paralelismo de dados_. Esses
-tópicos são discutidos mais detalhadamente em <<Conceitos: Dividindo o trabalho>>.
+tópicos são discutidos mais detalhadamente em <<Conceitos: Dividindo para conquistar>>.
 
 Executar tarefas repetitivas é um dos grandes pontos fortes dos computadores.
 Para a maioria dos programas que rodam por muito tempo, quantidades incríveis de
