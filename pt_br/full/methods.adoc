@@ -5,142 +5,142 @@
 
 [quote, William Shakespeare]
 ____
-Polonius (Aside): Though this be madness, yet there is method in `'t.
+Polônio (em voz baixa): Embora isso seja loucura, há um método nisso.
 ____
 
-=== Problem: Three card poker
+=== Problema: Pôquer de três cartas
 
-Gambling has held a fascination for humankind since its invention. As
-long as there have been mathematicians, they have studied the underlying
-mechanisms of probability and statistics that drive games of chance. A
-classic game of both statistics and strategy is poker. The problem we
-want to solve is programming one of the many variations of poker, called
-three card poker. Instead of bluffing, a player competes only with the
-house according to fixed rules without any room for psychology. A player
-is dealt three cards. If the player's hand contains a pair or better, he
-or she wins a payoff greater than or equal to the money bet. If the
-player does not have a pair or better, he or she loses the money bet.
-Below is a table giving one possible set of payoffs for each possible
-hand.
+O jogo exerce um fascínio sobre a humanidade desde sua invenção. Desde
+que existem matemáticos, eles vêm estudando os mecanismos subjacentes
+de probabilidade e estatística que regem os jogos de azar. Um
+jogo clássico que envolve tanto estatística quanto estratégia é o pôquer. O problema que
+queremos resolver é programar uma das muitas variações do pôquer, chamada
+pôquer de três cartas. Em vez de blefar, o jogador compete apenas com a
+casa, de acordo com regras fixas, sem espaço para psicologia. O jogador
+recebe três cartas. Se a mão do jogador contiver um par ou melhor, ele
+ou ela ganha um prêmio maior ou igual ao valor apostado. Se o
+jogador não tiver um par ou melhor, ele ou ela perde o valor apostado.
+Abaixo está uma tabela que apresenta um conjunto possível de prêmios para cada
+mão possível.
 
 [.center%autowidth%unbreakable,cols="^,^,^,^,^"]
 |===================
-|Hand |Payoff | |Hand | Payoff
+|Mão |Casa | |Mão | Casa
 
 |Straight Flush |40| |Flush |2
-|Three of a Kind |30| |Pair |1
-|Straight |6| |Nothing |0
+|Trinca |30| |Par |1
+|Sequencia |6| |Nada |0
 |===================
 
-If you're unfamiliar with poker rules or card games in general, here's
-a quick explanation of the various hands. A traditional English or
-American deck of cards is made up of 52 cards, organized into four
-suits: spades, hearts, diamonds, and clubs. In each suit, there are 13
-ranks: two, three, four, five, six, seven, eight, nine, ten, jack,
-queen, king, and ace.
+Se você não está familiarizado com as regras do pôquer ou com jogos de cartas em geral, aqui vai
+uma explicação rápida sobre as várias mãos. Um baralho tradicional inglês ou
+americano é composto por 52 cartas, organizadas em quatro
+naipes: espadas, copas, ouros e paus. Em cada naipe, há 13
+valores: dois, três, quatro, cinco, seis, sete, oito, nove, dez, valete,
+rainha, rei e ás.
 
-In three card poker, a straight is when the three cards can be arranged
-so that their ranks (ignoring suit) are in order. For example, a hand
-consisting of a Four of Diamonds, a Five of Spades, and a Six of Clubs
-would constitute a straight. An ace can serve as either the highest rank
-card (coming after a king) or the lowest rank card (coming before a two)
-and can help form a straight in either role (but not both at the same
-time). A flush is when all three cards have the same suit. For example,
-a Three of Hearts, a Seven of Hearts, and a Jack of Hearts would
-constitute a flush in three card poker. A straight flush, the highest
-hand, is made up of cards that form both a straight (by rank ordering)
-and a flush (by uniformity of suit). A three of a kind occurs when all
-three cards have the same rank, and a pair occurs when two of the cards
-have the same rank. When none of these conditions hold, the hand has no
-special designation in three card poker, and the bet is lost.
+No pôquer de três cartas, uma sequência ocorre quando as três cartas podem ser organizadas
+de forma que seus valores (independentemente do naipe) estejam em ordem. Por exemplo, uma mão
+composta por um quatro de ouros, um cinco de espadas e um seis de paus
+constituiria uma sequência. Um Ás pode servir tanto como a carta de valor mais alto
+(vindo depois do Rei) quanto como a de valor mais baixo (vindo antes do Dois)
+e pode ajudar a formar uma sequência em qualquer uma dessas funções (mas não em ambas ao mesmo
+tempo). Um flush ocorre quando todas as três cartas têm o mesmo naipe. Por exemplo,
+um Três de Copas, um Sete de Copas e um Valete de Copas
+constituiriam um _flush_ no pôquer de três cartas. Um _straight flush_, a
+mão mais alta, é composto por cartas que formam tanto uma sequência (pela ordem de valor)
+quanto um flush (pela uniformidade do naipe). Uma trinca ocorre quando todas as
+três cartas têm o mesmo valor, e um par ocorre quando duas das cartas
+têm o mesmo valor. Quando nenhuma dessas condições se aplica, a mão não tem
+nenhuma designação especial no pôquer de três cartas, e a aposta é perdida.
 
-Your task is to write a program that serves as a computerized version of
-the game. You must create a deck of 52 cards, thoroughly randomize them
-to simulate shuffling, and select the first three cards as a hand. You
-must then determine the highest designation that applies to the hand of
-cards and the corresponding winnings (if any).
+Sua tarefa é escrever um programa que funcione como uma versão computadorizada do
+jogo. Você deve criar um baralho de 52 cartas, embaralhá-las completamente
+para simular o embaralhamento e selecionar as três primeiras cartas como uma mão. Você
+deve então determinar a classificação mais alta que se aplica à mão de
+cartas e os ganhos correspondentes (se houver).
 
-Any reasonable solution to this problem uses arrays, discussed in the
-previous chapter. Using only that knowledge, you should be able to
-create a three card poker game. However, the focus of this chapter is
-_methods_, which can be used to break the solution to a problem into
-logical pieces. By dividing the solution in this way, we'll be able to
-solve the three card poker problem in a relatively short, elegant, and
-easy to read way.
+Qualquer solução razoável para este problema utiliza matrizes, discutidas no
+capítulo anterior. Usando apenas esse conhecimento, você deve ser capaz de
+criar um jogo de pôquer de três cartas. No entanto, o foco deste capítulo são
+_métodos_, que podem ser usados para dividir a solução de um problema em
+partes lógicas. Ao dividir a solução dessa maneira, seremos capazes de
+resolver o problema do pôquer de três cartas de uma forma relativamente curta, elegante e
+fácil de ler.
 
-=== Concepts: Dividing work into segments
+=== Conceitos: Dividindo o trabalho em segmentos
 
-You should notice that the solutions to problems we've been working on
-have become increasingly complex as the book progresses. This
-progression is partly because we want to solve more interesting problems 
-with more complex solutions but also because we've introduced additional Java tools 
-that make solving these harder problems possible.
+Você deve ter percebido que as soluções para os problemas com os quais temos trabalhado
+têm se tornado cada vez mais complexas à medida que o livro avança. Essa
+progressão se deve, em parte, ao fato de querermos resolver problemas mais interessantes 
+com soluções mais complexas, mas também porque introduzimos ferramentas adicionais do Java 
+que tornam possível a resolução desses problemas mais difíceis.
 
-Surprisingly, the tools we introduce in this chapter do not allow you to solve a
-problem you couldn't solve before. Instead, the tools in this chapter
-and in the next make solving a problem easier and less susceptible
-to errors. A relatively long, complicated list of Java statements was
-necessary to solve problems like the statistics program or Conway's Game
-of Life. Instead of solving those problems as a single monolithic
-segment of code, we can break our solutions into units called _static
-methods_.
+Surpreendentemente, as ferramentas que apresentamos neste capítulo não permitem que você resolva um
+problema que não pudesse resolver antes. Em vez disso, as ferramentas deste capítulo
+e do próximo tornam a resolução de um problema mais fácil e menos suscetível
+a erros. Uma lista relativamente longa e complicada de instruções Java era
+necessária para resolver problemas como o programa de estatística ou o Jogo
+da Vida de Conway. Em vez de resolver esses problemas como um único
+segmento monolítico de código, podemos dividir nossas soluções em unidades chamadas _métodos estáticos_
+.
 
-==== Reasons for `static` methods
+==== Razões para os métodos `static`
 
-A static method is a short, named segment of code that's been packaged
-up so that it can be _called_ from other parts of the program. Whenever
-the task performed by this method is needed, the execution of the
-program jumps to the code in the method, does the work it's supposed
-to, and then returns to whatever it was doing before.
+Um método estático é um segmento curto e nomeado de código que foi agrupado
+de modo a poder ser _chamado_ de outras partes do programa. Sempre que
+a tarefa executada por esse método for necessária, a execução do
+programa salta para o código do método, realiza o trabalho que deve
+fazer e, em seguida, retorna ao que estava fazendo antes.
 
-The reasons for using static methods can be boiled down to three
-essentials:
+As razões para usar métodos estáticos podem ser resumidas em três
+pontos essenciais:
 
-Modularity:::
-  Very little software is written by individuals. Commercial
-  software can have tens or even hundreds of developers involved in
-  designing, implementing, testing, and maintaining code. When the code's
-  divided into individual methods, those methods can be written and
-  tested by different people with minimal interference. It's much
-  harder to work together on one giant block of code.
-Readability:::
-  Methods are *named* segments of code. When a method is called, its
-  name is used. If a meaningful name is chosen, the line in the code
-  that calls the method helps document the code by explaining what's
-  happening. For example, if a method called `sort()` is used, a reader
-  instantly understands that something's being sorted. If, instead of a
-  separate `sort()` method, the code that does sorting was pasted into
-  the same location, a reader might have to devote a few moments to
-  understanding the meaning of those lines of code, particularly without
-  comments.
-Reusability:::
-  The fact that a method can be called from anywhere in the code makes
-  it reusable. To use the `sort()` example again, we might have to sort
-  several different arrays in one program. Without methods, we'd
-  have to keep copying and pasting code over and over again. With
-  methods, the total amount of source code can be smaller. In fact, if
-  you find yourself copying and pasting code, it's often an indication
-  that a method would be useful. +
+Modularidade:::
+  Pouquíssimos softwares são escritos por uma única pessoa. Softwares comerciais
+  podem envolver dezenas ou até centenas de desenvolvedores no
+  projeto, na implementação, nos testes e na manutenção do código. Quando o código
+  é dividido em métodos individuais, esses métodos podem ser escritos e
+  testados por pessoas diferentes com o mínimo de interferência. É muito
+  mais difícil trabalhar em conjunto em um único bloco gigante de código.
+Legibilidade:::
+  Métodos são segmentos de código *nomeados*. Quando um método é chamado, seu
+  nome é usado. Se for escolhido um nome significativo, a linha no código
+  que chama o método ajuda a documentar o código, explicando o que está
+  acontecendo. Por exemplo, se for usado um método chamado `sort()`, um leitor
+  compreende instantaneamente que algo está sendo classificado. Se, em vez de um
+  método `sort()` separado, o código que realiza a classificação fosse colado
+  no mesmo local, um leitor talvez tivesse que dedicar alguns instantes para
+  compreender o significado dessas linhas de código, especialmente sem
+  comentários.
+Reutilização:::
+  O fato de um método poder ser chamado de qualquer lugar do código o torna
+  reutilizável. Para usar o exemplo `sort()` novamente, talvez tenhamos que classificar
+  vários arrays diferentes em um único programa. Sem métodos, teríamos
+  que ficar copiando e colando código repetidamente. Com
+  métodos, a quantidade total de código-fonte pode ser menor. Na verdade, se
+  você se pegar copiando e colando código, isso geralmente é um indício
+  de que um método seria útil. +
 {empty} +
-  This idea of reusability stretches beyond individual programs. A
-  static method can be called from an entirely different program. If you
-  create a method that's really useful, you're free to use it in other
-  programs you write. By doing so, you only have to makes changes in
-  one place if you discover errors or want to increase its
-  functionality.
+Essa ideia de reutilização vai além de programas individuais. Um
+método estático pode ser chamado a partir de um programa totalmente diferente. Se você
+criar um método que seja realmente útil, fica à vontade para usá-lo em outros
+programas que escrever. Ao fazer isso, você só precisa fazer alterações em
+um único lugar caso descubra erros ou queira ampliar sua
+funcionalidade.
 
-==== Parallel to mathematical functions
+==== Paralelismo com funções matemáticas
 
-We've been discussing the usefulness of static methods without saying
-exactly what they are. One way to get insight into methods is by
-acknowledging their similarity to functions from mathematics. In
-procedural (non-object oriented) languages like C, the equivalents of
-static methods are usually referred to as functions. Like
-functions in mathematics, a static method takes some number of inputs
-(possibly as few as zero) and usually produces some output.
+Temos discutido a utilidade dos métodos estáticos sem explicar
+exatamente o que eles são. Uma maneira de compreender melhor os métodos é
+reconhecer sua semelhança com as funções da matemática. Em
+linguagens procedurais (não orientadas a objetos), como o C, os equivalentes dos
+métodos estáticos são geralmente chamados de funções. Assim como
+as funções na matemática, um método estático recebe um certo número de entradas
+(possivelmente até zero) e, geralmente, produz algum resultado.
 
-You've already used several static methods from the `Math` class, such
-as `Math.sqrt()`. Consider the following function.
+Você já utilizou vários métodos estáticos da classe `Math`, como
+`Math.sqrt()`. Considere a seguinte função.
 
 //[stem]
 //++++
@@ -151,79 +151,79 @@ as `Math.sqrt()`. Consider the following function.
 image::root.svg[scaledwidth=15%,pdfwidth=15%,width=15%]
 
 
-This function mirrors the code inside of `Math.sqrt()`. In math, when you apply _f_(_x_) to   
-a specific value, you might write _y_ = _f_(5). In Java,
-you might type the following.
+Essa função reflete o código dentro de `Math.sqrt()`. Na matemática, quando você aplica _f_(_x_) a 
+um valor específico, pode escrever _y_ = _f_(5). Em Java,
+você pode digitar o seguinte.
 
 [source,java]
 ----
 double y = Math.sqrt(5);
 ----
 
-In the statement _f_(5), the placeholder variable _x_ takes on the value 5.
-In the same way, some variable inside of
-`Math.sqrt()` takes on the value `5` when the method is called.
+Na expressão _f_(5), a variável placeholder _x_ assume o valor 5.
+Da mesma forma, alguma variável dentro de
+`Math.sqrt()` assume o valor `5` quando o método é chamado.
 
-It's important to understand this similarity between methods and
-mathematical functions because the designers of many programming
-languages have been directly influenced by the older notation. However,
-there are many differences between the two concepts as well.
-Mathematical functions can take more than one input, and so can Java
-methods. Java methods can also take no input, while the central idea of a
-mathematical function is to map some input value(s) to some output
-value. Java methods do not necessarily even have output values. They may
-just *do* something.
+É importante compreender essa semelhança entre métodos e
+funções matemáticas, pois os criadores de muitas linguagens de programação
+foram diretamente influenciados pela notação mais antiga. No entanto,
+também existem muitas diferenças entre os dois conceitos.
+Funções matemáticas podem receber mais de uma entrada, assim como os métodos Java
+. Os métodos Java também podem não receber nenhuma entrada, enquanto a ideia central de uma
+função matemática é mapear algum(ns) valor(es) de entrada para algum valor de saída
+. Os métodos Java nem sempre têm valores de saída. Eles podem
+simplesmente *fazer* algo.
 
-==== Control flow
+==== Fluxo de controle
 
-We have discussed selection statements such as `if` and `switch` as well
-as three different looping structures, `for`, `while`, and `do`-`while`.
-Each of these Java language features is used for control flow. The
-selection statements allow your program to choose which code to execute.
-The loops allow your code to repeatedly execute certain code. Methods
-also affect control flow. When a method is called, the execution of the
-program jumps into the method, does all the work it needs to there, and
-then returns to the code that called it. Recall the very simple example
-from above.
+Já discutimos instruções de seleção, como `if` e `switch`, bem
+como três estruturas de loop diferentes: `for`, `while` e `do`-`while`.
+Cada um desses recursos da linguagem Java é usado para o fluxo de controle. As
+instruções de seleção permitem que seu programa escolha qual código executar.
+Os loops permitem que seu código execute repetidamente determinado trecho de código. Os métodos
+também afetam o fluxo de controle. Quando um método é chamado, a execução do
+programa salta para dentro do método, realiza todo o trabalho necessário ali e
+depois retorna ao código que o chamou. Lembre-se do exemplo muito simples
+apresentado acima.
 
 [source,java]
 ----
 double y = Math.sqrt(5);
 ----
 
-The JVM has allocated a variable of type `double` and is preparing to
-assign a value to it. Suddenly, the execution of the JVM jumps into the
-code inside of the `Math.sqrt()` method. It takes some non-trivial
-amount of work to compute the square root of a number. After that
-computation is finished, the flow of execution returns to the assignment
-that has been waiting all that time. Just like a mathematical function,
-we can treat the method call `Math.sqrt(5)` as if it were "`magically`"
-replaced by a `double` approximating the square root of 5.
+A JVM alocou uma variável do tipo `double` e está se preparando para
+atribuir um valor a ela. De repente, a execução da JVM salta para o
+código dentro do método `Math.sqrt()`. É necessária uma 
+quantidade não trivial de trabalho para calcular a raiz quadrada de um número. Depois que
+esse cálculo é concluído, o fluxo de execução retorna à atribuição
+que ficou aguardando todo esse tempo. Assim como uma função matemática,
+podemos tratar a chamada de método `Math.sqrt(5)` como se ela tivesse sido “`magicamente`”
+substituída por um `double` que aproxima a raiz quadrada de 5.
 
-=== Syntax: Methods
+=== Sintaxe: Métodos
 
-By now, you should have a good feel for the concepts behind calling and
-even creating static methods and are probably getting impatient to use
-them. However, we haven't yet described all the details of Java method syntax. First, we'll describe how you can create your own static
-methods, then we'll discuss the finer points of calling static methods, and
-finally we'll explain how _class variables_ can be used from many different
-methods.
+A esta altura, você já deve ter uma boa noção dos conceitos por trás da chamada e
+até mesmo da criação de métodos estáticos e provavelmente está ansioso para usá-
+los. No entanto, ainda não descrevemos todos os detalhes da sintaxe dos métodos em Java. Primeiro, descreveremos como você pode criar seus próprios 
+métodos estáticos; depois, discutiremos os detalhes da chamada de métodos estáticos; e
+, por fim, explicaremos como as _variáveis de classe_ podem ser usadas a partir de diversos
+métodos.
 
-==== Defining methods
+==== Definindo métodos
 
-A very simple method that the `Math` class provides is the `Math.max()`
-method. This method selects the larger of the two values provided as
-input.
+Um método muito simples que a classe `Math` oferece é o `Math.max()`
+. Esse método seleciona o maior dos dois valores fornecidos como
+entrada.
 
 [source,java]
 ----
 int maximum = Math.max(5, 10);
 ----
 
-In this case, the value stored into `maximum` is `10`. Despite its
-simplicity, we demonstrated how useful this method could be in our
-solution to Conway's Game of Life from <<arrays#arrays>>. If we
-wanted to write this method ourselves, the code would be as follows.
+Nesse caso, o valor armazenado em `maximum` é `10`. Apesar de sua
+simplicidade, demonstramos o quanto esse método pode ser útil em nossa
+solução para o Jogo da Vida de Conway, em <<arrays#arrays>>. Se
+quiséssemos escrever esse método nós mesmos, o código seria o seguinte.
 
 [source,java]
 ----
@@ -236,59 +236,59 @@ public static int max(int a, int b) {
 }
 ----
 
-Even in such a small method, there's a lot of syntax to
-worry about. The first line of this method is called the _method
-header_. The `public` keyword in this header is used to denote that any
-code, even code from a different class, can call this method. We discuss
-restricting access to methods and variables more in the later part of
-this chapter. For now, assume that every method is `public`.
+Mesmo em um método tão pequeno, há muita sintaxe com a qual
+preocupar-se. A primeira linha desse método é chamada de _cabeçalho do método
+_. A palavra-chave `public` nesse cabeçalho é usada para indicar que qualquer
+código, mesmo código de uma classe diferente, pode chamar esse método. Discutiremos
+a restrição de acesso a métodos e variáveis mais adiante
+neste capítulo. Por enquanto, considere que todo método é `public`.
 
-The keyword `static` indicates that this method is static. Although we
-have used the term _static method_ many times, we have not yet defined
-it. A static method is linked to a whole class, not to a specific object
-of that class–that is, a static method can be called without referencing
-an object of the class. Again, we discuss the finer points of objects
-and classes in the next chapter. For now, all methods are `static`.
+A palavra-chave `static` indica que esse método é estático. Embora tenhamos
+usado o termo _método estático_ muitas vezes, ainda não o definimos
+. Um método estático está vinculado a uma classe inteira, não a um objeto específico
+dessa classe — ou seja, um método estático pode ser chamado sem fazer referência
+a um objeto da classe. Novamente, discutiremos os detalhes de objetos
+e classes no próximo capítulo. Por enquanto, todos os métodos são `estáticos`.
 
-The third keyword in the method header is the familiar `int`, giving the
-return type of the method. Wherever this method is called, it can be
-treated like an `int` value, because that's what it gives back. In this
-case, the return type is obvious: The maximum of two `int` values must
-also be an `int` value. Any type can be used as a return value including
-all the primitive types and any reference or array types. The only
-limitation is that a method can only return a single item, but since
-that item can be an array, this limitation is usually not important. It's
-also possible for a method to return nothing. In that case, the
-keyword `void` is used for the return type.
+A terceira palavra-chave no cabeçalho do método é o já conhecido `int`, que indica o
+tipo de retorno do método. Onde quer que esse método seja chamado, ele pode ser
+tratado como um valor `int`, pois é isso que ele retorna. Neste
+caso, o tipo de retorno é óbvio: o máximo de dois valores `int` deve
+também ser um valor `int`. Qualquer tipo pode ser usado como valor de retorno, incluindo
+todos os tipos primitivos e quaisquer tipos de referência ou de array. A única
+limitação é que um método só pode retornar um único item, mas como
+esse item pode ser uma matriz, essa limitação geralmente não é importante. Também é
+possível que um método não retorne nada. Nesse caso, a
+palavra-chave `void` é usada para o tipo de retorno.
 
-Next in the method header is the identifier `max`, which is the name of
-the method. Any legal identifier that you can use for a variable name is
-valid for a method name as well. It's important to pick a name that's
-readable and gives a reader a clear idea about what the method does. A
-common convention is to name a method using a verb phrase, indicating
-the operation that is being done by that method (e.g., `computeTax`).
-Like variable names, the Java standard is to use camel notation,
-starting with a lowercase letter and capitalizing the first letter of
-each new word in the name.
+Em seguida, no cabeçalho do método, vem o identificador `max`, que é o nome do
+método. Qualquer identificador válido que você possa usar para um nome de variável é
+válido também para um nome de método. É importante escolher um nome que seja
+legível e dê ao leitor uma ideia clara do que o método faz. Uma
+convenção comum é nomear um método usando uma locução verbal, indicando
+a operação que está sendo realizada por esse método (por exemplo, `computeTax`).
+Assim como os nomes de variáveis, o padrão do Java é usar a notação camel,
+começando com uma letra minúscula e colocando em maiúscula a primeira letra de
+cada nova palavra no nome.
 
-After the name of the method is the list of _parameters_, separated
-by commas. In this case, each parameter has the `int` type. You're free
-to name your parameters whatever you want, though they should be
-meaningful. You can have as few as zero parameters, but there's an
-upper limit imposed by the JVM, usually 255. The body of the method
-follows the header of the method, surrounded by braces (`{ }`). Unlike
-`if` statements and loops, the braces for methods are *required*.
+Após o nome do método, vem a lista de _parâmetros_, separados
+por vírgulas. Neste caso, cada parâmetro é do tipo `int`. Você tem liberdade
+para nomear seus parâmetros como quiser, embora eles devam ser
+significativos. Você pode ter até zero parâmetros, mas há um
+limite máximo imposto pela JVM, geralmente 255. O corpo do método
+segue o cabeçalho do método, entre chaves (`{ }`). Ao contrário das
+instruções `if` e dos laços de repetição, as chaves para métodos são *obrigatórias*.
 
-Inside the body of a method, the usual rules for Java control flow
-apply. Each line is executed one by one unless there are selection
-statements or loops. Calling methods inside of methods is also allowed.
-In the `max()` method, we use an `if`-`else` construction to find
-the larger of `a` and `b`. A `return` statement immediately stops
-execution of the method, transfers execution back to the calling code,
-and gives back the value that comes after it. In this case, the value of
-`a` is returned if it is equal or larger, and the value of `b` is
-returned otherwise. Because a `return` statement immediately jumps out
-of a method, we could have written the method without an `else`.
+Dentro do corpo de um método, as regras usuais para o fluxo de controle em Java
+se aplicam. Cada linha é executada uma a uma, a menos que haja
+instruções de seleção ou repetição. Também é permitido chamar métodos dentro de outros métodos.
+No método `max()`, usamos uma construção `if`-`else` para encontrar
+o maior valor entre `a` e `b`. Uma instrução `return` interrompe imediatamente
+a execução do método, transfere a execução de volta para o código chamador,
+e retorna o valor que vem logo a seguir. Nesse caso, o valor de
+`a` é retornado se for igual ou maior, e o valor de `b` é
+retornado caso contrário. Como uma instrução `return` salta imediatamente
+para fora de um método, poderíamos ter escrito o método sem um `else`.
 
 [source,java]
 ----
@@ -300,53 +300,53 @@ public static int max(int a, int b) {
 }
 ----
 
-The only way that the line `return b;` can be reached is if `a` had not
-already been returned.
+A única maneira de a linha `return b;` ser executada é se `a` ainda não
+tivesse sido retornado.
 
-Beginner programmers sometimes ask what to do if `a` and `b` are equal.  In our code it's clear that the value of `a` will be returned, but it hardly matters: two equal `int` values are indistinguishable from each other.  Some students imagine handling this special case by printing an error message, but that approach is seldom useful.  When trying to find the larger of two numbers in programming, it's usually the value we want, not information about which one is actually larger.
+Programadores iniciantes às vezes perguntam o que fazer se `a` e `b` forem iguais. Em nosso código, fica claro que o valor de `a` será retornado, mas isso praticamente não importa: dois valores `int` iguais são indistinguíveis um do outro. Alguns alunos imaginam lidar com esse caso especial exibindo uma mensagem de erro, mas essa abordagem raramente é útil. Ao tentar encontrar o maior de dois números na programação, geralmente é o valor que queremos, e não a informação sobre qual deles é realmente maior.
 
-===== The `main()` method
+===== O método `main()`
 
-If some of this syntax seems eerily familiar, remember that you've
-been coding static methods since your very first Java program. The
-`main()` method is just another static method, special only because the
-JVM chooses to start execution there. Let's look at the `main()` method
-from a standard Hello, World! program.
+Se parte dessa sintaxe parecer estranhamente familiar, lembre-se de que você
+já vem programando métodos estáticos desde o seu primeiro programa em Java. O
+método `main()` é apenas mais um método estático, especial apenas porque a
+JVM opta por iniciar a execução a partir dele. Vamos dar uma olhada no método `main()`
+de um programa padrão “Hello, World!”.
 
 [source,java]
 ----
 public static void main(String[] args) {
-    System.out.println("Hello, world!");
+    System.out.println(“Hello, world!”);
     return;
 }
 ----
 
-Just like the `max()` method, the header for `main()` starts with
-`public static`. Then, the return type for `main()` is `void` because
-the JVM is not expecting to get any answer back. The `main()` method has
-a single parameter, an array `String` values. In this program, we do
-not use the `args` parameter, but it is available. For the `main()`
-method, this declaration is fine, because `main()` has to be uniform
-across all programs. However, when designing your own methods, you
-should not include unnecessary parameters.
+Assim como o método `max()`, a declaração do `main()` começa com
+`public static`. Além disso, o tipo de retorno do `main()` é `void`, pois
+a JVM não espera receber nenhum resultado de volta. O método `main()` tem
+um único parâmetro: uma matriz de valores do tipo `String`. Neste programa, nós
+não usamos o parâmetro `args`, mas ele está disponível. Para o método `main()`
+, essa declaração está correta, pois `main()` precisa ser padronizado
+em todos os programas. No entanto, ao projetar seus próprios métodos, você
+não deve incluir parâmetros desnecessários.
 
-The final executable line in this `main()` method is a `return`
-statement. Because `main()` has a `void` return type, the `return`
-statement has no value to return. For `void` methods, a `return`
-statement is optional. You can use it to leave a method early if
-desired. For a value-returning method, execution *must* reach a `return`
-statement with a valid value no matter what the input of the method is.
-If Java finds a way that execution could reach the end of a value
-returning method without reaching a `return` statement, it causes a
-compiler error.
+A última linha executável neste método `main()` é uma instrução `return`
+. Como `main()` tem tipo de retorno `void`, a instrução `return`
+não tem nenhum valor para retornar. Para métodos `void`, uma instrução `return`
+é opcional. Você pode usá-la para sair de um método antecipadamente, se
+desejar. Para um método que retorna um valor, a execução *deve* chegar a uma instrução `return`
+com um valor válido, independentemente da entrada do método.
+Se o Java detectar que a execução poderia chegar ao fim de um método que retorna um valor
+sem atingir uma instrução `return`, isso causará um
+erro de compilação.
 
-===== Overloaded methods
+===== Métodos sobrecarregados
 
-Since this declaration is in another class, it's fine to create a `max()`
-method even though there's already one in the `Math` class. However, it's possible to create more than one method with the same name even in the
-same class, provided that their _signatures_ are not the same. Two
-methods have the same _signature_ if they have the same name and
-parameter types.
+Como essa declaração está em outra classe, é válido criar um método `max()`
+mesmo que já exista um na classe `Math`. No entanto, é possível criar mais de um método com o mesmo nome, mesmo na
+mesma classe, desde que suas _assinaturas_ não sejam iguais. Dois
+métodos têm a mesma _assinatura_ se tiverem o mesmo nome e
+os mesmos tipos de parâmetros.
 
 [source,java]
 ----
@@ -355,66 +355,66 @@ public static int max(int a, int b, int c) {
 }
 ----
 
-In this example, we've created yet another `max()` method, but this
-one takes three parameters instead of two. This method even calls the
-two parameter version of `max()`. Creating more than one method with the
-same name is called _overloading_ those methods. Overloading methods is
-useful because it allows you to use the same method name for similar
-functionality, even when there are some underlying differences in the
-implementation. For example, the `Math` class provides four different,
-overloaded versions of the `max()` method, specialized for `int`,
-`long`, `float`, and `double` values, respectively.
+Neste exemplo, criamos mais um método `max()`, mas este
+aceita três parâmetros em vez de dois. Esse método chega a chamar a
+versão de dois parâmetros do `max()`. Criar mais de um método com o
+mesmo nome é chamado de _sobrecarga _ desses métodos. A sobrecarga de métodos é
+útil porque permite usar o mesmo nome de método para funcionalidades semelhantes
+, mesmo quando há algumas diferenças subjacentes na
+implementação. Por exemplo, a classe `Math` fornece quatro versões diferentes,
+sobrecarregadas do método `max()`, especializadas para valores `int`,
+`long`, `float` e `double`, respectivamente.
 
-There are limitations on creating overloaded methods, of course. The
-compiler must be able to determine which method you intend to use. Thus,
-the signatures have to vary by type or number of parameters. A different
-return type is not enough.
+É claro que existem limitações na criação de métodos sobrecarregados. O
+compilador deve ser capaz de determinar qual método você pretende usar. Portanto,
+as assinaturas precisam variar de acordo com o tipo ou o número de parâmetros. Um
+tipo de retorno diferente não é suficiente.
 
-==== Calling methods
+==== Chamada de métodos
 
-After a method has been defined, it must be called before it does
-anything. You have plenty of experience calling static methods like
-`Math.sqrt()` and `Math.max()`. An example of the appropriate syntax was
-given earlier.
+Depois que um método é definido, ele precisa ser chamado antes de fazer
+qualquer coisa. Você já tem bastante experiência em chamar métodos estáticos como
+`Math.sqrt()` e `Math.max()`. Um exemplo da sintaxe apropriada foi
+apresentado anteriormente.
 
 [source,java]
 ----
 int maximum = Math.max(5, 10);
 ----
 
-Formally, the call starts with the name of the class (`Math`), followed
-by a dot, followed by the name of the method (`max`), followed by the
-list of _arguments_ inside parentheses. These arguments are the values
-you want to _pass_ into the method. Some books use the term _formal
-parameters_ to describe the variables defined in the method signature
-and _actual parameters_ to describe the values passed into the methods,
-but we stick with the simpler terms parameters and arguments.
+Formalmente, a chamada começa com o nome da classe (`Math`), seguido
+por um ponto, seguido pelo nome do método (`max`), seguido pela
+lista de _argumentos_ entre parênteses. Esses argumentos são os valores
+que você deseja _passar_ para o método. Alguns livros usam o termo _parâmetros formais
+para descrever as variáveis definidas na assinatura do método
+e _parâmetros reais_ para descrever os valores passados para os métodos,
+mas preferimos usar os termos mais simples: parâmetros e argumentos.
 
-Of course, the number of arguments must match the number of parameters
-defined by the method, and the types must match as well. Java performs
-automatic casting when no precision is lost. Thus, you can always supply
-an `int` argument for a `double` parameter but not the reverse.
-Arguments can be literal values, variables, or even other method calls
-that return the appropriate type.
+É claro que o número de argumentos deve corresponder ao número de parâmetros
+definidos pelo método, e os tipos também devem corresponder. O Java realiza
+conversão automática quando não há perda de precisão. Assim, você sempre pode fornecer
+um argumento `int` para um parâmetro `double`, mas não o contrário.
+Os argumentos podem ser valores literais, variáveis ou até mesmo outras chamadas de método
+que retornem o tipo apropriado.
 
-Using the `max()` method defined before, we could rewrite our simple
-example without a class name.
+Usando o método `max()` definido anteriormente, poderíamos reescrever nosso exemplo simples
+sem o nome da classe.
 
 [source,java]
 ----
 int maximum = max(5, 10);
 ----
 
-Whenever you call a static method from code that's inside the same
-class, you can leave out the class name.
+Sempre que você chamar um método estático a partir de código que esteja dentro da mesma
+classe, poderá omitir o nome da classe.
 
-===== Binding
+===== Ligação
 
-Many new programmers are confused about the relationship between
-arguments and parameters. The process of supplying an argument to be
-used as a parameter is called _binding_. Through binding, a value or
-variable from the calling code is given a new name inside of a method.
-Consider the following method.
+Muitos programadores iniciantes ficam confusos quanto à relação entre
+argumentos e parâmetros. O processo de fornecer um argumento para ser
+usado como parâmetro é chamado de _ligação_. Por meio da ligação, um valor ou
+variável do código chamador recebe um novo nome dentro de um método.
+Considere o seguinte método.
 
 [source,java]
 ----
@@ -423,9 +423,9 @@ public static int add(int a, int b) {
 }
 ----
 
-This absurdly short method adds two numbers together and returns the
-result, approximating the functionality of the `+` operator. We could
-call the method in the following context.
+Este método absurdamente curto soma dois números e retorna o
+resultado, aproximando-se da funcionalidade do operador `+`. Poderíamos
+chamar o método no seguinte contexto.
 
 [source,java]
 ----
@@ -434,14 +434,14 @@ int y = 5;
 int z = add(x, y);
 ----
 
-Inside the method, the value of `x` is bound to the variable `a`, and
-the value of `y` is bound to the variable `b`. The `add()` method has
-its own _scope_. Scope means the area where a variable name is visible
-(or meaningful). Thus, `x` and `y` do not exist inside of the `add()`
-method, only the variables `a` and `b` do. Since methods have their own
-scope, variables in one method can have the same names as variables in
-another method without the compiler (or the programmer!) becoming
-confused. Consider the following example.
+Dentro do método, o valor de `x` é vinculado à variável `a`, e
+o valor de `y` é vinculado à variável `b`. O método `add()` possui
+seu próprio _escopo_. Escopo significa a área onde um nome de variável é visível
+(ou significativo). Assim, `x` e `y` não existem dentro do método `add()`
+, apenas as variáveis `a` e `b` existem. Como os métodos têm seu próprio
+escopo, as variáveis em um método podem ter os mesmos nomes que as variáveis em
+outro método sem que o compilador (ou o programador!) fique
+confuso. Considere o exemplo a seguir.
 
 [source,java]
 ----
@@ -450,21 +450,21 @@ int b = 5;
 int c = add(b, a);
 ----
 
-Here the variables `a` and `b` exist in both the calling code and inside
-the method, but the names are independent. The value of `a` in the
-calling code happens to be bound to a variable called `b` inside the
-method, but the JVM has no confusion about which `a` is which. Herein
-lies the value of methods: They are largely independent of whatever else
-is going on in the code, allowing the programmer to focus on a small,
-manageable task.
+Aqui, as variáveis `a` e `b` existem tanto no código de chamada quanto dentro
+do método, mas os nomes são independentes. O valor de `a` no
+código de chamada está vinculado a uma variável chamada `b` dentro do
+método, mas a JVM não tem nenhuma confusão sobre qual `a` é qual. É nisso
+que reside o valor dos métodos: eles são amplamente independentes de tudo o mais
+que esteja acontecendo no código, permitindo que o programador se concentre em uma tarefa pequena e
+gerenciável.
 
-Another important feature of Java is that the process of binding
-variables is _pass by value_, meaning that only the *value* of the
-argument is bound to the parameter. Whenever a method is called, the
-method creates a new variable for each parameter and copies the value of
-its argument into it. In practice, this approach means that a method
-cannot directly change the value of an argument. Consider the following
-method.
+Outra característica importante do Java é que o processo de vinculação
+de variáveis é _passagem por valor_, o que significa que apenas o *valor* do
+argumento é vinculado ao parâmetro. Sempre que um método é chamado, o
+método cria uma nova variável para cada parâmetro e copia o valor de
+seu argumento para ela. Na prática, essa abordagem significa que um método
+não pode alterar diretamente o valor de um argumento. Considere o seguinte
+método.
 
 [source,java]
 ----
@@ -473,9 +473,9 @@ public static void increment(int counter) {
 }
 ----
 
-This method takes the value of its argument and copies it into the new
-variable `counter`. Then, it increments `counter`, but the original
-argument is unchanged. Thus, the following fragment is an infinite loop.
+Esse método pega o valor de seu argumento e o copia para a nova
+variável `counter`. Em seguida, ele incrementa `counter`, mas o
+argumento original permanece inalterado. Portanto, o fragmento a seguir é um laço infinito.
 
 [source,java]
 ----
@@ -485,13 +485,13 @@ while (i < 100) {
 }
 ----
 
-The value of `i` remains fixed at `0` for the entire program. The copy
-of `i` bound to `counter` increases to `1` every time `increment()` is
-called, but `i` remains unaffected.
+O valor de `i` permanece fixo em `0` durante todo o programa. A cópia
+de `i` associada a `counter` aumenta para `1` toda vez que `increment()` é
+chamado, mas `i` permanece inalterado.
 
-This is not to say that a method cannot affect the variables outside of
-itself. The primary way that it can do so is by using `return`
-statements. We can rewrite `increment()` to achieve this effect.
+Isso não significa que um método não possa afetar as variáveis fora de
+si mesmo. A principal maneira de fazer isso é usando instruções `return`
+. Podemos reescrever `increment()` para obter esse efeito.
 
 [source,java]
 ----
@@ -500,8 +500,8 @@ public static int increment(int counter) {
 }
 ----
 
-Then, we need to adjust the loop so that it stores the returned value
-instead of dropping it on the floor.
+Em seguida, precisamos ajustar o laço para que ele armazene o valor retornado
+em vez de descartá-lo.
 
 [source,java]
 ----
@@ -511,15 +511,15 @@ while (i < 100) {
 }
 ----
 
-A second way that methods can affect the values of outside variables is
-more indirect. In Java, every argument is passed by value, even arrays
-and objects. Practically, this means that, if a reference to an array is
-passed into a method, you cannot change which array it is pointing at.
-Since references are not values but names pointing at particular
-locations in memory, you can directly change the contents of that memory
-with a method, even if you can't change which locations are being
-referenced. For example, the following method does *not* reverse the
-order of an array.
+Uma segunda maneira pela qual os métodos podem afetar os valores de variáveis externas é
+mais indireta. Em Java, todos os argumentos são passados por valor, mesmo matrizes
+e objetos. Na prática, isso significa que, se uma referência a um vetor for
+passada para um método, você não pode alterar para qual vetor ela está apontando.
+Como as referências não são valores, mas nomes que apontam para
+locais específicos na memória, você pode alterar diretamente o conteúdo dessa memória
+com um método, mesmo que não possa alterar quais locais estão sendo
+referenciados. Por exemplo, o método a seguir *não* inverte a
+ordem de um vetor.
 
 [source,java]
 ----
@@ -532,12 +532,12 @@ public static void badReverseArray(int[] array) {
 }
 ----
 
-Although this code does store a reversed version of `array` in `temp`,
-the last line of the method is meaningless: The array passed into the
-method still points to the original location in memory. We can rewrite
-the method to do the reversal _in place_, meaning that the values of the
-array are shuffled around, but the array still occupies the same memory
-locations.
+Embora esse código armazene uma versão invertida de `array` em `temp`,
+a última linha do método não tem sentido: o array passado para o
+método ainda aponta para a localização original na memória. Podemos reescrever
+o método para fazer a inversão _no próprio local_, o que significa que os valores do
+vetor são reorganizados, mas o vetor ainda ocupa as mesmas
+localizações na memória.
 
 [source,java]
 ----
@@ -546,74 +546,75 @@ public static void goodReverseArray(int[] array) {
     for (int i = 0; i < array.length / 2; ++i) {
         temp = array[i];
         array[i] = array[array.length - i - 1];
-        array[array.length - i - 1] = temp;
+        
+array[array.length - i - 1] = temp;
     }
 }
 ----
 
-In this version of the method, we swap the first element of the array
-with the last, the second with the second to last, and so on. We only go
-up to the halfway point of the array, otherwise we would undo the reversal
-process. The values of the array are reversed, but they still occupy the
-same chunk of memory. It's possible to write a correct method more in
-the style of `badReverseArray()` which creates a temporary array, copies
-the original values into it, and then copies them back to the original
-array in reverse order, but it's less efficient to create the extra
-array and perform two copies.
+Nesta versão do método, trocamos o primeiro elemento da matriz
+pelo último, o segundo pelo penúltimo e assim por diante. Só vamos
+até a metade da matriz; caso contrário, desfazeríamos o
+processo de reversão. Os valores da matriz estão invertidos, mas ainda ocupam o
+mesmo bloco de memória. É possível escrever um método correto mais no
+estilo de `badReverseArray()`, que cria uma matriz temporária, copia
+os valores originais para ela e, em seguida, os copia de volta para a matriz original
+na ordem inversa, mas é menos eficiente criar a matriz extra
+e realizar duas cópias.
 
-==== Class variables
+==== Variáveis de classe
 
-According to the rules we've given so far, the only legal variables in
-the scope of a static method are the parameters and any other _local_
-variables declared inside the method. However, it's possible to create
-a variable that exists outside of static methods yet is visible inside
-all of them. These kinds of variables are called _class variables_ (or
-sometimes _static fields_ or _global variables_). These variables
-persist *between* method calls. The syntax for creating such a variable
-is to declare it outside of all methods (but inside the class) with the keyword `static` and an access modifier such as `public` or `private`.
-For example, the following class includes a method called `record()`
-that increases the class variable `counter` every time it's called.
+De acordo com as regras que apresentamos até agora, as únicas variáveis válidas no
+escopo de um método estático são os parâmetros e quaisquer outras variáveis _locais_
+declaradas dentro do método. No entanto, é possível criar
+uma variável que exista fora dos métodos estáticos, mas que seja visível dentro
+de todos eles. Esse tipo de variável é chamado de _variáveis de classe_ (ou
+às vezes _campos estáticos_ ou _variáveis globais_). Essas variáveis
+persistem *entre* as chamadas de método. A sintaxe para criar tal variável
+é declará-la fora de todos os métodos (mas dentro da classe) com a palavra-chave `static` e um modificador de acesso, como `public` ou `private`.
+Por exemplo, a classe a seguir inclui um método chamado `record()`
+que aumenta a variável de classe `counter` toda vez que é chamado.
 
-.Keeps track of the number of times the `record()` method is called.
+.Mantém o controle do número de vezes que o método `record()` é chamado.
 [source, java]
 [[BookkeeperProgram]]
 ----
 include::{programsdir}/Bookkeeper.java[]
 ----
 
-When run, this program calls the `record()` method some random number of
-times, and the variable `counter` keeps track of the number. Because `counter` is static,
-it's accessible to both the `main()` and `record()` methods.
-Many programmers frown on the use of
-class variables precisely because they're visible to many different
-methods. The idea of a method is to isolate pieces of code so that the
-complexity of a program can be divided into simple units. In the case of
-a public class variable, even code in other classes can modify its
-value. If many different pieces of code can modify a variable, it may
-be difficult to keep that variable from being changed in unexpected
-ways. For example, if another method used the `counter` variable to record the number
-of times it was called, the final value of `counter` would be the sum of
-the number of times the two methods were called. There might be some
-reason to keep track of such information, but it would be impossible to
-reconstruct what fraction of the value in `counter` came from one method
-and what fraction came from the other.
+Quando executado, este programa chama o método `record()` um número aleatório de
+vezes, e a variável `counter` mantém o controle desse número. Como `counter` é estática,
+ela é acessível tanto pelo método `main()` quanto pelo `record()`.
+Muitos programadores desaprovam o uso de
+variáveis de classe justamente porque elas são visíveis a muitos
+métodos diferentes. A ideia de um método é isolar trechos de código para que a
+complexidade de um programa possa ser dividida em unidades simples. No caso de
+uma variável de classe pública, até mesmo o código de outras classes pode modificar seu
+valor. Se muitos trechos diferentes de código puderem modificar uma variável, pode
+ser difícil impedir que essa variável seja alterada de maneiras inesperadas
+. Por exemplo, se outro método usasse a variável `counter` para registrar o número
+de vezes que foi chamado, o valor final de `counter` seria a soma
+do número de vezes que os dois métodos foram chamados. Pode haver algum
+motivo para acompanhar essas informações, mas seria impossível
+reconstruir qual fração do valor em `counter` veio de um método
+e qual fração veio do outro.
 
-Class variables have their uses, but they should generally be avoided.
-The chief exception to this rule is constants. Since a constant never changes,
-a class variable is a great place to store it, making the value
-available to all code. An example you've already used is
-`Math.PI`. As with static methods, a static field from another class can
-be accessed by using the class name, then a dot, and then the name of the
-static field. Again, when the code using the field is in the same class,
-the class name can be dropped. A class constant is declared like a class
-variable, but with the addition of the `final` keyword.
+Variáveis de classe têm suas utilidades, mas geralmente devem ser evitadas.
+A principal exceção a essa regra são as constantes. Como uma constante nunca muda,
+uma variável de classe é um ótimo local para armazená-la, tornando o valor
+disponível para todo o código. Um exemplo que você já usou é
+`Math.PI`. Assim como nos métodos estáticos, um campo estático de outra classe pode
+ser acessado usando o nome da classe, seguido de um ponto e, em seguida, o nome do
+campo estático. Novamente, quando o código que usa o campo está na mesma classe,
+o nome da classe pode ser omitido. Uma constante de classe é declarada como uma variável de classe
+, mas com a adição da palavra-chave `final`.
 
 [[gravitationalAttractionExample]]
-.Gravitational attraction
+.Atração gravitacional
 ====
 
-The following class allows a user to compute the one-dimensional force due to gravity.
-This force _F_ is given by the following equation.
+A classe a seguir permite que um usuário calcule a força unidimensional devida à gravidade.
+Essa força _F_ é dada pela seguinte equação.
 //[stem]
 //****
 //F = \frac{Gm_1m_2}{r^2}
@@ -623,12 +624,12 @@ This force _F_ is given by the following equation.
 image::gravitation.svg[scaledwidth=15%,pdfwidth=15%,width=15%]
 
 
-In this equation, _m_~1~ is the mass of one
-object, _m_~2~ is the mass of another, _r_ is the
-distance between their centers, and _G_ is the gravitational
-constant, 6.673 × 10^-11^ N·m^2^·kg^-2^.
+Nesta equação, _m_~1~ é a massa de um
+objeto, _m_~2~ é a massa de outro, _r_ é a
+distância entre seus centros e _G_ é a constante gravitacional
+, 6,673 × 10^-11^ N·m^2^·kg^-2^.
 
-.Calculates the attraction due to gravity between two masses.
+.Calcula a atração gravitacional entre duas massas.
 [source, java]
 [[GravityProgram]]
 ----
@@ -637,32 +638,33 @@ include::{programsdir}/Gravity.java[]
 
 ====
 
-Use named constants whenever they increase readability. You can use the `public`
-modifier if you want all classes to have access to your constant
-(`Gravity.G` is a good example). You can use the `private` modifier if
-you want the constant to be accessible only inside your class, if it has
-no use outside, or if it contains secret information.
+Use constantes nomeadas sempre que elas aumentarem a legibilidade. Você pode usar o modificador `public`
+se quiser que todas as classes tenham acesso à sua constante
+(`Gravity.G` é um bom exemplo). Você pode usar o modificador `private` se
+quiser que a constante seja acessível apenas dentro da sua classe, se ela não tiver
+utilidade fora dela ou se contiver informações confidenciais.
 
-=== Examples: Defining methods
 
-Any large problem should be broken down into methods. Because the
-technique is useful in so many circumstances, it's difficult to give a
-set of examples that covers all cases. Instead, our examples are
-short, easy to understand methods, focusing on Euclidean distance,
-testing for palindromes, and converting a `String` representation of an
-`int` to an `int`.
+=== Exemplos: Definindo métodos
 
-.Euclidean distance
+Qualquer problema complexo deve ser dividido em métodos. Como essa
+técnica é útil em tantas circunstâncias, é difícil apresentar um
+conjunto de exemplos que abranja todos os casos. Em vez disso, nossos exemplos são
+métodos curtos e fáceis de entender, com foco na distância euclidiana,
+na verificação de palíndromos e na conversão de uma representação `String` de um
+`int` para um `int`.
+
+.Distância Euclidiana
 ====
 
-The Euclidean distance between two points is the length of a straight
-line connecting them. It plays an important role in 3D graphics and
-games and is the basis for many other practical applications involving
-spatial relationships.
+A distância Euclidiana entre dois pontos é o comprimento da reta
+que os une. Ela desempenha um papel importante em gráficos 3D e
+jogos e é a base para muitas outras aplicações práticas que envolvem
+relações espaciais.
 
-Given two points in 3D space (_x_~1~, _y_~1~, _z_~1~) and
-(_x_~2~, _y_~2~, _z_~2~), we can compute the Euclidean distance between them with the following
-equation.
+Dados dois pontos no espaço 3D (_x_~1~, _y_~1~, _z_~1~) e
+(_x_~2~, _y_~2~, _z_~2~), podemos calcular a distância Euclidiana entre eles com a seguinte
+equação.
 
 //[stem]
 //****
@@ -672,42 +674,44 @@ equation.
 [.text-center]
 image::distance.svg[scaledwidth=55%,pdfwidth=55%,width=55%]
 
-The method below applies this equation directly.
+O método abaixo aplica essa equação diretamente.
 
 [source,java]
 ----
 public static double distance(double x1, double y1, double z1,
-						double x2, double y2, double z2) {
+double x2, double y2, double z2) {
     double x = x1 - x2;
-    double y = y1 - y2;
+    
+double y = y1 - y2;
     double z = z1 - z2;
     return Math.sqrt(x*x + y*y + z*z);
 }
 ----
 
-This equation is a good candidate for a static method since it might be
-necessary to do this calculation many times and it does not depend on
-any other variables or program state.
+Essa equação é uma boa candidata a um método estático, já que pode ser
+necessário fazer esse cálculo várias vezes e ela não depende de
+nenhuma outra variável ou do estado do programa.
 ====
 
 [[palindromeTestingExample]]
-.Palindrome testing
+.Teste de palíndromos
 ====
 
-A palindrome is a word or phrase (or even a number) that's the same
-spelled forward and backward. "`Racecar,`" "`Madam, I'm Adam,`" and
-"`Satan, oscillate my metallic sonatas`" are examples in English.
-Typically, spaces and punctuation are ignored. We're going to write a
-function that, given a `String`, returns `true` if it's a palindrome
-and `false` otherwise. To simplify the problem, we're *not* going to
-ignore spaces and punctuation. Thus, with our method, "`racecar`" counts
-as a palindrome, but neither of the other two examples would.
+Um palíndromo é uma palavra ou frase (ou até mesmo um número) que é igual
+quando lida para frente e para trás. “`Arara,`”, “`"A dama amada,`” e
+“`Socorram-me, subi no ônibus em Marrocos!`” são exemplos em português.
+Normalmente, espaços e sinais de pontuação são ignorados. Vamos escrever uma
+função que, dada uma `String`, retorne `true` se for um palíndromo
+e `false` caso contrário. Para simplificar o problema, *não* vamos
+ignorar espaços e sinais de pontuação. Assim, com nosso método, “`arara`” conta
+como um palíndromo, mas nenhum dos outros dois exemplos seria considerado como tal.
 
 [source,java]
 ----
 public static boolean isPalindrome(String text) { // <.>
     text = text.toLowerCase(); // <.>
-    for (int i = 0; i < text.length() / 2; ++i) { // <.>
+    
+for (int i = 0; i < text.length() / 2; ++i) { // <.>
         if (text.charAt(i) != text.charAt(text.length() - i - 1)) { // <.>
             return false;
         }
@@ -715,23 +719,25 @@ public static boolean isPalindrome(String text) { // <.>
     return true;
 }
 ----
-<.> Because our method returns `true` or `false`, its return type must be
-`boolean`. Many methods that return a `boolean` value have a name
-starting with `is`, like our method.
-<.> The first line of the body of our
-method changes `text` to lowercase. The `String` method `toLowerCase()`
-creates a lowercase copy of the `String` it's called on, in this case
-`text`. Then, we point the reference variable `text` at that new,
-lowercase `String`. On the outside of this function, the `String` passed in
-does not change because the reference `text` is passed by value.
-<.> The loop iterates through the first half of `text`, comparing it to the
-second half. This loop reflects the asymmetry of these kinds of tests:
-You can't be sure that `text` is a palindrome until you've checked the
-entire thing, but you immediately know that it's not if even a single
-pair of characters doesn't match.
-<.> If the test in that `if` statement
-ever shows that the two `char` values aren't equal, the `return false`
-statement jumps out of the method without completing the loop.
+<.> Como nosso método retorna `true` ou `false`, seu tipo de retorno deve ser
+`boolean`. Muitos métodos que retornam um valor `boolean` têm um nome
+que começa com `is`, como o nosso método.
+<.> A primeira linha do corpo do nosso
+método transforma `text` em letras minúsculas.
+ 
+O método `toLowerCase()` da classe `String`
+cria uma cópia em letras minúsculas da `String` na qual é chamado, neste caso
+`text`. Em seguida, atribuímos à variável de referência `text` essa nova
+`String` em letras minúsculas. Fora desta função, a `String` passada como parâmetro
+não se altera, pois a referência `text` é passada por valor.
+<.> O loop percorre a primeira metade de `text`, comparando-a com a
+segunda metade. Esse loop reflete a assimetria desse tipo de teste:
+não é possível ter certeza de que `text` é um palíndromo até que se verifique
+o texto inteiro, mas sabe-se imediatamente que não é, caso mesmo que um único
+par de caracteres não coincida.
+<.> Se o teste na instrução `if`
+mostrar que os dois valores `char` não são iguais, a instrução `return false`
+sai do método sem concluir o loop.
 ====
 
 ****
@@ -739,41 +745,44 @@ statement jumps out of the method without completing the loop.
 ****
 
 [[parsingANumberExample]]
-.Parsing a number
+.Analisando um número
 ====
 
-When you read in a number using an object of the `Scanner` class, it
-converts (or _parses_) the text entered by the user into the appropriate
-type. For example, the `nextDouble()` method reads in some text and
-convert it into a `double`. When you use a `JOptionPane` method to read
-in input, it comes in as a `String`. If you want to use that data as a
-`double`, you must convert it using the `Double.parseDouble()` static
-method. Some Java programmer had to write this method. We're going to
-recreate a similar method to convert the `String` representation of a
-floating-point number into a `double`. Our simple method ignores
-scientific notation.
+Quando você lê um número usando um objeto da classe `Scanner`, ele
+converte (ou _analisa_) o texto digitado pelo usuário no tipo apropriado
+. Por exemplo, o método `nextDouble()` lê um texto e
+o converte em um `double`. Quando você usa um método do `JOptionPane` para ler
+uma entrada, ela chega como uma `String`. Se você quiser usar esses dados como um
+`double`, você deve convertê-lo usando o método estático `Double.parseDouble()`
+. Algum programador Java teve que escrever esse método. Vamos
+recriar um método semelhante para converter a representação `String` de um
+número de ponto flutuante em um `double`. Nosso método simples ignora
+a notação científica.
 
 [source,java]
 ----
 public static double parseDouble(String value) {
-    int i = 0;
+    
+int i = 0;
     boolean negative = false;
     double temp = 0.0;
     double fraction = 10.0;
-    if (value.charAt(i) == '-') { // <.>
+    if (value.charAt(i) == ‘-’) { // <.>
         negative = true;
         ++i;
-    } else if (value.charAt(i) == '+') {
+    } else if (value.charAt(i) == ‘+’) {
         ++i;
     }
-    while (i < value.length() && value.charAt(i) != '.') { // <.>
+    
+while (i < value.length() && value.charAt(i) != ‘.’) { // <.>
         temp *= 10.0;
-        temp += value.charAt(i) - '0';
+        temp += value.charAt(i) - ‘0’;
         ++i;
     }
-    ++i; // Move past decimal point (if there) <.>
-    while (i < value.length()) { // <.>
-        temp += (value.charAt(i) - '0') / fraction;
+    ++i; // Passar pela casa decimal (se houver) <.>
+    
+while (i < value.length()) { // <.>
+        temp += (value.charAt(i) - ‘0’) / fraction;
         fraction *= 10.0;
         ++i;
     }
@@ -783,216 +792,222 @@ public static double parseDouble(String value) {
     return temp;
 }
 ----
-<.> After declaring a few variables, this method first checks index `0` in
-the input `String` `value` to see if it is a `'-'` or a `'+++'`. If it is
-a `'-'`, it sets `negative` to `true` and moves on. If it is a `'+'`, it
-simply moves on.
-<.> Then, the method loops through `value` until it reaches
-the end or reaches a decimal point. As it iterates, it multiplies the
-current value of `temp` by `10.0` and adds in the next digit from `value`
-(after subtracting `'0'` so that the range is is from 0 to 9). This
-repetitive multiplication by `10.0` accounts for the increasing powers of 10
-in the base 10 number system. Since `temp` starts with a value of `0.0`,
-the first multiplication has no effect, as intended.
-<.> After the first `while` loop, the index `i` is incremented once, to skip
-the decimal point, if there is one. If there is no decimal point, the
-loop must have exited because the end of `value` had been reached.
-<.> The second `while` loop runs to the end of `value`, this time adding in each
-digit value divided by `fraction`, which is increased by a factor of `10.0`
-each time. Doing so allows us to add smaller and smaller fractional
-digits to the total.
-<.> We set `temp` to its opposite if the flag
-`negative` was set earlier and finally return `temp`.
+<.> Após declarar algumas variáveis, este método verifica primeiro o índice `0` na
+`String` de entrada `value` para ver se é um `‘-’` ou um `‘+’`. Se for
+um `‘-’`, ele define `negative` como `true` e segue em frente. Se for um `‘+’`, ele
+simplesmente segue em frente.
+<.> Em seguida, o método percorre `value` até chegar
+ao fim ou encontrar um ponto decimal. À medida que itera, ele multiplica o
+valor atual de `temp` por `10.0` e soma o próximo dígito de `value`
+(após subtrair `‘0’` para que o intervalo fique entre 0 e 9).
+ 
+Essa
+multiplicação repetitiva por `10.0` representa as potências crescentes de 10
+no sistema numérico de base 10. Como `temp` começa com o valor `0.0`,
+a primeira multiplicação não tem efeito, conforme pretendido.
+<.> Após o primeiro laço `while`, o índice `i` é incrementado uma vez, para pular
+a vírgula decimal, se houver. Se não houver ponto decimal, o
+laço deve ter sido encerrado porque o fim de `value` foi alcançado.
+<.> O segundo laço `while` é executado até o fim de `value`, desta vez somando a cada vez
+o valor de cada dígito dividido por `fraction`, que é aumentado por um fator de `10.0`
+a cada vez. Isso nos permite somar dígitos fracionários cada vez menores
+ao total.
+<.> Definimos `temp` como seu oposto se o sinalizador
+`negative` tiver sido definido anteriormente e, por fim, retornamos `temp`.
 
-Note that the real `Double.parseDouble()` method not only
-accepts `String` values in scientific notation but also does a great
-deal of error checking. Our code either crashes or gives inaccurate
-results on an empty `String`, a `String` containing non-numerical
-characters, or a `String` with more than one decimal point. Furthermore,
-this code does not use the best approach for minimizing floating-point
-precision errors.
+Observe que o método real `Double.parseDouble()` não apenas
+aceita valores `String` em notação científica, mas também realiza uma grande
+quantidade de verificações de erros. Nosso código trava ou apresenta 
+resultados imprecisos ao receber uma `String` vazia, uma `String` contendo caracteres não numéricos
+ou uma `String` com mais de um ponto decimal. Além disso,
+esse código não utiliza a melhor abordagem para minimizar
+erros de precisão de ponto flutuante.
 ====
 
 ****
 <<scientificNotationExercise>>
 ****
 
-=== Solution: Three card poker
+=== Solução: Pôquer de três cartas
 
-Here we present our solution to the three card poker problem. We explain
-each method individually.
-
-[source, java]
-----
-include::{programsdir}/ThreeCardPoker.java[lines=1..11]
-----
-<.> Before our `main()` method begins, we declare a number of
-class constants. Two constant arrays of `String` values provide us with
-an easy way to represent suits and ranks.
-<.> The remaining six `int`
-constants are used to allocate a winning payoff to each possible
-outcome.
-
-Note that these constants can be declared anywhere inside the
-class, provided that they're outside of methods. However, it's
-typical (and good style) to declare them at the top of the class.
+Aqui apresentamos nossa solução para o problema do pôquer de três cartas. Explicamos
+cada método individualmente.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=13..32]
+include::{programsdir}/ThreeCardPoker.java[linhas=1..11]
 ----
-<.> In the `main()` method, an array representing a deck of 52 cards is
-created first, followed by an array representing the 3 cards to be
-dealt.
-<.> The deck is filled sequentially and then shuffled with a method.
-<.> Next, the first 3 cards of the deck are copied into the array
-representing the hand of cards.
-<.> The score of the hand is determined, and
-then the hand is printed out. We print the hand after determining the
-score because the hand is sorted in the process of determining the
-score, making the output easier to read. 
-<.> Finally, we print the
-appropriate output, depending on the score.
+<.> Antes do início do nosso método `main()`, declaramos várias
+constantes de classe. Dois vetores constantes de valores `String` nos fornecem
+uma maneira fácil de representar naipes e valores das cartas.
+<.> As seis constantes `int`
+restantes são usadas para atribuir um prêmio a cada possível
+resultado.
+
+Observe que essas constantes podem ser declaradas em qualquer lugar dentro da
+classe, desde que estejam fora dos métodos. No entanto, é
+comum (e boa prática) declará-las no início da classe.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=34..42]
+include::{programsdir}/ThreeCardPoker.java[linhas=13..32]
 ----
-
-This method shuffles the deck. Its approach is to swap the first element
-in the array of cards with one of the elements that follow, chosen
-randomly. Then, it swaps the second element in the array with any of the
-elements that follow it, and so on. If `Math.random()` truly gives us a
-uniformly generated random number in the range [0,1), the
-final shuffled deck should be any one of the 52! possible
-decks with equal probability.
+<.> No método `main()`, é criado primeiro um vetor que representa um baralho de 52 cartas,
+seguido por um vetor que representa as 3 cartas a serem
+distribuídas.
+<.> O baralho é preenchido sequencialmente e, em seguida, embaralhado por meio de um método.
+<.> Em seguida, as três primeiras cartas do baralho são copiadas para a matriz
+que representa a mão de cartas.
+<.> A pontuação da mão é determinada e
+, em seguida, a mão é exibida. Exibimos a mão após determinar a
+pontuação porque ela é ordenada durante o processo de determinação da
+pontuação, tornando a saída mais fácil de ler.
+ 
+<.> Por fim, imprimimos a
+saída apropriada, dependendo da pontuação.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=44..52]
+include::{programsdir}/ThreeCardPoker.java[linhas=34..42]
 ----
-<.> The first of these methods prints out a human readable version of each
-card in an array (instead of 0 - 51). It does so using the second and
-third methods as helper methods.
-<.> Method `getRank()` computes the rank of
-a card from its number. 
-<.> Method `getSuit()` computes the suit of a
-card from its number.
 
-The indexes obtained from these methods are used
-to index into the `RANKS` and `SUITS` arrays.
-
-In the C language, calling the equivalent of a method from a method defined earlier
-requires a special declaration step called _prototyping_ before both
-methods. Java does not have this complication, and the `getRank()` and
-`getSuit()` methods compile and function perfectly if they are written
-above `print()` or below it inside the class definition.
+Este método embaralha o baralho. Sua abordagem consiste em trocar o primeiro elemento
+do vetor de cartas por um dos elementos seguintes, escolhido
+aleatoriamente. Em seguida, ele troca o segundo elemento do vetor por qualquer um dos
+elementos que o seguem, e assim por diante. Se `Math.random()` realmente nos fornecer um
+número aleatório gerado uniformemente no intervalo [0,1), o
+baralho final embaralhado deverá ser qualquer um dos 52! baralhos possíveis
+com igual probabilidade.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=54..69]
+include::{programsdir}/ThreeCardPoker.java[linhas=44..52]
 ----
+<.> O primeiro desses métodos imprime uma versão legível por humanos de cada
+carta em um vetor (em vez de 0 - 51). Ele faz isso usando o segundo e
+o terceiro métodos como métodos auxiliares.
+<.> O método `getRank()` calcula o valor de
+uma carta a partir de seu número. 
+<.> O método `getSuit()` calcula o naipe de uma
+carta a partir de seu número.
 
-This method computes the score by first sorting the hand and then
-testing progressively worse outcomes, starting with the best, a straight
-flush. As it moves down the list of outcomes, it calls appropriate
-methods to determine if a hand has a certain characteristic.
+Os índices obtidos desses métodos são usados
+para acessar as matrizes `RANKS` e `SUITS`.
+
+Na linguagem C, chamar o equivalente a um método a partir de um método definido anteriormente
+requer uma etapa especial de declaração chamada _prototipagem_ antes de ambos os
+métodos. Java não apresenta essa complicação, e os métodos `getRank()` e
+`getSuit()` compilam e funcionam perfeitamente se forem escritos
+acima de `print()` ou abaixo dele dentro da definição da classe.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=71..84]
+include::{programsdir}/ThreeCardPoker.java[linhas=54..69]
 ----
 
-
-This code is an implementation of selection sort packaged into a method.
-Note that this method *does* change the values inside of the
-array `hand` even though it cannot change the array that `hand` points
-to. The array itself is passed by value, but its contents are
-effectively passed by reference.
+Este método calcula a pontuação primeiro classificando a mão e, em seguida,
+testando resultados progressivamente piores, começando pelo melhor, um
+straight flush. À medida que avança na lista de resultados, ele chama os
+métodos apropriados para determinar se uma mão possui uma determinada característica.
 
 [source, java]
 ----
-include::{programsdir}/ThreeCardPoker.java[lines=86..107]
+include::{programsdir}/ThreeCardPoker.java[linhas=71..84]
 ----
-<.> The code in `hasPair()` works by
-checking to see if the first and second or second and third cards have
-the same rank.  An extra condition would be required if the cards weren't sorted.
-<.> The code in `hasThree()` checks to see if all the ranks
-are the same.
-<.> The code in `hasFlush()` is the same as `hasThree()`
-except that it checks for suit instead of rank.
-<.> Finally, `hasStraight()`
-checks to see if the ranks come one after the other, with an extra
-case to deal with the possibility of the ace counting as low.
-This test only works because the cards were sorted previously.
 
-These four methods would be similar but more complex for five- or
-seven-card poker hands.
 
-=== Concurrency: Methods
+Este código é uma implementação da ordenação por seleção encapsulada em um método.
+Observe que este método *altera* os valores dentro do vetor `hand`, embora não possa alterar o vetor para o qual `hand` aponta.
+ 
+O vetor em si é passado por valor, mas seu conteúdo é
+efetivamente passado por referência.
 
-In Java, it's impossible to have concurrency without methods. Methods
-are the way we break a large program into manageable pieces but are also
-part of the syntax that Java uses to create threads of execution. Each
-thread of execution is associated with a `Thread` object; however, creating
-the object is not enough to start a new thread of execution running.
-Only when the `start()` method is called on the `Thread` object does the
-new thread start running.
+[source, java]
+----
+include::{programsdir}/ThreeCardPoker.java[linhas=86..107]
+----
+<.> O código em `hasPair()` funciona
+verificando se a primeira e a segunda ou a segunda e a terceira cartas têm
+o mesmo valor. 
 
-Hopefully, you've begun to visualize the execution of Java programs as
-an arrow that sits next to each line of code as it's executed. This
-arrow can jump to a choice and skip over other code using `if` and
-`switch` statements. Using loops, the arrow can jump backward and
-repeatedly execute code it's just executed. As we discussed in
-this chapter, the arrow can jump into a method, execute the code in that
-method, and then return to its caller, going back right to where it left
-off before the call.
 
-When the `start()` method is called on a `Thread` object, however, the
-arrow returns to the caller, but it also splits itself into a second
-arrow that then executes the corresponding `run()` method and any other
-methods it calls. Note that we're talking about a method called on a
-`Thread` object, not a static method called on the class as a whole.
-Calling `start()` is an instance method, which we discuss in
-<<classes#classes>>. Unlike the static methods in this chapter,
-an instance method is tied to a particular object, but
-most of what you've learned about methods still applies.
+Seria necessária uma condição adicional se as cartas não estivessem ordenadas.
+<.> O código em `hasThree()` verifica se todos os valores
+são iguais.
+<.> O código em `hasFlush()` é igual ao de `hasThree()`
+exceto que ele verifica o naipe em vez do valor.
+<.> Por fim, `hasStraight()`
+verifica se os valores vêm em sequência, com um
+caso adicional para lidar com a possibilidade de o ás ser considerado como o valor mais baixo.
+Esse teste só funciona porque as cartas foram classificadas anteriormente.
 
-Methods are supposed to make programming easier by breaking programs
-into chunks small enough to think about. One of the only real dangers of
-methods is using class variables, as mentioned in
-<<Class variables>>. This problem becomes worse with
-multiple threads. With a single thread, two or more different methods
-can all affect the same class variable, perhaps in conflicting ways.
-With multiple threads, even the *same* method can interfere with itself.
+Esses quatro métodos seriam semelhantes, mas mais complexos, para mãos de pôquer de cinco ou
+sete cartas.
 
-.LCG without thread safety
+=== Concorrência: Métodos
+
+Em Java, é impossível ter concorrência sem métodos. Os métodos
+são a maneira pela qual dividimos um programa grande em partes gerenciáveis, mas também fazem
+parte da sintaxe que o Java usa para criar threads de execução. Cada
+thread de execução está associada a um objeto `Thread`; no entanto, criar
+o objeto não é suficiente para iniciar a execução de uma nova thread.
+Somente quando o método `start()` é chamado no objeto `Thread` é que a
+nova thread começa a ser executada.
+
+Espero que você já tenha começado a visualizar a execução de programas Java como
+uma seta que fica ao lado de cada linha de código à medida que ela é executada. Essa
+seta pode pular para uma opção e ignorar outro código usando as instruções `if` e
+`switch`. Usando laços, a seta pode saltar para trás e
+executar repetidamente o código que acabou de ser executado. Conforme discutimos neste
+capítulo, a seta pode saltar para dentro de um método, executar o código nesse
+método e, em seguida, retornar ao seu chamador, voltando exatamente para onde havia parado
+antes da chamada.
+
+Quando o método `start()` é chamado em um objeto `Thread`, no entanto, a
+seta retorna ao chamador, mas também se divide em uma segunda
+seta que, então, executa o método `run()` correspondente e quaisquer outros
+métodos que ele chame. Observe que estamos falando de um método chamado em um
+objeto `Thread`, não de um método estático chamado na classe como um todo.
+Chamar `start()` é um método de instância, o qual discutimos em
+<<classes#classes>>. Ao contrário dos métodos estáticos deste capítulo,
+um método de instância está vinculado a um objeto específico, mas
+a maior parte do que você aprendeu sobre métodos ainda se aplica.
+
+Os métodos têm como objetivo facilitar a programação, dividindo os programas
+em partes pequenas o suficiente para serem compreendidas. Um dos únicos perigos reais dos
+métodos é o uso de variáveis de classe, conforme mencionado em
+<<Variáveis de classe>>. Esse problema se agrava com
+múltiplas threads. Com uma única thread, dois ou mais métodos diferentes
+podem afetar a mesma variável de classe, talvez de maneiras conflitantes.
+Com múltiplas threads, até mesmo o *mesmo* método pode interferir consigo mesmo.
+
+.LCG sem segurança de thread
 ====
 
-A linear congruential generator (LCG) allows you to create a sequence of
-pseudorandom numbers using the equation
-_x_~i~ = (_ax_~_i_-1~ + _b_) mod _m_, deriving the next number from the
-previous one, and so on.
+Um gerador congruencial linear (LCG) permite criar uma sequência de
+números pseudoaleatórios usando a equação
+_x_~i~ = (_ax_~_i_-1~ + _b_) mod _m_, derivando o próximo número do
+anterior, e assim por diante.
 
-.Implements an LCG similar to one sometimes used in the function `rand()` used in the C language.
+.Implementa um LCG semelhante ao usado, por vezes, na função `rand()` da linguagem C.
 [source, java]
 [[UnsafeRandomProgram]]
 ----
 include::{programsdir}/UnsafeRandom.java[]
 ----
 
-The `UnsafeRandom` program listed above always generates the same
-sequence of pseudorandom numbers, which can be useful for debugging
-a program. However, if two or more threads call `nextInt()`, they'll
-probably get different sequences. One thread will pick up some of
-the numbers, and the other will pick up the missing numbers in between. If
-each thread wants to generate the same sequence of numbers, the method
-should be rewritten so that it takes in the *previous* number in the
-sequence. In that way, there's no shared state. Remember that using a
-(non-final) class variable should be avoided whenever
-possible.
+O programa `UnsafeRandom` listado acima sempre gera a mesma
+sequência de números pseudoaleatórios, o que pode ser útil para depurar
+um programa. No entanto, se duas ou mais threads chamarem `nextInt()`, elas
+provavelmente obterão sequências diferentes. Uma thread selecionará alguns dos
+números, e a outra selecionará os números que faltam entre eles. Se
+cada thread quiser gerar a mesma sequência de números, o método
+deve ser reescrito para que receba o número *anterior* da
+sequência. Dessa forma, não há estado compartilhado. Lembre-se de que o uso de uma
+variável de classe (não final) deve ser evitado sempre que
+possível.
 
-.Implements the same LCG safely by requiring the caller to supply the previous random number.
+.Implementa o mesmo LCG com segurança, exigindo que o chamador forneça o número aleatório anterior.
 [source, java]
 [[SafeRandomProgram]]
 ----
@@ -1001,40 +1016,40 @@ include::{programsdir}/SafeRandom.java[]
 
 ====
 
-.Unpredictable methods
+.Métodos imprevisíveis
 ====
 
-By forcing each thread to carry its own state, we fixed the previous
-problem. In <<synchronization#synchronization>> we'll talk about the much
-nastier problem of two threads executing a method at exactly the same
-time. When that happens, very curious effects are possible. Consider the
-following program.
+Ao forçar cada thread a manter seu próprio estado, corrigimos o problema anterior
+. Em <<sincronização#sincronização>>, falaremos sobre o problema muito
+mais complicado de duas threads executando um método exatamente ao mesmo
+tempo. Quando isso acontece, efeitos muito curiosos podem ocorrer. Considere o
+programa a seguir.
 
-.The `print()` method always prints `"Even"` when run with a single thread but can sometimes print `"Odd"` if called repeatedly with multiple threads.
+.O método `print()` sempre imprime `“Even”` quando executado com uma única thread, mas às vezes pode imprimir `“Odd”` se for chamado repetidamente com várias threads.
 [source, java]
 [[AlwaysEvenProgram]]
 ----
 include::{programsdir}/AlwaysEven.java[]
 ----
-<.> With a single thread running, `value` always goes up to an even number
-before printing.
-<.> Afterward, it increments to the next odd number.
+<.> Com uma única thread em execução, `value` sempre chega a um número par
+antes de ser impresso.
+<.> Depois disso, ele é incrementado para o próximo número ímpar.
 
-If two or more threads call the `print()` method, `value` could
-be changed by one right before the other executes the `if` statements.
+Se duas ou mais threads chamarem o método `print()`, `value` pode
+ser alterado em um valor logo antes de a outra thread executar as instruções `if`.
 ====
 
-=== Exercises
-*Conceptual Problems*
+=== Exercícios
+*Problemas conceituais*
 
-. Describe three advantages of dividing long segments of code into
-static methods.
-. Can you think of any disadvantages of dividing code into methods?
-Are there situations in which using a method is unwise?
-. If you wanted to declare a static method that would compute the
-mean, median, and standard deviation of an input array of `double`
-values, how would you return those three answers?
-. Consider the following method definition.
+. Descreva três vantagens de dividir longos segmentos de código em
+métodos estáticos.
+. Você consegue pensar em alguma desvantagem de dividir o código em métodos?
+Existem situações em que o uso de um método não é aconselhável?
+. Se você quisesse declarar um método estático que calculasse a
+média, a mediana e o desvio padrão de um vetor de entrada com valores do tipo `double`
+, como você retornaria esses três resultados?
+. Considere a seguinte definição de método.
 +
 [source,java]
 ----
@@ -1043,7 +1058,7 @@ public static void twice(int i) {
 }
 ----
 +
-How many times does the following loop run, and why?
+Quantas vezes o laço a seguir é executado e por quê?
 +
 [source,java]
 ----
@@ -1052,7 +1067,7 @@ while (x < 128) {
     twice(x);
 }
 ----
-. Consider the following signatures of two overloaded methods.
+. Considere as seguintes assinaturas de dois métodos sobrecarregados.
 +
 [source,java]
 ----
@@ -1060,73 +1075,74 @@ public static int magic(int rabbit, double hat)
 public static int magic(double wand, int spell)
 ----
 +
-Which method would be invoked by the following call?
+Qual método seria invocado pela seguinte chamada?
 +
 [source,java]
 ----
 int x = magic(3, 16);
 ----
 +
-What about the following?
+E quanto ao seguinte?
 +
 [source,java]
 ----
 int y = magic(3.2, 16.4);
 ----
 +
-Use a compiler to check your answers.
-. The following class generates a sequence of even numbers. Each time
-the `next()` method is called, the next even number in the sequence is
-returned. What's the design problem with using a static field to keep
-track of the next value in the sequence?
+Use um compilador para verificar suas respostas.
+. A classe a seguir gera uma sequência de números pares. Cada vez que
+o método `next()` é chamado, o próximo número par da sequência é
+retornado. Qual é o problema de design em usar um campo estático para manter
+o controle do próximo valor da sequência?
 +
 [source,java]
 ----
 public class EvenNumbers {
     private static int counter = 0;
 
-    public static int next() {
+    
+public static int next() {
         counter += 2;
         return counter;
     }
 }
 ----
 
-*Programming Practice*
+*Exercício de Programação*
 
-. Write a static method called `cube()` that takes a single `double`
-value as a parameter and returns its value cubed. Do not use the
-`Math.pow()` method.
-. Implement a static method that takes a single `int` value as a
-parameter and prints its digits in reverse. For example, if `103` was
-passed into this method, it would print `301` to the screen.
+. Escreva um método estático chamado `cube()` que receba um único valor `double`
+como parâmetro e retorne seu valor elevado ao cubo. Não use o
+método `Math.pow()`.
+. Implemente um método estático que receba um único valor `int` como
+parâmetro e imprima seus dígitos na ordem inversa. Por exemplo, se `103` fosse
+passado para esse método, ele imprimiria `301` na tela.
 +
-You can find out what digit is in the ones place of a number by taking
-its remainder modulus 10. Then, you can remove the digit in the ones
-place by dividing by 10. Do not convert the `int` value into a `String`.
-.  Write a static method that takes an array of `int` values as a
-parameter and returns `true` if the array is in ascending order and
-`false` otherwise. Compare each element of the array to the next element
-of the array. If the current element is ever larger than the next
-element, the array is not sorted in ascending order. Note that you can
-only be sure that the array is in ascending order after you have checked
-all neighboring pairs.
-. Write a static method that finds the
-⌊log~2~ _n_⌋  of an integer _n_.
-Note that if log~2~ _n_ = _x_, it's also true that
-_n_ = 2^_x_^. In other words, the log~2~ operator
-tells you what power of 2 a number is. One way to define
-the log~2~ _n_ is the number of times you have to divide
-_n_ by 2 to get 1. Use this
-definition to make a loop that finds the value without using any calls
-to the `Math` library.
+Você pode descobrir qual dígito está na casa das unidades de um número calculando
+seu resto na divisão por 10. Em seguida, você pode remover o dígito na
+casa das unidades dividindo por 10. Não converta o valor `int` em uma `String`.
+. Escreva um método estático que receba uma matriz de valores `int` como
+parâmetro e retorne `true` se a matriz estiver em ordem crescente e
+`false` caso contrário. Compare cada elemento da matriz com o próximo elemento
+da matriz. Se o elemento atual for maior que o próximo
+elemento, a matriz não está ordenada em ordem crescente. Observe que você só pode
+ter certeza de que a matriz está em ordem crescente depois de ter verificado
+todos os pares vizinhos.
+. Escreva um método estático que calcule o
+⌊log~2~ _n_⌋ de um inteiro _n_.
+Observe que, se log~2~ _n_ = _x_, também é verdade que
+_n_ = 2^_x_^. Em outras palavras, o operador log~2~
+indica qual é a potência de 2 de um número. Uma maneira de definir
+o log~2~ _n_ é o número de vezes que você precisa dividir
+_n_ por 2 para obter 1. Use essa
+definição para criar um loop que calcule o valor sem usar nenhuma chamada
+à biblioteca `Math`.
 +
-Here are some examples of the return values your method should give for
-various input values of _n_.
+Aqui estão alguns exemplos dos valores de retorno que seu método deve retornar para
+vários valores de entrada de _n_.
 +
-[.center%autowidth%unbreakable,cols="5*^"]
+[.center%autowidth%unbreakable,cols=“5*^”]
 |=============================
-|_n_ |Return Value | |_n_ |Return Value
+|_n_ |Valor de retorno | |_n_ |Valor de retorno
 
 |1 |0 | |16 |4
 |2 |1 | |100 |6
@@ -1134,81 +1150,81 @@ various input values of _n_.
 |8 |3 | |1000 |9
 |10 |3 | |1024 |10
 |=============================
-. [[palindromeExercise]] Write a method that tests palindromes like
-the method from <<palindromeTestingExample>> but also ignores
-punctuation and spaces. Thus, `"A man, a plan, a canal: Panama"` should
-be counted as a palindrome by this new method.
-. [[scientificNotationExercise]] Add to the `parseDouble()` method from
-<<parsingANumberExample>> so that it can also handle numbers in standard Java
-scientific notation, such as `7.239e-14`.  Note that the `e` can be uppercase
-or lowercase, and the exponent can begin with a minus sign (`-`), a plus sign (`+`),
-or neither.
-. Re-implement the solution from <<Solution: Three card poker>>
-so that it uses a GUI constructed with `JOptionPane` to display the hand
-and the winnings.
-. Five card poker is a much more common version of poker than the
-three card version we discussed in <<Problem: Three card poker>>.
-Using static methods, implement a two-player game of poker in which the
-deck is shuffled and then dealt into two hands of five cards each. Then,
-state which player's hand wins. With five cards, determining which hand
-wins is a more complicated process. The rankings of the various possible
-hands from best to worst are as follows.
+. [[palindromeExercise]] Escreva um método que verifique palíndromos como
+o método de <<palindromeTestingExample>>, mas que também ignore
+sinais de pontuação e espaços. Assim, `“Aí, Lima falou: “Olá, família!”` deve
+ser considerado um palíndromo por esse novo método.
+. [[scientificNotationExercise]] Adicione ao método `parseDouble()` de
+<<parsingANumberExample>> de modo que ele também possa lidar com números na notação científica padrão do Java
+, como `7.239e-14`. Observe que o `e` pode estar em maiúscula
+ou minúscula, e o expoente pode começar com um sinal de menos (`-`), um sinal de mais (`+`),
+ou nenhum dos dois.
+. Reimplemente a solução de <<Solução: Pôquer de três cartas>>
+de modo que ela utilize uma interface gráfica (GUI) construída com `JOptionPane` para exibir a mão
+e os ganhos.
+. O pôquer de cinco cartas é uma versão muito mais comum do pôquer do que a
+versão de três cartas que discutimos em <<Problema: Pôquer de três cartas>>.
+Usando métodos estáticos, implemente um jogo de pôquer para dois jogadores no qual o
+baralho é embaralhado e, em seguida, distribuído em duas mãos de cinco cartas cada. Em seguida,
+indique qual mão do jogador vence. Com cinco cartas, determinar qual mão
+vence é um processo mais complicado. A classificação das várias 
+mãos possíveis, da melhor à pior, é a seguinte.
 Straight Flush:::
-All five cards belong to the same suit and have ranks in sequential
-order (with either ace high or low). If two people both have straight
-flushes, the higher ranked one wins. If they both have the same ranks,
-it is a tie.
-Four of a Kind:::
-Four of the five cards have the same rank. If two people have four
-of a kind, the higher rank set of four wins.
+Todas as cinco cartas pertencem ao mesmo naipe e têm valores em ordem sequencial
+(com o ás podendo ser a carta mais alta ou mais baixa). Se dois jogadores tiverem straight
+flushes, vence aquele com a mão de maior valor. Se ambos tiverem o mesmo valor,
+é um empate.
+Quarteto:::
+Quatro das cinco cartas têm o mesmo valor. Se duas pessoas tiverem um
+quarteto, o conjunto de quatro com o valor mais alto vence.
 Full House:::
-Three of the five cards have the same rank and the other two share
-another rank. If two people have a full house, the higher ranked set of
-three wins.
+Três das cinco cartas têm o mesmo valor e as outras duas compartilham
+outro valor. Se duas pessoas tiverem um full house, o conjunto de
+três com o valor mais alto vence.
 Flush:::
-All five cards have the same suit. If two people have flushes, the
-one with the highest card wins. If the highest card is a tie, the next
-highest is the tie breaker, and so on. If the two flushes have exactly
-the same ranks, the two flushes tie.
-Straight:::
-All five cards have ranks in sequential order (with either ace high
-or low). If two people both have straight, the higher ranked one
-wins. If they both have the same ranks, it is a tie.
-Three of a Kind:::
-Three of the cards have the same rank. If two people have three of a
-kind, the higher ranked set of three wins.
-Two Pair:::
-A pair of cards have the same rank and another pair of cards share
-another rank. If two people both have two pairs, the higher ranked pair
-is a tiebreaker. If the higher ranked pair is the same, the lower ranked
-pair is a tiebreaker. If the lower ranked pair is the same, the final
-unpaired card is the tiebreaker. If all the ranks of both hands match,
-it is a tie.
-Pair:::
-A pair of cards has the same rank. If two people have pairs, the
-rank of the pair is a tiebreaker. If the pairs have the same rank, the
-remaining cards in each hand are tiebreakers, in descending rank order.
-High Card:::
-If none of the other cases hold, the high card determines the value
-of the hand. If two people have the same highest card, the remaining
-cards in each hand are used as tiebreakers, in descending rank order.
+Todas as cinco cartas têm o mesmo naipe. Se dois jogadores tiverem flushes, o
+que tiver a carta mais alta vence. Se a carta mais alta estiver empatada, a próxima
+mais alta decide o empate, e assim por diante. Se os dois flushes tiverem exatamente
+os mesmos valores, os dois flushes empatam.
+Sequência:::
+Todas as cinco cartas têm valores em ordem sequencial (com o Ás como carta mais alta
+ou mais baixa). Se dois jogadores tiverem sequência, a de valor mais alto
+vence. Se ambos tiverem os mesmos valores, há empate.
+Trinca:::
+Três das cartas têm o mesmo valor. Se dois jogadores tiverem três do
+mesmo valor, o conjunto de três com o valor mais alto vence.
+Dois pares:::
+Um par de cartas tem o mesmo valor e outro par de cartas tem
+outro valor. Se dois jogadores tiverem dois pares, o par de maior valor
+é o desempate. Se o par de maior valor for o mesmo, o par de menor valor
+é o desempate. Se o par de menor valor for o mesmo, a última
+carta não emparelhada é o desempate. Se todos os valores das duas mãos forem iguais,
+há empate.
+Par:::
+Um par de cartas tem o mesmo valor. Se dois jogadores tiverem pares, o
+valor do par serve como desempate. Se os pares tiverem o mesmo valor, as
+cartas restantes em cada mão servem como desempate, em ordem decrescente de valor.
+Carta mais alta:::
+Se nenhum dos outros casos se aplicar, a carta mais alta determina o valor
+da mão. Se duas pessoas tiverem a mesma carta mais alta, as cartas restantes
+em cada mão são usadas como critério de desempate, em ordem decrescente de valor.
 
-*Experiments*
+*Experimentos*
 
-. In terms of time, there's a small overhead associated with calling
-a method and returning a value, but it's very hard to measure. Write a
-program with two `int` variables, `a` and `b`, where `a` starts with a
-value of `1` and `b` starts with a value of `2`. Run a `for` loop
-100,000,000 times. On each iteration first increase the value of `a` by
-the value of `b` and then increase the value of `b` by `a`. Time this
-loop with `System.nanoTime()`, and then print out the time taken and the
-value of `a`. The value of `a` is not important, but the compiler will
-optimize away the math done with `a` and `b` unless we output the value.
-We recommend that you run this program repeatedly to get a sense of the
-average running time.
+. Em termos de tempo, há uma pequena sobrecarga associada à chamada
+de um método e ao retorno de um valor, mas é muito difícil de medir. Escreva um
+programa com duas variáveis `int`, `a` e `b`, em que `a` começa com um
+valor de `1` e `b` começa com um valor de `2`. Execute um loop `for`
+100.000.000 de vezes. Em cada iteração, primeiro aumente o valor de `a` em
+o valor de `b` e, em seguida, aumente o valor de `b` em `a`. Cronometre esse
+loop com `System.nanoTime()` e, em seguida, imprima o tempo gasto e o
+valor de `a`. O valor de `a` não é importante, mas o compilador irá
+otimizar as operações matemáticas feitas com `a` e `b`, a menos que imprimamos o valor.
+Recomendamos que você execute este programa repetidamente para ter uma noção do
+tempo médio de execução.
 +
-Now, instead of using the `+` operator to add `a` and `b`, use the
-following method.
+Agora, em vez de usar o operador `+` para somar `a` e `b`, use o
+método a seguir.
 +
 [source,java]
 ----
@@ -1217,11 +1233,11 @@ public static int add(int a, int b) {
 }
 ----
 +
-Again, run your program repeatedly with this modification. What's the
-difference in running time between the version that uses a method and
-the version that does addition directly?
+Mais uma vez, execute seu programa repetidamente com essa modificação. Qual é a
+diferença no tempo de execução entre a versão que usa um método e
+a versão que faz a soma diretamente?
 +
-Depending on your JVM, it's quite possible that there's almost no
-difference. The JVM does a lot of optimizations including _inlining_,
-which replaces a call to a short method with the actual code inside the
-method.
+Dependendo da sua JVM, é bem possível que quase não haja
+diferença. A JVM realiza muitas otimizações, incluindo _inlining_,
+que substitui uma chamada a um método curto pelo código real dentro do
+método.
