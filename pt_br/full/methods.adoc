@@ -177,10 +177,10 @@ simplesmente *fazer* algo.
 ==== Fluxo de controle
 
 Já discutimos instruções de seleção, como `if` e `switch`, bem
-como três estruturas de loop diferentes: `for`, `while` e `do`-`while`.
+como três estruturas de laço diferentes: `for`, `while` e `do`-`while`.
 Cada um desses recursos da linguagem Java é usado para o fluxo de controle. As
 instruções de seleção permitem que seu programa escolha qual código executar.
-Os loops permitem que seu código execute repetidamente determinado trecho de código. Os métodos
+Os laços permitem que seu código execute repetidamente determinado trecho de código. Os métodos
 também afetam o fluxo de controle. Quando um método é chamado, a execução do
 programa salta para dentro do método, realiza todo o trabalho necessário ali e
 depois retorna ao código que o chamou. Lembre-se do exemplo muito simples
@@ -197,7 +197,7 @@ código dentro do método `Math.sqrt()`. É necessária uma
 quantidade não trivial de trabalho para calcular a raiz quadrada de um número. Depois que
 esse cálculo é concluído, o fluxo de execução retorna à atribuição
 que ficou aguardando todo esse tempo. Assim como uma função matemática,
-podemos tratar a chamada de método `Math.sqrt(5)` como se ela tivesse sido “`magicamente`”
+podemos tratar a chamada de método `Math.sqrt(5)` como se ela tivesse sido "`magicamente`"
 substituída por um `double` que aproxima a raiz quadrada de 5.
 
 === Sintaxe: Métodos
@@ -311,12 +311,12 @@ Se parte dessa sintaxe parecer estranhamente familiar, lembre-se de que você
 já vem programando métodos estáticos desde o seu primeiro programa em Java. O
 método `main()` é apenas mais um método estático, especial apenas porque a
 JVM opta por iniciar a execução a partir dele. Vamos dar uma olhada no método `main()`
-de um programa padrão “Hello, World!”.
+de um programa padrão "Hello, World!".
 
 [source,java]
 ----
 public static void main(String[] args) {
-    System.out.println(“Hello, world!”);
+    System.out.println("Hello, world!");
     return;
 }
 ----
@@ -698,12 +698,12 @@ nenhuma outra variável ou do estado do programa.
 ====
 
 Um palíndromo é uma palavra ou frase (ou até mesmo um número) que é igual
-quando lida para frente e para trás. “`Arara,`”, “`"A dama amada,`” e
-“`Socorram-me, subi no ônibus em Marrocos!`” são exemplos em português.
+quando lida para frente e para trás. "`Arara,`", "`"A dama amada,`" e
+"`Socorram-me, subi no ônibus em Marrocos!`" são exemplos em português.
 Normalmente, espaços e sinais de pontuação são ignorados. Vamos escrever uma
 função que, dada uma `String`, retorne `true` se for um palíndromo
 e `false` caso contrário. Para simplificar o problema, *não* vamos
-ignorar espaços e sinais de pontuação. Assim, com nosso método, “`arara`” conta
+ignorar espaços e sinais de pontuação. Assim, com nosso método, "`arara`" conta
 como um palíndromo, mas nenhum dos outros dois exemplos seria considerado como tal.
 
 [source,java]
@@ -729,13 +729,13 @@ cria uma cópia em letras minúsculas da `String` na qual é chamado, neste caso
 `String` em letras minúsculas. Fora desta função, a `String` passada como parâmetro
 não se altera, pois a referência `text` é passada por valor.
 <.> O laço percorre a primeira metade de `text`, comparando-a com a
-segunda metade. Esse loop reflete a assimetria desse tipo de teste:
+segunda metade. Esse laço reflete a assimetria desse tipo de teste:
 não é possível ter certeza de que `text` é um palíndromo até que se verifique
 o texto inteiro, mas sabe-se imediatamente que não é, caso mesmo que um único
 par de caracteres não coincida.
 <.> Se o teste na instrução `if`
 mostrar que os dois valores `char` não são iguais, a instrução `return false`
-sai do método sem concluir o loop.
+sai do método sem concluir o laço.
 ====
 
 ****
@@ -765,22 +765,22 @@ int i = 0;
     boolean negative = false;
     double temp = 0.0;
     double fraction = 10.0;
-    if (value.charAt(i) == ‘-’) { // <.>
+    if (value.charAt(i) == '-') { // <.>
         negative = true;
         ++i;
-    } else if (value.charAt(i) == ‘+’) {
+    } else if (value.charAt(i) == '+') {
         ++i;
     }
     
-while (i < value.length() && value.charAt(i) != ‘.’) { // <.>
+while (i < value.length() && value.charAt(i) != '.') { // <.>
         temp *= 10.0;
-        temp += value.charAt(i) - ‘0’;
+        temp += value.charAt(i) - '0';
         ++i;
     }
     ++i; // Passar pela casa decimal (se houver) <.>
     
 while (i < value.length()) { // <.>
-        temp += (value.charAt(i) - ‘0’) / fraction;
+        temp += (value.charAt(i) - '0') / fraction;
         fraction *= 10.0;
         ++i;
     }
@@ -791,13 +791,13 @@ while (i < value.length()) { // <.>
 }
 ----
 <.> Após declarar algumas variáveis, este método verifica primeiro o índice `0` na
-`String` de entrada `value` para ver se é um `‘-’` ou um `‘+’`. Se for
-um `‘-’`, ele define `negative` como `true` e segue em frente. Se for um `‘+’`, ele
+`String` de entrada `value` para ver se é um `'-'` ou um `'+'`. Se for
+um `'-'`, ele define `negative` como `true` e segue em frente. Se for um `'+'`, ele
 simplesmente segue em frente.
 <.> Em seguida, o método percorre `value` até chegar
 ao fim ou encontrar um ponto decimal. À medida que itera, ele multiplica o
 valor atual de `temp` por `10.0` e soma o próximo dígito de `value`
-(após subtrair `‘0’` para que o intervalo fique entre 0 e 9).
+(após subtrair `'0'` para que o intervalo fique entre 0 e 9).
 Essa multiplicação repetitiva por `10.0` representa as potências crescentes de 10
 no sistema numérico de base 10. Como `temp` começa com o valor `0.0`,
 a primeira multiplicação não tem efeito, conforme pretendido.
@@ -1021,7 +1021,7 @@ mais complicado de duas threads executando um método exatamente ao mesmo
 tempo. Quando isso acontece, efeitos muito curiosos podem ocorrer. Considere o
 programa a seguir.
 
-.O método `print()` sempre imprime `“Even”` quando executado com uma única thread, mas às vezes pode imprimir `“Odd”` se for chamado repetidamente com várias threads.
+.O método `print()` sempre imprime `"Even"` quando executado com uma única thread, mas às vezes pode imprimir `"Odd"` se for chamado repetidamente com várias threads.
 [source, java]
 [[AlwaysEvenProgram]]
 ----
@@ -1130,13 +1130,13 @@ _n_ = 2^_x_^. Em outras palavras, o operador log~2~
 indica qual é a potência de 2 de um número. Uma maneira de definir
 o log~2~ _n_ é o número de vezes que você precisa dividir
 _n_ por 2 para obter 1. Use essa
-definição para criar um loop que calcule o valor sem usar nenhuma chamada
+definição para criar um laço que calcule o valor sem usar nenhuma chamada
 à biblioteca `Math`.
 +
 Aqui estão alguns exemplos dos valores de retorno que seu método deve retornar para
 vários valores de entrada de _n_.
 +
-[.center%autowidth%unbreakable,cols=“5*^”]
+[.center%autowidth%unbreakable,cols="5*^"]
 |=============================
 |_n_ |Valor de retorno | |_n_ |Valor de retorno
 
@@ -1148,7 +1148,7 @@ vários valores de entrada de _n_.
 |=============================
 . [[palindromeExercise]] Escreva um método que verifique palíndromos como
 o método de <<palindromeTestingExample>>, mas que também ignore
-sinais de pontuação e espaços. Assim, `“Aí, Lima falou: “Olá, família!”` deve
+sinais de pontuação e espaços. Assim, `"Aí, Lima falou: "Olá, família!"` deve
 ser considerado um palíndromo por esse novo método.
 . [[scientificNotationExercise]] Adicione ao método `parseDouble()` de
 <<parsingANumberExample>> de modo que ele também possa lidar com números na notação científica padrão do Java
@@ -1210,10 +1210,10 @@ em cada mão são usadas como critério de desempate, em ordem decrescente de va
 . Em termos de tempo, há uma pequena sobrecarga associada à chamada
 de um método e ao retorno de um valor, mas é muito difícil de medir. Escreva um
 programa com duas variáveis `int`, `a` e `b`, em que `a` começa com um
-valor de `1` e `b` começa com um valor de `2`. Execute um loop `for`
+valor de `1` e `b` começa com um valor de `2`. Execute um laço `for`
 100.000.000 de vezes. Em cada iteração, primeiro aumente o valor de `a` em
 o valor de `b` e, em seguida, aumente o valor de `b` em `a`. Cronometre esse
-loop com `System.nanoTime()` e, em seguida, imprima o tempo gasto e o
+laço com `System.nanoTime()` e, em seguida, imprima o tempo gasto e o
 valor de `a`. O valor de `a` não é importante, mas o compilador irá
 otimizar as operações matemáticas feitas com `a` e `b`, a menos que imprimamos o valor.
 Recomendamos que você execute este programa repetidamente para ter uma noção do
