@@ -969,9 +969,7 @@ estatísticas que calculamos.
 ----
 include::{programsdir}/Statistics.java[lines=27..32]
 ----
-<.
- 
-> Neste ponto, usamos a média que já calculamos para encontrar o
+<.> Neste ponto, usamos a média que já calculamos para encontrar o
 desvio padrão amostral. Seguindo a fórmula para o desvio padrão
 amostral, subtraímos a média de cada pontuação, elevamos o resultado ao quadrado e
 o adicionamos a um total acumulado. Embora a fórmula para o desvio padrão
