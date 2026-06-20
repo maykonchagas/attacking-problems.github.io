@@ -308,11 +308,7 @@ ao caso em que `numbers` aponta para um novo array com 10 elementos. Cada
 um desses elementos contém o valor `int` `0`, conforme mostrado abaixo.
 
 [.text-center]
-<<<<<<< HEAD
 .Elementos do array mostrando valores de índice.
-=======
-Elementos do array mostrando valores de índice.
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 image::array.svg[scaledwidth=75%,pdfwidth=75%,width=75%,align="center"]
 
 
@@ -1027,46 +1023,14 @@ armazenar a lista.
 === Conceitos: Listas multidimensionais
 
 Na primeira metade deste capítulo, focamos em listas de dados e em como
-<<<<<<< HEAD
-armazená-las em Java usando arrays. Os arrays que já discutimos
-são arrays _unidimensionais_. Ou seja, cada elemento do array possui um
-único índice que se refere a ele. Dado um índice específico, um elemento 
-terá esse índice, virá antes dele ou virá depois dele. Esses tipos de array
-=======
 armazená-las em Java usando vetores. Os vetores que já discutimos
 são vetores _unidimensionais_. Ou seja, cada elemento do vetor possui um
 único índice que se refere a ele. Dado um índice específico, um elemento 
 terá esse índice, virá antes dele ou virá depois dele. Esses tipos de vetores
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 podem ser usados para resolver um grande número de problemas envolvendo listas ou
 coleções de dados.
 
 Às vezes, os dados precisam ser representados com mais estrutura. Uma maneira
-<<<<<<< HEAD
-de fornecer essa estrutura é com um array bidimensional (que iremos chamar de matriz). Você pode
-pensar em um array bidimensional como uma tabela de dados. Em vez de usar um
-único índice, uma matriz bidimensional possui dois índices. Normalmente, pensamos
-nessas dimensões como linhas e colunas. Abaixo está uma tabela de
-informações que apresenta as distâncias em quilômetros entre as cinco maiores
-cidades do Brasil.
-
-[.center%autowidth%unbreakable,cols="^.^h,5*^.^",]
-|==============================
-| | São Paulo | Rio de Janeiro | Brasília | Fortaleza | Salvador
-
-| São Paulo |0 | 350 |1.005|3.088 |1.990
-| Rio de Janeiro |350|0 |1.166 |2.581 |1.679
-| Brasília |1.005|1.166 |0 |2.116 |1.443
-| Fortaleza |3.088 |2.581 |2.116 |0 |1.187
-| Salvador |1.990 |1.679 |1.443 |1.187 |0
-|==============================
-
-A posição de cada número na tabela é uma parte fundamental de sua
-utilidade. Sabemos que a distância de Brasília a Fortaleza é de 2.116
-quilômetros porque esse número está na linha de Brasília e na coluna de Fortaleza.
-Uma matriz bidimensional compartilha quase todas as suas propriedades com uma
-matriz unidimensional. Continua sendo uma estrutura de dados homogênea e estática
-=======
 de fornecer essa estrutura é com uma matriz _bidimensional_. Você pode
 pensar em uma matriz bidimensional como uma tabela de dados. Em vez de usar um
 único índice, uma matriz bidimensional possui dois índices. Normalmente, pensamos
@@ -1090,7 +1054,6 @@ utilidade. Sabemos que a distância de Chicago a Houston é de 1.801
 milhas porque esse número está na linha de Chicago e na coluna de Houston.
 Uma matriz bidimensional compartilha quase todas as suas propriedades com um
 vetor unidimensional. Continua sendo uma estrutura de dados homogênea e estática
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 com acesso aleatório. Se o exemplo acima fosse transformado em uma matriz Java,
 os próprios números seriam os elementos da matriz. Os nomes das
 cidades precisariam ser armazenados separadamente, talvez em uma matriz do
@@ -1102,31 +1065,18 @@ jogos mais famosos desse tipo é o xadrez. Assim como em tantas outras coisas na
 ciência da computação, precisamos criar uma abstração que reflita
 a realidade e nos permita armazenar as informações dentro de um computador. Para
 o xadrez, precisaremos de uma matriz bidimensional 8 × 8. Podemos representar
-<<<<<<< HEAD
-cada peça no tabuleiro com um `char`, usando a codificação apresentada abaixo.
-=======
 cada peça no tabuleiro com um `char`, usando a codificação fornecida abaixo.
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 
 [.center%autowidth%unbreakable,cols="^,^l"]
 |===================
 |Peça |Codificação
 
-<<<<<<< HEAD
-|Peão |‘P’
-|Cavalo |‘N’
-|Bispo |‘B’
-|Torre |‘R’
-|Rainha |‘Q’
-|Rei |‘K’
-=======
 |Peão |'P'
 |Cavalo |'N'
 |Bispo |'B'
 |Torre |'R'
 |Rainha |'Q'
 |Rei |'K'
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 |===================
 
 Usando letras maiúsculas para as peças pretas e minúsculas
@@ -1147,17 +1097,10 @@ abertura do peão do rei pelas brancas, conforme mostrado.
 | 7 |‘r’ |‘n’ |‘b’ |‘q’ |‘k’ |‘b’ |‘n’ |‘r’
 |=======================================================
 
-<<<<<<< HEAD
 Observe que, assim como nos arrays unidimensionais, os índices para linhas
 e colunas em matrizes bidimensionais também usam contagem a partir de zero.
 
 Após a transição de arrays unidimensionais para matrizes bidimensionais, é
-=======
-Observe que, assim como nas matrizes unidimensionais, os índices para linhas
-e colunas em matrizes bidimensionais também usam contagem a partir de zero.
-
-Após a transição das matrizes unidimensionais para as bidimensionais, é
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 natural questionar se podem existir matrizes de dimensão ainda maior. Podemos
 visualizar uma matriz bidimensional como uma tabela, mas uma
 matriz tridimensional é mais difícil de visualizar. No entanto, há
@@ -1170,11 +1113,7 @@ como uma dimensão e atribuir um índice a cada valor possível, ela poderia
 armazenar os resultados em uma matriz tridimensional. Para gênero, ela poderia
 escolher masculino = 0 e feminino = 1. Para ano letivo, ela poderia escolher calouro =
 0, segundo ano = 1, terceiro ano = 2, último ano = 3 e outros = 4. Supondo que seja
-<<<<<<< HEAD
-uma aula de ciência da computação, para curso, ela poderia escolher ciência da computação = 0,
-=======
 uma aula de ciência da computação, para área de especialização ela poderia escolher ciência da computação = 0,
->>>>>>> 87f0c9b (Ajustes em aspas estilizadas)
 matemática = 1, outras ciências = 2, engenharia = 3 e ciências humanas = 4. Usando esse
 sistema, ela poderia armazenar de forma compacta o número de alunos em qualquer
 combinação de categorias de seu interesse. Por exemplo, o
