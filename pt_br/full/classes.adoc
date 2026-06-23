@@ -5,37 +5,37 @@
 
 [quote, Yoda]
 ____
-Luminous beings are we, not this crude matter.
+Seres luminosos nós somos, não essa matéria bruta.
 ____
 
-=== Problem: Nested expressions
+=== Problema: Expressões aninhadas
 
-How does the compiler check the Java code that you write and find
-errors? Parsing and type checking are involved processes that
-are key parts of compiler design. Compilers are some of the most complex
-programs of any kind, and building one is beyond the scope of the
-material covered in this book. However, we can get insight into some
-problems faced by compiler designers by considering the problem of
-correctly nested expressions.
+Como o compilador verifica o código Java que você escreve e identifica
+erros? A análise sintática e a verificação de tipos são processos complexos que
+constituem partes essenciais do projeto de um compilador. Os compiladores estão entre os programas mais complexos
+que existem, e a criação de um deles está além do escopo do
+conteúdo abordado neste livro. No entanto, podemos compreender melhor alguns
+problemas enfrentados pelos projetistas de compiladores ao considerarmos o problema das
+expressões corretamente aninhadas.
 
-There are many rules for forming correct Java code, but it's always the
-case that grouping symbols (`(`, `)`, `[`, `]`, `{`, `}`) must be correctly
-nested. Ignoring other symbols, we may find a section of code that
-contains the sequence `( ) [ ]`, but correctly written code never
-contains `( [ ) ]`.
+Existem muitas regras para formar um código Java correto, mas é sempre
+necessário que os símbolos de agrupamento (`(`, `)`, `[`, `]`, `{`, `}`) estejam corretamente
+aninhados. Ignorando outros símbolos, podemos encontrar uma seção de código que
+contém a sequência `( ) [ ]`, mas um código escrito corretamente nunca
+contém `( [ ) ]`.
 
-To be correctly nested, left and right parentheses must be balanced,
-left and right square brackets must be balanced, and left and right
-curly braces must be balanced. Furthermore, a correctly balanced set of
-parentheses can be nested inside of a correctly balanced set of square
-brackets or curly braces (and vice versa), but they cannot intersect as
-they do at the end of the previous paragraph.
-The table below shows more examples of correctly and incorrectly nested
-expressions.
+Para estarem corretamente aninhados, os parênteses de abertura e fechamento devem estar em pares,
+assim como os colchetes de abertura e fechamento também devem estar em pares e as
+chaves de abertura e fechamento também devem estar em pares. Além disso, um conjunto corretamente equilibrado de
+parênteses pode ser aninhado dentro de um conjunto corretamente equilibrado de colchetes
+ou chaves (e vice-versa), mas eles não podem se cruzar como
+acontece no final do parágrafo anterior.
+A tabela abaixo mostra mais exemplos de expressões aninhadas de forma correta e incorreta
+.
 
-[.center%autowidth%unbreakable,cols="<l,<l",]
+[.center%autowidth%unbreakable,cols=“<l,<l”,]
 |===========================================
-|Correctly Nested |Incorrectly Nested
+|Aninhadas corretamente |Aninhadas incorretamente
 
 | |(
 |(){}|}{
@@ -44,538 +44,543 @@ expressions.
 |({xyz})({ijk}[123])|{(333)888(})
 |===========================================
 
-But how can we examine an expression to see if it's correctly nested?
-The key to solving this problem is the idea of a _stack_. A stack is a
-simple data structure with three operations: _push_, _pop_, and _top_.
-The data structure is meant to behave like a stack of books or cups or
-any other physical objects. When you use the push operation, you're
-moving something to the top of the stack. When you use the pop
-operation, you're taking something off the top of the stack. The top
-operation is used to read what's currently at the top of the stack. In a stack,
-you can only read that very topmost item, as if all the other items were
-buried underneath it. A stack is known as a FILO (first in, last out) or
-a LIFO (last in, first out) data structure because, if you push a series
-of items onto the stack and then pop them all off the stack, they come
-off the stack in the reverse order from how they were added.
+Mas como podemos examinar uma expressão para verificar se ela está corretamente aninhada?
+A chave para resolver esse problema é a ideia de uma _pilha_. Uma pilha é uma
+estrutura de dados simples com três operações: _push_, _pop_ e _top_.
+A estrutura de dados foi concebida para se comportar como uma pilha de livros, copos ou
+quaisquer outros objetos físicos. Quando você usa a operação _push_, está
+movendo algo para o topo da pilha. Quando usa a operação _pop_
+, está retirando algo do topo da pilha. A operação _top_
+é usada para ler o que está atualmente no topo da pilha. Em uma pilha,
+você só pode ler o item que está bem no topo, como se todos os outros itens estivessem
+escondidos embaixo dele. Uma pilha é conhecida como uma estrutura de dados FILO (em inglês _First In, Last Out_) primeiro a entrar, último a sair (em português),  ou
+LIFO (em inglês Last In, First Out) ou último a entrar, primeiro a sair (em português) porque, se você inserir uma série
+de itens na pilha e depois retirá-los todos da pilha, eles saem
+da pilha na ordem inversa àquela em que foram adicionados.
 
-Armed with an understanding of the stack, it is straightforward to see
-if an expression is nested correctly. Scan through each character in the
-input and follow these steps.
+Com essa compreensão da pilha, é fácil verificar
+se uma expressão está aninhada corretamente. Analise cada caractere da
+entrada e siga estas etapas.
 
-.  If it's a left parenthesis, left square bracket, or left curly
-brace, put it on the stack.
-.  If it's a right parenthesis, right square bracket, or right curly
-brace, check that the top of the stack is its matching left half. If it
-is, pop the left half off the stack. If it isn't (or if the stack is
-empty), the grouping symbols are either unbalanced or intersecting.
-Print an error and quit.
-.  For any character that isn't a grouping symbol, ignore it and move
-on.
+. Se for um parêntese de abertura, colchete de abertura ou chave de abertura
+, coloque-o na pilha.
+. Se for um parêntese direito, colchete direito ou chave direita
+, verifique se o topo da pilha é sua metade esquerda correspondente. Se
+for, retire a metade esquerda da pilha. Se não for (ou se a pilha estiver
+vazia), os símbolos de agrupamento estão desequilibrados ou se cruzando.
+Imprima um erro e saia.
+. Para qualquer caractere que não seja um símbolo de agrupamento, ignore-o e siga
+em frente.
 
-If you reach the end of input without an error, check to see if the
-stack is empty. If it is, then all of the left grouping symbols have
-been matched up with right grouping symbols. If not, there are left
-symbols left on the stack, and the expression isn't correctly nested.
+Se você chegar ao fim da entrada sem erros, verifique se a
+pilha está vazia. Se estiver, então todos os símbolos de agrupamento de esquerda foram
+emparelhados com os símbolos de agrupamento de direita. Caso contrário, há
+símbolos de esquerda restantes na pilha, e a expressão não está corretamente aninhada.
 
-=== Concepts: Object-oriented programming
+=== Conceitos: Programação orientada a objetos
 
-To solve the nested expressions problem, we can create a stack data
-structure. Each element of the stack should be able to hold a `char`
-value term from an expression, where a term is an operator, operand, or
-a parenthesis (bracket or curly brace). Although we could get by using
-only the static methods we introduced in the previous chapter, a better
-tool can make programming easier.
+Para resolver o problema das expressões aninhadas, podemos criar uma estrutura de dados de pilha
+. Cada elemento da pilha deve ser capaz de armazenar um termo do tipo `char`
+de uma expressão, sendo que um termo é um operador, um operando ou
+um parêntese (colchete ou chave). Embora pudéssemos nos virar usando
+apenas os métodos estáticos que apresentamos no capítulo anterior, uma ferramenta melhor
+pode facilitar a programação.
 
-We're introducing these topics in a progression: First, all of our
-programs were a series of sequential instructions inside of a `main()`
-method. We added in selection statements and loops to solve more
-difficult problems. As our programs became more complicated, we started
-using additional static methods to divide the program into logical
-segments. Now, we're moving to fully object-oriented programming (OOP)
-in which data as well as code can be packaged into objects that interact
-with each other.
+Estamos apresentando esses tópicos de forma progressiva: primeiro, todos os nossos
+programas eram uma série de instruções sequenciais dentro do método `main()`
+. Adicionamos instruções de seleção e repetição para resolver problemas mais
+difíceis. À medida que nossos programas se tornaram mais complexos, começamos a
+usar métodos estáticos adicionais para dividir o programa em segmentos lógicos
+. Agora, estamos migrando totalmente para a programação orientada a objetos (POO)
+, na qual tanto os dados quanto o código podem ser agrupados em objetos que interagem
+entre si.
 
-OOP has been a controversial topic, particularly in the computer science
-education community. The most important thing to remember is that we're
-not throwing away any of the ideas we used before. We're continuing on
-a path toward making code safer and more reusable. Several other
-chapters in this book touch on important ideas in OOP such as
-inheritance and polymorphism. Below, we're going to focus on the
-basics, including the fundamentals of objects, encapsulation of data,
-and instance (non-static) methods.
+A POO tem sido um tema controverso, especialmente na comunidade de
+educação em ciência da computação. O mais importante a lembrar é que não estamos
+descartando nenhuma das ideias que usamos anteriormente. Continuamos
+em um caminho para tornar o código mais seguro e reutilizável. Vários outros
+capítulos deste livro abordam conceitos importantes da POO, como
+herança e polimorfismo. A seguir, vamos nos concentrar nos
+conceitos básicos, incluindo os fundamentos dos objetos, o encapsulamento de dados
+e os métodos de instância (não estáticos).
 
-==== Objects
+==== Objetos
 
-You've already used objects, perhaps without realizing it. Every time
-you use a `String`, you're using an object. So far, we've created a
-class every time we've written a program. A class is a way to organize
-static methods, but a class is something more: a template for objects.
-Whenever you write a class, the potential to create objects from it
-exists.
+Você já usou objetos, talvez sem perceber. Toda vez que
+você usa um `String`, está usando um objeto. Até agora, criamos uma
+classe toda vez que escrevemos um programa. Uma classe é uma forma de organizar
+métodos estáticos, mas uma classe é algo mais: um modelo para objetos.
+Sempre que você escreve uma classe, existe a possibilidade de criar objetos a partir dela
+.
 
-For a conceptual example, you can think of Human as a class and Albert
-Einstein as an object (or an _instance_) of that class. The class
-defines certain characteristics that all human beings have: name, date
-of birth, height, and so on. Then, the object has specific values for
-each one of those characteristics, such as Albert Einstein, March 14,
-1879, 175, and so on.
+Para um exemplo conceitual, você pode pensar em “Humano” como uma classe e em Albert
+Einstein como um objeto (ou uma _instância_) dessa classe. A classe
+define certas características que todos os seres humanos possuem: nome, data
+de nascimento, altura e assim por diante. Já o objeto possui valores específicos para
+cada uma dessas características, como Albert Einstein, 14 de março de
+1879, 175 e assim por diante.
 
-.Example of a class serving as a template for an object.
+.Exemplo de uma classe servindo como modelo para um objeto.
 image::class.svg[scaledwidth=100%,pdfwidth=100%,width=100%]
 
-This idea of a class as a template is key because it means that an
-object of a given type (from a given class) can be used anywhere that's
-appropriate for another object of that type. Later in the chapter, we'll
-create an object that performs the work of a stack, storing a number of
-other objects. If we design a library of code that can manipulate or use
-stack objects, we should be able to use this library countless times for
-countless different stack objects without changing the code. This kind
-of code reuse is one of the main goals of OOP.
+Essa ideia de uma classe como modelo é fundamental, pois significa que um
+objeto de um determinado tipo (de uma determinada classe) pode ser usado em qualquer lugar que seja
+apropriado para outro objeto desse tipo. Mais adiante neste capítulo, vamos
+criar um objeto que desempenha a função de uma pilha, armazenando vários
+outros objetos. Se projetarmos uma biblioteca de código capaz de manipular ou utilizar
+objetos de pilha, poderemos usar essa biblioteca inúmeras vezes para
+inúmeros objetos de pilha diferentes sem alterar o código. Esse tipo
+de reutilização de código é um dos principais objetivos da POO.
 
-==== Encapsulation
+==== Encapsulamento
 
-In order to guarantee that objects can be used in many different
-contexts safely, the data inside of the object must be protected. Java
-provides access modifiers so that code without the appropriate permission
-can't change or even read the data inside of an object.
+Para garantir que os objetos possam ser usados em muitos contextos diferentes
+com segurança, os dados dentro do objeto devem ser protegidos. O Java
+fornece modificadores de acesso para que o código sem a permissão adequada
+não possa alterar ou mesmo ler os dados dentro de um objeto.
 
-This feature is called _encapsulation_. One programmer might write the
-class file defining a type of object while another or many others write
-code that uses those objects. The programmers who use objects written by
-others do not need to understand the inner workings of those objects.
-Instead, they can treat each object as a "`black box`" with a list of
-actions that the object can do. Each action has a certain specified
-input and a certain specified output, but the internal functioning of
-the object is hidden.
+Esse recurso é chamado de _encapsulamento_. Um programador pode escrever o
+arquivo de classe definindo um tipo de objeto, enquanto outro ou muitos outros escrevem
+código que utiliza esses objetos. Os programadores que utilizam objetos escritos por
+outros não precisam compreender o funcionamento interno desses objetos.
+Em vez disso, eles podem tratar cada objeto como uma “`caixa preta`” com uma lista de
+ações que o objeto pode realizar. Cada ação tem uma determinada 
+entrada e uma determinada saída, mas o funcionamento interno do
+objeto fica oculto.
 
-==== Instance methods
+==== Métodos de instância
 
-These "`actions`" are methods but not static ones. Static methods did
-not need an object in order to be called. Regular (instance) methods
-should be thought of as an action performed on (or by) a specific
-object. This action could be asking a question, such as inquiring what
-the name of an object of type `Human` is. This action could be telling the
-object to change itself, as in the case of pushing something onto a
-stack.
+Essas “`ações`” são métodos, mas não são estáticos. Métodos estáticos
+não precisavam de um objeto para serem chamados. Métodos regulares (de instância)
+devem ser considerados como uma ação realizada em (ou por) um
+objeto específico. Essa ação pode ser fazer uma pergunta, como perguntar qual
+é o nome de um objeto do tipo `Humano`. Essa ação pode ser instruir o
+objeto a se alterar, como no caso de empurrar algo para uma
+pilha.
 
-One of the broadest definitions of an object is a collection of data and
-methods to access that data. We call the data inside of an object its
-_fields_ or instance data and the methods to access them _instance
-methods_. Static methods are used primarily to modularize large blocks
-of code into smaller functional units. However, instance methods are
-tightly coupled to the fields of an object and perform tasks that change
-the object or get information from it.
+Uma das definições mais amplas de um objeto é uma coleção de dados e
+métodos para acessar esses dados. Chamamos os dados dentro de um objeto de seus
+_campos_ ou dados de instância, e os métodos para acessá-los de _métodos de instância_
+. Os métodos estáticos são usados principalmente para modularizar grandes blocos
+de código em unidades funcionais menores. No entanto, os métodos de instância estão
+intimamente ligados aos campos de um objeto e realizam tarefas que alteram
+o objeto ou obtêm informações dele.
 
-=== Syntax: Classes in Java
+=== Sintaxe: Classes em Java
 
-OOP concepts such as encapsulation may seem esoteric until you see them
-in practice. Remember, we just want to create some private data and then
-define a few carefully controlled ways that the data can be manipulated.
-First, we'll describe how to declare fields, then explain how to write
-instance methods to manipulate that data, and finally give more details
-about protecting its privacy.
+Conceitos de POO, como o encapsulamento, podem parecer um tanto obscuros até que você os veja
+na prática. Lembre-se: queremos apenas criar alguns dados privados e, em seguida,
+definir algumas formas cuidadosamente controladas pelas quais esses dados possam ser manipulados.
+Primeiro, descreveremos como declarar campos; depois, explicaremos como escrever
+métodos de instância para manipular esses dados; e, por fim, daremos mais detalhes
+sobre como proteger sua privacidade.
 
-==== Fields
+==== Campos
 
-Fields in an object must be declared like any other data in Java. The
-type of a field can be a primitive or reference type. Fields are
-also sometimes called member variables. You declare fields just like you
-would class variables, except without the `static` keyword. Here's an
-example with the `Human` class.
+Os campos em um objeto devem ser declarados como qualquer outro dado em Java. O
+tipo de um campo pode ser um tipo primitivo ou de referência. Os campos são
+também, às vezes, chamados de variáveis-membro. Você declara campos exatamente como
+faria com variáveis de classe, só que sem a palavra-chave `static`. Aqui está um
+exemplo com a classe `Human`.
 
 [source,java]
 ----
-public class Human {
-    private String name;
-    private String DOB;
-    private int height; // in cm
+public class Humano {
+    private String nome;
+    private String DN;
+    private int altura; // em cm
 }
 ----
 
-With this definition, a `Human` object has three attributes: `name`,
-`DOB`, and `height`. Because the access modifier for each field is
-`private`, code outside of this class can't change or even read the
-values. This class can't do anything yet. Also, it doesn't contain
-a `main()` method. There's no way to run
-this class, but that's fine. We could add a `main()` method, of course.
+Com essa definição, um objeto `Humano` possui três atributos: `name`,
+`DN` e `altura`. Como o modificador de acesso de cada campo é
+`private`, o código fora dessa classe não pode alterar nem mesmo ler os
+valores. Essa classe ainda não pode fazer nada. Além disso, ela não contém
+um método `main()`. Não há como executar
+essa classe, mas tudo bem. Poderíamos adicionar um método `main()`, é claro.
 
 [source,java]
 ----
-public class Human {
-    private String name;
-    private String DOB;
-    private int height; // in cm
+public class Humano {
+    private String nome;
+    private String DN;
+    private int altura; // em cm
 
     public static void main(String[] args) {
-        name = "Albert Einstein";
-        DOB = "March 14, 1879";
-        height = 175;
+        nome = “Albert Einstein”;
+        DN = “14 de março de 1879”;
+        altura = 175;
     }
 }
 ----
 
-Now we've added a `main()` method, but our code doesn't compile.
-Since the `main()` method is a static method, it is not associated with
-any particular object. When we tell the `main()` method to change the
-fields, it doesn't know what object we're talking about. If we
-actually want to use an object, we'll have to create one.
+Agora adicionamos um método `main()`, mas nosso código não compila.
+Como o método `main()` é um método estático, ele não está associado a
+nenhum objeto específico. Quando instruímos o método `main()` a alterar os
+campos, ele não sabe de qual objeto estamos falando. Se
+realmente quisermos usar um objeto, teremos que criar um.
 
-.Class encapsulating the attributes of a human being.
+.Class que encapsula os atributos de um ser humano.
 [source, java]
 [[HumanProgram]]
 ----
 include::{programsdir}/Human.java[]
 ----
 
-The above code compiles because we've used the `new` keyword to create
-an object of type `Human` saved in a reference variable called
-`einstein`. We can set the fields inside of a particular object using
-dot notation. With static methods and static variables, we used the name
-of the *class* followed by a dot, but for instance methods and instance
-variables, we use the name of the *object* followed by a dot. Even
-though each of these fields is private, we can access them from `main()`
-because `main()` is inside the `Human` class. Code inside of another
-class could create a new `Human` object, but it could *not* change its
-fields.
+O código acima compila porque usamos a palavra-chave `new` para criar
+um objeto do tipo `Humano` armazenado em uma variável de referência chamada
+`einstein`. Podemos definir os campos dentro de um objeto específico usando
+a notação de ponto. Com métodos estáticos e variáveis estáticas, usamos o nome
+da *classe* seguido de um ponto, mas para métodos de instância e
+variáveis de instância, usamos o nome do *objeto* seguido de um ponto. Mesmo
+que cada um desses campos seja privado, podemos acessá-los a partir de `main()`
+porque `main()` está dentro da classe `Humano`. O código dentro de outra
+classe poderia criar um novo objeto `Humano`, mas *não* poderia alterar seus
+campos.
 
-This juxtaposition of static and non-static fields and methods inside of
-a single class is confusing to many new Java programmers. The confusion
-seems to stem from the fact that the class (such as `Human`) is a
-template for objects but it's also a place to house other related code,
-such as static methods, including `main()`.
+Essa justaposição de campos e métodos estáticos e não estáticos dentro de
+uma única classe é confusa para muitos programadores iniciantes em Java. A confusão
+parece decorrer do fato de que a classe (como `Humano`) é um
+modelo para objetos, mas também é um local para abrigar outro código relacionado,
+como métodos estáticos, incluindo `main()`.
 
-Although the practice is discouraged, we mentioned in
-<<Class variables>> that class variables can be
-stored in the class itself. Every object has a distinct copy of each
-field, but there's only a single copy of each class variable that they
-all share. By using the keyword `static`, we could add a class variable
-called `population` to our `Human` class, since that's information
-connected to humans as a whole, not to any individual human being.
+Embora a prática seja desaconselhada, mencionamos em
+<<Variáveis de classe>> que as variáveis de classe podem ser
+armazenadas na própria classe. Cada objeto possui uma cópia distinta de cada
+campo, mas há apenas uma única cópia de cada variável de classe que todos
+compartilham. Ao usar a palavra-chave `static`, poderíamos adicionar uma variável de classe
+chamada `populacao` à nossa classe `Humano`, já que essa é uma informação
+relacionada aos seres humanos como um todo, e não a qualquer ser humano individualmente.
 
 [source,java]
 ----
-public class Human {
+public class Humano {
     private String name;
-    private String DOB;
-    private int height; // in cm
-    private static long population = 7714576923;
+    private String DN;
+    private int altura; // em cm
+    private static long populacao = 7714576923;
 }
 ----
 
-We're using a `long` to represent the world's population since the
-value is too big to fit in an `int`. If several `Human` objects
-were created, they would each have their own `name`, `DOB`, and `height`
-values, but the value for `population` would only be stored in the class.
+Estamos usando um `long` para representar a população mundial, já que o
+valor é grande demais para caber em um `int`. Se vários objetos `Human`
+fossem criados, cada um teria seus próprios valores de `nome`, `DN` e `altura`
+, mas o valor de `populacao` seria armazenado apenas na classe.
 
-.Class variables (static fields) are stored with the class, not with individual objects.
+.As variáveis de classe (campos estáticos) são armazenadas junto com a classe, e não com objetos individuais.
 image::staticvalue.svg[scaledwidth=100%,pdfwidth=100%,width=100%]
 
 
-==== Constructors
+==== Construtores
 
-To create a new object, you have to invoke a _constructor_, a special
-kind of method that can initialize the object. A constructor sets
-up the values inside an object when the object's first created. Let's consider
-a simple `Rectangle` class with only two fields: `length` and `width`,
-both of type `int`.
+Para criar um novo objeto, é preciso chamar um _construtor_, um
+tipo especial de método capaz de inicializar o objeto. Um construtor define
+os valores dentro de um objeto quando este é criado pela primeira vez. Vamos considerar
+uma classe `Retangulo` simples, com apenas dois campos: `comprimento` e `largura`,
+ambos do tipo `int`.
+
+[fonte,java]
+----
+public class Retangulo {
+    private int comprimento;
+    private int largura;
+----
+
+Um possível construtor para a classe é apresentado abaixo.
 
 [source,java]
 ----
-public class Rectangle {
-    private int length;
-    private int width;
-----
-
-One possible constructor for the class is given below.
-
-[source,java]
-----
-    public Rectangle(int l, int w) {
-        length = l;
-        width = w;
+    public Retangulo(int c, int l) {
+        comprimento = c;
+        largura = l;
     }
 ----
 
-This constructor lets us set the width and length when the object's
-created. To do so, code must invoke the constructor using the `new`
-keyword.
+Esse construtor nos permite definir a largura e o comprimento quando o objeto é
+criado. Para isso, o código deve invocar o construtor usando a palavra-chave `new`
+.
 
 [source,java]
 ----
-Rectangle rectangle = new Rectangle(50, 20);
+Retangulo retangulo = new Retangulo(50, 20);
 ----
 
-This code creates a new `Rectangle` object, with length 50 and width 20.
-Constructors are almost always `public`; otherwise, it would be
-impossible for code outside of the `Rectangle` class to create a
-`Rectangle` object. Note that the definition of the `Rectangle`
-constructor does not have a return type. A constructor is the only kind
-of method that doesn't have a return type. It's possible to have more
-than one constructor as well, just as other methods can be overloaded.
-For more information about overloaded methods, refer back to
-<<Overloaded methods>>.
+Esse código cria um novo objeto `Retangulo`, com comprimento 50 e largura 20.
+Os construtores são quase sempre `public`; caso contrário, seria
+impossível para um código fora da classe `Retangulo` criar um
+objeto `Retangulo`. Observe que a definição do construtor `Retangulo`
+não possui um tipo de retorno. Um construtor é o único tipo
+de método que não possui um tipo de retorno. Também é possível ter mais
+de um construtor, assim como outros métodos podem ser sobrecarregados.
+Para mais informações sobre métodos sobrecarregados, consulte
+<<Métodos sobrecarregados>>.
 
 [source,java]
 ----
-    public Rectangle(int value) {
-        length = value;
-        width = value;
+    public Retangulo(int valor) {
+        comprimento = valor;
+        largura = valor;
     }
 ----
 
-In the very same class, we could have this second constructor, allowing
-us to create a square quickly and easily. All classes have constructors,
-but some aren't written explicitly. If you don't type out a constructor
-for a class, a default one is automatically created for you. The default
-constructor takes no parameters and sets all the values inside the new
-object to defaults such as `null` and `0`. Once you do create a
-constructor, the default one is no longer provided. Thus, since our
-definition of the `Rectangle` class already contains two constructors,
-the following line would cause a compiler error if someone tries to use
-it in their code.
+Na mesma classe, poderíamos ter este segundo construtor, permitindo
+que criemos um quadrado de forma rápida e fácil. Todas as classes possuem construtores,
+mas alguns não são definidos explicitamente. Se você não definir um construtor
+para uma classe, um construtor padrão é criado automaticamente. O
+construtor padrão não recebe parâmetros e define todos os valores dentro do novo
+objeto com os valores padrão, como `null` e `0`. Assim que você cria um
+construtor, o construtor padrão deixa de existir. Assim, como nossa
+definição da classe `Rectangle` já contém dois construtores,
+a linha a seguir causaria um erro de compilação se alguém tentasse usá-la
+em seu código.
 
 [source,java]
 ----
-Rectangle defaultRectangle = new Rectangle();
+Retangulo retanguloPadrao = new Retangulo();
 ----
 
-Another important thing to consider with all instance methods is scope.
-Fields are visible inside of instance methods, but they can be hidden by
-parameters and other local variables.
+Outro aspecto importante a se considerar em todos os métodos de instância é o escopo.
+Os campos são visíveis dentro dos métodos de instância, mas podem ser ocultados por
+parâmetros e outras variáveis locais.
 
 [source,java]
 ----
-    public Rectangle(int length, int width) {
-        length = length;
-        width = width;
+    public Retangulo(int comprimento, int largura) {
+        comprimento = comprimento;
+        largura = largura;
     }
 ----
 
-This version of the two parameter `Rectangle` constructor compiles, but
-it doesn't properly initialize the values of the fields `length` and
-`width`. Instead, the parameters `length` and `width` are copied back
-into themselves for no reason. The designers of Java anticipated that it
-would be useful to refer to fields even in the presence of other
-variables with the same name. To do so, the `this` keyword can be used.
-Any field (or method) can be referred to by its object name, followed by
-a dot, followed by the name of that field or method. Since you don't
-have a variable name to reference the object when you're *inside* of it,
-the `this` keyword acts as a reference to the object.
+Esta versão do construtor `Retangulo` com dois parâmetros compila, mas
+não inicializa corretamente os valores dos campos `comprimento` e
+`largura`. Em vez disso, os parâmetros `comprimento` e `largura` são copiados de volta
+para si mesmos sem motivo algum. Os criadores do Java previram que
+seria útil referir-se a campos mesmo na presença de outras
+variáveis com o mesmo nome. Para isso, pode-se usar a palavra-chave `this`.
+Qualquer campo (ou método) pode ser referido pelo nome do objeto, seguido por
+um ponto, seguido pelo nome desse campo ou método. Como você não
+tem um nome de variável para referenciar o objeto quando está *dentro* dele,
+a palavra-chave `this` atua como uma referência ao objeto.
 
 [source,java]
 ----
-    public Rectangle(int length, int width) {
-        this.length = length;
-        this.width = width;
+    
+public Retangulo(int comprimento, int largura) {
+        this.comprimento = comprimento;
+        this.largura = largura;
     }
 ----
 
-This version of the code functions correctly, since we've explicitly
-told Java to store the _argument_ `length` into the _field_ `length` inside
-the object pointed at by `this` and to do similarly for `width`.
+Esta versão do código funciona corretamente, já que explicitamente
+instruímos o Java a armazenar o _argumento_ `comprimento` no _campo_ `comprimento` dentro
+do objeto apontado por `this` e fazer o mesmo com `largura`.
 
-==== Methods
+==== Métodos
 
-Objects don't really come to life until you add instance methods. With
-the `Rectangle` class described above, any `Rectangle` objects created
-would not be useful to other classes because it would be impossible to access their
-data. Instead, we want to create a clear and usable relationship between
-the fields and the methods.
+Os objetos só ganham vida de verdade quando você adiciona métodos de instância. Com
+a classe `Retangulo` descrita acima, quaisquer objetos `Retangulo` criados
+não seriam úteis para outras classes, pois seria impossível acessar seus
+dados. Em vez disso, queremos criar uma relação clara e útil entre
+os campos e os métodos.
 
-There are many different kinds of methods, but two of the most important
-are accessors and mutators.
+Existem muitos tipos diferentes de métodos, mas dois dos mais importantes
+são os acessadores e os mutadores.
 
-===== Accessors
+===== Acessadores
 
-We often want to read the data inside of various objects. With our
-current definition of `Rectangle`, no code from an outside class can
-find out the length or width of the rectangle we're representing.
+Muitas vezes, queremos ler os dados contidos em vários objetos. Com nossa
+definição atual de `Retangulo`, nenhum código de uma classe externa pode
+descobrir o comprimento ou a largura do retângulo que estamos representando.
 
-_Accessor methods_ (or simply _accessors_) are designed for this task.
-By definition, an accessor allows us to read some data or get some
-information out of an object without making any changes to its fields.
-Accessors can be thought of as asking the object a question. The names
-of accessors often start with the word `get`.
+_Métodos acessadores_ (ou simplesmente _acessadores_) são projetados para essa tarefa.
+Por definição, um acessador nos permite ler alguns dados ou obter algumas
+informações de um objeto sem fazer nenhuma alteração em seus campos.
+Pode-se pensar nos acessadores como uma forma de fazer uma pergunta ao objeto. Os nomes
+dos acessadores geralmente começam com a palavra `get`.
 
 [source,java]
 ----
-    public int getLength() {
-        return length;
+    public int getComprimento() {
+        return comprimento;
     }
 
-    public int getWidth() {
-        return width;
+    
+public int getLargura() {
+        return largura;
     }
 ----
 
-Here are two accessors methods that we'd expect in the `Rectangle`
-class. The first returns the value of `length`, and the second returns
-the value of `width`. These methods only report information. They don't
-change the value of either variable. Their syntax should be
-self-explanatory. Each is declared to be `public` so that anyone can
-read the length and width of a rectangle. Both methods have a return
-type of `int` because that's the type used to store `length` and
-`width` inside a `Rectangle` object. Neither method has any parameters.
-Of course, an accessor doesn't have to be so simple. An accessor could return a
-value that needs to be computed from the underlying field data.
+Aqui estão dois métodos acessadores que esperaríamos encontrar na classe `Retangulo`
+. O primeiro retorna o valor de `comprimento`, e o segundo retorna
+o valor de `largura`. Esses métodos apenas informam dados. Eles não
+alteram o valor de nenhuma das variáveis. Sua sintaxe deve ser
+autoexplicativa.
+ Cada um deles é declarado como `public` para que qualquer pessoa possa
+ler o comprimento e a largura de um retângulo. Ambos os métodos têm um tipo de retorno
+`int`, pois esse é o tipo usado para armazenar `comprimento` e
+`largura` dentro de um objeto `Retangulo`. Nenhum dos métodos possui parâmetros.
+É claro que um método de acesso não precisa ser tão simples. Um método de acesso poderia retornar um
+valor que precisa ser calculado a partir dos dados do campo subjacente.
 
 [source,java]
 ----
     public int getArea() {
-        return length*width;
+        return comprimento*largura;
     }
 
-    public int getPerimeter() {
-        return 2*length + 2*width;
+    
+public int getPerimetro() {
+        return 2*comprimento + 2*largura;
     }
 ----
 
-These accessors compute the area and perimeter, respectively, of the
-rectangle in question, even though that data isn't stored directly in
-the `Rectangle` object.
+Esses acessadores calculam a área e o perímetro, respectivamente, do
+retângulo em questão, mesmo que esses dados não estejam armazenados diretamente no
+objeto `Retangulo`.
 
-===== Mutators
+===== Mutadores
 
-Some objects, such as `String` values, are _immutable_ objects, meaning
-that the data stored inside them cannot be changed after they've been
-created with a constructor. If you've ever thought you were
-changing a `String`, you were actually creating a new `String` with the
-appropriate modifications. Most objects are mutable, however, and we use
-methods called _mutator methods_ (or simply _mutators_) to change their
-fields.
+Alguns objetos, como valores do tipo `String`, são objetos _imutáveis_, o que significa
+que os dados armazenados neles não podem ser alterados depois de terem sido
+criados por meio de um construtor. Se você já pensou que estava
+alterando uma `String`, na verdade estava criando uma nova `String` com as
+modificações apropriadas. A maioria dos objetos é mutável, no entanto, e usamos
+métodos chamados _métodos mutadores_ (ou simplesmente _mutadores_) para alterar seus
+campos.
 
-Like accessors, mutators have no special syntax. The term is used to
-describe any methods that change the data inside of an object. For the
-`Rectangle` class, the only internal data we have is the `length` and
-`width` variables. Mutators for these might look as follows.
+Assim como os acessadores, os mutadores não possuem sintaxe especial. O termo é usado para
+descrever quaisquer métodos que alterem os dados dentro de um objeto. Para a
+classe `Retangulo`, os únicos dados internos que temos são as variáveis `comprimento` e
+`largura`. Os mutadores para esses campos podem ter a seguinte aparência.
 
 [source,java]
 ----
-    public void setLength(int length) {
-        this.length = length;
+    public void setComprimento(int comprimento) {
+        this.comprimento = comprimento;
     }
 
-    public void setWidth(int width) {
-        this.width = width;
+    public void setLargura(int largura) {
+        this.largura = largura;
     }
 ----
 
-Just as the names for many accessors begin with `get`, the names for
-many mutators begin with `set`. Mutators often have a `void` return type
-because they're changing the object, not getting information back. Some
-mutators might have a return type that gives information about an error
-that occurred while trying to make a change. Note that we used the
-`this` keyword once again to distinguish each field from the method
-argument with the same name.
+Assim como os nomes de muitos acessadores começam com `get`, os nomes de
+muitos mutadores começam com `set`. Os mutadores geralmente têm um tipo de retorno `void`
+porque estão alterando o objeto, e não retornando informações. Alguns
+mutadores podem ter um tipo de retorno que fornece informações sobre um erro
+que ocorreu ao tentar fazer uma alteração. Observe que usamos a
+palavra-chave `this` mais uma vez para distinguir cada campo do argumento do método
+com o mesmo nome.
 
-You may have noticed that we use the machinery of a method to both get
-and set the `length` field, for example. Perhaps doing so seems
-needlessly complex. After all, if the `length` variable had been
-declared with the `public` modifier instead of the `private` modifier,
-we could get and set its value directly, without using methods. In
-response, let's improve the mutators that set `length` and `width`.
+Você deve ter notado que usamos a estrutura de um método tanto para obter
+quanto para definir o campo `comprimento`, por exemplo. Talvez isso pareça
+desnecessariamente complexo. Afinal, se a variável `comprimento` tivesse sido
+declarada com o modificador `public` em vez do modificador `private`,
+poderíamos obter e definir seu valor diretamente, sem usar métodos. Em
+resposta a isso, vamos aprimorar os mutadores que definem `comprimento` e `largura`.
 
 [source,java]
 ----
-    public void setLength(int length) {
-        if (length > 0) {
-            this.length = length;
+    public void setComprimento(int comprimento) {
+        if (comprimento > 0) {
+            this.comprimento = comprimento;
         }
     }
 
-    public void setWidth(int width) {
-        if (width > 0) {
-            this.width = width;
+    public void setLargura(int largura) {
+        if (largura > 0) {
+            
+this.largura = largura;
         }
     }
 ----
 
-With these better mutators, we can prevent a user from setting the
-values of `length` and `width` to negative numbers or zero, values that
-don't make sense for dimensions of a rectangle. For more complicated
-objects, it becomes even more important to protect the values of the
-fields from malicious or mistaken users.
+Com esses mutadores aprimorados, podemos impedir que um usuário defina os
+valores de `comprimento` e `largura` como números negativos ou zero, valores que
+não fazem sentido para as dimensões de um retângulo. Para objetos mais complexos
+, torna-se ainda mais importante proteger os valores dos
+campos contra usuários mal-intencionados ou que cometam erros.
 
-==== Access modifiers
+==== Modificadores de acesso
 
-Hiding data is at the heart of the Java OOP model. There are four
-different levels of access that can be applied to fields and methods,
-whether static or not. They are `public`, `private`, `protected`, and
-package-private.
+O ocultamento de dados está no cerne do modelo de POO do Java. Existem quatro
+níveis diferentes de acesso que podem ser aplicados a campos e métodos,
+sejam eles estáticos ou não. São eles: `public`, `private`, `protected` e
+`package-private`.
 
-`public` modifier::
-The `public` access modifier states that a variable or method can be
-accessed by any code, no matter what class contains it. Most methods
-should be `public` so that they can be used freely to interact with
-their object. Virtually no fields should be `public`. Constants (static
-or otherwise) are the most significant exception to this rule. Making
-constants `public` is usually not a problem since they can't be changed
-by outside code anyway. In the `Rectangle` class, variables `length` and
-`width` are so simple that making them `public` is not unreasonable. If
-you have a field that can be changed at any time by any code to any
-value, you can leave that field `public`.
-`private` modifier::
-This modifier states that a variable or method cannot be accessed by any
-code unless the code is contained in the same class. It's important to
-realize that the restriction is based on the *class*, not on the
-*object*. Code inside any `Rectangle` object can modify `private` values
-inside of any other `Rectangle` object and the class as a whole. Most fields should be
-`private` so that outside code can't modify them. Methods can be
-`private`, but these methods should be helper or utility methods used
-inside the class or object to divide up work.
-`protected` modifier::
-This modifier states that a variable or method cannot be accessed by any
-code unless the code is contained in the same class, a subclass, or is
-in the same package. This level of access is more restrictive than
-`public` but less restrictive than `private` or default access. We
-discuss it further in the context of subclasses and inheritance in
+Modificador `public`:
+O modificador de acesso `public` indica que uma variável ou método pode ser
+acessado por qualquer código, independentemente da classe que o contenha. A maioria dos métodos
+deve ser `public` para que possam ser usados livremente para interagir com
+seu objeto. Praticamente nenhum campo deve ser `public`. Constantes (estáticas
+ou não) são a exceção mais significativa a essa regra. Tornar
+constantes `public` geralmente não é um problema, já que elas não podem ser alteradas
+por código externo de qualquer maneira. Na classe `Retangulo`, as variáveis `comprimento` e
+`largura` são tão simples que torná-las `public` não é irracional. Se
+você tiver um campo que possa ser alterado a qualquer momento por qualquer código para qualquer
+valor, você pode deixar esse campo `public`.
+Modificador `private`::
+Esse modificador indica que uma variável ou método não pode ser acessado por nenhum
+código, a menos que esse código esteja contido na mesma classe. É importante
+perceber que a restrição se baseia na *classe*, não no
+*objeto*. O código dentro de qualquer objeto `Retangulo` pode modificar valores `private`
+dentro de qualquer outro objeto `Retangulo` e da classe como um todo. A maioria dos campos deve ser
+`private` para que o código externo não possa modificá-los. Os métodos podem ser
+`private`, mas devem ser métodos auxiliares ou de utilidade usados
+dentro da classe ou do objeto para dividir o trabalho.
+Modificador `protected`::
+Este modificador indica que uma variável ou método não pode ser acessado por nenhum
+código, a menos que esse código esteja contido na mesma classe, em uma subclasse ou
+no mesmo pacote. Esse nível de acesso é mais restritivo do que
+`public`, mas menos restritivo do que `private` ou o acesso padrão. Nós
+discutimos isso mais detalhadamente no contexto de subclasses e herança em
 <<inheritance#inheritance>>.
-Package-private (no explicit modifier)::
-If you don't type an access modifier when you declare a field or
-method, that field or method is not `public`. Instead, it has the
-default or package-private access modifier applied to it. Fields or
-methods with this modifier can be accessed by any code that is in the
-same _package_ or directory. A package is yet another layer of
-organization that Java provides to group classes together. When you use
-an `import` statement, you can import an entire package of classes.
-There's no keyword for this access modifier. It may be useful if you're
-designing a package containing classes that must be able to access each
-other's fields or methods. For now, you should always give your fields
-and methods an explicit `public` or `private` (or sometimes `protected`)
-modifier.
+Privado ao pacote (sem modificador explícito)::
+Se você não digitar um modificador de acesso ao declarar um campo ou
+método, esse campo ou método não será `public`. Em vez disso, tem o 
+modificador de acesso padrão ou privado ao pacote aplicado a ele. Campos ou
+métodos com esse modificador podem ser acessados por qualquer código que esteja no
+mesmo _pacote_ ou diretório. Um pacote é mais uma camada de
+organização que o Java oferece para agrupar classes. Ao usar
+uma instrução `import`, você pode importar um pacote inteiro de classes.
+Não há palavra-chave para esse modificador de acesso. Ele pode ser útil se você estiver
+projetando um pacote contendo classes que precisem acessar os
+campos ou métodos umas das outras. Por enquanto, você deve sempre atribuir aos seus campos
+e métodos um modificador explícito `public` ou `private` (ou, às vezes, `protected`)
+.
 
-From least restrictive to most restrictive, the modifiers are `public`,
-`protected`, package-private, and `private`. Each additional level of
-restriction removes a single category of access. All fields and methods
-can be accessed by code from the same class. The following table gives
-the contexts outside the class that can access a field or method marked
-with each modifier.
+Da menos restritiva à mais restritiva, os modificadores são `public`,
+`protected`, privado ao pacote e `private`. Cada nível adicional de
+restrição remove uma única categoria de acesso. Todos os campos e métodos
+podem ser acessados por código da mesma classe. A tabela a seguir apresenta
+os contextos fora da classe que podem acessar um campo ou método marcado
+com cada modificador.
 
-[.center%autowidth%unbreakable%header,cols=">.>,3*^.>",]
+[.center%autowidth%unbreakable%header,cols=“>.>,3*^.>”,]
 |======================================================
-|Modifier |Package |Subclass |Unrelated +
+|Modificador |Pacote |Subclasse |Não relacionadas +
 Classes
 
-|`public` |Yes |Yes |Yes
-|`protected` |Yes |Yes |No
-|Package-private |Yes |No |No
-|`private` |No |No |No
+|`public` |Sim |Sim |Sim
+|`protected` |Sim |Sim |Não
+|Privado ao pacote |Sim |Não |Não
+|`private` |Não |Não |Não
 |======================================================
 
 
-Although large and complex programs are needed to see the real benefits
-of OOP in Java, here's an example showing how
-objects can be used to make a roster of students.
+Embora sejam necessários programas grandes e complexos para perceber os reais benefícios
+da POO em Java, aqui está um exemplo que mostra como
+os objetos podem ser usados para criar uma lista de alunos.
 
 
 [[studentRosterExample]]
-.Student roster
+.Lista de alunos
 ====
 
-We're going to create a `Student` class so that we can store objects
-containing student roster information. Then, we're going to create a
-client program that reads data from a user to create `Student` objects,
-sort them by GPA, and then print them out.
+Vamos criar uma classe `Student` para que possamos armazenar objetos
+contendo informações da lista de alunos. Em seguida, vamos criar um 
+programa cliente que lê dados de um usuário para criar objetos `Student`,
+classificá-los por média geral (GPA) e, então, exibi-los na tela.
 
 [source, java]
 ----
@@ -583,297 +588,300 @@ include::{programsdir}/Student.java[lines=1..5]
 ----
 
 
-We start by defining the `Student` class. First, there's a constant
-array of `String` values, giving the names of each of the four years.
-Next, fields in the `Student` class are declared to store the name, year, and GPA of
-the student.
+Começamos definindo a classe `Student`. Primeiro, há uma constante
+que é uma matriz de valores do tipo `String`, contendo os nomes de cada um dos quatro anos.
+Em seguida, são declarados os campos da classe `Student` para armazenar o nome, o ano e a média geral (GPA)
+do aluno.
 
 [source, java]
 ----
-include::{programsdir}/Student.java[lines=7..11]
+include::{programsdir}/Student.java[lines=7.11]
 ----
 
 
-We have one constructor for this class, which takes in a `String`, an
-`int`, and a `double` corresponding to the name, year, and GPA of the
-student. The constructor then internally uses mutator methods to store
-the values into the fields. By doing so, we automatically take advantage
-of the error checking in the GPA mutator.
+Temos um construtor para essa classe, que recebe um `String`, um
+`int` e um `double` correspondentes ao nome, ano e média geral (GPA) do
+aluno. O construtor, então, usa internamente métodos mutadores para armazenar
+os valores nos campos. Ao fazer isso, aproveitamos automaticamente
+a verificação de erros no mutador da média geral (GPA).
 
 [source, java]
 ----
 include::{programsdir}/Student.java[lines=13..22]
 ----
 
-These are the mutators corresponding to each of the three fields. The
-input for the name and year mutators aren't checked, but the GPA
-mutator checks to make sure that the GPA value is in the proper range.
+Estes são os mutadores correspondentes a cada um dos três campos. A
+entrada para os mutadores de nome e ano não é verificada, mas o mutador de GPA
+verifica se o valor do GPA está dentro do intervalo adequado.
 
 [source, java]
 ----
 include::{programsdir}/Student.java[lines=24..31]
 ----
 
-Finally, these accessors allow the user to find out the name, year, or
-GPA of a given student. Every class in Java automatically has a
-`toString()` method that's called whenever an object is being printed
-out directly. We have made this method return the information in
-`Student` formatted as a `String`.
+Por fim, esses acessadores permitem que o usuário obtenha o nome, o ano ou
+o GPA de um determinado aluno. Toda classe em Java possui automaticamente um
+método `toString()` que é chamado sempre que um objeto está sendo impresso
+diretamente. Fizemos com que esse método retorne as informações em
+`Student` formatadas como uma `String`.
 
-Creating the `Student` class is only half the battle. We must also 
-create client code to use it.
+Criar a classe `Student` é apenas metade do trabalho. Também precisamos 
+criar o código cliente para usá-la.
 
 [source, java]
 ----
 include::{programsdir}/StudentRoster.java[lines=1..16]
 ----
-<.> The `main()` method in the `StudentRoster` class begins by reading in
-the total number of students.
-<.> Next, it makes an array of type `Student`
-of that length.
-<.> Then, it repeatedly reads in a name, year, and GPA,
-creates a new `Student` object with those values, and stores it into the
+<.> O método `main()` na classe `StudentRoster` começa lendo
+o número total de alunos.
+<.> Em seguida, ele cria um array do tipo `Student`
+com esse comprimento.
+<.> Depois, ele lê repetidamente um nome, um ano e uma média geral (GPA),
+cria um novo objeto `Student` com esses valores e o armazena no
 array.
-<.> After creating all the `Student` objects, it sorts them with a
-method call and prints them out.
+<.> Após criar todos os objetos `Student`, ele os ordena com uma
+chamada de método e os exibe na tela.
 
-One oddity in this code is the seemingly superfluous `in.nextLine()` in
-the first `for` loop. This line of code consumes a trailing newline
-character from previous input. Take it out and see how quickly the
-program malfunctions.
+Uma peculiaridade neste código é o `in.nextLine()` aparentemente supérfluo no
+primeiro loop `for`. Essa linha de código consome um caractere de nova linha
+final da entrada anterior. Remova-a e veja com que rapidez o
+programa apresenta falhas.
 
 [source, java]
 ----
 include::{programsdir}/StudentRoster.java[lines=18..31]
 ----
 
-This `sort()` method is similar to others you've seen. It
-implements selection sort in ascending order based on GPA.
+Este método `sort()` é semelhante a outros que você já viu. Ele
+implementa a ordenação por seleção em ordem crescente com base na média geral (GPA).
 
-If you run this program, you'll notice that it doesn't prompt the
-user for input. This version of the code is designed for redirected
-input from a file. A more user friendly, interactive version should
-prompt the user clearly.
+Se você executar este programa, perceberá que ele não solicita
+entrada do usuário. Esta versão do código foi projetada para receber
+entrada redirecionada de um arquivo. Uma versão mais amigável e interativa deveria
+solicitar a entrada do usuário de forma clara.
 
-Using OOP is not necessary to solve this problem. Instead of objects, we
-could have used three separate arrays holding the name, year, and GPA of
-each student, respectively. However, coordinating these arrays together
-would become tedious, particularly when sorting.
+Não é necessário usar POO para resolver este problema. Em vez de objetos,
+poderíamos ter usado três matrizes separadas contendo o nome, o ano e o GPA de
+cada aluno, respectivamente. No entanto, coordenar essas matrizes entre si
+se tornaria tedioso, especialmente na hora de classificar.
 ====
 
-=== Advanced: Nested classes
+=== Avançado: Classes aninhadas
 
-Inside of a class, you can define fields and methods, but what about
-other classes? Yes! Doing so creates a _nested class_. When you define a
-class inside of an outer class, it can access fields and methods in the
-outer class, even if they are marked `private`. Java allows a number of
-different ways to define a nested class. They're all useful, but each
-is subtly different. Some nested classes are tied to a specific object
-of the outer class while others are not.
+Dentro de uma classe, você pode definir campos e métodos, mas e quanto a
+outras classes? Sim! Ao fazer isso, cria-se uma _classe aninhada_. Quando você define uma
+classe dentro de uma classe externa, ela pode acessar campos e métodos da
+classe externa, mesmo que estejam marcados como `private`. O Java permite várias
+maneiras diferentes de definir uma classe aninhada. Todas são úteis, mas cada uma
+apresenta diferenças sutis. Algumas classes aninhadas estão vinculadas a um objeto específico
+da classe externa, enquanto outras não.
 
-==== Static nested classes
+==== Classes aninhadas estáticas
 
-If you mark a nested class with the `static` keyword, you're creating a
-class whose objects are independent of any particular outer class
-object. Such a class is called a _static nested class_. Consider the
-following class definition.
+Se você marcar uma classe aninhada com a palavra-chave `static`, estará criando uma
+classe cujos objetos são independentes de qualquer objeto específico da classe externa
+. Essa classe é chamada de _classe aninhada estática_. Considere a
+seguinte definição de classe.
 
 [source,java]
 ----
-public class Outer {
+public class Exterior {
     private int x;
     private int y;
 
-    public static class Nested {
+    public static class Aninhada {
         private int z;
     }
 }
 ----
 
-A static nested class is similar to a normal, top-level class with two
-differences. First, the full name of a nested class is the name of the
-outer class followed by a dot followed by the nested class name. Second,
-when given an outer class object, code in a static nested class can
-access and modify `private` (and `protected`) data in the outer class
-object.
+Uma classe aninhada estática é semelhante a uma classe normal de nível superior, com duas
+diferenças. Primeiro, o nome completo de uma classe aninhada é o nome da
+classe externa seguido por um ponto e, em seguida, pelo nome da classe aninhada. Segundo,
+quando recebe um objeto da classe externa, o código em uma classe aninhada estática pode
+acessar e modificar dados `private` (e `protected`) no objeto da classe externa
+.
 
 [.text-center]
-.A static nested class object is allowed to access data from outer class objects even though there's no direct relationship between them.
+.Um objeto de classe aninhada estática pode acessar dados de objetos da classe externa, mesmo que não haja relação direta entre eles.
 image::nested.svg[scaledwidth=80%,pdfwidth=80%,width=80%]
 
 
-Static nested classes can be used when the class you need is only useful
-in connection with the outer class. Thus, nesting the class groups it
-with its outer class. We can create an instance of the nested class
-above as follows.
+Classes aninhadas estáticas podem ser usadas quando a classe necessária só é útil
+em conexão com a classe externa. Assim, aninhar a classe a agrupa
+com sua classe externa. Podemos criar uma instância da classe aninhada
+acima da seguinte maneira.
 
 [source,java]
 ----
-Outer.Nested nested = new Outer.Nested();
+Exterior.Aninhada nested = new Exterior.Aninhada();
 ----
 
-Because it's a static nested class, we don't need an instance of type
-`Outer` to create an instance of type `Outer.Nested`. If you compile
-`Outer.java`, it will create two files, `Outer.class` and
-`Outer$Nested.class`. The dollar sign (`$`) separates the names of each
-level of nested class in the file name. It's possible to nest classes
-inside of nested classes, producing another `.class` file with another
-dollar sign and the new class name appended.
+Por se tratar de uma classe aninhada estática, não precisamos de uma instância do tipo
+`Exterior` para criar uma instância do tipo `Exterior.Aninhada`. Se você compilar
+`Exterior.java`, serão criados dois arquivos: `Exterior.class` e
+`Exterior$Aninhada.class`. O sinal de dólar (`$`) separa os nomes de cada
+nível de classe aninhada no nome do arquivo. É possível aninhar classes
+dentro de classes aninhadas, produzindo outro arquivo `.class` com outro
+sinal de dólar e o nome da nova classe anexado.
 
-Like members, static nested classes can be marked `public`, `private`,
-`protected`, or package-private (no explicit modifier). These access
-modifiers control which code can access or instantiate static nested
-classes using the sames access rules for fields and methods.
+Assim como os membros, as classes aninhadas estáticas podem ser marcadas como `public`, `private`,
+`protected` ou privadas ao pacote (sem modificador explícito). Esses modificadores de acesso
+controlam qual código pode acessar ou instanciar classes aninhadas estáticas
+usando as mesmas regras de acesso para campos e métodos.
 
-.Static nested class for testing
+.Classe aninhada estática para testes
 ====
 
-One application for static nested classes is testing. You can write code
-that tests the functionality of your outer class, fiddling with its
-fields if needed. Then, because a separate `.class` file is created, you
-can deliver only the `.class` file for the outer class to your customer.
+Uma aplicação para classes aninhadas estáticas é o teste. Você pode escrever código
+que teste a funcionalidade da sua classe externa, manipulando seus
+campos, se necessário. Assim, como um arquivo `.class` separado é criado, você
+pode entregar apenas o arquivo `.class` da classe externa ao seu cliente.
 
-Consider the `Square` class, similar to the `Rectangle` class given
-earlier.
+Considere a classe `Quadrado`, semelhante à classe `Retangulo` apresentada
+anteriormente.
 
 [source,java]
 ----
-public class Square {
-    private int side;
+public class Quadrado {
+    private int lado;
 
-    public Square( int side ) {
-        this.side = side;
+    public Quadrado( int lado ) {
+        this.lado = lado;
     }
 
     public int getArea() {
-        return side*side;
+        return lado*lado;
     }
 }
 ----
 
-We could add a static nested class called `Test` to `Square` to test
-that its `getArea()` and `getPerimeter()` methods are working properly.
-The final code might be as follows.
+Poderíamos adicionar uma classe aninhada estática chamada `Teste` à `Quadrado` para testar
+se seus métodos `getArea()` e `getPerimetro()` estão funcionando corretamente.
+O código final poderia ser o seguinte.
 
 [source,java]
 ----
-public class Square {
-    private int side;
+public class Quadrado {
+    private int lado;
 
-    public Square( int side ) {
-        this.side = side;
+    public Quadrado( int lado ) {
+        this.lado = lado;
     }
 
-    public int getArea() {
-        return side*side;
+    
+public int getArea() {
+        return lado * lado;
     }
 
-    public static class Test {
+    public static class Teste {
         public static void main(String[] args) {
-            Square square = new Square(5);
-            System.out.print("Test 1: ");
-            if (square.getArea() == 25) {
-                System.out.println("Passed");
+          Quadrado quadrado = new Quadrado(5);
+          System.out.print(“Teste 1: ”);
+            
+           if (quadrado.getArea() == 25) {
+                System.out.println(“Aprovado”);
             } else {
-                System.out.println("Failed");
+                System.out.println(“Reprovado”);
             }
 
-            square.side = 7;
-            System.out.print("Test 2: ");
+            
+            quadrado.side = 7;
+            System.out.print(“Teste 2: ”);
             if (square.getArea() == 49) {
-                System.out.println("Passed");
+                System.out.println(‘Aprovado’);
             } else {
-                System.out.println("Failed");
+                System.out.println(“Reprovado”);
             }
         }
     }
 }
 ----
 
-To run the tests, you would compile `Square.java` and then run the
-nested class by invoking `java Square$Test`. It's unwise to use the
-nested class to change the private fields in `square`, but we did so to
-show that it's allowed in Java. A better test would create a second
-`Square` object with a side of length 7.
+Para executar os testes, você deve compilar `Quadrado.java` e, em seguida, executar a
+classe aninhada chamando `java Quadrado$Teste`. Não é recomendável usar a
+classe aninhada para alterar os campos privados em `quadrado`, mas fizemos isso para
+mostrar que isso é permitido em Java. Um teste melhor criaria um segundo
+objeto `Quadrado` com um lado de comprimento 7.
 
 ====
 
-==== Inner classes
+==== Classes internas
 
-Another kind of nested class is an _inner class_. Unlike static nested
-classes, the objects of inner classes are associated with a particular
-object of the outer class. You can think of an inner class object living
-*inside* an outer class object. It's impossible to instantiate an inner
-class object without having an outer class object first. Consider the
-following class definition.
+Outro tipo de classe aninhada é a _classe interna_. Ao contrário das classes aninhadas estáticas
+, os objetos das classes internas estão associados a um determinado
+objeto da classe externa. Você pode imaginar um objeto de classe interna como se estivesse
+*dentro* de um objeto da classe externa. É impossível instanciar um objeto de classe interna
+sem primeiro ter um objeto da classe externa. Considere a
+seguinte definição de classe.
 
 [source,java]
 ----
-public class Outer {
+public class Exterior {
     private int a;
 
-    public class Inner {
+    public class Interior {
         private int b;
         private int c;
     }
 }
 ----
 
-Every instance of `Inner` must be associated with an instance of
-`Outer`. To instantiate an inner class, you use the name of an outer
-class object, followed by a dot, followed by the `new` keyword, and then
-the name of the inner class. We can create an instance of the inner
-class above as follows.
+Toda instância de `Interior` deve estar associada a uma instância de
+`Exterior`. Para instanciar uma classe interna, usa-se o nome de um objeto da classe
+externa, seguido por um ponto, pela palavra-chave `new` e, em seguida,
+pelo nome da classe interna. Podemos criar uma instância da classe interna
+acima da seguinte maneira.
 
-[source,java]
+[fonte,java]
 ----
-Outer outer = new Outer();
-Outer.Inner inner = outer.new Inner();
+Exterior exterior = new Exterior();
+Exterior.Interior interior = exterior.new Interior();
 ----
 
-This syntax looks confusing, but it makes `inner` an object that exists
-inside of `outer`. Thus, if there were methods defined in `Inner`, they
-could refer to field `a`, because every instance of `Inner` would be
-inside of an instance of `Outer` with a copy of `a`.
+Essa sintaxe pode parecer confusa, mas torna `interior` um objeto que existe
+dentro de `exterior`. Assim, se houvesse métodos definidos em `Interior`, eles
+poderiam se referir ao campo `a`, pois toda instância de `Interior` estaria
+dentro de uma instância de `Exterior` com uma cópia de `a`.
 
-The relationship between outer and inner objects is one to many. We can
-instantiate any number of inner class objects that all live inside of
-the same outer class object.
+A relação entre objetos externos e internos é de um para muitos. Podemos
+instanciar qualquer número de objetos de classe interna que residam dentro
+do mesmo objeto de classe externa.
 
 [.text-center]
-.An inner class object is always associated with a specific outer class object.
+.Um objeto de classe interna está sempre associado a um objeto específico de classe externa.
 image::inner.svg[scaledwidth=80%,pdfwidth=80%,width=80%]
 
 
-Another issue with inner classes (as opposed to static nested classes)
-is that they cannot contain static methods or static fields (except for constants).
-Since each instance of an inner class is tied to an instance of
-an outer class, the designers of Java thought that static fields and
-methods for an inner class really belong in the outer class.
+Outra questão relacionada às classes internas (em oposição às classes aninhadas estáticas)
+é que elas não podem conter métodos estáticos ou campos estáticos (exceto constantes).
+Como cada instância de uma classe interna está vinculada a uma instância de
+uma classe externa, os criadores do Java consideraram que os campos e
+métodos estáticos de uma classe interna, na verdade, pertencem à classe externa.
 
-It's even possible to define a class *inside* a method, if that class
-is only referred to in the method. Such a class is called a _local
-class_. It's possible to create an unnamed local class on the fly as
-well. Such a class is called an _anonymous class_. Both local and
-anonymous classes are special kinds of inner classes. Because of the way
-they're created and used, we'll discuss them in <<Advanced: Local and anonymous classes>>
+É até possível definir uma classe *dentro* de um método, se essa classe
+for referenciada apenas nesse método. Essa classe é chamada de _classe local
+_. Também é possível criar uma classe local sem nome dinamicamente
+. Essa classe é chamada de _classe anônima_. Tanto as classes locais quanto
+as anônimas são tipos especiais de classes internas. Devido à maneira como
+elas são criadas e utilizadas, vamos discuti-las em <<Avançado: Classes locais e anônimas>>
 
-.Inner class objects as iterators
+.Objetos de classes internas como iteradores
 ====
 
-If you create a data structure for other programmers to use, a useful
-feature is the ability to retrieve each item from the data structure in
-order. Different threads or methods might need to process these elements
-independently from each other. Each piece of code can be given an inner
-class object called an _iterator_ that can repeatedly get the next item
-in the data structure. Since instances of an inner class can read
-private data of the outer class, iterators can keep track of where they
-are inside of the data structure. If outside code were allowed access to
-the data structure's internals, it would violate encapsulation.
-Iterators are a common application of inner classes.
+Se você criar uma estrutura de dados para outros programadores usarem, um recurso
+útil é a capacidade de recuperar cada item da estrutura de dados em
+ordem. Diferentes threads ou métodos podem precisar processar esses elementos
+independentemente uns dos outros. Cada trecho de código pode receber um objeto de 
+classe interna chamado _iterador_, que pode obter repetidamente o próximo item
+na estrutura de dados. Como instâncias de uma classe interna podem ler
+dados privados da classe externa, os iteradores podem acompanhar em que ponto
+se encontram dentro da estrutura de dados. Se o código externo tivesse permissão para acessar
+o interior da estrutura de dados, isso violaria o encapsulamento.
+Iteradores são uma aplicação comum das classes internas.
 
-We can create a `SafeArray` class that only allows data to be written to
-its internal array if it falls in the legal range of indexes.
+Podemos criar uma classe `SafeArray` que só permite que dados sejam gravados em
+seu array interno se estiverem dentro do intervalo válido de índices.
 
 [source,java]
 ----
@@ -883,8 +891,8 @@ public class SafeArray {
     public SafeArray(int size) {
         data = new double[size];
     }
-
-    public int set(int index, double value) {
+    
+public int set(int index, double value) {
         if (index >= 0 && index < data.length) {
             data[index] = value;
         }
@@ -892,10 +900,10 @@ public class SafeArray {
 }
 ----
 
-We could add an inner class called `Iterator` to `SafeArray` that allows
-us to process all the array values without knowing how many there are.
-This kind of behavior is useful for many dynamic data structures, as
-discussed in <<dynamic-data-structures#dynamic-data-structures>>.
+Poderíamos adicionar uma classe interna chamada `Iterator` à `SafeArray` que nos permita
+processar todos os valores da matriz sem saber quantos existem.
+Esse tipo de comportamento é útil para muitas estruturas de dados dinâmicas, conforme
+discutido em <<dynamic-data-structures#dynamic-data-structures>>.
 
 [source,java]
 ----
@@ -905,8 +913,8 @@ public class SafeArray {
     public SafeArray(int size) {
         data = new double[size];
     }
-
-    public void set(int index, double value) {
+    
+public void set(int index, double value) {
         if (index >= 0 && index < data.length) {
             data[index] = value;
         }
@@ -914,11 +922,10 @@ public class SafeArray {
 
     public class Iterator {
         private int index = 0;
-
         public boolean hasNext() {
             return (index < data.length);
-        }
-
+        
+}
         public double getNext() {
             if (index >= 0 && index < data.length) {
                 return data[index++];
@@ -930,407 +937,405 @@ public class SafeArray {
 }
 ----
 
-The following method uses the iterator we've defined to find the sum
-of the values in a `SafeArray` object.
+O método a seguir usa o iterador que definimos para calcular a soma
+dos valores em um objeto `SafeArray`.
 
-[source,java]
+[fonte,java]
 ----
 public static findSum(SafeArray array) {
     double sum = 0;
     SafeArray.Iterator iterator = array.new Iterator();
-
     while (iterator.hasNext()) {
         sum += iterator.getNext();
     }
-
     return sum;
 }
 ----
 
 ====
 
-=== Advanced: Enumeration types
+=== Avançado: Tipos de enumeração
 
-We discussed constants in <<Constantes>>, but using the `final` keyword only
-forces individual variables, whether local or member variables, to be constant.
-What if you wanted a whole object to be constant? What would that even mean?
+Discutimos as constantes em <<Constantes>>, mas o uso da palavra-chave `final` apenas
+obriga variáveis individuais, sejam elas locais ou de membro, a serem constantes.
+E se você quisesse que um objeto inteiro fosse constante? O que isso significaria, afinal?
 
-The C programming language introduced enumerations, fixed lists of
-named constants starting at 0 and increasing by one for each value.
-This approach provided an easy way to make distinct, named constants for better
-readability. In C, these values were essentially integers, but a
-conceptually similar feature was added in Java 5 to create Java enumerations,
-fixed lists of named objects.
+A linguagem de programação C introduziu as enumerações, listas fixas de
+constantes nomeadas que começam em 0 e aumentam em um para cada valor.
+Essa abordagem proporcionou uma maneira fácil de criar constantes distintas e nomeadas para melhorar a
+legibilidade. Em C, esses valores eram essencialmente inteiros, mas um
+recurso conceitualmente semelhante foi adicionado no Java 5 para criar enumerações em Java,
+listas fixas de objetos nomeados.
 
-==== Basic enumeration types
+==== Tipos básicos de enumeração
 
-Enumerations allow us make fixed lists of objects. These `enum` types can be
-stored in their own files or nested inside other classes. As an example, we
-can create an enumeration of the four cardinal directions.
+As enumerações nos permitem criar listas fixas de objetos. Esses tipos `enum` podem ser
+armazenados em seus próprios arquivos ou aninhados dentro de outras classes. Como exemplo, podemos
+criar uma enumeração das quatro direções cardeais.
 
 [source,java]
 ----
-public enum Direction {
-    NORTH, SOUTH, EAST, WEST
+public enum Cardeais {
+    NORTE, SUL, LESTE, OESTE
 }
 ----
 
-Now, there are four objects accessible by the name `Direction` followed by a dot
-and the name of the direction: `Direction.NORTH`, `Direction.SOUTH`,
-`Direction.EAST`, and `Direction.WEST`. Each name provides a readable
-representation of a direction.
+Agora, há quatro objetos acessíveis pelo nome `Cardeais` seguido de um ponto
+e do nome da direção: `Cardeais.NORTE`, `Cardeais.SUL`,
+`Cardeais.LESTE` e `Cardeais.OESTE`. Cada nome fornece uma representação legível
+de uma direção.
 
 [source,java]
 ----
-Direction direction = whichWay();
-if (direction == Direction.EAST) {
-    System.out.println("When the East is in the house");
+Cardeais cardeais = qualDirecao();
+if (cardeais == Cardeais.LESTE) {
+    System.out.println(“Quando o Leste está na casa”);
 }
 ----
 
-There's a natural connection between `switch` statements and `enum` types:
-`switch` statements are designed for a fixed set of values, and that's exactly what
-`enum` types provide. Note that, when used in a `switch`, only the name
-of each `enum` value is used, not its type.
+Existe uma conexão natural entre as instruções `switch` e os tipos `enum`:
+as instruções `switch` são projetadas para um conjunto fixo de valores, e é exatamente isso que
+os tipos `enum` fornecem. Observe que, quando usado em um `switch`, apenas o nome
+de cada valor `enum` é utilizado, e não seu tipo.
 
 [source,java]
 ----
-switch (direction) {
-    case NORTH:
-        System.out.println("From the Gate of the Kings the North Wind rides");
+switch (cardeais) {
+    case NORTE:
+        System.out.println(“Do Portão dos Reis, o Vento do Norte sopra”);
         break;
-    case SOUTH:
-        System.out.println("From the mouths of the Sea the South Wind flies");
+    case SUL:
+        System.out.println(“Da foz do mar o vento sul voa”);
         break;
-    case WEST:
-        System.out.println("The West Wind comes walking, and about the walls it goes");
+    case OESTE:
+        System.out.println(“O vento oeste vem caminhando e contorna as muralhas”);
         break;
 }
 ----
 
-Making decisions based on `enum` values is the most common use case, but Java
-enumerations also have other, built-in functionality. Each `enum` value has
-an `ordinal()` method that returns its index, starting with 0 for the first.
-Likewise, an array containing all the values in an `enum` type can be accessed
-by calling the static `values()` method from the type name.
+Tomar decisões com base em valores `enum` é o caso de uso mais comum, mas as
+enumerações do Java também possuem outras funcionalidades integradas. Cada valor `enum` possui
+um método `ordinal()` que retorna seu índice, começando em 0 para o primeiro.
+Da mesma forma, é possível acessar uma matriz contendo todos os valores de um tipo `enum`
+chamando o método estático `values()` a partir do nome do tipo.
 
-The following code uses these features to print out the number and name
-associated with each value in `Direction`.
+O código a seguir usa esses recursos para imprimir o número e o nome
+associados a cada valor em `Cardeais`.
 
 
 [source,java]
 ----
-for (Direction cardinal : Direction.values()) {
-    System.out.println(cardinal.ordinal() + ": " + cardinal);
+for (Cardeais cardinal : Cardeais.values()) {
+    System.out.println(cardinal.ordinal() + “: ” + cardinal);
 }
 ----
 
-It gives the output below.
+Isso gera a saída abaixo.
 
 ....
-0: NORTH
-1: SOUTH
-2: EAST
-3: WEST
+0: NORTE
+1: SUL
+2: LESTE
+3: OESTE
 ....
 
-It's also possible to retrieve an `enum` value by name, using the static
-`valueOf()` method.
+Também é possível recuperar um valor `enum` pelo nome, usando o método estático
+`valueOf()`.
 
 [source,java]
 ----
- Direction westSide = Direction.valueOf("WEST");
+ Direction westSide = Direction.valueOf(“OESTE”);
 ----
 
-Doing so is risky, since the name must match exactly, including case.
-Supplying an incorrect name will cause an error.
+Fazer isso é arriscado, já que o nome deve corresponder exatamente, incluindo maiúsculas e minúsculas.
+Fornecer um nome incorreto causará um erro.
 
-==== Customized enumeration types
+==== Tipos de enumeração personalizados
 
-Usually, you won't need to create enumerations more complicated than simple
-lists of values. However, `enum` values in Java are full objects: They can
-contain both member variables and methods. So that `enum` values can be treated
-purely as constants, it's safest to store only `final` variables inside `enum`
-types, but Java nevertheless allows them to contain non-constant data.
+Normalmente, você não precisará criar enumerações mais complicadas do que simples
+listas de valores. No entanto, os valores `enum` em Java são objetos completos: eles podem
+conter tanto variáveis-membro quanto métodos. Para que os valores `enum` possam ser tratados
+puramente como constantes, é mais seguro armazenar apenas variáveis `final` dentro de tipos `enum`
+, mas o Java, mesmo assim, permite que eles contenham dados não constantes.
 
-We can expand the idea of a `Direction` enumeration to a `Movement` one that
-contains additional directions along with a geometric interpretation of how 
-movement in a direction would change a position.
+Podemos expandir a ideia de uma enumeração `Direction` para uma `Movement` que
+contém direções adicionais, juntamente com uma interpretação geométrica de como 
+o movimento em uma determinada direção alteraria uma posição.
 
 [source,java]
 ----
 public enum Movement {
-    NORTH(0, 1), // <.>
-    NORTHEAST(1, 1),
-    EAST(1, 0),
-    SOUTHEAST(1, -1),
-    SOUTH(0, -1),
-    SOUTHWEST(-1, -1),
-    WEST(-1, 0),
-    NORTHWEST(-1, 1); // <.>
+    NORTE(0, 1), // <.>
+    NORDESTE(1, 1),
+    LESTE(1, 0),
+    SUDESTE(1, -1),
+    SUL(0, -1),
+    SUDOESTE(-1, -1),
+    OESTE( -1, 0),
+    NOROESTE( -1, 1); // <.>
 
     private final int DELTA_X; // <.>
     private final int DELTA_Y;
 
-    Movement(int x, int y) {
+   Movimento(int x, int y) {
         DELTA_X = x;
         DELTA_Y = y;
     }
 
-    public int changeX(int x) {
+    
+public int alterarX(int x) {
         return x + DELTA_X;
     }
 
-    public int changeY(int y) {
+    public int alterarY(int y) {
         return y + DELTA_Y;
     }
 }
 ----
-<.> To use an `enum` type in this way, each value must be followed by
-parentheses giving the values passed into the constructor.
-<.> Then, the list of values must be terminated with a semicolon.
-<.> The rest of the `enum` type looks like any other class, containing members,
-constructors, and methods. Constructors are implicitly `private`, and it's
-illegal to mark them as anything else.
+<.> Para usar um tipo `enum` dessa maneira, cada valor deve ser seguido por
+parênteses indicando os valores passados ao construtor.
+<.> Em seguida, a lista de valores deve ser encerrada com um ponto-e-vírgula.
+<.> O restante do tipo `enum` se parece com qualquer outra classe, contendo membros,
+construtores e métodos. Os construtores são implicitamente `private`, e é
+ilegal marcá-los como qualquer outra coisa.
 
-We can use the `enum` values defined above to move a Cartesian point in the
-appropriate direction.
+Podemos usar os valores `enum` definidos acima para mover um ponto cartesiano na
+direção apropriada.
 
 [source,java]
 ----
 int x = 0;
 int y = 0;
-Movement movement = Movement.SOUTHEAST;
-x = movement.changeX(x);
-y = movement.changeY(y);
+Movimento movimento = Movimento.SUDESTE;
+x = movimento.alterarX(x);
+y = movimento.alterarY(y);
 ----
 
-After the code executes, the value of `x` will be `1`, and the value of `y`
-will be `-1`.
+Após a execução do código, o valor de `x` será `1`, e o valor de `y`
+será `-1`.
 
 [[nobleGasesExample]]
-.Noble gases
+.Gases nobres
 ====
 
-There are situations when it's helpful to group constant data together inside
-each `enum` value. In the example below, we store the atomic number and atomic
-weight for each noble gas inside its corresponding value.
+Há situações em que é útil agrupar dados constantes dentro de
+cada valor `enum`. No exemplo abaixo, armazenamos o número atômico e o peso atômico
+de cada gás nobre dentro de seu valor correspondente.
 
 [source,java]
 ----
-public enum NobleGas {
-    HELIUM(2,4.003),
-    NEON(10, 20.178),
-    ARGON(18, 39.948),
-    KRYPTON(36, 83.798),
-    XENON(54, 131.293),
-    RADON(86, 222.018);
+public enum GasNobre {
+    HÉLIO(2,4.003),
+    NÉON(10, 20.178),
+    ARGÔNIO(18, 39.948),
+    CRIPTÔNIO(36, 83.798),
+    XENÔNIO(54, 131.293),
+    RADONIO(86, 222,018);
 
-    public final int ATOMIC_NUMBER;
-    public final double ATOMIC_WEIGHT;
+    public final int NUMERO_ATOMICO;
+    public final double PESO_ATOMICO;
 
-    NobleGas(int number, double weight) {
-        ATOMIC_NUMBER = number;
-        ATOMIC_WEIGHT = weight;
+    NobleGas(int número, double peso) {
+        NUMERO_ATOMICO = número;
+        PESO_ATOMICO = peso;
     }
 }
 ----
 
-Because both member variables are public, they can be accessed
-directly, without needing a method. Mutable public member variables are generally
-considered unwise, but public constants are both safe and useful.
+Como ambas as variáveis-membro são públicas, elas podem ser acessadas
+diretamente, sem a necessidade de um método. Variáveis-membro públicas mutáveis são geralmente
+consideradas imprudentes, mas constantes públicas são seguras e úteis.
 
 [source,java]
 ----
-double neonWeight = NobleGas.NEON.ATOMIC_WEIGHT;
+double pesoNeon = GasNobre.NEON.PESO_ATOMICO;
 ----
 
-This `enum` type could be generalized to include all the elements in the
-periodic table, though that would make for a lengthy list of values.
+Esse tipo `enum` poderia ser generalizado para incluir todos os elementos da
+tabela periódica, embora isso resultasse em uma longa lista de valores.
 ====
 
-Creating `enum` types is valuable for situations where there will only ever be
-a fixed number of instances of a class: suits of cards, days of the week, 
-seasons of the year, states that a system can be in, and so on. They can also
-be used for the singleton design pattern, a paradigm used in software
-engineering.
+A criação de tipos `enum` é valiosa para situações em que sempre haverá apenas
+um número fixo de instâncias de uma classe: naipes de cartas, dias da semana, 
+estações do ano, estados em que um sistema pode se encontrar e assim por diante. Eles também podem
+ser usados para o padrão de projeto `singleton`, um paradigma utilizado na engenharia
+de software.
 
-Using `enum` types doesn't make programming more powerful, in the sense that
-new kinds of problems can be solved. However, careful use of `enum` types can
-certainly make code more readable.
+O uso de tipos `enum` não torna a programação mais poderosa, no sentido de que
+novos tipos de problemas possam ser resolvidos. No entanto, o uso cuidadoso de tipos `enum` pode
+certamente tornar o código mais legível.
 
-=== Solution: Nested expressions
+=== Solução: Expressões aninhadas
 
-We now have enough knowledge to solve the nested expressions problem
-from the beginning of the chapter. Classes help us divide up the work of
-solving the problem. We need a stack class that can hold `char`
-values. The `SymbolStack` class allows us to perform the push, pop, and top
-stack operations with methods of the same names.
+Agora temos conhecimento suficiente para resolver o problema das expressões aninhadas
+apresentado no início do capítulo. As classes nos ajudam a dividir o trabalho de
+resolver o problema. Precisamos de uma classe de pilha capaz de armazenar valores do tipo `char`
+. A classe `SymbolStack` nos permite realizar as operações de inserir, retirar e acessar o elemento superior
+da pilha por meio de métodos com os mesmos nomes.
 
-.Simple stack class to hold symbols from an input expression.
+.Classe de pilha simples para armazenar símbolos de uma expressão de entrada.
 [source, java]
 [[SymbolStackProgram]]
 ----
 include::{programsdir}/SymbolStack.java[]
 ----
-<.> Its constructor takes a
-maximize size for the stack and allocates an array of that size.
-<.> It also
-sets the `size` field to `0` so that we can keep track of how many
-things are in the stack (and consequently where the top is).
-All `int` fields in Java are automatically initialized to `0`, but it
-doesn't hurt to be explicit.
-<.> The `push()` method stores an input `char` into the stack at location
-`size` and then increments `size`.
-<.> The `pop()` method simply decrements
-`size`. It has no error checking to prevent a user from popping the
-stack once it's already empty.
-<.> The `top()` method returns the
-value at the top of the stack, whose location is `size - 1`.
-<.> `SymbolStack` also defines an `isEmpty()` method so that we can see if
-the stack is empty.
+<.> Seu construtor recebe um
+tamanho máximo para a pilha e aloca uma matriz desse tamanho.
+<.> Ele também define o campo `size` como `0` para que possamos acompanhar quantos
+elementos estão na pilha (e, consequentemente, onde está o topo).
+Todos os campos `int` em Java são automaticamente inicializados como `0`, mas
+não custa nada ser explícito.
+<.> O método `push()` armazena um `char` de entrada na pilha na posição
+`size` e, em seguida, incrementa `size`.
+<.> O método `pop()` simplesmente decrementa
+`size`. Ele não possui verificação de erros para impedir que um usuário retire elementos da
+pilha quando ela já estiver vazia.
+<.> O método `top()` retorna o
+valor no topo da pilha, cuja posição é `size - 1`.
+<.> `SymbolStack` também define um método `isEmpty()` para que possamos verificar se
+a pilha está vazia.
 
-Now we need the client code that reads the input and interacts with the
-stack.
+Agora precisamos do código cliente que lê a entrada e interage com a
+pilha.
 
 [source, java]
 ----
 include::{programsdir}/NestedExpressions.java[lines=1..9]
 ----
-<.> The `main()` method of this class reads in the input.
-<.> Then, it creates a
-`SymbolStack` called `stack` with a maximum size of the input length. We
-know that the stack will never need to hold more than the total input length.
-<.> It also creates a `boolean` named `correct` to keep track of whether or not
-the input is correctly nested. We start by assuming that it is.
+<.> O método `main()` desta classe lê a entrada.
+<.> Em seguida, ele cria uma
+`SymbolStack` chamada `stack` com tamanho máximo igual ao comprimento da entrada. Sabemos
+que a pilha nunca precisará armazenar mais do que o comprimento total da entrada.
+<.> Ele também cria um `boolean` chamado `correct` para acompanhar se
+a entrada está ou não corretamente aninhada. Começamos assumindo que está.
 
 [source, java]
 ----
-include::{programsdir}/NestedExpressions.java[lines=10..28]
+include::{programsdir}/NestedExpressions.java[linhas=10..28]
 ----
-<.> This `for` loop runs through each `char` in the input.
-<.> If it's a left parenthesis, left square bracket, or left curly brace, it pushes the
-symbol onto the stack.
-<.> If it's a right parenthesis, right square
-bracket, or right curly brace, it checks to see if the stack is empty.
-Because of short-circuit evaluation, the code doesn't even look at the
-top of the stack if it is empty. However, if the stack isn't empty, it
-checks to see if the top matches the current symbol. If the stack is
-empty or its top doesn't match, `correct` is set to `false`. For
-efficiency, the loop stops early if `correct` is no longer `true`.
+<.> Este loop `for` percorre cada `char` da entrada.
+<.> Se for um parêntese de abertura, um colchete de abertura ou uma chave de abertura, ele empurra o
+símbolo para a pilha.
+<.> Se for um parêntese direito, colchete direito
+ou chave direita, ele verifica se a pilha está vazia.
+Devido à avaliação de curto-circuito, o código nem mesmo examina o
+topo da pilha se ela estiver vazia. No entanto, se a pilha não estiver vazia, ele
+verifica se o símbolo no topo corresponde ao símbolo atual. Se a pilha estiver
+vazia ou se o topo não corresponder, `correct` é definido como `false`. Por
+questões de eficiência, o loop é interrompido antecipadamente se `correct` não for mais `true`.
 
 [source, java]
 ----
 include::{programsdir}/NestedExpressions.java[lines=30..40]
 ----
-<.> After the input has been examined, we check to see if the stack is
-empty. If it isn't, there must be some left symbols that weren't
-matched with right symbols. In that case, we set `correct` to `false`.
-<.> Finally, we print out whether the input is correctly or incorrectly
-nested based on the value of `correct`.
+<.> Após a análise da entrada, verificamos se a pilha está
+vazia. Se não estiver, deve haver alguns símbolos de esquerda que não foram
+emparelhados com símbolos de direita. Nesse caso, definimos `correct` como `false`.
+<.> Por fim, exibimos se a entrada está corretamente ou incorretamente
+aninhada com base no valor de `correct`.
 
 ****
 <<publicMembersExercise>> +
 <<nestedExpressionsGUIExercise>>
 ****
 
-=== Concurrency: Objects
+=== Concorrência: Objetos
 
-Nearly everything in Java is an object: arrays, lists, `String` values,
-colors, and even exceptions, which form Java's error-handling system and
-are discussed in <<exceptions#exceptions>>. Some critics of Java
-point out that `int`, `double`, and the other primitive types are not
-objects, forcing the programmer to adopt two different programming
-models. Regardless, threads are stored as objects as well. In
-<<concurrency#concurrency>>, we'll discuss how to create
-threads and the various methods that can be used to interact with them.
+Quase tudo em Java é um objeto: matrizes, listas, valores `String`,
+cores e até mesmo exceções, que formam o sistema de tratamento de erros do Java e
+são discutidas em <<exceptions#exceptions>>. Alguns críticos do Java
+apontam que `int`, `double` e os outros tipos primitivos não são
+objetos, forçando o programador a adotar dois modelos de programação
+diferentes. Independentemente disso, as threads também são armazenadas como objetos. Em
+<<concurrency#concurrency>>, discutiremos como criar
+threads e os vários métodos que podem ser usados para interagir com elas.
 
-However, objects of type `Thread` are not the only ones you deal with
-when writing concurrent programs. As we've just noted, most data in
-Java is encapsulated in an object. One of the deep reasons for using OOP
-is safety: We want the private data inside of an object to stay in a
-consistent state. Due to their inexplicable ability to get out of tight
-spots, one tradition holds that cats have nine lives. Because of
-their inquisitive nature, another tradition holds that curiosity killed
-the cat. Consider the class below that keeps track of the lives a cat
-has, losing one every time it becomes curious.
+No entanto, objetos do tipo `Thread` não são os únicos com os quais você lida
+ao escrever programas concorrentes. Como acabamos de observar, a maioria dos dados em
+Java está encapsulada em um objeto. Uma das razões fundamentais para usar a POO
+é a segurança: queremos que os dados privados dentro de um objeto permaneçam em um
+estado consistente. Devido à sua inexplicável capacidade de sair de
+situações difíceis, uma tradição diz que os gatos têm nove vidas. Por causa de
+sua natureza curiosa, outra tradição diz que a curiosidade matou
+o gato. Considere a classe abaixo, que mantém o controle das vidas que um gato
+tem, perdendo uma cada vez que fica curioso.
 
-.Thread safety
+.Segurança de thread
 ====
 
-If the relationship between curiosity and mortality is the only feature
-of a cat you're trying to model, the class below appears to function well.
-When the `useCuriosity()` method is invoked, it removes a life or prints
-an error message if the cat has already run out of lives. In a single-threaded
-situation, this object would work perfectly. No cat would be able to
-lose more than 9 lives.
+Se a relação entre curiosidade e mortalidade for a única característica
+de um gato que você está tentando modelar, a classe abaixo parece funcionar bem.
+Quando o método `useCuriosity()` é chamado, ele remove uma vida ou exibe
+uma mensagem de erro se o gato já tiver esgotado suas vidas. Em uma situação de thread único
+, esse objeto funcionaria perfeitamente. Nenhum gato seria capaz de
+perder mais de 9 vidas.
 
-In a multi-threaded situation, however, there's no telling when a thread might
-pause in executing the `useCuriosity()` method.
+Em uma situação _multithread_, no entanto, não há como saber quando uma thread pode
+pausar na execução do método `useCuriosity()`.
 
-.Records the number of lives a cat has left. Each `Cat` object starts with 9, but loses one each time it uses its curiosity. If no more lives remain, an error message is output.
-[source, java]
+.Registra o número de vidas que restam a um gato. Cada objeto `Cat` começa com 9, mas perde uma cada vez que usa sua curiosidade. Se não restarem mais vidas, uma mensagem de erro é exibida.
+[fonte, java]
 [[CatProgram]]
 ----
 include::{programsdir}/Cat.java[]
 ----
-<.> If 100 threads all called `useCuriosity()`, each one might successfully pass the `if` on this line before any had decremented `lives`.
-<.> Once past the check, nothing would prevent them from continuing on and decrementing `lives`, resulting in a cat who lost 100 lives, resulting in a total of -91 lives. Such a scenario makes no sense.
+<.> Se 100 threads chamassem `useCuriosity()`, cada uma poderia passar com sucesso pela condição `if` nesta linha antes que qualquer uma tivesse diminuído `lives`.
+<.> Uma vez passada a verificação, nada as impediria de continuar e diminuir `lives`, resultando em um gato que perdeu 100 vidas, totalizando -91 vidas. Tal cenário não faz sentido.
 
-In <<synchronization#synchronization>>, we'll discuss how to prevent this
-problem, using the `synchronized` keyword to allow only a single thread
-at a time to execute a section of code. The goal is to make
-`useCuriosity()` _thread-safe_, meaning that its behavior is consistent
-and correct no matter how many threads try to execute it at the same
-time.
+Em <<sincronização#sincronização>>, discutiremos como evitar esse
+problema, usando a palavra-chave `synchronized` para permitir que apenas uma única thread
+por vez execute uma seção de código. O objetivo é tornar
+`useCuriosity()` _seguro para threads_, o que significa que seu comportamento é consistente
+e correto, independentemente de quantas threads tentem executá-lo ao mesmo
+tempo.
 ====
 
-As you work through this book and begin to write your own concurrent
-programs, we'll discuss many ways to make them thread-safe. However, you're
-also a consumer of code written by other people. In multi-threaded
-environments, you might need to use library classes that are thread-safe.
-For example, `AtomicInteger` is a thread-safe class designed to store
-and manipulate `int` values. In <<dynamic-data-structures#dynamic-data-structures>>,
-we'll talk about the `ArrayList` and `Vector` classes, which
-are both used to hold variable length lists of objects. One of the few
-differences between them is that `ArrayList` is not thread-safe while
-`Vector` is. There's even the `Collections.synchronizedCollection()`
-method (and other similar methods), which takes a collection that's not
-thread-safe and returns a version of it that is.
+À medida que você avançar neste livro e começar a escrever seus próprios programas concorrentes
+, discutiremos várias maneiras de torná-los seguros para threads. No entanto, você
+também é um usuário de código escrito por outras pessoas. Em ambientes multithread
+, talvez seja necessário usar classes de biblioteca que sejam seguras para threads.
+Por exemplo, `AtomicInteger` é uma classe segura para threads projetada para armazenar
+e manipular valores `int`. Em <<dynamic-data-structures#dynamic-data-structures>>,
+falaremos sobre as classes `ArrayList` e `Vector`, que
+são usadas para armazenar listas de objetos de comprimento variável. Uma das poucas
+diferenças entre elas é que `ArrayList` não é segura para threads, enquanto
+`Vector` é. Existe até mesmo o método `Collections.synchronizedCollection()`
+(e outros métodos semelhantes), que recebe uma coleção que não é
+segura para threads e retorna uma versão dela que é.
 
-Java was intended to be multi-threaded from the very beginning, but
-concurrency was never the most important feature in the language. For
-that reason, the documentation doesn't clearly mark which methods are
-thread-safe. Usually, some of the paragraphs of description above the
-list of methods say that a class is "`synchronized`" if it is
-thread-safe. If it's not, the documentation may not mention anything.
-Careful attention is needed to be sure which classes and APIs are
-thread-safe.
+O Java foi projetado para ser multithread desde o início, mas
+a concorrência nunca foi o recurso mais importante da linguagem. Por
+essa razão, a documentação não indica claramente quais métodos são
+seguros para threads. Normalmente, alguns dos parágrafos de descrição acima da
+lista de métodos dizem que uma classe é “`synchronized`” se for
+segura para threads. Caso contrário, a documentação pode não mencionar nada.
+É preciso prestar muita atenção para ter certeza de quais classes e APIs são
+seguras para threads.
 
-You might wonder why *all* classes aren't thread-safe, but everything comes
-with a price. If a class is thread-safe, its methods are usually marked
-with the `synchronized` keyword. The JVM is relatively efficient about
-how it enforces that keyword, but the computational expense is not zero.
-Learn the libraries well, and use the right tools for the right job.
+Você pode se perguntar por que *todas* as classes não são seguras para threads, mas tudo tem
+seu preço. Se uma classe é segura para threads, seus métodos geralmente são marcados
+com a palavra-chave `synchronized`. A JVM é relativamente eficiente na
+forma como aplica essa palavra-chave, mas o custo computacional não é zero.
+Estude bem as bibliotecas e use as ferramentas certas para cada tarefa.
 
-=== Exercises
-*Conceptual Problems*
+=== Exercícios
+*Problemas conceituais*
 
-. Explain the relationship between a class and an object.
-. What's the difference between a static method and an instance
-method?
-. What's the purpose of a constructor? Why is it impossible for a
-constructor to return a value? Why is it impossible for a constructor to
-be called multiple times on the same object?
-. A static method can be called directly from a instance method, but
-an instance method can't be called directly from a static method. Why?
-. Describe the uses of accessor and mutator methods. Is it possible to
-create a method that is both an accessor and a mutator? Why or why not?
-. Why do we usually mark fields with the `private` keyword when it
-would be easier to make all fields `public`?
-. What's the meaning of the `this` keyword? When is it necessary to
-use it? When can it be ignored?
-. Consider the following class definitions.
+. Explique a relação entre uma classe e um objeto.
+. Qual é a diferença entre um método estático e um método de instância
+?
+. Qual é a finalidade de um construtor? Por que é impossível que um
+construtor retorne um valor? Por que é impossível que um construtor
+seja chamado várias vezes no mesmo objeto?
+. Um método estático pode ser chamado diretamente de um método de instância, mas
+um método de instância não pode ser chamado diretamente de um método estático. Por quê?
+. Descreva os usos dos métodos acessadores e mutadores. É possível
+criar um método que seja tanto um acessador quanto um mutador? Por que sim ou por que não?
+. Por que geralmente marcamos campos com a palavra-chave `private` quando
+seria mais fácil tornar todos os campos `public`?
+. Qual é o significado da palavra-chave `this`? Quando é necessário
+usá-la? Quando ela pode ser ignorada?
+. Considere as seguintes definições de classe.
 +
 [source,java]
 ----
@@ -1339,7 +1344,8 @@ public class A {
 
     public int getA() { return a; }
 
-    public static void increment() { ++a; }
+    
+public static void increment() { ++a; }
 }
 
 public class B {
@@ -1352,15 +1358,15 @@ public class B {
     public A generate() {
         A object = new A();
         object.a = b;
-		return object;
+return object;
     }
 }
 ----
 +
-The field `a` is used three times in the previous code. Which of these
-uses cause a compiler error and why?
-. [[publicMembersExercise]] In <<Solution: Nested expressions>>, we gave a definition of
-`SymbolStack` that implements a simple stack using two fields, as follows.
+O campo `a` é usado três vezes no código anterior. Qual dessas
+utilizações causa um erro de compilação e por quê?
+. [[publicMembersExercise]] Em <<Solução: Expressões aninhadas>>, apresentamos uma definição de
+`SymbolStack` que implementa uma pilha simples usando dois campos, conforme segue.
 +
 [source,java]
 ----
@@ -1368,11 +1374,11 @@ private char[] symbols;
 private int size;
 ----
 +
-By calling the `top()` or `pop()` methods on an empty stack, it's
-possible to cause a program to crash. What additional problems could
-happen if `symbols` and `size` were declared `public` and malicious or
-poorly written code had access to these fields?
-. Consider the following class definition.
+Ao chamar os métodos `top()` ou `pop()` em uma pilha vazia, é
+possível causar uma falha no programa. Que outros problemas poderiam
+ocorrer se `symbols` e `size` fossem declarados como `public` e um código malicioso ou
+mal escrito tivesse acesso a esses campos?
+. Considere a seguinte definição de classe.
 +
 [source,java]
 ----
@@ -1385,61 +1391,68 @@ public class GroceryItem {
         double price = money;
     }
 
-    public String getName() { return name; }
+    
+public String getName() { return name; }
     public String getPrice() { return price; }
 }
 ----
 +
-This class compiles, but its constructor doesn't function properly. Why
-not?
+Essa classe compila, mas seu construtor não funciona corretamente. Por que
+não?
 
-*Programming Practice*
+*Prática de Programação*
 
-. OOP is often used when the data inside the object must maintain
-special relationships. Consider a clock with hours, minutes, and
-seconds. When the number of seconds reaches 60, the number of minutes is
-increased by 1, and the number of seconds is reset to 0. When the number
-of minutes reaches 60, the number of hours is increased by 1, and the
-number of seconds is reset to 0. When the number of hours reaches 13, it's
-reset to 1. AM and PM switch whenever the number of hours reaches 12.
+. A OOP é frequentemente usada quando os dados dentro do objeto precisam manter
+relações especiais. Considere um relógio com horas, minutos e
+segundos. Quando o número de segundos chega a 60, o número de minutos é
+incrementado em 1, e o número de segundos é zerado. Quando o número
+de minutos chega a 60, o número de horas é incrementado em 1, e o
+número de segundos é zerado. Quando o número de horas chega a 13, ele é
+zerado para 1. A alternância entre AM e PM ocorre sempre que o número de horas chega a 12.
 +
-Define a `Clock` class with private `int` fields `hours`, `minutes`, and
-`seconds` and a `boolean` field `PM`. Write a constructor that
-initializes `hours` to `12`, `minutes` and `seconds` to `0`, and `PM` to
-`false`. Write a mutator `increment()` that adds `1` to `seconds`. This
-mutator should correctly handle all the clock behavior described above.
-Write an accessor called `toString()` that returns a nicely formatted
-version of the time as a `String`. For example, the initial time would
-be returned as `"12:00:00 AM"`. Make sure you pad the output for
-`seconds` and `minutes` with an extra `"0"` if they're less than `10`.
-. Draw on any of your hobbies to come up with a collection of items,
-whether those items are books you like to read, athletes you follow,
-music you collect, or anything else that's easy to classify.  Then,
-create a class that can describe one of these items with three to five
-attributes. For example, the important attributes of a book might be
-author, title, genre, and page count. Each of these attributes should be
-stored as a `private` field and manipulated with `public` accessor and
-mutator methods.
+Defina uma classe `Clock` com campos `int` privados `hours`, `minutes` e
+`seconds` e um campo `boolean` `PM`. Escreva um construtor que
+inicialize `hours` como `12`, `minutes` e `seconds` como `0`, e `PM` como
+`false`. Escreva um mutador `increment()` que adicione `1` a `seconds`. Este
+mutador deve lidar corretamente com todo o comportamento do relógio descrito acima.
+Escreva um acessador chamado `toString()` que retorne uma versão bem formatada
+da hora como um `String`. Por exemplo, a hora inicial seria
+retornada como `“12:00:00 AM”`. Certifique-se de preencher a saída para
+`seconds` e `minutes` com um `“0”` extra se eles forem menores que `10`.
+. Inspire-se em qualquer um dos seus hobbies para criar uma coleção de itens,
+sejam eles livros que você gosta de ler, atletas que você acompanha,
+músicas que você coleciona ou qualquer outra coisa que seja fácil de classificar. Em seguida,
+crie uma classe capaz de descrever um desses itens com três a cinco
+atributos. Por exemplo, os atributos importantes de um livro podem ser
+autor, título, gênero e número de páginas. 
+Cada um desses atributos deve ser
+armazenado como um campo `private` e manipulado com métodos `public` de acesso e
+de modificação.
 +
-Using an array, create a database of these objects. Write methods that
-print out all objects that have a particular value for an attribute.
-For example, a book database program should let the user input
-that he or she is looking for all books whose author is
-`"Alexandre Dumas"`. You might wish to use input redirection so that you
-don't have to enter data about your objects repetitively.
-. The `java.awt` package defines a class called `Point` that can be
-used to manipulate an (_x_, _y_) pair in programs involving the
-Cartesian coordinate system. Create your own `Point` class with `int`
-values `x` and `y` as fields.
+Usando um array, crie um banco de dados desses objetos. Escreva métodos que
+imprimam todos os objetos que tenham um valor específico para um atributo.
+Por exemplo, um programa de banco de dados de livros deve permitir que o usuário insira
+que está procurando todos os livros cujo autor seja
+`“Alexandre Dumas”`.
+ 
+
+
+Você pode querer usar redirecionamento de entrada para que
+não precise inserir dados sobre seus objetos repetidamente.
+. O pacote `java.awt` define uma classe chamada `Point` que pode ser
+usada para manipular um par (_x_, _y_) em programas envolvendo o
+sistema de coordenadas cartesianas. Crie sua própria classe `Point` com valores `int`
+para `x` e `y` como campos.
+
 +
-Create one constructor that allows the user to specify values for `x`
-and `y` and a default constructor that takes no arguments and sets both
-`x` and `y` to `0`. Create accessors and mutators for `x` and `y`.
+Crie um construtor que permita ao usuário especificar valores para `x`
+e `y` e um construtor padrão que não receba argumentos e defina tanto
+`x` quanto `y` como `0`. Crie acessadores e mutadores para `x` e `y`.
 +
-Finally, create a method with the signature
-`public double distance(Point p)` that finds the distance
-between the current `Point` object and the `Point` object `p` passed in
-as an argument.  Recall that the following formula finds the distance _d_ between two 2D points.
+Por fim, crie um método com a assinatura
+`public double distance(Point p)` que calcule a distância
+entre o objeto `Point` atual e o objeto `Point` `p` passado
+como argumento. Lembre-se de que a fórmula a seguir calcula a distância _d_ entre dois pontos 2D.
 //[stem]
 //****
 //d = \sqrt{(x_1 - x_2)^2+(y_1 - y_2)^2}
@@ -1447,25 +1460,24 @@ as an argument.  Recall that the following formula finds the distance _d_ betwee
 [.text-center]
 image::distance.svg[scaledwidth=40%,pdfwidth=40%,width=40%]
 +
-Write client code that allows you to create two `Point` objects and test
-if the `distance()` method gives the right answer.
-. [[nestedExpressionsGUIExercise]] Re-implement the solution from <<Solution: Nested expressions>> so that it performs its input and output with GUIs created
-using `JOptionPane`.
+Escreva um código cliente que permita criar dois objetos `Point` e testar
+se o método `distance()` fornece a resposta correta.
+. [[nestedExpressionsGUIExercise]] Reimplemente a solução de <<Solução: Expressões aninhadas>> de forma que ela realize sua entrada e saída por meio de GUIs criadas
+usando `JOptionPane`.
 
-*Experiments*
 
-. Objects are great tools for solving problems, but there's some
-additional overhead associated with creating objects and calling
-methods.
+*Experimentos*
+
+. Objetos são ótimas ferramentas para resolver problemas, mas há uma
+sobrecarga adicional associada à criação de objetos e à chamada de
+métodos.
 +
-Write a piece of code that allocates an array of 10,000,000 `int`
-values. Iterate through that array, storing the _value_ `i` into _index_
-`i`, and time the process using an OS `time` command. As you know, the
-`Integer` wrapper class allows us to store an `int` value in object
-form. Repeat the experiment, but instead of `int` values, allocate an
-array to hold 10,000,000 `Integer` objects. Iterate through the array
-again, storing an `Integer` object into each index of the array. For
-index `i`, store a new `Integer` objected created by passing value `i`
-into its constructor. Compare the time taken to the previous time for
-`int` values. Do you think this is a reasonable way to estimate the time
-it takes to call a constructor and allocate a new object?
+Escreva um trecho de código que aloque uma matriz com 10.000.000 de valores `int`
+. 
+Percorra essa matriz, armazenando o _valor_ `i` no _índice_
+`i`, e cronometre o processo usando o comando `time` do sistema operacional. Como você sabe, aclasse wrapper `Integer` nos permite armazenar um valor `int` na forma de objeto. Repita o experimento, mas, em vez de valores `int`, aloque umamatriz para conter 10.000.000 de objetos `Integer`. Percorra a matriz
+novamente, armazenando um objeto `Integer` em cada índice da matriz. Para o
+índice `i`, armazene um novo objeto `Integer` criado ao passar o valor `i`
+para seu construtor. Compare o tempo gasto com o tempo anterior para os
+valores `int`. Você acha que essa é uma maneira razoável de estimar o tempo
+que leva para chamar um construtor e alocar um novo objeto?
